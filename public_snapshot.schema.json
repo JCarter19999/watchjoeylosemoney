@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://watchjoeylosemoney.com/public_snapshot.schema.json",
+  "title": "WatchJoeyLoseMoney public snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "generated_at_utc",
+    "data_as_of_utc",
+    "publication_delay_minutes",
+    "mode",
+    "status",
+    "stats",
+    "execution_telemetry",
+    "equity_curve",
+    "latest_trades"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "generated_at_utc": { "type": "string", "format": "date-time" },
+    "data_as_of_utc": { "type": "string", "format": "date-time" },
+    "publication_delay_minutes": { "type": "integer", "minimum": 0 },
+    "mode": { "enum": ["SHADOW", "DEMO", "LIVE", "PAUSED", "FAULT", "OFFLINE"] },
+    "status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["service_state", "guardian_state", "market_data_state", "execution_enabled", "data_delayed", "message"],
+      "properties": {
+        "service_state": { "enum": ["STARTING", "REPLAYING", "ARMED", "PAUSED", "FAULT", "OFFLINE"] },
+        "guardian_state": { "enum": ["ARMED", "DISARMED", "FAULT", "NA"] },
+        "market_data_state": { "enum": ["LIVE", "REPLAY", "STALE", "GAPPED", "DISCONNECTED", "UNKNOWN"] },
+        "execution_enabled": { "type": "boolean" },
+        "data_delayed": { "type": "boolean" },
+        "message": { "type": "string" }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "display_starting_equity_usd", "display_equity_usd",
+        "realized_pnl_today_usd", "realized_pnl_all_time_usd",
+        "current_drawdown_usd", "max_drawdown_usd",
+        "closed_trades_today", "closed_trades_all_time",
+        "wins", "losses", "breakeven",
+        "win_rate", "expectancy_usd", "profit_factor"
+      ],
+      "properties": {
+        "display_starting_equity_usd": { "type": "number" },
+        "display_equity_usd": { "type": "number" },
+        "realized_pnl_today_usd": { "type": "number" },
+        "realized_pnl_all_time_usd": { "type": "number" },
+        "current_drawdown_usd": { "type": "number", "minimum": 0 },
+        "max_drawdown_usd": { "type": "number", "minimum": 0 },
+        "closed_trades_today": { "type": "integer", "minimum": 0 },
+        "closed_trades_all_time": { "type": "integer", "minimum": 0 },
+        "wins": { "type": "integer", "minimum": 0 },
+        "losses": { "type": "integer", "minimum": 0 },
+        "breakeven": { "type": "integer", "minimum": 0 },
+        "win_rate": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "expectancy_usd": { "type": ["number", "null"] },
+        "profit_factor": { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "execution_telemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sample_size", "submit_to_ack_ms_median", "submit_to_ack_ms_p95",
+        "submit_to_fill_ms_median", "submit_to_fill_ms_p95",
+        "slippage_ticks_mean", "slippage_ticks_p95", "slippage_usd_mean"
+      ],
+      "properties": {
+        "sample_size": { "type": "integer", "minimum": 0 },
+        "submit_to_ack_ms_median": { "type": ["number", "null"] },
+        "submit_to_ack_ms_p95": { "type": ["number", "null"] },
+        "submit_to_fill_ms_median": { "type": ["number", "null"] },
+        "submit_to_fill_ms_p95": { "type": ["number", "null"] },
+        "slippage_ticks_mean": { "type": ["number", "null"] },
+        "slippage_ticks_p95": { "type": ["number", "null"] },
+        "slippage_usd_mean": { "type": ["number", "null"] }
+      }
+    },
+    "equity_curve": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ts_utc", "equity_usd", "cum_pnl_usd", "drawdown_usd"],
+        "properties": {
+          "ts_utc": { "type": "string", "format": "date-time" },
+          "equity_usd": { "type": "number" },
+          "cum_pnl_usd": { "type": "number" },
+          "drawdown_usd": { "type": "number", "minimum": 0 }
+        }
+      }
+    },
+    "latest_trades": {
+      "type": "array",
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["closed_at_utc", "session_date", "side", "pnl_usd", "exit_reason", "duration_seconds", "mode"],
+        "properties": {
+          "closed_at_utc": { "type": "string", "format": "date-time" },
+          "session_date": { "type": "string", "format": "date" },
+          "side": { "enum": ["LONG", "SHORT"] },
+          "pnl_usd": { "type": "number" },
+          "exit_reason": { "type": "string" },
+          "duration_seconds": { "type": "number", "minimum": 0 },
+          "mode": { "enum": ["SHADOW", "DEMO", "LIVE"] }
+        }
+      }
+    }
+  }
+}

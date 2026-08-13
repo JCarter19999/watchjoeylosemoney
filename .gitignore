@@ -1,0 +1,18 @@
+# Never commit private runtime material
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+private_snapshot.json
+*.db
+*.sqlite
+*.sqlite3
+*.log
+logs/
+runtime/
+state/
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
+.DS_Store
