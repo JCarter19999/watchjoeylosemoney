@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-14T02:15:01.694642Z",
+  "data_as_of_utc": "2026-08-14T02:30:01.958776Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -24.0,
@@ -42,7 +42,7 @@
     "submit_to_fill_ms_median": 530.2,
     "submit_to_fill_ms_p95": 579.9
   },
-  "generated_at_utc": "2026-08-14T02:15:01.694642Z",
+  "generated_at_utc": "2026-08-14T02:30:01.958776Z",
   "latest_trades": [
     {
       "closed_at_utc": "2026-08-14T00:51:00.590137+00:00",
@@ -111,10 +111,10 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "market_data_state": "UNKNOWN",
-    "message": "Service not currently reporting activity.",
-    "service_state": "OFFLINE"
+    "execution_enabled": true,
+    "guardian_state": "FAULT",
+    "market_data_state": "LIVE",
+    "message": "Guardian paused real-order execution after a broker reconciliation delay. Diagnostics withheld; shadow tracking continues.",
+    "service_state": "PAUSED"
   }
 }
