@@ -98,22 +98,27 @@ def render_charts(snapshot: dict[str, Any]) -> None:
         st.info("No closed public trades yet.")
         return
     curve["ts_utc"] = pd.to_datetime(curve["ts_utc"], utc=True)
-    st.subheader("Equity curve")
-    st.line_chart(curve, x="ts_utc", y="equity_usd", x_label="UTC", y_label="Display equity ($)", height=320)
+
+    def _resampled_cum_pnl(rule: str, label: str) -> pd.DataFrame:
+        # One point per period (last known cumulative P&L that period,
+        # carried forward across no-trade periods) rather than one point
+        # per trade -- shows overall profit, positive or negative, as a
+        # trajectory instead of the per-trade drawdown view.
+        return (
+            curve.set_index("ts_utc")["cum_pnl_usd"]
+            .resample(rule)
+            .last()
+            .ffill()
+            .reset_index()
+            .rename(columns={"ts_utc": label, "cum_pnl_usd": "cumulative_pnl_usd"})
+        )
+
+    st.subheader("Hourly P&L")
+    hourly = _resampled_cum_pnl("1h", "hour")
+    st.line_chart(hourly, x="hour", y="cumulative_pnl_usd", x_label="Hour (UTC)", y_label="Cumulative P&L ($)", height=280)
 
     st.subheader("Daily P&L")
-    # Resample to one point per calendar day (last known cumulative P&L
-    # that day, carried forward across no-trade days) rather than one
-    # point per trade -- shows overall profit, positive or negative, as
-    # a daily trajectory instead of the per-trade drawdown view.
-    daily = (
-        curve.set_index("ts_utc")["cum_pnl_usd"]
-        .resample("1D")
-        .last()
-        .ffill()
-        .reset_index()
-        .rename(columns={"ts_utc": "date", "cum_pnl_usd": "cumulative_pnl_usd"})
-    )
+    daily = _resampled_cum_pnl("1D", "date")
     st.line_chart(daily, x="date", y="cumulative_pnl_usd", x_label="Date (UTC)", y_label="Cumulative P&L ($)", height=280)
 
     st.subheader("Drawdown")
