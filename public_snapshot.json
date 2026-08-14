@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-14T14:30:02.801017Z",
+  "data_as_of_utc": "2026-08-14T14:45:02.634726Z",
   "equity_curve": [],
   "execution_telemetry": {
     "sample_size": 0,
@@ -11,7 +11,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-08-14T14:30:02.801017Z",
+  "generated_at_utc": "2026-08-14T14:45:02.634726Z",
   "latest_trades": [],
   "mode": "DEMO",
   "publication_delay_minutes": 0,
@@ -34,10 +34,10 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "market_data_state": "UNKNOWN",
-    "message": "Service not currently reporting activity.",
-    "service_state": "OFFLINE"
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "market_data_state": "LIVE",
+    "message": "Armed and watching for entries.",
+    "service_state": "ARMED"
   }
 }
