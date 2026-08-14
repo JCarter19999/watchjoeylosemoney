@@ -100,6 +100,22 @@ def render_charts(snapshot: dict[str, Any]) -> None:
     curve["ts_utc"] = pd.to_datetime(curve["ts_utc"], utc=True)
     st.subheader("Equity curve")
     st.line_chart(curve, x="ts_utc", y="equity_usd", x_label="UTC", y_label="Display equity ($)", height=320)
+
+    st.subheader("Daily P&L")
+    # Resample to one point per calendar day (last known cumulative P&L
+    # that day, carried forward across no-trade days) rather than one
+    # point per trade -- shows overall profit, positive or negative, as
+    # a daily trajectory instead of the per-trade drawdown view.
+    daily = (
+        curve.set_index("ts_utc")["cum_pnl_usd"]
+        .resample("1D")
+        .last()
+        .ffill()
+        .reset_index()
+        .rename(columns={"ts_utc": "date", "cum_pnl_usd": "cumulative_pnl_usd"})
+    )
+    st.line_chart(daily, x="date", y="cumulative_pnl_usd", x_label="Date (UTC)", y_label="Cumulative P&L ($)", height=280)
+
     st.subheader("Drawdown")
     st.line_chart(curve, x="ts_utc", y="drawdown_usd", x_label="UTC", y_label="Drawdown ($)", height=240)
 
