@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-14T00:45:02.070593Z",
+  "data_as_of_utc": "2026-08-14T01:00:01.456847Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -24.0,
@@ -24,20 +24,35 @@
       "drawdown_usd": 33.5,
       "equity_usd": 49966.5,
       "ts_utc": "2026-08-13T23:44:00.625709+00:00"
+    },
+    {
+      "cum_pnl_usd": -49.5,
+      "drawdown_usd": 49.5,
+      "equity_usd": 49950.5,
+      "ts_utc": "2026-08-14T00:51:00.590137+00:00"
     }
   ],
   "execution_telemetry": {
-    "sample_size": 4,
-    "slippage_ticks_mean": 8.0976,
+    "sample_size": 5,
+    "slippage_ticks_mean": 7.5023,
     "slippage_ticks_p95": 14.0,
-    "slippage_usd_mean": 4.0488,
-    "submit_to_ack_ms_median": 176.6,
+    "slippage_usd_mean": 3.7512,
+    "submit_to_ack_ms_median": 161.9,
     "submit_to_ack_ms_p95": 178.6,
     "submit_to_fill_ms_median": 530.2,
     "submit_to_fill_ms_p95": 579.9
   },
-  "generated_at_utc": "2026-08-14T00:45:02.070593Z",
+  "generated_at_utc": "2026-08-14T01:00:01.456847Z",
   "latest_trades": [
+    {
+      "closed_at_utc": "2026-08-14T00:51:00.590137+00:00",
+      "duration_seconds": 59.680642,
+      "exit_reason": "STOP",
+      "mode": "DEMO",
+      "pnl_usd": -16.0,
+      "session_date": "2026-08-14",
+      "side": "SHORT"
+    },
     {
       "closed_at_utc": "2026-08-13T23:44:00.625709+00:00",
       "duration_seconds": 179.67907,
@@ -80,18 +95,18 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 4,
-    "closed_trades_today": 0,
-    "current_drawdown_usd": 33.5,
-    "display_equity_usd": 49966.5,
+    "closed_trades_all_time": 5,
+    "closed_trades_today": 1,
+    "current_drawdown_usd": 49.5,
+    "display_equity_usd": 49950.5,
     "display_starting_equity_usd": 50000.0,
-    "expectancy_usd": -8.375,
-    "losses": 3,
-    "max_drawdown_usd": 33.5,
-    "profit_factor": 0.2386,
-    "realized_pnl_all_time_usd": -33.5,
-    "realized_pnl_today_usd": 0,
-    "win_rate": 0.25,
+    "expectancy_usd": -9.9,
+    "losses": 4,
+    "max_drawdown_usd": 49.5,
+    "profit_factor": 0.175,
+    "realized_pnl_all_time_usd": -49.5,
+    "realized_pnl_today_usd": -16.0,
+    "win_rate": 0.2,
     "wins": 1
   },
   "status": {
