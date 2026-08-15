@@ -29,6 +29,42 @@ SCHEMA_VERSION = "1.0"
 MIN_LIVE_DELAY_MINUTES = 10
 MAX_LATEST_TRADES = 25
 
+# Thresholds match scripts/analyze_bar_timing.py and the private dashboard's
+# RT1 tab in the live repo (2026-08-15 clean-host latency experiment) --
+# keep the three in sync if they ever change.
+LATENCY_HEALTHY_P95_MS = 500
+LATENCY_HEALTHY_P99_MS = 1000
+
+
+_EMPTY_STAGE = {"n": 0, "median_ms": None, "p95_ms": None, "p99_ms": None}
+LATENCY_STAGE_KEYS = (
+    "queue_wait_ms", "ingest_and_decision_ms", "get_account_http_ms",
+    "submit_order_ms", "poll_until_filled_ms", "post_entry_reconciliation_ms",
+    "total_bar_to_submit_ms",
+)
+
+
+def _latency_verdict(latency: dict[str, Any]) -> str:
+    n = latency.get("bars_sampled", 0)
+    if not n:
+        return "INSUFFICIENT_DATA"
+    if latency.get("stalls_over_2s", 0) > 0:
+        return "NEEDS_UPGRADE"
+    # ingest_and_decision_ms (not total_bar_to_submit_ms) gates the overall
+    # verdict: it's present for essentially every bar (steady-state
+    # per-bar processing cost), where total_bar_to_submit_ms only exists
+    # on the rare bars an entry/exit actually opened -- gating on that
+    # would report INSUFFICIENT_DATA through long quiet stretches even
+    # though thousands of ordinary bars processed fine.
+    steady_state = latency.get("stages", {}).get("ingest_and_decision_ms", _EMPTY_STAGE)
+    p95 = steady_state.get("p95_ms")
+    p99 = steady_state.get("p99_ms")
+    if (latency.get("stalls_over_750ms", 0) > 0
+            or p95 is None or p95 > LATENCY_HEALTHY_P95_MS
+            or p99 is None or p99 > LATENCY_HEALTHY_P99_MS):
+        return "MARGINAL"
+    return "HEALTHY"
+
 
 def parse_utc(value: str) -> datetime:
     dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
@@ -163,6 +199,21 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
             "slippage_ticks_mean": _round(sum(slip_ticks) / len(slip_ticks)) if slip_ticks else None,
             "slippage_ticks_p95": _round(_percentile(slip_ticks, 0.95)),
             "slippage_usd_mean": _round(sum(slip_dollars) / len(slip_dollars)) if slip_dollars else None,
+        },
+        "latency_health": {
+            "bars_sampled": (latency := private.get("latency", {})).get("bars_sampled", 0),
+            "stalls_over_750ms": latency.get("stalls_over_750ms", 0),
+            "stalls_over_2s": latency.get("stalls_over_2s", 0),
+            "verdict": _latency_verdict(latency),
+            "stages": {
+                key: {
+                    "n": (stage := latency.get("stages", {}).get(key, _EMPTY_STAGE))["n"],
+                    "median_ms": stage["median_ms"],
+                    "p95_ms": stage["p95_ms"],
+                    "p99_ms": stage["p99_ms"],
+                }
+                for key in LATENCY_STAGE_KEYS
+            },
         },
         "equity_curve": equity_curve,
         "latest_trades": [

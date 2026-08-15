@@ -2,6 +2,19 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://watchjoeylosemoney.com/public_snapshot.schema.json",
   "title": "WatchJoeyLoseMoney public snapshot",
+  "$defs": {
+    "latency_stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["n", "median_ms", "p95_ms", "p99_ms"],
+      "properties": {
+        "n": { "type": "integer", "minimum": 0 },
+        "median_ms": { "type": ["number", "null"], "minimum": 0 },
+        "p95_ms": { "type": ["number", "null"], "minimum": 0 },
+        "p99_ms": { "type": ["number", "null"], "minimum": 0 }
+      }
+    }
+  },
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -13,6 +26,7 @@
     "status",
     "stats",
     "execution_telemetry",
+    "latency_health",
     "equity_curve",
     "latest_trades"
   ],
@@ -80,6 +94,35 @@
         "slippage_ticks_mean": { "type": ["number", "null"] },
         "slippage_ticks_p95": { "type": ["number", "null"] },
         "slippage_usd_mean": { "type": ["number", "null"] }
+      }
+    },
+    "latency_health": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bars_sampled", "stalls_over_750ms", "stalls_over_2s", "verdict", "stages"],
+      "properties": {
+        "bars_sampled": { "type": "integer", "minimum": 0 },
+        "stalls_over_750ms": { "type": "integer", "minimum": 0 },
+        "stalls_over_2s": { "type": "integer", "minimum": 0 },
+        "verdict": { "enum": ["HEALTHY", "MARGINAL", "NEEDS_UPGRADE", "INSUFFICIENT_DATA"] },
+        "stages": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "queue_wait_ms", "ingest_and_decision_ms", "get_account_http_ms",
+            "submit_order_ms", "poll_until_filled_ms", "post_entry_reconciliation_ms",
+            "total_bar_to_submit_ms"
+          ],
+          "properties": {
+            "queue_wait_ms": { "$ref": "#/$defs/latency_stage" },
+            "ingest_and_decision_ms": { "$ref": "#/$defs/latency_stage" },
+            "get_account_http_ms": { "$ref": "#/$defs/latency_stage" },
+            "submit_order_ms": { "$ref": "#/$defs/latency_stage" },
+            "poll_until_filled_ms": { "$ref": "#/$defs/latency_stage" },
+            "post_entry_reconciliation_ms": { "$ref": "#/$defs/latency_stage" },
+            "total_bar_to_submit_ms": { "$ref": "#/$defs/latency_stage" }
+          }
+        }
       }
     },
     "equity_curve": {
