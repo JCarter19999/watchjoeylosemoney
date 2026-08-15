@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-15T21:30:01.764473Z",
+  "data_as_of_utc": "2026-08-15T21:45:01.231860Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 25.0,
@@ -30,7 +30,7 @@
     "submit_to_fill_ms_median": 667.1,
     "submit_to_fill_ms_p95": 720.9
   },
-  "generated_at_utc": "2026-08-15T21:30:01.764473Z",
+  "generated_at_utc": "2026-08-15T21:45:01.231860Z",
   "latency_health": {
     "bars_sampled": 0,
     "stages": {
@@ -131,10 +131,10 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": true,
-    "guardian_state": "DISARMED",
-    "market_data_state": "LIVE",
-    "message": "Warming up (filling its rolling buffer, not armed yet).",
-    "service_state": "STARTING"
+    "execution_enabled": false,
+    "guardian_state": "NA",
+    "market_data_state": "STALE",
+    "message": "No update from the live process recently -- may be a market-closed weekend/maintenance window, or the process may be stuck.",
+    "service_state": "OFFLINE"
   }
 }
