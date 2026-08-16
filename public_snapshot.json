@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-16T15:45:01.239702Z",
+  "data_as_of_utc": "2026-08-16T16:00:01.623460Z",
   "equity_curve": [],
   "execution_telemetry": {
     "sample_size": 0,
@@ -11,7 +11,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-08-16T15:45:01.239702Z",
+  "generated_at_utc": "2026-08-16T16:00:01.623460Z",
   "latency_health": {
     "bars_sampled": 0,
     "stages": {
