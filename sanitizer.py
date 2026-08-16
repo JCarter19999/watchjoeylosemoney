@@ -217,6 +217,27 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
                 for key in LATENCY_STAGE_KEYS
             },
         },
+        "reliability": {
+            "restart_count": private.get("reliability", {}).get("restart_count"),
+            "first_started_at_utc": private.get("reliability", {}).get("first_started_at_utc"),
+            "last_started_at_utc": private.get("reliability", {}).get("last_started_at_utc"),
+            "crash_report_count": private.get("reliability", {}).get("crash_report_count", 0),
+        },
+        "guardian_transitions": [
+            {
+                "ts_utc": t["ts_utc"],
+                "from_state": t["from_state"],
+                "to_state": t["to_state"],
+                "reason": t["reason"],
+            }
+            for t in private.get("guardian_transitions", [])
+            # Same embargo as trades: a LIVE-mode transition timestamp can
+            # reveal real-time position status (e.g. ARMED -> IN_POSITION)
+            # ahead of the delay that's supposed to protect it -- gated on
+            # the same cutoff, not just left unfiltered because transitions
+            # aren't literally a "trade".
+            if not (mode == "LIVE" and parse_utc(t["ts_utc"]) > cutoff)
+        ][-MAX_LATEST_TRADES:][::-1],
         "equity_curve": equity_curve,
         "latest_trades": [
             {
@@ -231,6 +252,7 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
                 "entry_process_cpu_pct": _round(r.get("entry_process_cpu_pct"), 1),
                 "entry_host_cpu_user_pct": _round(r.get("entry_host_cpu_user_pct"), 1),
                 "entry_host_load1": _round(r.get("entry_host_load1"), 2),
+                "expected_net_pnl_model_usd": _round(r.get("expected_net_pnl_model")),
             }
             for r in visible_trades[-MAX_LATEST_TRADES:][::-1]
         ],

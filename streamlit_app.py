@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -134,11 +135,15 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
         return
     trades["duration_min"] = trades["duration_seconds"] / 60.0
     table = trades[[
-        "closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd",
+        "closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd", "expected_net_pnl_model_usd",
         "entry_rss_mb", "entry_process_cpu_pct", "entry_host_cpu_user_pct", "entry_host_load1",
     ]].copy()
     table["closed_at_utc"] = pd.to_datetime(table["closed_at_utc"], utc=True)
-    st.caption("RSS/CPU/load columns are a snapshot of this box at the exact bar RT1 decided to enter that trade.")
+    st.caption(
+        "\"Model\" is the frozen backtest's per-trade edge assumption, not a per-trade prediction -- "
+        "same number on every row, there to compare against realized P&L, not to be read as a forecast. "
+        "RSS/CPU/load columns are a snapshot of this box at the exact bar RT1 decided to enter that trade."
+    )
     st.dataframe(
         table,
         width="stretch",
@@ -150,6 +155,7 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
             "exit_reason": st.column_config.TextColumn("Exit"),
             "duration_min": st.column_config.NumberColumn("Minutes", format="%.1f"),
             "pnl_usd": st.column_config.NumberColumn("P&L", format="$%.2f"),
+            "expected_net_pnl_model_usd": st.column_config.NumberColumn("Model P&L", format="$%.2f"),
             "entry_rss_mb": st.column_config.NumberColumn("RT1 RSS", format="%.0f MB"),
             "entry_process_cpu_pct": st.column_config.NumberColumn("RT1 CPU", format="%.0f%%"),
             "entry_host_cpu_user_pct": st.column_config.NumberColumn("Host CPU", format="%.0f%%"),
@@ -218,6 +224,40 @@ def render_latency_health(snapshot: dict[str, Any]) -> None:
         )
 
 
+def render_reliability(snapshot: dict[str, Any]) -> None:
+    r = snapshot["reliability"]
+    st.subheader("Process reliability")
+    cols = st.columns(3)
+    cols[0].metric("Restarts", f"{r['restart_count']:,}" if r["restart_count"] is not None else "—")
+    cols[1].metric("Crash reports", f"{r['crash_report_count']:,}")
+    if r["last_started_at_utc"]:
+        uptime = datetime.now(timezone.utc) - pd.to_datetime(r["last_started_at_utc"], utc=True).to_pydatetime()
+        cols[2].metric("Uptime (current run)", f"{uptime.total_seconds() / 3600:.1f}h")
+    else:
+        cols[2].metric("Uptime (current run)", "—")
+    if r["first_started_at_utc"]:
+        st.caption(f"First started {r['first_started_at_utc']}. A restart count that keeps climbing without a matching crash report usually means a deliberate config change, not instability.")
+
+
+_GUARDIAN_STATE_ICON = {
+    "BOOT": "⚪", "RECONCILING": "⚪", "WARMUP": "⚪",
+    "ARMED": "🟢", "IN_POSITION": "🔵",
+    "EXIT_PENDING": "🟠", "VERIFY_FLAT": "🟠",
+    "LOCKED": "🔴", "EMERGENCY": "🔴",
+}
+
+
+def render_guardian_transitions(snapshot: dict[str, Any]) -> None:
+    transitions = snapshot["guardian_transitions"]
+    st.subheader("Guardian state timeline")
+    if not transitions:
+        st.info("No state transitions logged yet.")
+        return
+    for t in transitions:
+        icon = _GUARDIAN_STATE_ICON.get(t["to_state"], "⚪")
+        st.write(f"{icon} `{t['ts_utc']}` **{t['from_state']}** → **{t['to_state']}** -- {t['reason']}")
+
+
 @st.fragment(run_every="30s")
 def live_dashboard() -> None:
     try:
@@ -243,6 +283,8 @@ def live_dashboard() -> None:
     render_trade_table(snapshot)
     render_execution_telemetry(snapshot)
     render_latency_health(snapshot)
+    render_reliability(snapshot)
+    render_guardian_transitions(snapshot)
 
 
 st.title("watch joey lose money")

@@ -27,6 +27,8 @@
     "stats",
     "execution_telemetry",
     "latency_health",
+    "reliability",
+    "guardian_transitions",
     "equity_curve",
     "latest_trades"
   ],
@@ -127,6 +129,36 @@
         }
       }
     },
+    "reliability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["restart_count", "first_started_at_utc", "last_started_at_utc", "crash_report_count"],
+      "properties": {
+        "restart_count": { "type": ["integer", "null"], "minimum": 0 },
+        "first_started_at_utc": { "type": ["string", "null"], "format": "date-time" },
+        "last_started_at_utc": { "type": ["string", "null"], "format": "date-time" },
+        "crash_report_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "guardian_transitions": {
+      "type": "array",
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ts_utc", "from_state", "to_state", "reason"],
+        "properties": {
+          "ts_utc": { "type": "string", "format": "date-time" },
+          "from_state": {
+            "enum": ["BOOT", "RECONCILING", "WARMUP", "ARMED", "IN_POSITION", "EXIT_PENDING", "VERIFY_FLAT", "LOCKED", "EMERGENCY"]
+          },
+          "to_state": {
+            "enum": ["BOOT", "RECONCILING", "WARMUP", "ARMED", "IN_POSITION", "EXIT_PENDING", "VERIFY_FLAT", "LOCKED", "EMERGENCY"]
+          },
+          "reason": { "type": "string" }
+        }
+      }
+    },
     "equity_curve": {
       "type": "array",
       "items": {
@@ -149,7 +181,8 @@
         "additionalProperties": false,
         "required": [
           "closed_at_utc", "session_date", "side", "pnl_usd", "exit_reason", "duration_seconds", "mode",
-          "entry_rss_mb", "entry_process_cpu_pct", "entry_host_cpu_user_pct", "entry_host_load1"
+          "entry_rss_mb", "entry_process_cpu_pct", "entry_host_cpu_user_pct", "entry_host_load1",
+          "expected_net_pnl_model_usd"
         ],
         "properties": {
           "closed_at_utc": { "type": "string", "format": "date-time" },
@@ -162,7 +195,8 @@
           "entry_rss_mb": { "type": ["number", "null"], "minimum": 0 },
           "entry_process_cpu_pct": { "type": ["number", "null"] },
           "entry_host_cpu_user_pct": { "type": ["number", "null"] },
-          "entry_host_load1": { "type": ["number", "null"], "minimum": 0 }
+          "entry_host_load1": { "type": ["number", "null"], "minimum": 0 },
+          "expected_net_pnl_model_usd": { "type": ["number", "null"] }
         }
       }
     }
