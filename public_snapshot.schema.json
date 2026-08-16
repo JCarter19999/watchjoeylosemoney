@@ -99,11 +99,13 @@
     "latency_health": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["bars_sampled", "stalls_over_750ms", "stalls_over_2s", "verdict", "stages"],
+      "required": ["bars_sampled", "stalls_over_750ms", "stalls_over_2s", "cpu_median_pct", "load1_median", "verdict", "stages"],
       "properties": {
         "bars_sampled": { "type": "integer", "minimum": 0 },
         "stalls_over_750ms": { "type": "integer", "minimum": 0 },
         "stalls_over_2s": { "type": "integer", "minimum": 0 },
+        "cpu_median_pct": { "type": ["number", "null"], "minimum": 0 },
+        "load1_median": { "type": ["number", "null"], "minimum": 0 },
         "verdict": { "enum": ["HEALTHY", "MARGINAL", "NEEDS_UPGRADE", "INSUFFICIENT_DATA"] },
         "stages": {
           "type": "object",

@@ -80,15 +80,16 @@ def status_badge(snapshot: dict[str, Any]) -> None:
 def render_metrics(snapshot: dict[str, Any]) -> None:
     s = snapshot["stats"]
     cols = st.columns(6)
-    cols[0].metric("Joey's money*", money(s["display_equity_usd"]), money(s["realized_pnl_today_usd"]))
+    cols[0].metric("Cumulative P&L*", money(s["display_equity_usd"]), money(s["realized_pnl_today_usd"]))
     cols[1].metric("All-time P&L", money(s["realized_pnl_all_time_usd"]))
     cols[2].metric("Current drawdown", money(-s["current_drawdown_usd"]))
     cols[3].metric("Max drawdown", money(-s["max_drawdown_usd"]))
     cols[4].metric("Trades", f"{s['closed_trades_all_time']:,}", f"{s['closed_trades_today']} today")
     cols[5].metric("Expectancy", money(s["expectancy_usd"]), f"Win rate {pct(s['win_rate'])}")
     st.caption(
-        "*Presentation equity = configured public starting baseline + sanitized realized P&L; "
-        "it is not broker net liquidation value."
+        "*Starting from a presentation baseline of $0 (not the real broker balance) so losses "
+        "show as negative before any gains offset them, rather than being hidden inside a "
+        "cushion. Real-money accounting still happens on the broker side."
     )
 
 
@@ -164,6 +165,51 @@ def render_execution_telemetry(snapshot: dict[str, Any]) -> None:
     cols[5].metric("p95 slippage", f"{t['slippage_ticks_p95']:.2f} ticks" if t["slippage_ticks_p95"] is not None else "—")
 
 
+_LATENCY_STAGE_LABELS = {
+    "queue_wait_ms": "Queue wait",
+    "ingest_and_decision_ms": "Ingest + decision",
+    "get_account_http_ms": "get_account (HTTP)",
+    "submit_order_ms": "submit_order",
+    "poll_until_filled_ms": "Fill polling",
+    "post_entry_reconciliation_ms": "Post-entry reconciliation",
+    "total_bar_to_submit_ms": "Total (bar → submit)",
+}
+
+
+def render_latency_health(snapshot: dict[str, Any]) -> None:
+    lh = snapshot["latency_health"]
+    st.subheader("Bar-to-order latency")
+    if lh["verdict"] == "INSUFFICIENT_DATA":
+        st.info("No bar_timing.jsonl data yet.")
+        return
+
+    verdict_fn = {"HEALTHY": st.success, "MARGINAL": st.warning, "NEEDS_UPGRADE": st.error}[lh["verdict"]]
+    verdict_fn(
+        f"{lh['verdict']} -- {lh['bars_sampled']:,} bars sampled, "
+        f"{lh['stalls_over_750ms']} stall(s) > 750ms, {lh['stalls_over_2s']} stall(s) > 2s."
+    )
+
+    cols = st.columns(2)
+    cols[0].metric("Host CPU (median, user%)", f"{lh['cpu_median_pct']:.0f}%" if lh["cpu_median_pct"] is not None else "—")
+    cols[1].metric("Load average 1m (median)", f"{lh['load1_median']:.2f}" if lh["load1_median"] is not None else "—")
+    st.caption(
+        "Falsification check for a multi-second stall: host CPU/load spiking at the same "
+        "timestamp means contention is still plausible; a clean host means the delay is "
+        "inside one of the stages below (ingest/decision, get_account, submit, fill "
+        "polling, or reconciliation)."
+    )
+
+    for key, label in _LATENCY_STAGE_LABELS.items():
+        s = lh["stages"][key]
+        if not s["n"]:
+            st.write(f"**{label}**: no samples")
+            continue
+        st.write(
+            f"**{label}** (n={s['n']}): median={s['median_ms']:.1f}ms "
+            f"p95={s['p95_ms']:.1f}ms p99={s['p99_ms']:.1f}ms"
+        )
+
+
 @st.fragment(run_every="30s")
 def live_dashboard() -> None:
     try:
@@ -188,6 +234,7 @@ def live_dashboard() -> None:
     render_charts(snapshot)
     render_trade_table(snapshot)
     render_execution_telemetry(snapshot)
+    render_latency_health(snapshot)
 
 
 st.title("watch joey lose money")

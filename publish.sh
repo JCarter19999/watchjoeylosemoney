@@ -24,7 +24,12 @@ cd "$WEB_REPO"
   --schema public_snapshot.schema.json \
   --live-delay-minutes 15
 
-"$WEB_REPO/.venv/bin/pytest" -q
+# pytest here dropped 2026-08-16: this cron fires every 15min unconditionally
+# and pytest is CPU-heavy enough to collide with the live RT1 bot on this
+# same single-core box -- exactly the contention pattern already diagnosed
+# as the root cause of a prior multi-second order-submission stall (see
+# mnq_rt1_live_guardian_instrumentation_gap memory / "Trade 2" incident).
+# Re-add only once this box is deployment-only or the bot is off it.
 
 git add public_snapshot.json
 if git diff --cached --quiet; then

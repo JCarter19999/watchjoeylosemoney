@@ -204,6 +204,8 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
             "bars_sampled": (latency := private.get("latency", {})).get("bars_sampled", 0),
             "stalls_over_750ms": latency.get("stalls_over_750ms", 0),
             "stalls_over_2s": latency.get("stalls_over_2s", 0),
+            "cpu_median_pct": _round(latency.get("cpu_median_pct"), 1),
+            "load1_median": _round(latency.get("load1_median"), 2),
             "verdict": _latency_verdict(latency),
             "stages": {
                 key: {
