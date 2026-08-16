@@ -27,6 +27,7 @@
     "stats",
     "execution_telemetry",
     "latency_health",
+    "warmup_replay",
     "reliability",
     "guardian_transitions",
     "equity_curve",
@@ -127,6 +128,16 @@
             "total_bar_to_submit_ms": { "$ref": "#/$defs/latency_stage" }
           }
         }
+      }
+    },
+    "warmup_replay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bars_replayed", "elapsed_wall_seconds", "queue_wait_max_ms"],
+      "properties": {
+        "bars_replayed": { "type": "integer", "minimum": 0 },
+        "elapsed_wall_seconds": { "type": ["number", "null"], "minimum": 0 },
+        "queue_wait_max_ms": { "type": ["number", "null"], "minimum": 0 }
       }
     },
     "reliability": {

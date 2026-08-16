@@ -217,6 +217,11 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
                 for key in LATENCY_STAGE_KEYS
             },
         },
+        "warmup_replay": {
+            "bars_replayed": private.get("warmup_replay", {}).get("bars_replayed", 0),
+            "elapsed_wall_seconds": _round(private.get("warmup_replay", {}).get("elapsed_wall_seconds"), 2),
+            "queue_wait_max_ms": _round(private.get("warmup_replay", {}).get("queue_wait_max_ms"), 1),
+        },
         "reliability": {
             "restart_count": private.get("reliability", {}).get("restart_count"),
             "first_started_at_utc": private.get("reliability", {}).get("first_started_at_utc"),

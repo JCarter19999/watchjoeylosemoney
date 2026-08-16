@@ -224,6 +224,24 @@ def render_latency_health(snapshot: dict[str, Any]) -> None:
         )
 
 
+def render_warmup_replay(snapshot: dict[str, Any]) -> None:
+    wr = snapshot["warmup_replay"]
+    st.subheader("Warmup / replay (diagnostic only)")
+    st.caption(
+        "Every restart re-requests a Databento replay window; once the market's open that window can "
+        "overlap already-processed minutes, which come back as a fast burst. This section exists so that "
+        "burst's queue backlog stays observable without ever mixing into the live latency numbers above -- "
+        "a 2026-08-16 incident let exactly this backlog (up to 1.4s) masquerade as a live queue stall."
+    )
+    if not wr["bars_replayed"]:
+        st.info("No replay burst on this run (or it hasn't happened yet).")
+        return
+    cols = st.columns(3)
+    cols[0].metric("Bars replayed", f"{wr['bars_replayed']:,}")
+    cols[1].metric("Elapsed", f"{wr['elapsed_wall_seconds']:.1f}s" if wr["elapsed_wall_seconds"] is not None else "—")
+    cols[2].metric("Max queue wait", f"{wr['queue_wait_max_ms']:.0f}ms" if wr["queue_wait_max_ms"] is not None else "—")
+
+
 def render_reliability(snapshot: dict[str, Any]) -> None:
     r = snapshot["reliability"]
     st.subheader("Process reliability")
@@ -283,6 +301,7 @@ def live_dashboard() -> None:
     render_trade_table(snapshot)
     render_execution_telemetry(snapshot)
     render_latency_health(snapshot)
+    render_warmup_replay(snapshot)
     render_reliability(snapshot)
     render_guardian_transitions(snapshot)
 
