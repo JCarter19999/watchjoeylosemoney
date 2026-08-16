@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-16T22:30:26.928322Z",
+  "data_as_of_utc": "2026-08-16T22:45:27.008265Z",
   "equity_curve": [],
   "execution_telemetry": {
     "sample_size": 0,
@@ -11,11 +11,31 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-08-16T22:30:26.928322Z",
+  "generated_at_utc": "2026-08-16T22:45:27.008265Z",
+  "guardian_transitions": [
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-16T22:44:12.730226Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-16T22:44:10.260230Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-16T22:44:09.943327Z"
+    }
+  ],
   "latency_health": {
-    "bars_sampled": 30,
-    "cpu_median_pct": 0.3,
-    "load1_median": 0.0,
+    "bars_sampled": 89,
+    "cpu_median_pct": 11.1,
+    "load1_median": 0.17,
     "stages": {
       "get_account_http_ms": {
         "median_ms": null,
@@ -24,10 +44,10 @@
         "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": 60.2,
-        "n": 30,
-        "p95_ms": 68.7,
-        "p99_ms": 85.7
+        "median_ms": 45.8,
+        "n": 89,
+        "p95_ms": 76.9,
+        "p99_ms": 111.7
       },
       "poll_until_filled_ms": {
         "median_ms": null,
@@ -42,10 +62,10 @@
         "p99_ms": null
       },
       "queue_wait_ms": {
-        "median_ms": 0.1,
-        "n": 30,
-        "p95_ms": 0.2,
-        "p99_ms": 0.4
+        "median_ms": 0.9,
+        "n": 89,
+        "p95_ms": 1164.1,
+        "p99_ms": 1418.0
       },
       "submit_order_ms": {
         "median_ms": null,
@@ -67,6 +87,12 @@
   "latest_trades": [],
   "mode": "DEMO",
   "publication_delay_minutes": 0,
+  "reliability": {
+    "crash_report_count": 2,
+    "first_started_at_utc": "2026-08-16T22:44:09.421678Z",
+    "last_started_at_utc": "2026-08-16T22:44:09.421678Z",
+    "restart_count": 1
+  },
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
