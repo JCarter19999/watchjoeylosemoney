@@ -133,8 +133,12 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
         st.info("No closed public trades yet.")
         return
     trades["duration_min"] = trades["duration_seconds"] / 60.0
-    table = trades[["closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd"]].copy()
+    table = trades[[
+        "closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd",
+        "entry_rss_mb", "entry_process_cpu_pct", "entry_host_cpu_user_pct", "entry_host_load1",
+    ]].copy()
     table["closed_at_utc"] = pd.to_datetime(table["closed_at_utc"], utc=True)
+    st.caption("RSS/CPU/load columns are a snapshot of this box at the exact bar RT1 decided to enter that trade.")
     st.dataframe(
         table,
         width="stretch",
@@ -146,6 +150,10 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
             "exit_reason": st.column_config.TextColumn("Exit"),
             "duration_min": st.column_config.NumberColumn("Minutes", format="%.1f"),
             "pnl_usd": st.column_config.NumberColumn("P&L", format="$%.2f"),
+            "entry_rss_mb": st.column_config.NumberColumn("RT1 RSS", format="%.0f MB"),
+            "entry_process_cpu_pct": st.column_config.NumberColumn("RT1 CPU", format="%.0f%%"),
+            "entry_host_cpu_user_pct": st.column_config.NumberColumn("Host CPU", format="%.0f%%"),
+            "entry_host_load1": st.column_config.NumberColumn("Load (1m)", format="%.2f"),
         },
     )
 

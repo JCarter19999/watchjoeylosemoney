@@ -227,6 +227,10 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
                 "exit_reason": r["exit_reason"],
                 "duration_seconds": r["duration_seconds"],
                 "mode": r["mode"],
+                "entry_rss_mb": _round(r.get("entry_rss_mb"), 1),
+                "entry_process_cpu_pct": _round(r.get("entry_process_cpu_pct"), 1),
+                "entry_host_cpu_user_pct": _round(r.get("entry_host_cpu_user_pct"), 1),
+                "entry_host_load1": _round(r.get("entry_host_load1"), 2),
             }
             for r in visible_trades[-MAX_LATEST_TRADES:][::-1]
         ],

@@ -147,7 +147,10 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["closed_at_utc", "session_date", "side", "pnl_usd", "exit_reason", "duration_seconds", "mode"],
+        "required": [
+          "closed_at_utc", "session_date", "side", "pnl_usd", "exit_reason", "duration_seconds", "mode",
+          "entry_rss_mb", "entry_process_cpu_pct", "entry_host_cpu_user_pct", "entry_host_load1"
+        ],
         "properties": {
           "closed_at_utc": { "type": "string", "format": "date-time" },
           "session_date": { "type": "string", "format": "date" },
@@ -155,7 +158,11 @@
           "pnl_usd": { "type": "number" },
           "exit_reason": { "type": "string" },
           "duration_seconds": { "type": "number", "minimum": 0 },
-          "mode": { "enum": ["SHADOW", "DEMO", "LIVE"] }
+          "mode": { "enum": ["SHADOW", "DEMO", "LIVE"] },
+          "entry_rss_mb": { "type": ["number", "null"], "minimum": 0 },
+          "entry_process_cpu_pct": { "type": ["number", "null"] },
+          "entry_host_cpu_user_pct": { "type": ["number", "null"] },
+          "entry_host_load1": { "type": ["number", "null"], "minimum": 0 }
         }
       }
     }
