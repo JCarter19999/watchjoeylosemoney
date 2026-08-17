@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T01:45:26.898762Z",
+  "data_as_of_utc": "2026-08-17T02:00:27.267921Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -13.0,
@@ -24,20 +24,32 @@
       "drawdown_usd": 26.0,
       "equity_usd": -26.0,
       "ts_utc": "2026-08-17T01:11:00.600523+00:00"
+    },
+    {
+      "cum_pnl_usd": -15.5,
+      "drawdown_usd": 15.5,
+      "equity_usd": -15.5,
+      "ts_utc": "2026-08-17T01:50:01.145943+00:00"
     }
   ],
   "execution_telemetry": {
-    "sample_size": 4,
-    "slippage_ticks_mean": 13.8426,
+    "sample_size": 5,
+    "slippage_ticks_mean": 10.2741,
     "slippage_ticks_p95": 38.0,
-    "slippage_usd_mean": 6.9213,
+    "slippage_usd_mean": 5.1371,
     "submit_to_ack_ms_median": 170.9,
     "submit_to_ack_ms_p95": 189.8,
     "submit_to_fill_ms_median": 506.8,
-    "submit_to_fill_ms_p95": 508.3
+    "submit_to_fill_ms_p95": 536.9
   },
-  "generated_at_utc": "2026-08-17T01:45:26.898762Z",
+  "generated_at_utc": "2026-08-17T02:00:27.267921Z",
   "guardian_transitions": [
+    {
+      "from_state": "LOCKED",
+      "reason": "position closed while locked (remains locked, now flat): exit filled, reason=TIME",
+      "to_state": "LOCKED",
+      "ts_utc": "2026-08-17T01:50:01.153434Z"
+    },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation FAILED: ledger=buy 1.0 broker=sell 1",
@@ -181,18 +193,12 @@
       "reason": "warmup elapsed, healthy: warmup window elapsed",
       "to_state": "ARMED",
       "ts_utc": "2026-08-17T01:41:26.085327Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-08-17T01:41:26.085049Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 23,
-    "cpu_median_pct": 5.6,
-    "load1_median": 0.13,
+    "bars_sampled": 30,
+    "cpu_median_pct": 15.7,
+    "load1_median": 0.3,
     "stages": {
       "get_account_http_ms": {
         "median_ms": 176.0,
@@ -201,10 +207,10 @@
         "p99_ms": 176.0
       },
       "ingest_and_decision_ms": {
-        "median_ms": 132.7,
-        "n": 23,
-        "p95_ms": 275.2,
-        "p99_ms": 392.2
+        "median_ms": 151.6,
+        "n": 30,
+        "p95_ms": 392.2,
+        "p99_ms": 1271.8
       },
       "poll_until_filled_ms": {
         "median_ms": 0.0,
@@ -219,10 +225,10 @@
         "p99_ms": 2485.7
       },
       "queue_wait_ms": {
-        "median_ms": 0.2,
-        "n": 23,
-        "p95_ms": 2.2,
-        "p99_ms": 2.7
+        "median_ms": 0.1,
+        "n": 30,
+        "p95_ms": 2.7,
+        "p99_ms": 2.8
       },
       "submit_order_ms": {
         "median_ms": 536.9,
@@ -238,10 +244,24 @@
       }
     },
     "stalls_over_2s": 1,
-    "stalls_over_750ms": 1,
+    "stalls_over_750ms": 2,
     "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
+    {
+      "closed_at_utc": "2026-08-17T01:50:01.145943+00:00",
+      "duration_seconds": 900.252066,
+      "entry_host_cpu_user_pct": 7.6,
+      "entry_host_load1": 0.17,
+      "entry_process_cpu_pct": 12.6,
+      "entry_rss_mb": 224.4,
+      "exit_reason": "TIME",
+      "expected_net_pnl_model_usd": 1.691,
+      "mode": "DEMO",
+      "pnl_usd": 10.5,
+      "session_date": "2026-08-17",
+      "side": "SHORT"
+    },
     {
       "closed_at_utc": "2026-08-17T01:11:00.600523+00:00",
       "duration_seconds": 119.732879,
@@ -310,27 +330,27 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 4,
-    "closed_trades_today": 3,
-    "current_drawdown_usd": 26.0,
-    "display_equity_usd": -26.0,
+    "closed_trades_all_time": 5,
+    "closed_trades_today": 4,
+    "current_drawdown_usd": 15.5,
+    "display_equity_usd": -15.5,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": -6.5,
+    "expectancy_usd": -3.1,
     "losses": 3,
     "max_drawdown_usd": 26.0,
-    "profit_factor": 0.381,
-    "realized_pnl_all_time_usd": -26.0,
-    "realized_pnl_today_usd": -13.0,
-    "win_rate": 0.25,
-    "wins": 1
+    "profit_factor": 0.631,
+    "realized_pnl_all_time_usd": -15.5,
+    "realized_pnl_today_usd": -2.5,
+    "win_rate": 0.4,
+    "wins": 2
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": true,
-    "guardian_state": "FAULT",
-    "market_data_state": "LIVE",
-    "message": "Locked -- needs an explicit resume or a restart.",
-    "service_state": "FAULT"
+    "execution_enabled": false,
+    "guardian_state": "NA",
+    "market_data_state": "DISCONNECTED",
+    "message": "Live process pid 577280 is not running.",
+    "service_state": "OFFLINE"
   },
   "warmup_replay": {
     "bars_replayed": 202,
