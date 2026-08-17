@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T04:30:26.558491Z",
+  "data_as_of_utc": "2026-08-17T04:45:26.681168Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -14.0,
@@ -24,7 +24,7 @@
     "submit_to_fill_ms_median": 485.2,
     "submit_to_fill_ms_p95": 507.4
   },
-  "generated_at_utc": "2026-08-17T04:30:26.558491Z",
+  "generated_at_utc": "2026-08-17T04:45:26.681168Z",
   "guardian_transitions": [
     {
       "from_state": "IN_POSITION",
@@ -70,8 +70,8 @@
     }
   ],
   "latency_health": {
-    "bars_sampled": 70,
-    "cpu_median_pct": 1.5,
+    "bars_sampled": 83,
+    "cpu_median_pct": 0.5,
     "load1_median": 0.0,
     "stages": {
       "get_account_http_ms": {
@@ -81,9 +81,9 @@
         "p99_ms": 196.2
       },
       "ingest_and_decision_ms": {
-        "median_ms": 78.8,
-        "n": 70,
-        "p95_ms": 708.7,
+        "median_ms": 77.5,
+        "n": 83,
+        "p95_ms": 635.9,
         "p99_ms": 1905.7
       },
       "poll_until_filled_ms": {
@@ -100,7 +100,7 @@
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 70,
+        "n": 83,
         "p95_ms": 0.4,
         "p99_ms": 8.7
       },
@@ -228,7 +228,7 @@
   },
   "publication_delay_minutes": 0,
   "reliability": {
-    "crash_report_count": 0,
+    "crash_report_count": 1,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
     "last_started_at_utc": "2026-08-17T03:20:05.888359Z",
     "restart_count": 0
@@ -252,11 +252,11 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": true,
-    "guardian_state": "ARMED",
-    "market_data_state": "LIVE",
-    "message": "Armed and watching for entries.",
-    "service_state": "ARMED"
+    "execution_enabled": false,
+    "guardian_state": "NA",
+    "market_data_state": "DISCONNECTED",
+    "message": "Live process pid 583980 is not running.",
+    "service_state": "OFFLINE"
   },
   "warmup_replay": {
     "bars_replayed": 239,
