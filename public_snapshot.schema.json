@@ -87,7 +87,8 @@
       "required": [
         "sample_size", "submit_to_ack_ms_median", "submit_to_ack_ms_p95",
         "submit_to_fill_ms_median", "submit_to_fill_ms_p95",
-        "slippage_ticks_mean", "slippage_ticks_p95", "slippage_usd_mean"
+        "slippage_ticks_median", "slippage_ticks_mean", "slippage_ticks_p95",
+        "slippage_usd_median", "slippage_usd_mean"
       ],
       "properties": {
         "sample_size": { "type": "integer", "minimum": 0 },
@@ -95,8 +96,10 @@
         "submit_to_ack_ms_p95": { "type": ["number", "null"] },
         "submit_to_fill_ms_median": { "type": ["number", "null"] },
         "submit_to_fill_ms_p95": { "type": ["number", "null"] },
+        "slippage_ticks_median": { "type": ["number", "null"] },
         "slippage_ticks_mean": { "type": ["number", "null"] },
         "slippage_ticks_p95": { "type": ["number", "null"] },
+        "slippage_usd_median": { "type": ["number", "null"] },
         "slippage_usd_mean": { "type": ["number", "null"] }
       }
     },

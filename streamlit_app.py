@@ -180,13 +180,28 @@ def render_execution_telemetry(snapshot: dict[str, Any]) -> None:
     if t["sample_size"] == 0:
         st.info("No real-fill execution samples yet.")
         return
-    cols = st.columns(6)
+    cols = st.columns(4)
     cols[0].metric("Samples", f"{t['sample_size']:,}")
     cols[1].metric("Median submit→ACK", f"{t['submit_to_ack_ms_median']:.0f} ms" if t["submit_to_ack_ms_median"] is not None else "—")
-    cols[2].metric("p95 submit→ACK", f"{t['submit_to_ack_ms_p95']:.0f} ms" if t["submit_to_ack_ms_p95"] is not None else "—")
-    cols[3].metric("Median submit→fill", f"{t['submit_to_fill_ms_median']:.0f} ms" if t["submit_to_fill_ms_median"] is not None else "—")
-    cols[4].metric("Mean reference-to-fill shortfall", f"{t['slippage_ticks_mean']:.2f} ticks" if t["slippage_ticks_mean"] is not None else "—")
-    cols[5].metric("p95 reference-to-fill shortfall", f"{t['slippage_ticks_p95']:.2f} ticks" if t["slippage_ticks_p95"] is not None else "—")
+    cols[2].metric("Median submit→fill", f"{t['submit_to_fill_ms_median']:.0f} ms" if t["submit_to_fill_ms_median"] is not None else "—")
+    cols[3].metric(
+        "Median reference-to-fill shortfall", f"{t['slippage_ticks_median']:.2f} ticks" if t["slippage_ticks_median"] is not None else "—",
+        help="Headline number -- resistant to a single large real trade. See tail-risk context below.",
+    )
+    with st.expander("Tail-risk context (p95 / mean -- not the headline)"):
+        tail_cols = st.columns(3)
+        tail_cols[0].metric("p95 submit→ACK", f"{t['submit_to_ack_ms_p95']:.0f} ms" if t["submit_to_ack_ms_p95"] is not None else "—")
+        tail_cols[1].metric("p95 submit→fill", f"{t['submit_to_fill_ms_p95']:.0f} ms" if t["submit_to_fill_ms_p95"] is not None else "—")
+        tail_cols[2].metric("p95 reference-to-fill shortfall", f"{t['slippage_ticks_p95']:.2f} ticks" if t["slippage_ticks_p95"] is not None else "—")
+        st.caption(
+            f"Mean reference-to-fill shortfall: {t['slippage_ticks_mean']:.2f} ticks"
+            if t["slippage_ticks_mean"] is not None else "Mean reference-to-fill shortfall: —"
+        )
+        st.caption(
+            "At typical sample sizes here, a handful of large real trades in either direction can make "
+            "mean and p95 look consistently alarming while the median trade sits near $0 shortfall -- "
+            "neither number is wrong, but they answer \"how bad can it get\", not \"what usually happens\"."
+        )
     caption = (
         "\"Reference-to-fill shortfall\" (not \"slippage\"): the gap between RT1's own theoretical "
         "signal/exit price and the real fill. This bundles multiple things -- market movement before "
@@ -196,7 +211,7 @@ def render_execution_telemetry(snapshot: dict[str, Any]) -> None:
         "accumulate."
     )
     if t["sample_size"] < 30:
-        caption += f" Only {t['sample_size']} sample(s) so far -- treat as directional only, not a stable mean."
+        caption += f" Only {t['sample_size']} sample(s) so far -- treat as directional only, not a stable median."
     st.caption(caption)
 
 

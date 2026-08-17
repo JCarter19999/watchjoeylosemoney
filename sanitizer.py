@@ -196,8 +196,16 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
             "submit_to_ack_ms_p95": _round(_percentile(ack_ms, 0.95), 1),
             "submit_to_fill_ms_median": _round(_percentile(fill_ms, 0.5), 1),
             "submit_to_fill_ms_p95": _round(_percentile(fill_ms, 0.95), 1),
+            # median is the headline (see streamlit_app.py's caption) --
+            # mean/p95 are kept for tail-risk context, but at typical
+            # sample sizes here a handful of large real trades in either
+            # direction routinely make mean/p95 look alarming while the
+            # median trade sits near $0 shortfall. Don't drop mean/p95,
+            # just don't let them be the first number anyone sees.
+            "slippage_ticks_median": _round(_percentile(slip_ticks, 0.5)),
             "slippage_ticks_mean": _round(sum(slip_ticks) / len(slip_ticks)) if slip_ticks else None,
             "slippage_ticks_p95": _round(_percentile(slip_ticks, 0.95)),
+            "slippage_usd_median": _round(_percentile(slip_dollars, 0.5)),
             "slippage_usd_mean": _round(sum(slip_dollars) / len(slip_dollars)) if slip_dollars else None,
         },
         "latency_health": {
