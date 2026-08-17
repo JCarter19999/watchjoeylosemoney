@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T22:00:26.472558Z",
+  "data_as_of_utc": "2026-08-17T22:15:27.381461Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -14.0,
@@ -270,7 +270,7 @@
     "submit_to_fill_ms_median": 507.4,
     "submit_to_fill_ms_p95": 550.4
   },
-  "generated_at_utc": "2026-08-17T22:00:26.472558Z",
+  "generated_at_utc": "2026-08-17T22:15:27.381461Z",
   "guardian_transitions": [
     {
       "from_state": "ARMED",
@@ -424,8 +424,8 @@
     }
   ],
   "latency_health": {
-    "bars_sampled": 337,
-    "cpu_median_pct": 0.5,
+    "bars_sampled": 341,
+    "cpu_median_pct": 0.6,
     "load1_median": 0.01,
     "stages": {
       "get_account_http_ms": {
@@ -435,8 +435,8 @@
         "p99_ms": 501.9
       },
       "ingest_and_decision_ms": {
-        "median_ms": 84.3,
-        "n": 337,
+        "median_ms": 85.5,
+        "n": 341,
         "p95_ms": 951.8,
         "p99_ms": 1843.8
       },
@@ -454,9 +454,9 @@
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 337,
+        "n": 341,
         "p95_ms": 0.2,
-        "p99_ms": 0.9
+        "p99_ms": 1.0
       },
       "submit_order_ms": {
         "median_ms": 509.1,
@@ -465,14 +465,14 @@
         "p99_ms": 1013.6
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 1280.9,
-        "n": 20,
-        "p95_ms": 1882.6,
+        "median_ms": 1258.7,
+        "n": 21,
+        "p95_ms": 1722.0,
         "p99_ms": 1882.6
       }
     },
     "stalls_over_2s": 0,
-    "stalls_over_750ms": 41,
+    "stalls_over_750ms": 42,
     "verdict": "MARGINAL"
   },
   "latest_trades": [
@@ -1156,11 +1156,11 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": true,
-    "guardian_state": "FAULT",
-    "market_data_state": "LIVE",
-    "message": "Locked -- needs an explicit resume or a restart.",
-    "service_state": "FAULT"
+    "execution_enabled": false,
+    "guardian_state": "NA",
+    "market_data_state": "DISCONNECTED",
+    "message": "Live process pid 598362 is not running.",
+    "service_state": "OFFLINE"
   },
   "warmup_replay": {
     "bars_replayed": 239,
