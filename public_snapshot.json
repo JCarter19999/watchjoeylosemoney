@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T03:38:05.773328Z",
+  "data_as_of_utc": "2026-08-17T03:42:41.169377Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 0.5,
@@ -42,7 +42,7 @@
     "submit_to_fill_ms_median": 523.5,
     "submit_to_fill_ms_p95": 538.1
   },
-  "generated_at_utc": "2026-08-17T03:38:05.773328Z",
+  "generated_at_utc": "2026-08-17T03:42:41.169377Z",
   "guardian_transitions": [
     {
       "from_state": "ARMED",
@@ -250,16 +250,77 @@
   "mode": "DEMO",
   "pnl_waterfall": {
     "aggregate": {
-      "a_expectancy_usd": null,
-      "b_expectancy_usd": null,
-      "c_expectancy_usd": null,
-      "fees_expectancy_usd": null,
-      "model_expectancy_usd": null,
-      "realized_expectancy_usd": null
+      "a_expectancy_usd": -1.7074,
+      "b_expectancy_usd": 0.5,
+      "c_expectancy_usd": 0.65,
+      "fees_expectancy_usd": -1.0,
+      "model_expectancy_usd": 1.3426,
+      "realized_expectancy_usd": 0.9
     },
     "n_missing_decomposition": 0,
-    "n_trades": 0,
-    "trades": []
+    "n_trades": 5,
+    "trades": [
+      {
+        "a_usd": 1.71,
+        "b_usd": 0.25,
+        "c_usd": -1.75,
+        "closed_at_utc": "2026-08-17T03:10:00.806160+00:00",
+        "exit_reason": "TARGET",
+        "fees_usd": -1.0,
+        "model_pnl_usd": 14.71,
+        "realized_pnl_usd": 13.5,
+        "side": "LONG",
+        "trade_id": "605217b3370982565f462ec0"
+      },
+      {
+        "a_usd": 0.75,
+        "b_usd": 0.75,
+        "c_usd": 3.5,
+        "closed_at_utc": "2026-08-17T03:02:00.775528+00:00",
+        "exit_reason": "STOP_TIGHTENED",
+        "fees_usd": -1.0,
+        "model_pnl_usd": -0.0,
+        "realized_pnl_usd": -6.0,
+        "side": "SHORT",
+        "trade_id": "1b1bd4b77eef6a4e774d6f91"
+      },
+      {
+        "a_usd": -5.0,
+        "b_usd": 1.75,
+        "c_usd": -0.25,
+        "closed_at_utc": "2026-08-17T02:59:01.616364+00:00",
+        "exit_reason": "STOP_TIGHTENED",
+        "fees_usd": -1.0,
+        "model_pnl_usd": -0.0,
+        "realized_pnl_usd": 2.5,
+        "side": "SHORT",
+        "trade_id": "43e4a63ba19398a73bac7d37"
+      },
+      {
+        "a_usd": -3.0,
+        "b_usd": -1.0,
+        "c_usd": 1.0,
+        "closed_at_utc": "2026-08-17T02:56:01.647988+00:00",
+        "exit_reason": "STOP",
+        "fees_usd": -1.0,
+        "model_pnl_usd": -8.0,
+        "realized_pnl_usd": -6.0,
+        "side": "LONG",
+        "trade_id": "4eedea9e2849777f4a9bef12"
+      },
+      {
+        "a_usd": -3.0,
+        "b_usd": 0.75,
+        "c_usd": 0.75,
+        "closed_at_utc": "2026-08-17T02:47:01.586934+00:00",
+        "exit_reason": "STOP_TIGHTENED",
+        "fees_usd": -1.0,
+        "model_pnl_usd": 0.0,
+        "realized_pnl_usd": 0.5,
+        "side": "LONG",
+        "trade_id": "f88c7b8120c035b78d1d61fb"
+      }
+    ]
   },
   "publication_delay_minutes": 0,
   "reliability": {
