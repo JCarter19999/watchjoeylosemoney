@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T01:30:26.527285Z",
+  "data_as_of_utc": "2026-08-17T01:45:26.898762Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -13.0,
@@ -36,210 +36,210 @@
     "submit_to_fill_ms_median": 506.8,
     "submit_to_fill_ms_p95": 508.3
   },
-  "generated_at_utc": "2026-08-17T01:30:26.527285Z",
+  "generated_at_utc": "2026-08-17T01:45:26.898762Z",
   "guardian_transitions": [
     {
-      "from_state": "WARMUP",
-      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-17T01:22:28.500225Z"
-    },
-    {
       "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-08-17T01:22:16.456330Z"
+      "reason": "reconciliation FAILED: ledger=buy 1.0 broker=sell 1",
+      "to_state": "LOCKED",
+      "ts_utc": "2026-08-17T01:41:26.241059Z"
     },
     {
       "from_state": "BOOT",
       "reason": "boot: entering reconciliation",
       "to_state": "RECONCILING",
-      "ts_utc": "2026-08-17T01:22:16.113942Z"
+      "ts_utc": "2026-08-17T01:41:26.237363Z"
     },
     {
-      "from_state": "LOCKED",
-      "reason": "position closed while locked (remains locked, now flat): exit filled, reason=STOP_TIGHTENED",
+      "from_state": "VERIFY_FLAT",
+      "reason": "flat confirmed: startup recovery verification",
       "to_state": "LOCKED",
-      "ts_utc": "2026-08-17T01:11:00.600910Z"
+      "ts_utc": "2026-08-17T01:41:26.219727Z"
     },
     {
-      "from_state": "IN_POSITION",
-      "reason": "manual override detected: post-entry reconciliation mismatch: ledger=('buy', 1.0) broker=flat",
-      "to_state": "LOCKED",
-      "ts_utc": "2026-08-17T01:09:03.466009Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 30228.25",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-17T01:09:00.867972Z"
-    },
-    {
-      "from_state": "WARMUP",
-      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-17T01:01:25.076898Z"
+      "from_state": "EXIT_PENDING",
+      "reason": "exit order submitted: startup recovery: canceled 1 working order(s)",
+      "to_state": "VERIFY_FLAT",
+      "ts_utc": "2026-08-17T01:41:26.219723Z"
     },
     {
       "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-08-17T01:01:14.195330Z"
+      "reason": "startup recovery needed: position=no, working_orders=1",
+      "to_state": "EXIT_PENDING",
+      "ts_utc": "2026-08-17T01:41:26.219713Z"
     },
     {
       "from_state": "BOOT",
       "reason": "boot: entering reconciliation",
       "to_state": "RECONCILING",
-      "ts_utc": "2026-08-17T01:01:13.863777Z"
-    },
-    {
-      "from_state": "LOCKED",
-      "reason": "AUTO-RESUME (demo-only, unattended-overnight safety net): 2 consecutive clean flat-reconciliation checks over ~30min",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-17T00:51:08.934702Z"
-    },
-    {
-      "from_state": "LOCKED",
-      "reason": "position closed while locked (remains locked, now flat): exit filled, reason=TIME",
-      "to_state": "LOCKED",
-      "ts_utc": "2026-08-17T00:36:00.700456Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "manual override detected: post-entry reconciliation mismatch: ledger=('sell', 1.0) broker=flat",
-      "to_state": "LOCKED",
-      "ts_utc": "2026-08-17T00:21:03.390500Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 30198.0",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-17T00:21:00.849925Z"
-    },
-    {
-      "from_state": "WARMUP",
-      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-17T00:12:26.343128Z"
+      "ts_utc": "2026-08-17T01:41:26.219437Z"
     },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation ok: both flat",
       "to_state": "WARMUP",
-      "ts_utc": "2026-08-17T00:12:19.133644Z"
+      "ts_utc": "2026-08-17T01:41:26.213990Z"
     },
     {
       "from_state": "BOOT",
       "reason": "boot: entering reconciliation",
       "to_state": "RECONCILING",
-      "ts_utc": "2026-08-17T00:12:18.782370Z"
-    },
-    {
-      "from_state": "LOCKED",
-      "reason": "position closed while locked (remains locked, now flat): exit filled, reason=TIME",
-      "to_state": "LOCKED",
-      "ts_utc": "2026-08-17T00:11:00.718891Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "manual override detected: post-entry reconciliation mismatch: ledger=('buy', 1.0) broker=flat",
-      "to_state": "LOCKED",
-      "ts_utc": "2026-08-16T23:56:03.423401Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 30218.25",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-16T23:56:00.883969Z"
-    },
-    {
-      "from_state": "WARMUP",
-      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-16T23:47:49.387599Z"
+      "ts_utc": "2026-08-17T01:41:26.213713Z"
     },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation ok: both flat",
       "to_state": "WARMUP",
-      "ts_utc": "2026-08-16T23:47:43.917976Z"
+      "ts_utc": "2026-08-17T01:41:26.195641Z"
     },
     {
       "from_state": "BOOT",
       "reason": "boot: entering reconciliation",
       "to_state": "RECONCILING",
-      "ts_utc": "2026-08-16T23:47:43.571254Z"
-    },
-    {
-      "from_state": "LOCKED",
-      "reason": "position closed while locked (remains locked, now flat): exit filled, reason=STOP",
-      "to_state": "LOCKED",
-      "ts_utc": "2026-08-16T23:23:00.655615Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "manual override detected: post-entry reconciliation mismatch: ledger=('sell', 1.0) broker=flat",
-      "to_state": "LOCKED",
-      "ts_utc": "2026-08-16T23:18:03.339042Z"
+      "ts_utc": "2026-08-17T01:41:26.194638Z"
     },
     {
       "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 30195.75",
+      "reason": "entry filled: entry filled @ 100.0",
       "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-16T23:18:00.874571Z"
+      "ts_utc": "2026-08-17T01:41:26.156698Z"
+    },
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: warmup window elapsed",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-17T01:41:26.147779Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-17T01:41:26.147542Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-17T01:41:26.147238Z"
+    },
+    {
+      "from_state": "VERIFY_FLAT",
+      "reason": "flat confirmed: startup recovery verification",
+      "to_state": "LOCKED",
+      "ts_utc": "2026-08-17T01:41:26.128912Z"
+    },
+    {
+      "from_state": "EXIT_PENDING",
+      "reason": "exit order submitted: startup recovery: canceled 0 working order(s), flatten order submitted for buy 1.0",
+      "to_state": "VERIFY_FLAT",
+      "ts_utc": "2026-08-17T01:41:26.128022Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "startup recovery needed: position=yes, working_orders=0",
+      "to_state": "EXIT_PENDING",
+      "ts_utc": "2026-08-17T01:41:26.122893Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-17T01:41:26.122604Z"
+    },
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 100.0",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-17T01:41:26.117292Z"
+    },
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: warmup window elapsed",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-17T01:41:26.110494Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-17T01:41:26.109193Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-17T01:41:26.108910Z"
+    },
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 100.0",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-17T01:41:26.092302Z"
+    },
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: warmup window elapsed",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-17T01:41:26.085327Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-17T01:41:26.085049Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 8,
-    "cpu_median_pct": 4.1,
+    "bars_sampled": 23,
+    "cpu_median_pct": 5.6,
     "load1_median": 0.13,
     "stages": {
       "get_account_http_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 176.0,
+        "n": 1,
+        "p95_ms": 176.0,
+        "p99_ms": 176.0
       },
       "ingest_and_decision_ms": {
-        "median_ms": 131.7,
-        "n": 8,
-        "p95_ms": 161.3,
-        "p99_ms": 161.3
+        "median_ms": 132.7,
+        "n": 23,
+        "p95_ms": 275.2,
+        "p99_ms": 392.2
       },
       "poll_until_filled_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 0.0,
+        "n": 1,
+        "p95_ms": 0.0,
+        "p99_ms": 0.0
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 2485.7,
+        "n": 1,
+        "p95_ms": 2485.7,
+        "p99_ms": 2485.7
       },
       "queue_wait_ms": {
         "median_ms": 0.2,
-        "n": 8,
-        "p95_ms": 1.4,
-        "p99_ms": 1.4
+        "n": 23,
+        "p95_ms": 2.2,
+        "p99_ms": 2.7
       },
       "submit_order_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 536.9,
+        "n": 1,
+        "p95_ms": 536.9,
+        "p99_ms": 536.9
       },
       "total_bar_to_submit_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 3320.4,
+        "n": 1,
+        "p95_ms": 3320.4,
+        "p99_ms": 3320.4
       }
     },
-    "stalls_over_2s": 0,
-    "stalls_over_750ms": 0,
-    "verdict": "HEALTHY"
+    "stalls_over_2s": 1,
+    "stalls_over_750ms": 1,
+    "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
     {
@@ -327,10 +327,10 @@
   "status": {
     "data_delayed": false,
     "execution_enabled": true,
-    "guardian_state": "ARMED",
+    "guardian_state": "FAULT",
     "market_data_state": "LIVE",
-    "message": "Armed and watching for entries.",
-    "service_state": "ARMED"
+    "message": "Locked -- needs an explicit resume or a restart.",
+    "service_state": "FAULT"
   },
   "warmup_replay": {
     "bars_replayed": 202,
