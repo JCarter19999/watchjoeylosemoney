@@ -5,6 +5,7 @@ import logging
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 import streamlit as st
@@ -47,6 +48,15 @@ def load_and_validate_snapshot() -> dict[str, Any]:
         details = "; ".join(f"{'/'.join(map(str, e.path)) or '<root>'}: {e.message}" for e in errors[:5])
         raise ValueError(details)
     return snapshot
+
+
+def format_pst(iso_utc: str) -> str:
+    """publish.sh's cron runs every 15 min -- this reflects that cadence,
+    not true real-time, so it's labeled "Last updated" (data freshness),
+    not "Last refreshed" (page load time)."""
+    dt = datetime.fromisoformat(iso_utc.replace("Z", "+00:00"))
+    pst = dt.astimezone(ZoneInfo("America/Los_Angeles"))
+    return pst.strftime("%Y-%m-%d %I:%M:%S %p %Z")
 
 
 def money(value: float | None) -> str:
@@ -350,6 +360,7 @@ def live_dashboard() -> None:
         return
 
     status_badge(snapshot)
+    st.caption(f"Last updated: {format_pst(snapshot['generated_at_utc'])}")
     render_metrics(snapshot)
 
     if snapshot["mode"] == "LIVE":
