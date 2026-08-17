@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T08:00:27.228321Z",
+  "data_as_of_utc": "2026-08-17T08:15:26.693395Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -14.0,
@@ -24,8 +24,26 @@
     "submit_to_fill_ms_median": 485.2,
     "submit_to_fill_ms_p95": 507.4
   },
-  "generated_at_utc": "2026-08-17T08:00:27.228321Z",
+  "generated_at_utc": "2026-08-17T08:15:26.693395Z",
   "guardian_transitions": [
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-17T08:02:59.389953Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-17T08:02:39.167109Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-17T08:02:38.829456Z"
+    },
     {
       "from_state": "IN_POSITION",
       "reason": "position closed normally: exit filled, reason=TARGET",
@@ -70,56 +88,56 @@
     }
   ],
   "latency_health": {
-    "bars_sampled": 83,
-    "cpu_median_pct": 0.5,
-    "load1_median": 0.0,
+    "bars_sampled": 2,
+    "cpu_median_pct": 99.6,
+    "load1_median": 1.42,
     "stages": {
       "get_account_http_ms": {
-        "median_ms": 196.2,
-        "n": 2,
-        "p95_ms": 196.2,
-        "p99_ms": 196.2
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": 77.5,
-        "n": 83,
-        "p95_ms": 635.9,
-        "p99_ms": 1905.7
+        "median_ms": 100.0,
+        "n": 2,
+        "p95_ms": 100.0,
+        "p99_ms": 100.0
       },
       "poll_until_filled_ms": {
-        "median_ms": 0.0,
-        "n": 2,
-        "p95_ms": 0.0,
-        "p99_ms": 0.0
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": 175.6,
-        "n": 2,
-        "p95_ms": 175.6,
-        "p99_ms": 175.6
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "queue_wait_ms": {
-        "median_ms": 0.1,
-        "n": 83,
-        "p95_ms": 0.4,
-        "p99_ms": 8.7
+        "median_ms": 1.4,
+        "n": 2,
+        "p95_ms": 1.4,
+        "p99_ms": 1.4
       },
       "submit_order_ms": {
-        "median_ms": 507.4,
-        "n": 2,
-        "p95_ms": 507.4,
-        "p99_ms": 507.4
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 1391.9,
-        "n": 2,
-        "p95_ms": 1391.9,
-        "p99_ms": 1391.9
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       }
     },
     "stalls_over_2s": 0,
-    "stalls_over_750ms": 5,
-    "verdict": "MARGINAL"
+    "stalls_over_750ms": 0,
+    "verdict": "HEALTHY"
   },
   "latest_trades": [
     {
@@ -230,7 +248,7 @@
   "reliability": {
     "crash_report_count": 1,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-17T03:20:05.888359Z",
+    "last_started_at_utc": "2026-08-17T08:02:38.248952Z",
     "restart_count": 0
   },
   "schema_version": "1.0",
@@ -255,12 +273,12 @@
     "execution_enabled": false,
     "guardian_state": "NA",
     "market_data_state": "DISCONNECTED",
-    "message": "Live process pid 583980 is not running.",
+    "message": "Live process pid 589593 is not running.",
     "service_state": "OFFLINE"
   },
   "warmup_replay": {
     "bars_replayed": 239,
-    "elapsed_wall_seconds": 26.47,
-    "queue_wait_max_ms": 26166.7
+    "elapsed_wall_seconds": 18.78,
+    "queue_wait_max_ms": 18570.5
   }
 }
