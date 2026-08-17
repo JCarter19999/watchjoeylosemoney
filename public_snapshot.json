@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T15:15:27.208786Z",
+  "data_as_of_utc": "2026-08-17T15:30:26.383439Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -14.0,
@@ -114,20 +114,68 @@
       "drawdown_usd": 103.0,
       "equity_usd": -9.5,
       "ts_utc": "2026-08-17T15:05:00.857033+00:00"
+    },
+    {
+      "cum_pnl_usd": -30.0,
+      "drawdown_usd": 123.5,
+      "equity_usd": -30.0,
+      "ts_utc": "2026-08-17T15:29:01.688118+00:00"
     }
   ],
   "execution_telemetry": {
-    "sample_size": 19,
-    "slippage_ticks_mean": 3.7072,
-    "slippage_ticks_p95": 18.0,
-    "slippage_usd_mean": 1.8536,
-    "submit_to_ack_ms_median": 6.6,
+    "sample_size": 20,
+    "slippage_ticks_mean": 5.4719,
+    "slippage_ticks_p95": 39.0,
+    "slippage_usd_mean": 2.7359,
+    "submit_to_ack_ms_median": 13.3,
     "submit_to_ack_ms_p95": 169.4,
-    "submit_to_fill_ms_median": 503.3,
+    "submit_to_fill_ms_median": 507.4,
     "submit_to_fill_ms_p95": 532.2
   },
-  "generated_at_utc": "2026-08-17T15:15:27.208786Z",
+  "generated_at_utc": "2026-08-17T15:30:26.383439Z",
   "guardian_transitions": [
+    {
+      "from_state": "IN_POSITION",
+      "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-17T15:29:01.688485Z"
+    },
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 30264.5",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-17T15:27:01.228977Z"
+    },
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-17T15:23:52.132904Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-17T15:23:36.979020Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-17T15:23:36.643929Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation FAILED: ledger=('buy', 1.0) broker=flat",
+      "to_state": "LOCKED",
+      "ts_utc": "2026-08-17T15:20:04.477356Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-17T15:20:04.304902Z"
+    },
     {
       "from_state": "ARMED",
       "reason": "entry filled: entry filled @ 30268.0",
@@ -235,110 +283,82 @@
       "reason": "entry filled: entry filled @ 30204.25",
       "to_state": "IN_POSITION",
       "ts_utc": "2026-08-17T14:04:01.235640Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-17T14:03:00.831213Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 30227.0",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-17T13:50:01.076954Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=TIME",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-17T13:49:01.698434Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 30228.0",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-17T13:34:01.205022Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=TARGET",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-17T13:32:00.769247Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 30217.5",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-17T13:28:01.053015Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=TARGET",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-17T12:37:00.797125Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 14,
-    "cpu_median_pct": 1.6,
-    "load1_median": 0.07,
+    "bars_sampled": 7,
+    "cpu_median_pct": 1.7,
+    "load1_median": 0.05,
     "stages": {
       "get_account_http_ms": {
-        "median_ms": 150.8,
-        "n": 2,
-        "p95_ms": 150.8,
-        "p99_ms": 150.8
+        "median_ms": 153.6,
+        "n": 1,
+        "p95_ms": 153.6,
+        "p99_ms": 153.6
       },
       "ingest_and_decision_ms": {
-        "median_ms": 139.8,
-        "n": 14,
-        "p95_ms": 973.6,
-        "p99_ms": 973.6
+        "median_ms": 70.8,
+        "n": 7,
+        "p95_ms": 1794.7,
+        "p99_ms": 1794.7
       },
       "poll_until_filled_ms": {
         "median_ms": 0.0,
-        "n": 2,
+        "n": 1,
         "p95_ms": 0.0,
         "p99_ms": 0.0
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": 188.2,
-        "n": 2,
-        "p95_ms": 188.2,
-        "p99_ms": 188.2
+        "median_ms": 158.8,
+        "n": 1,
+        "p95_ms": 158.8,
+        "p99_ms": 158.8
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 14,
+        "n": 7,
         "p95_ms": 0.2,
         "p99_ms": 0.2
       },
       "submit_order_ms": {
-        "median_ms": 529.0,
-        "n": 2,
-        "p95_ms": 529.0,
-        "p99_ms": 529.0
+        "median_ms": 528.7,
+        "n": 1,
+        "p95_ms": 528.7,
+        "p99_ms": 528.7
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 1351.8,
-        "n": 2,
-        "p95_ms": 1351.8,
-        "p99_ms": 1351.8
+        "median_ms": 1334.0,
+        "n": 1,
+        "p95_ms": 1334.0,
+        "p99_ms": 1334.0
       }
     },
     "stalls_over_2s": 0,
-    "stalls_over_750ms": 3,
+    "stalls_over_750ms": 2,
     "verdict": "MARGINAL"
   },
   "latest_trades": [
     {
+      "closed_at_utc": "2026-08-17T15:29:01.688118+00:00",
+      "duration_seconds": 120.459575,
+      "entry_host_cpu_user_pct": 1.7,
+      "entry_host_load1": 0.05,
+      "entry_process_cpu_pct": 29.6,
+      "entry_rss_mb": 222.7,
+      "exit_reason": "STOP_TIGHTENED",
+      "expected_net_pnl_model_usd": 1.691,
+      "mode": "DEMO",
+      "pnl_usd": -20.5,
+      "session_date": "2026-08-17",
+      "side": "SHORT"
+    },
+    {
       "closed_at_utc": "2026-08-17T15:05:00.857033+00:00",
       "duration_seconds": 359.604863,
-      "entry_host_cpu_user_pct": 2.9,
-      "entry_host_load1": 0.04,
-      "entry_process_cpu_pct": 28.3,
-      "entry_rss_mb": 221.8,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.39,
+      "entry_process_cpu_pct": 99.4,
+      "entry_rss_mb": 221.1,
       "exit_reason": "TARGET",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -350,9 +370,9 @@
       "closed_at_utc": "2026-08-17T14:55:01.709321+00:00",
       "duration_seconds": 120.488567,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.45,
-      "entry_process_cpu_pct": 99.6,
-      "entry_rss_mb": 220.4,
+      "entry_host_load1": 0.39,
+      "entry_process_cpu_pct": 99.7,
+      "entry_rss_mb": 221.1,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -364,9 +384,9 @@
       "closed_at_utc": "2026-08-17T14:47:01.726050+00:00",
       "duration_seconds": 900.537055,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.45,
-      "entry_process_cpu_pct": 85.2,
-      "entry_rss_mb": 220.4,
+      "entry_host_load1": 0.39,
+      "entry_process_cpu_pct": 99.5,
+      "entry_rss_mb": 221.0,
       "exit_reason": "TIME",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -378,9 +398,9 @@
       "closed_at_utc": "2026-08-17T14:30:00.822027+00:00",
       "duration_seconds": 479.573995,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.4,
-      "entry_process_cpu_pct": 99.1,
-      "entry_rss_mb": 220.4,
+      "entry_host_load1": 0.39,
+      "entry_process_cpu_pct": 99.4,
+      "entry_rss_mb": 221.0,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -392,9 +412,9 @@
       "closed_at_utc": "2026-08-17T14:17:01.686378+00:00",
       "duration_seconds": 300.58935,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.4,
-      "entry_process_cpu_pct": 99.7,
-      "entry_rss_mb": 220.3,
+      "entry_host_load1": 0.39,
+      "entry_process_cpu_pct": 99.6,
+      "entry_rss_mb": 220.9,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -406,9 +426,9 @@
       "closed_at_utc": "2026-08-17T14:11:00.767245+00:00",
       "duration_seconds": 119.691044,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.4,
-      "entry_process_cpu_pct": 98.3,
-      "entry_rss_mb": 220.3,
+      "entry_host_load1": 0.39,
+      "entry_process_cpu_pct": 99.7,
+      "entry_rss_mb": 220.9,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -420,9 +440,9 @@
       "closed_at_utc": "2026-08-17T14:06:01.755140+00:00",
       "duration_seconds": 120.520271,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.4,
-      "entry_process_cpu_pct": 99.0,
-      "entry_rss_mb": 220.3,
+      "entry_host_load1": 0.39,
+      "entry_process_cpu_pct": 99.3,
+      "entry_rss_mb": 220.9,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -433,10 +453,10 @@
     {
       "closed_at_utc": "2026-08-17T14:03:00.831003+00:00",
       "duration_seconds": 779.755647,
-      "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.4,
-      "entry_process_cpu_pct": 94.7,
-      "entry_rss_mb": 220.2,
+      "entry_host_cpu_user_pct": 91.7,
+      "entry_host_load1": 0.34,
+      "entry_process_cpu_pct": 99.3,
+      "entry_rss_mb": 220.8,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -448,9 +468,9 @@
       "closed_at_utc": "2026-08-17T13:49:01.698146+00:00",
       "duration_seconds": 900.493873,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.4,
-      "entry_process_cpu_pct": 98.1,
-      "entry_rss_mb": 220.1,
+      "entry_host_load1": 0.34,
+      "entry_process_cpu_pct": 99.4,
+      "entry_rss_mb": 220.6,
       "exit_reason": "TIME",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -462,9 +482,9 @@
       "closed_at_utc": "2026-08-17T13:32:00.768854+00:00",
       "duration_seconds": 239.716462,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.4,
-      "entry_process_cpu_pct": 84.0,
-      "entry_rss_mb": 220.1,
+      "entry_host_load1": 0.34,
+      "entry_process_cpu_pct": 99.8,
+      "entry_rss_mb": 220.6,
       "exit_reason": "TARGET",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -798,37 +818,37 @@
   "reliability": {
     "crash_report_count": 1,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-17T14:55:17.189164Z",
+    "last_started_at_utc": "2026-08-17T15:23:36.133374Z",
     "restart_count": 0
   },
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 19,
-    "closed_trades_today": 19,
-    "current_drawdown_usd": 103.0,
-    "display_equity_usd": -9.5,
+    "closed_trades_all_time": 20,
+    "closed_trades_today": 20,
+    "current_drawdown_usd": 123.5,
+    "display_equity_usd": -30.0,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": -0.5,
-    "losses": 12,
+    "expectancy_usd": -1.5,
+    "losses": 13,
     "max_drawdown_usd": 157.5,
-    "profit_factor": 0.9647,
-    "realized_pnl_all_time_usd": -9.5,
-    "realized_pnl_today_usd": -9.5,
-    "win_rate": 0.3684,
+    "profit_factor": 0.8966,
+    "realized_pnl_all_time_usd": -30.0,
+    "realized_pnl_today_usd": -30.0,
+    "win_rate": 0.35,
     "wins": 7
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "market_data_state": "DISCONNECTED",
-    "message": "Live process pid 597115 is not running.",
-    "service_state": "OFFLINE"
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "market_data_state": "LIVE",
+    "message": "Armed and watching for entries.",
+    "service_state": "ARMED"
   },
   "warmup_replay": {
     "bars_replayed": 239,
-    "elapsed_wall_seconds": 13.51,
-    "queue_wait_max_ms": 13211.3
+    "elapsed_wall_seconds": 14.33,
+    "queue_wait_max_ms": 14033.5
   }
 }
