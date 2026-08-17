@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T01:15:27.195805Z",
+  "data_as_of_utc": "2026-08-17T01:30:26.527285Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -13.0,
@@ -36,8 +36,26 @@
     "submit_to_fill_ms_median": 506.8,
     "submit_to_fill_ms_p95": 508.3
   },
-  "generated_at_utc": "2026-08-17T01:15:27.195805Z",
+  "generated_at_utc": "2026-08-17T01:30:26.527285Z",
   "guardian_transitions": [
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-17T01:22:28.500225Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-17T01:22:16.456330Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-17T01:22:16.113942Z"
+    },
     {
       "from_state": "LOCKED",
       "reason": "position closed while locked (remains locked, now flat): exit filled, reason=STOP_TIGHTENED",
@@ -169,86 +187,68 @@
       "reason": "entry filled: entry filled @ 30195.75",
       "to_state": "IN_POSITION",
       "ts_utc": "2026-08-16T23:18:00.874571Z"
-    },
-    {
-      "from_state": "WARMUP",
-      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-16T23:02:52.537708Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-08-16T23:02:49.306647Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-16T23:02:48.959121Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 11,
-    "cpu_median_pct": 5.1,
-    "load1_median": 0.17,
+    "bars_sampled": 8,
+    "cpu_median_pct": 4.1,
+    "load1_median": 0.13,
     "stages": {
       "get_account_http_ms": {
-        "median_ms": 152.6,
-        "n": 1,
-        "p95_ms": 152.6,
-        "p99_ms": 152.6
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": 81.4,
-        "n": 11,
-        "p95_ms": 713.7,
-        "p99_ms": 713.7
+        "median_ms": 131.7,
+        "n": 8,
+        "p95_ms": 161.3,
+        "p99_ms": 161.3
       },
       "poll_until_filled_ms": {
-        "median_ms": 0.0,
-        "n": 1,
-        "p95_ms": 0.0,
-        "p99_ms": 0.0
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": 2596.9,
-        "n": 1,
-        "p95_ms": 2596.9,
-        "p99_ms": 2596.9
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "queue_wait_ms": {
-        "median_ms": 0.1,
-        "n": 11,
-        "p95_ms": 0.1,
-        "p99_ms": 0.1
+        "median_ms": 0.2,
+        "n": 8,
+        "p95_ms": 1.4,
+        "p99_ms": 1.4
       },
       "submit_order_ms": {
-        "median_ms": 506.8,
-        "n": 1,
-        "p95_ms": 506.8,
-        "p99_ms": 506.8
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 3408.0,
-        "n": 1,
-        "p95_ms": 3408.0,
-        "p99_ms": 3408.0
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       }
     },
-    "stalls_over_2s": 1,
-    "stalls_over_750ms": 1,
-    "verdict": "NEEDS_UPGRADE"
+    "stalls_over_2s": 0,
+    "stalls_over_750ms": 0,
+    "verdict": "HEALTHY"
   },
   "latest_trades": [
     {
       "closed_at_utc": "2026-08-17T01:11:00.600523+00:00",
       "duration_seconds": 119.732879,
-      "entry_host_cpu_user_pct": 6.5,
-      "entry_host_load1": 0.09,
-      "entry_process_cpu_pct": 15.0,
-      "entry_rss_mb": 224.2,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.41,
+      "entry_process_cpu_pct": 97.4,
+      "entry_rss_mb": 222.0,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -259,9 +259,9 @@
     {
       "closed_at_utc": "2026-08-17T00:36:00.699962+00:00",
       "duration_seconds": 899.850253,
-      "entry_host_cpu_user_pct": 90.9,
-      "entry_host_load1": 0.31,
-      "entry_process_cpu_pct": 95.8,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.18,
+      "entry_process_cpu_pct": 96.5,
       "entry_rss_mb": 221.7,
       "exit_reason": "TIME",
       "expected_net_pnl_model_usd": 1.691,
@@ -274,8 +274,8 @@
       "closed_at_utc": "2026-08-17T00:11:00.718464+00:00",
       "duration_seconds": 899.834824,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.25,
-      "entry_process_cpu_pct": 96.1,
+      "entry_host_load1": 0.18,
+      "entry_process_cpu_pct": 96.2,
       "entry_rss_mb": 221.4,
       "exit_reason": "TIME",
       "expected_net_pnl_model_usd": 1.691,
@@ -288,9 +288,9 @@
       "closed_at_utc": "2026-08-16T23:23:00.655173+00:00",
       "duration_seconds": 299.781069,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.25,
-      "entry_process_cpu_pct": 79.0,
-      "entry_rss_mb": 220.0,
+      "entry_host_load1": 0.11,
+      "entry_process_cpu_pct": 93.3,
+      "entry_rss_mb": 220.1,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -304,8 +304,8 @@
   "reliability": {
     "crash_report_count": 2,
     "first_started_at_utc": "2026-08-16T22:44:09.421678Z",
-    "last_started_at_utc": "2026-08-17T01:01:13.329314Z",
-    "restart_count": 5
+    "last_started_at_utc": "2026-08-17T01:22:15.619987Z",
+    "restart_count": 6
   },
   "schema_version": "1.0",
   "stats": {
@@ -326,15 +326,15 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "market_data_state": "DISCONNECTED",
-    "message": "Live process pid 575383 is not running.",
-    "service_state": "OFFLINE"
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "market_data_state": "LIVE",
+    "message": "Armed and watching for entries.",
+    "service_state": "ARMED"
   },
   "warmup_replay": {
-    "bars_replayed": 181,
-    "elapsed_wall_seconds": 9.78,
-    "queue_wait_max_ms": 9670.9
+    "bars_replayed": 202,
+    "elapsed_wall_seconds": 11.07,
+    "queue_wait_max_ms": 10946.7
   }
 }
