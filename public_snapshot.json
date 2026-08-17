@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-16T23:45:26.611020Z",
+  "data_as_of_utc": "2026-08-17T00:00:26.750641Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -13.0,
@@ -18,8 +18,38 @@
     "submit_to_fill_ms_median": 504.7,
     "submit_to_fill_ms_p95": 504.7
   },
-  "generated_at_utc": "2026-08-16T23:45:26.611020Z",
+  "generated_at_utc": "2026-08-17T00:00:26.750641Z",
   "guardian_transitions": [
+    {
+      "from_state": "IN_POSITION",
+      "reason": "manual override detected: post-entry reconciliation mismatch: ledger=('buy', 1.0) broker=flat",
+      "to_state": "LOCKED",
+      "ts_utc": "2026-08-16T23:56:03.423401Z"
+    },
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 30218.25",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-16T23:56:00.883969Z"
+    },
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-16T23:47:49.387599Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-16T23:47:43.917976Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-16T23:47:43.571254Z"
+    },
     {
       "from_state": "LOCKED",
       "reason": "position closed while locked (remains locked, now flat): exit filled, reason=STOP",
@@ -76,21 +106,21 @@
     }
   ],
   "latency_health": {
-    "bars_sampled": 43,
-    "cpu_median_pct": 0.4,
-    "load1_median": 0.0,
+    "bars_sampled": 13,
+    "cpu_median_pct": 6.5,
+    "load1_median": 0.08,
     "stages": {
       "get_account_http_ms": {
-        "median_ms": 186.3,
+        "median_ms": 166.2,
         "n": 1,
-        "p95_ms": 186.3,
-        "p99_ms": 186.3
+        "p95_ms": 166.2,
+        "p99_ms": 166.2
       },
       "ingest_and_decision_ms": {
-        "median_ms": 67.3,
-        "n": 43,
-        "p95_ms": 138.3,
-        "p99_ms": 767.4
+        "median_ms": 70.3,
+        "n": 13,
+        "p95_ms": 233.1,
+        "p99_ms": 233.1
       },
       "poll_until_filled_ms": {
         "median_ms": 0.0,
@@ -99,42 +129,42 @@
         "p99_ms": 0.0
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": 2463.7,
+        "median_ms": 2538.6,
         "n": 1,
-        "p95_ms": 2463.7,
-        "p99_ms": 2463.7
+        "p95_ms": 2538.6,
+        "p99_ms": 2538.6
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 43,
+        "n": 13,
         "p95_ms": 0.2,
-        "p99_ms": 0.3
+        "p99_ms": 0.2
       },
       "submit_order_ms": {
-        "median_ms": 504.7,
+        "median_ms": 508.3,
         "n": 1,
-        "p95_ms": 504.7,
-        "p99_ms": 504.7
+        "p95_ms": 508.3,
+        "p99_ms": 508.3
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 139.1,
-        "n": 3,
-        "p95_ms": 3286.1,
-        "p99_ms": 3286.1
+        "median_ms": 3356.1,
+        "n": 1,
+        "p95_ms": 3356.1,
+        "p99_ms": 3356.1
       }
     },
     "stalls_over_2s": 1,
-    "stalls_over_750ms": 2,
+    "stalls_over_750ms": 1,
     "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
     {
       "closed_at_utc": "2026-08-16T23:23:00.655173+00:00",
       "duration_seconds": 299.781069,
-      "entry_host_cpu_user_pct": 0.8,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 12.0,
-      "entry_rss_mb": 225.2,
+      "entry_host_cpu_user_pct": 94.4,
+      "entry_host_load1": 0.16,
+      "entry_process_cpu_pct": 64.7,
+      "entry_rss_mb": 222.5,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -148,14 +178,14 @@
   "reliability": {
     "crash_report_count": 2,
     "first_started_at_utc": "2026-08-16T22:44:09.421678Z",
-    "last_started_at_utc": "2026-08-16T23:02:48.442773Z",
-    "restart_count": 2
+    "last_started_at_utc": "2026-08-16T23:47:43.061241Z",
+    "restart_count": 3
   },
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
     "closed_trades_all_time": 1,
-    "closed_trades_today": 1,
+    "closed_trades_today": 0,
     "current_drawdown_usd": 13.0,
     "display_equity_usd": -13.0,
     "display_starting_equity_usd": 0.0,
@@ -164,7 +194,7 @@
     "max_drawdown_usd": 13.0,
     "profit_factor": 0.0,
     "realized_pnl_all_time_usd": -13.0,
-    "realized_pnl_today_usd": -13.0,
+    "realized_pnl_today_usd": 0,
     "win_rate": 0.0,
     "wins": 0
   },
@@ -177,8 +207,8 @@
     "service_state": "FAULT"
   },
   "warmup_replay": {
-    "bars_replayed": 62,
-    "elapsed_wall_seconds": 2.27,
-    "queue_wait_max_ms": 2115.1
+    "bars_replayed": 107,
+    "elapsed_wall_seconds": 4.5,
+    "queue_wait_max_ms": 4445.4
   }
 }
