@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T00:45:26.864033Z",
+  "data_as_of_utc": "2026-08-17T01:00:26.980306Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -13.0,
@@ -30,8 +30,14 @@
     "submit_to_fill_ms_median": 504.7,
     "submit_to_fill_ms_p95": 508.3
   },
-  "generated_at_utc": "2026-08-17T00:45:26.864033Z",
+  "generated_at_utc": "2026-08-17T01:00:26.980306Z",
   "guardian_transitions": [
+    {
+      "from_state": "LOCKED",
+      "reason": "AUTO-RESUME (demo-only, unattended-overnight safety net): 2 consecutive clean flat-reconciliation checks over ~30min",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-17T00:51:08.934702Z"
+    },
     {
       "from_state": "LOCKED",
       "reason": "position closed while locked (remains locked, now flat): exit filled, reason=TIME",
@@ -160,9 +166,9 @@
     }
   ],
   "latency_health": {
-    "bars_sampled": 33,
-    "cpu_median_pct": 6.0,
-    "load1_median": 0.1,
+    "bars_sampled": 48,
+    "cpu_median_pct": 5.8,
+    "load1_median": 0.08,
     "stages": {
       "get_account_http_ms": {
         "median_ms": 166.6,
@@ -171,9 +177,9 @@
         "p99_ms": 166.6
       },
       "ingest_and_decision_ms": {
-        "median_ms": 117.5,
-        "n": 33,
-        "p95_ms": 155.6,
+        "median_ms": 77.5,
+        "n": 48,
+        "p95_ms": 152.1,
         "p99_ms": 811.7
       },
       "poll_until_filled_ms": {
@@ -190,7 +196,7 @@
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 33,
+        "n": 48,
         "p95_ms": 0.3,
         "p99_ms": 0.7
       },
@@ -283,10 +289,10 @@
   "status": {
     "data_delayed": false,
     "execution_enabled": true,
-    "guardian_state": "FAULT",
+    "guardian_state": "DISARMED",
     "market_data_state": "LIVE",
-    "message": "Locked -- needs an explicit resume or a restart.",
-    "service_state": "FAULT"
+    "message": "Starting up: reconciling against the broker.",
+    "service_state": "STARTING"
   },
   "warmup_replay": {
     "bars_replayed": 132,
