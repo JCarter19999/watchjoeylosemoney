@@ -188,6 +188,16 @@ def render_execution_telemetry(snapshot: dict[str, Any]) -> None:
         "Median reference-to-fill shortfall", f"{t['slippage_ticks_median']:.2f} ticks" if t["slippage_ticks_median"] is not None else "—",
         help="Headline number -- resistant to a single large real trade. See tail-risk context below.",
     )
+    by_reason = t.get("slippage_by_exit_reason") or {}
+    if by_reason:
+        st.caption("Median shortfall by exit reason -- the blended median above can look fine purely because ordinary exits outnumber STOP_TIGHTENED ones; this is the number that actually tracks whether STOP_TIGHTENED itself is improving.")
+        reason_cols = st.columns(len(by_reason))
+        for col, (reason, stats) in zip(reason_cols, by_reason.items()):
+            col.metric(
+                f"{reason} (n={stats['n']})",
+                f"{stats['median_ticks']:.2f} ticks" if stats["median_ticks"] is not None else "—",
+                help=f"mean {stats['mean_ticks']:.2f} ticks" if stats["mean_ticks"] is not None else None,
+            )
     with st.expander("Tail-risk context (p95 / mean -- not the headline)"):
         tail_cols = st.columns(3)
         tail_cols[0].metric("p95 submit→ACK", f"{t['submit_to_ack_ms_p95']:.0f} ms" if t["submit_to_ack_ms_p95"] is not None else "—")

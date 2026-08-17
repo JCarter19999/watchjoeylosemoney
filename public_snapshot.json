@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T16:37:31.117892Z",
+  "data_as_of_utc": "2026-08-17T16:43:11.583732Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -14.0,
@@ -160,6 +160,28 @@
   ],
   "execution_telemetry": {
     "sample_size": 26,
+    "slippage_by_exit_reason": {
+      "STOP": {
+        "mean_ticks": 1.9143,
+        "median_ticks": 2.0,
+        "n": 8
+      },
+      "STOP_TIGHTENED": {
+        "mean_ticks": 10.4167,
+        "median_ticks": 8.0,
+        "n": 12
+      },
+      "TARGET": {
+        "mean_ticks": -6.4648,
+        "median_ticks": -0.927,
+        "n": 4
+      },
+      "TIME": {
+        "mean_ticks": -1.0,
+        "median_ticks": -2.0,
+        "n": 2
+      }
+    },
     "slippage_ticks_mean": 4.3252,
     "slippage_ticks_median": 0.0,
     "slippage_ticks_p95": 39.0,
@@ -170,7 +192,7 @@
     "submit_to_fill_ms_median": 502.8,
     "submit_to_fill_ms_p95": 542.9
   },
-  "generated_at_utc": "2026-08-17T16:37:31.117892Z",
+  "generated_at_utc": "2026-08-17T16:43:11.583732Z",
   "guardian_transitions": [
     {
       "from_state": "IN_POSITION",

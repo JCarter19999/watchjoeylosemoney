@@ -160,6 +160,26 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
     # $2.00/point, 0.25-point ticks for MNQ -> $0.50/tick.
     slip_ticks = [d / 0.50 for d in slip_dollars]
 
+    # Split by exit_reason: the blended median hides that STOP_TIGHTENED is
+    # a bimodal, high-variance mechanism (bar-close-only enforcement of a
+    # dynamically moved stop -- see HANDOFF.md) sitting in BOTH tails, while
+    # ordinary STOP/TARGET/TIME exits cluster tightly near zero. A single
+    # median across all exit types can look "fine" purely because ordinary
+    # exits outnumber STOP_TIGHTENED ones, not because STOP_TIGHTENED itself
+    # got better -- this is the number that actually tracks whether that
+    # specific, already-known issue is improving.
+    slip_by_reason: dict[str, list[float]] = defaultdict(list)
+    for r, ticks in zip(exec_rows, slip_ticks):
+        slip_by_reason[r.get("exit_reason") or "UNKNOWN"].append(ticks)
+    slippage_by_exit_reason = {
+        reason: {
+            "n": len(values),
+            "median_ticks": _round(_percentile(values, 0.5)),
+            "mean_ticks": _round(sum(values) / len(values)),
+        }
+        for reason, values in sorted(slip_by_reason.items())
+    }
+
     public = {
         "schema_version": SCHEMA_VERSION,
         "generated_at_utc": now.isoformat().replace("+00:00", "Z"),
@@ -207,6 +227,7 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
             "slippage_ticks_p95": _round(_percentile(slip_ticks, 0.95)),
             "slippage_usd_median": _round(_percentile(slip_dollars, 0.5)),
             "slippage_usd_mean": _round(sum(slip_dollars) / len(slip_dollars)) if slip_dollars else None,
+            "slippage_by_exit_reason": slippage_by_exit_reason,
         },
         "latency_health": {
             "bars_sampled": (latency := private.get("latency", {})).get("bars_sampled", 0),

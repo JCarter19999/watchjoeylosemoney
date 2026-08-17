@@ -158,3 +158,41 @@ def test_waterfall_defaults_empty_when_absent_from_private() -> None:
     validate_snapshot(public, SCHEMA_PATH)
     assert public["pnl_waterfall"]["n_trades"] == 0
     assert public["pnl_waterfall"]["trades"] == []
+
+
+def test_slippage_by_exit_reason_grouped_and_median_resists_outlier() -> None:
+    """STOP_TIGHTENED trades get one huge outlier plus one ordinary trade;
+    TARGET gets two ordinary trades. Confirms grouping is by exit_reason,
+    n is per-group, and the STOP_TIGHTENED median resists its own outlier
+    the same way the blended median does."""
+    now = datetime.now(timezone.utc)
+    private = _poison_private(now=now)
+
+    def trade(reason: str, entry_slip: float, exit_slip: float, minutes_ago: int):
+        base = dict(private["trades"][0])
+        base["closed_at_utc"] = (now - timedelta(minutes=minutes_ago)).isoformat().replace("+00:00", "Z")
+        base["exit_reason"] = reason
+        base["entry_slippage_dollars"] = entry_slip
+        base["exit_slippage_dollars"] = exit_slip
+        return base
+
+    private["trades"] = [
+        trade("STOP_TIGHTENED", 0.0, 0.5, 10),
+        trade("STOP_TIGHTENED", 0.0, 44.5, 9),  # huge outlier, 89 ticks total
+        trade("TARGET", 0.0, 1.0, 8),
+        trade("TARGET", 0.0, -1.0, 7),
+    ]
+    public = build_public_snapshot(private, now, live_delay_minutes=15)
+    validate_snapshot(public, SCHEMA_PATH)
+
+    by_reason = public["execution_telemetry"]["slippage_by_exit_reason"]
+    assert by_reason["STOP_TIGHTENED"]["n"] == 2
+    # _percentile is nearest-rank, not interpolated -- at n=2 it returns the
+    # LOWER of the two sorted values (round(0.5*(2-1))=round(0.5)=0, banker's
+    # rounding), i.e. 1.0, not the 89.0 outlier. Still demonstrates the
+    # point: the outlier does not dominate the reported STOP_TIGHTENED figure.
+    assert by_reason["STOP_TIGHTENED"]["median_ticks"] == pytest.approx(1.0)
+    assert by_reason["STOP_TIGHTENED"]["mean_ticks"] == pytest.approx((1.0 + 89.0) / 2)  # mean DOES get dragged to 45
+    assert by_reason["TARGET"]["n"] == 2
+    assert by_reason["TARGET"]["median_ticks"] == pytest.approx(-2.0)  # nearest-rank lower value, see comment above
+    assert by_reason["TARGET"]["mean_ticks"] == pytest.approx(0.0)
