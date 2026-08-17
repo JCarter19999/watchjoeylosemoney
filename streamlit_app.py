@@ -175,8 +175,19 @@ def render_execution_telemetry(snapshot: dict[str, Any]) -> None:
     cols[1].metric("Median submit→ACK", f"{t['submit_to_ack_ms_median']:.0f} ms" if t["submit_to_ack_ms_median"] is not None else "—")
     cols[2].metric("p95 submit→ACK", f"{t['submit_to_ack_ms_p95']:.0f} ms" if t["submit_to_ack_ms_p95"] is not None else "—")
     cols[3].metric("Median submit→fill", f"{t['submit_to_fill_ms_median']:.0f} ms" if t["submit_to_fill_ms_median"] is not None else "—")
-    cols[4].metric("Mean slippage", f"{t['slippage_ticks_mean']:.2f} ticks" if t["slippage_ticks_mean"] is not None else "—")
-    cols[5].metric("p95 slippage", f"{t['slippage_ticks_p95']:.2f} ticks" if t["slippage_ticks_p95"] is not None else "—")
+    cols[4].metric("Mean reference-to-fill shortfall", f"{t['slippage_ticks_mean']:.2f} ticks" if t["slippage_ticks_mean"] is not None else "—")
+    cols[5].metric("p95 reference-to-fill shortfall", f"{t['slippage_ticks_p95']:.2f} ticks" if t["slippage_ticks_p95"] is not None else "—")
+    caption = (
+        "\"Reference-to-fill shortfall\" (not \"slippage\"): the gap between RT1's own theoretical "
+        "signal/exit price and the real fill. This bundles multiple things -- market movement before "
+        "submit, actual broker/BBO execution cost, and (for exits specifically) a strategy-semantics "
+        "component from reacting only at bar-close rather than an intrabar touch. It does NOT mean "
+        "Tradovate cost this many ticks -- a decomposed breakdown is planned once enough trades "
+        "accumulate."
+    )
+    if t["sample_size"] < 30:
+        caption += f" Only {t['sample_size']} sample(s) so far -- treat as directional only, not a stable mean."
+    st.caption(caption)
 
 
 _LATENCY_STAGE_LABELS = {
