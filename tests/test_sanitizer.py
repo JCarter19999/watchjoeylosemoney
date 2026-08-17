@@ -94,3 +94,67 @@ def test_open_trade_never_published() -> None:
     })
     public = build_public_snapshot(private, now, live_delay_minutes=15)
     assert len(public["latest_trades"]) == 1  # only the closed one
+
+
+def _waterfall_trade(trade_id: str, exit_time_iso: str, model_pnl: float, realized_pnl: float) -> dict:
+    drag = model_pnl - realized_pnl  # a+b+c+fees, split arbitrarily for test purposes
+    return {
+        "trade_id": trade_id, "side": "long", "exit_reason": "TARGET", "exit_time": exit_time_iso,
+        "model_pnl_dollars": model_pnl,
+        "a_semantic_reference_gap_dollars": drag * 0.5,
+        "b_decision_to_submit_dollars": drag * 0.25,
+        "c_execution_residual_dollars": drag * 0.25 - 1.0,
+        "fees_dollars": -1.0,
+        "realized_pnl_dollars": realized_pnl,
+    }
+
+
+def test_waterfall_aggregate_recomputed_over_visible_trades_only() -> None:
+    """A DEMO-mode private snapshot has no embargo -- both trades visible,
+    aggregate is the plain mean of both."""
+    now = datetime.now(timezone.utc)
+    private = _poison_private(now=now)
+    private["pnl_waterfall"] = {
+        "n_missing_decomposition": 0,
+        "trades": [
+            _waterfall_trade("t1", (now - timedelta(hours=2)).isoformat(), model_pnl=10.0, realized_pnl=6.0),
+            _waterfall_trade("t2", (now - timedelta(hours=1)).isoformat(), model_pnl=20.0, realized_pnl=19.0),
+        ],
+    }
+    public = build_public_snapshot(private, now, live_delay_minutes=15)
+    validate_snapshot(public, SCHEMA_PATH)
+
+    assert public["pnl_waterfall"]["n_trades"] == 2
+    assert public["pnl_waterfall"]["aggregate"]["model_expectancy_usd"] == pytest.approx(15.0)
+    assert public["pnl_waterfall"]["aggregate"]["realized_expectancy_usd"] == pytest.approx(12.5)
+
+
+def test_waterfall_embargoes_live_trades_and_excludes_from_aggregate() -> None:
+    """A LIVE-mode trade inside the delay window must not appear in the
+    published waterfall rows OR contribute to the published aggregate --
+    the aggregate is recomputed over visible rows, not passed through."""
+    now = datetime.now(timezone.utc)
+    private = _poison_private(mode="LIVE", now=now)
+    private["pnl_waterfall"] = {
+        "n_missing_decomposition": 0,
+        "trades": [
+            _waterfall_trade("old", (now - timedelta(hours=2)).isoformat(), model_pnl=10.0, realized_pnl=6.0),
+            _waterfall_trade("embargoed", (now - timedelta(minutes=1)).isoformat(), model_pnl=1000.0, realized_pnl=999.0),
+        ],
+    }
+    public = build_public_snapshot(private, now, live_delay_minutes=15)
+    validate_snapshot(public, SCHEMA_PATH)
+
+    assert public["pnl_waterfall"]["n_trades"] == 1
+    assert all(t["trade_id"] != "embargoed" for t in public["pnl_waterfall"]["trades"])
+    # aggregate must reflect ONLY the visible "old" trade, not the 1000/999 embargoed one
+    assert public["pnl_waterfall"]["aggregate"]["model_expectancy_usd"] == pytest.approx(10.0)
+
+
+def test_waterfall_defaults_empty_when_absent_from_private() -> None:
+    now = datetime.now(timezone.utc)
+    private = _poison_private(now=now)  # no "pnl_waterfall" key at all
+    public = build_public_snapshot(private, now, live_delay_minutes=15)
+    validate_snapshot(public, SCHEMA_PATH)
+    assert public["pnl_waterfall"]["n_trades"] == 0
+    assert public["pnl_waterfall"]["trades"] == []

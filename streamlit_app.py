@@ -190,6 +190,56 @@ def render_execution_telemetry(snapshot: dict[str, Any]) -> None:
     st.caption(caption)
 
 
+def render_pnl_waterfall(snapshot: dict[str, Any]) -> None:
+    """Backtest -> Live Bridge panel #1: where did the model's P&L go on
+    the way to a real fill? Model P&L -> A (semantic/reference gap) -> B
+    (decision->submit movement) -> C (execution residual) -> Fees ->
+    Realized, both aggregated and per-trade."""
+    wf = snapshot["pnl_waterfall"]
+    st.subheader("Backtest → Live: P&L waterfall")
+    if wf["n_trades"] == 0:
+        st.info("No decomposed trades yet -- this fills in once real fills accumulate and the offline A/B/C decomposition has run for them.")
+        return
+
+    agg = wf["aggregate"]
+    st.caption(f"n={wf['n_trades']} decomposed trade(s), mean $/trade:")
+    cols = st.columns(6)
+    cols[0].metric("Model P&L", money(agg["model_expectancy_usd"]))
+    cols[1].metric("A: semantic/reference", money(agg["a_expectancy_usd"]))
+    cols[2].metric("B: decision→submit", money(agg["b_expectancy_usd"]))
+    cols[3].metric("C: execution residual", money(agg["c_expectancy_usd"]))
+    cols[4].metric("Fees", money(agg["fees_expectancy_usd"]))
+    cols[5].metric("Realized P&L", money(agg["realized_expectancy_usd"]))
+    st.caption(
+        "Model P&L is what the frozen backtest's own bar-close prices would have earned. A/B/C/Fees "
+        "are subtracted from it to reach Realized -- A is the gap between RT1's theoretical reference "
+        "price and the real market at decision time, B is market movement between deciding and "
+        "submitting, C is the actual broker/spread execution cost. If Model ≈ Realized, execution "
+        "isn't the problem; if they diverge, this shows exactly which layer (A, B, or C) is responsible."
+    )
+    if wf["n_missing_decomposition"]:
+        st.caption(f"{wf['n_missing_decomposition']} real trade(s) still missing decomposition coverage (incomplete quote data) -- excluded above, not silently zeroed.")
+
+    df = pd.DataFrame(wf["trades"])
+    st.dataframe(
+        df,
+        hide_index=True,
+        use_container_width=True,
+        column_order=["closed_at_utc", "side", "exit_reason", "model_pnl_usd", "a_usd", "b_usd", "c_usd", "fees_usd", "realized_pnl_usd"],
+        column_config={
+            "closed_at_utc": st.column_config.DatetimeColumn("Closed"),
+            "side": "Side",
+            "exit_reason": "Exit",
+            "model_pnl_usd": st.column_config.NumberColumn("Model", format="$%.2f"),
+            "a_usd": st.column_config.NumberColumn("A", format="$%.2f"),
+            "b_usd": st.column_config.NumberColumn("B", format="$%.2f"),
+            "c_usd": st.column_config.NumberColumn("C", format="$%.2f"),
+            "fees_usd": st.column_config.NumberColumn("Fees", format="$%.2f"),
+            "realized_pnl_usd": st.column_config.NumberColumn("Realized", format="$%.2f"),
+        },
+    )
+
+
 _LATENCY_STAGE_LABELS = {
     "queue_wait_ms": "Queue wait",
     "ingest_and_decision_ms": "Ingest + decision",
@@ -310,6 +360,7 @@ def live_dashboard() -> None:
 
     render_charts(snapshot)
     render_trade_table(snapshot)
+    render_pnl_waterfall(snapshot)
     render_execution_telemetry(snapshot)
     render_latency_health(snapshot)
     render_warmup_replay(snapshot)

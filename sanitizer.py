@@ -261,8 +261,68 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
             }
             for r in visible_trades[-MAX_LATEST_TRADES:][::-1]
         ],
+        "pnl_waterfall": _visible_waterfall(private, mode, cutoff),
     }
     return public
+
+
+MAX_WATERFALL_TRADES = 25
+
+
+def _visible_waterfall(private: dict[str, Any], mode: str, cutoff: datetime) -> dict[str, Any]:
+    """Backtest -> Live Bridge panel #1 (2026-08-17): Model P&L -> A -> B
+    -> C -> Fees -> Realized, per-trade and aggregated. private["pnl_
+    waterfall"] is scripts/build_pnl_waterfall.py's output, refreshed on
+    its own separate (not-every-15-min) schedule -- may legitimately be
+    the empty default if it hasn't run yet or no real trades exist since
+    the last refresh.
+
+    Same embargo discipline as `trades`/`guardian_transitions` above: a
+    waterfall row carries a real exit timestamp and P&L, so a LIVE-mode
+    row past the live-delay cutoff must not be visible yet -- AND the
+    published aggregate must be recomputed over only the VISIBLE rows,
+    not passed through from the private aggregate (which could otherwise
+    leak an embargoed trade's contribution to a mean that's already
+    public)."""
+    raw = private.get("pnl_waterfall", {})
+    all_trades = raw.get("trades", [])
+    visible = [
+        t for t in all_trades
+        if t.get("exit_time") and not (mode == "LIVE" and parse_utc(t["exit_time"]) > cutoff)
+    ]
+    visible.sort(key=lambda t: t["exit_time"])
+    n = len(visible)
+
+    def _mean(key: str) -> float | None:
+        return (sum(t[key] for t in visible) / n) if n else None
+
+    return {
+        "n_trades": n,
+        "n_missing_decomposition": raw.get("n_missing_decomposition", 0),
+        "aggregate": {
+            "model_expectancy_usd": _round(_mean("model_pnl_dollars")),
+            "a_expectancy_usd": _round(_mean("a_semantic_reference_gap_dollars")),
+            "b_expectancy_usd": _round(_mean("b_decision_to_submit_dollars")),
+            "c_expectancy_usd": _round(_mean("c_execution_residual_dollars")),
+            "fees_expectancy_usd": _round(_mean("fees_dollars")),
+            "realized_expectancy_usd": _round(_mean("realized_pnl_dollars")),
+        },
+        "trades": [
+            {
+                "trade_id": t["trade_id"],
+                "closed_at_utc": t["exit_time"],
+                "side": t["side"].upper(),
+                "exit_reason": t.get("exit_reason") or "UNKNOWN",
+                "model_pnl_usd": round(t["model_pnl_dollars"], 2),
+                "a_usd": round(t["a_semantic_reference_gap_dollars"], 2),
+                "b_usd": round(t["b_decision_to_submit_dollars"], 2),
+                "c_usd": round(t["c_execution_residual_dollars"], 2),
+                "fees_usd": round(t["fees_dollars"], 2),
+                "realized_pnl_usd": round(t["realized_pnl_dollars"], 2),
+            }
+            for t in visible[-MAX_WATERFALL_TRADES:][::-1]
+        ],
+    }
 
 
 def validate_snapshot(snapshot: dict[str, Any], schema_path: Path) -> None:

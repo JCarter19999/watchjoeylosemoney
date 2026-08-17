@@ -31,7 +31,8 @@
     "reliability",
     "guardian_transitions",
     "equity_curve",
-    "latest_trades"
+    "latest_trades",
+    "pnl_waterfall"
   ],
   "properties": {
     "schema_version": { "type": "string" },
@@ -208,6 +209,55 @@
           "entry_host_cpu_user_pct": { "type": ["number", "null"] },
           "entry_host_load1": { "type": ["number", "null"], "minimum": 0 },
           "expected_net_pnl_model_usd": { "type": ["number", "null"] }
+        }
+      }
+    },
+    "pnl_waterfall": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["n_trades", "n_missing_decomposition", "aggregate", "trades"],
+      "properties": {
+        "n_trades": { "type": "integer", "minimum": 0 },
+        "n_missing_decomposition": { "type": "integer", "minimum": 0 },
+        "aggregate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "model_expectancy_usd", "a_expectancy_usd", "b_expectancy_usd",
+            "c_expectancy_usd", "fees_expectancy_usd", "realized_expectancy_usd"
+          ],
+          "properties": {
+            "model_expectancy_usd": { "type": ["number", "null"] },
+            "a_expectancy_usd": { "type": ["number", "null"] },
+            "b_expectancy_usd": { "type": ["number", "null"] },
+            "c_expectancy_usd": { "type": ["number", "null"] },
+            "fees_expectancy_usd": { "type": ["number", "null"] },
+            "realized_expectancy_usd": { "type": ["number", "null"] }
+          }
+        },
+        "trades": {
+          "type": "array",
+          "maxItems": 25,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "trade_id", "closed_at_utc", "side", "exit_reason",
+              "model_pnl_usd", "a_usd", "b_usd", "c_usd", "fees_usd", "realized_pnl_usd"
+            ],
+            "properties": {
+              "trade_id": { "type": "string" },
+              "closed_at_utc": { "type": "string", "format": "date-time" },
+              "side": { "enum": ["LONG", "SHORT"] },
+              "exit_reason": { "type": "string" },
+              "model_pnl_usd": { "type": "number" },
+              "a_usd": { "type": "number" },
+              "b_usd": { "type": "number" },
+              "c_usd": { "type": "number" },
+              "fees_usd": { "type": "number" },
+              "realized_pnl_usd": { "type": "number" }
+            }
+          }
         }
       }
     }
