@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T13:45:27.009710Z",
+  "data_as_of_utc": "2026-08-17T14:00:27.214487Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -14.0,
@@ -60,20 +60,38 @@
       "drawdown_usd": 0.0,
       "equity_usd": 67.5,
       "ts_utc": "2026-08-17T13:32:00.768854+00:00"
+    },
+    {
+      "cum_pnl_usd": 93.5,
+      "drawdown_usd": 0.0,
+      "equity_usd": 93.5,
+      "ts_utc": "2026-08-17T13:49:01.698146+00:00"
     }
   ],
   "execution_telemetry": {
-    "sample_size": 10,
-    "slippage_ticks_mean": -1.9932,
+    "sample_size": 11,
+    "slippage_ticks_mean": -1.9938,
     "slippage_ticks_p95": 8.0,
-    "slippage_usd_mean": -0.9966,
-    "submit_to_ack_ms_median": 3.9,
+    "slippage_usd_mean": -0.9969,
+    "submit_to_ack_ms_median": 4.3,
     "submit_to_ack_ms_p95": 202.2,
-    "submit_to_fill_ms_median": 500.5,
+    "submit_to_fill_ms_median": 502.8,
     "submit_to_fill_ms_p95": 532.2
   },
-  "generated_at_utc": "2026-08-17T13:45:27.009710Z",
+  "generated_at_utc": "2026-08-17T14:00:27.214487Z",
   "guardian_transitions": [
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 30227.0",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-17T13:50:01.076954Z"
+    },
+    {
+      "from_state": "IN_POSITION",
+      "reason": "position closed normally: exit filled, reason=TIME",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-17T13:49:01.698434Z"
+    },
     {
       "from_state": "ARMED",
       "reason": "entry filled: entry filled @ 30228.0",
@@ -211,73 +229,75 @@
       "reason": "boot: entering reconciliation",
       "to_state": "RECONCILING",
       "ts_utc": "2026-08-17T08:02:38.829456Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=TARGET",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-17T03:44:00.805893Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 30238.0",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-17T03:38:01.254853Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 315,
+    "bars_sampled": 330,
     "cpu_median_pct": 0.3,
     "load1_median": 0.0,
     "stages": {
       "get_account_http_ms": {
         "median_ms": 0.0,
-        "n": 9,
+        "n": 10,
         "p95_ms": 150.4,
         "p99_ms": 150.4
       },
       "ingest_and_decision_ms": {
-        "median_ms": 78.3,
-        "n": 315,
+        "median_ms": 79.0,
+        "n": 330,
         "p95_ms": 497.4,
-        "p99_ms": 1103.7
+        "p99_ms": 1758.5
       },
       "poll_until_filled_ms": {
         "median_ms": 0.0,
-        "n": 9,
+        "n": 10,
         "p95_ms": 0.0,
         "p99_ms": 0.0
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": 158.4,
-        "n": 9,
+        "median_ms": 160.1,
+        "n": 10,
         "p95_ms": 176.5,
         "p99_ms": 176.5
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 315,
+        "n": 330,
         "p95_ms": 0.2,
         "p99_ms": 0.3
       },
       "submit_order_ms": {
-        "median_ms": 502.8,
-        "n": 9,
+        "median_ms": 514.5,
+        "n": 10,
         "p95_ms": 532.2,
         "p99_ms": 532.2
       },
       "total_bar_to_submit_ms": {
         "median_ms": 1206.0,
-        "n": 9,
+        "n": 10,
         "p95_ms": 1319.3,
         "p99_ms": 1319.3
       }
     },
     "stalls_over_2s": 0,
-    "stalls_over_750ms": 17,
+    "stalls_over_750ms": 19,
     "verdict": "MARGINAL"
   },
   "latest_trades": [
+    {
+      "closed_at_utc": "2026-08-17T13:49:01.698146+00:00",
+      "duration_seconds": 900.493873,
+      "entry_host_cpu_user_pct": 0.7,
+      "entry_host_load1": 0.0,
+      "entry_process_cpu_pct": 29.2,
+      "entry_rss_mb": 226.9,
+      "exit_reason": "TIME",
+      "expected_net_pnl_model_usd": 1.691,
+      "mode": "DEMO",
+      "pnl_usd": 26.0,
+      "session_date": "2026-08-17",
+      "side": "SHORT"
+    },
     {
       "closed_at_utc": "2026-08-17T13:32:00.768854+00:00",
       "duration_seconds": 239.716462,
@@ -422,75 +442,147 @@
   "mode": "DEMO",
   "pnl_waterfall": {
     "aggregate": {
-      "a_expectancy_usd": -1.7074,
-      "b_expectancy_usd": 0.5,
-      "c_expectancy_usd": 0.65,
+      "a_expectancy_usd": 0.9576,
+      "b_expectancy_usd": 0.9318,
+      "c_expectancy_usd": -2.8864,
       "fees_expectancy_usd": -1.0,
-      "model_expectancy_usd": 1.3426,
-      "realized_expectancy_usd": 0.9
+      "model_expectancy_usd": 8.5031,
+      "realized_expectancy_usd": 8.5
     },
     "n_missing_decomposition": 0,
-    "n_trades": 5,
+    "n_trades": 11,
     "trades": [
       {
-        "a_usd": 1.71,
-        "b_usd": 0.25,
-        "c_usd": -1.75,
-        "closed_at_utc": "2026-08-17T03:10:00.806160+00:00",
+        "a_usd": -3.25,
+        "b_usd": 1.75,
+        "c_usd": 0.5,
+        "closed_at_utc": "2026-08-17T13:49:01.698146+00:00",
+        "exit_reason": "TIME",
+        "fees_usd": -1.0,
+        "model_pnl_usd": 26.0,
+        "realized_pnl_usd": 26.0,
+        "side": "SHORT",
+        "trade_id": "dfefc4f9e0eb42a32df85ba6"
+      },
+      {
+        "a_usd": 16.0,
+        "b_usd": 10.25,
+        "c_usd": -38.25,
+        "closed_at_utc": "2026-08-17T13:32:00.768854+00:00",
         "exit_reason": "TARGET",
         "fees_usd": -1.0,
-        "model_pnl_usd": 14.71,
-        "realized_pnl_usd": 13.5,
+        "model_pnl_usd": 82.0,
+        "realized_pnl_usd": 93.0,
         "side": "LONG",
-        "trade_id": "605217b3370982565f462ec0"
+        "trade_id": "536d1a6a42fa492cacbcd626"
       },
       {
-        "a_usd": 0.75,
+        "a_usd": 3.5,
+        "b_usd": 0.0,
+        "c_usd": -3.5,
+        "closed_at_utc": "2026-08-17T12:37:00.796747+00:00",
+        "exit_reason": "TARGET",
+        "fees_usd": -1.0,
+        "model_pnl_usd": 57.0,
+        "realized_pnl_usd": 56.0,
+        "side": "SHORT",
+        "trade_id": "0bd67c7ad091d4ce6558fd8b"
+      },
+      {
+        "a_usd": 3.5,
         "b_usd": 0.75,
-        "c_usd": 3.5,
-        "closed_at_utc": "2026-08-17T03:02:00.775528+00:00",
-        "exit_reason": "STOP_TIGHTENED",
-        "fees_usd": -1.0,
-        "model_pnl_usd": -0.0,
-        "realized_pnl_usd": -6.0,
-        "side": "SHORT",
-        "trade_id": "1b1bd4b77eef6a4e774d6f91"
-      },
-      {
-        "a_usd": -5.0,
-        "b_usd": 1.75,
-        "c_usd": -0.25,
-        "closed_at_utc": "2026-08-17T02:59:01.616364+00:00",
-        "exit_reason": "STOP_TIGHTENED",
-        "fees_usd": -1.0,
-        "model_pnl_usd": -0.0,
-        "realized_pnl_usd": 2.5,
-        "side": "SHORT",
-        "trade_id": "43e4a63ba19398a73bac7d37"
-      },
-      {
-        "a_usd": -3.0,
-        "b_usd": -1.0,
-        "c_usd": 1.0,
-        "closed_at_utc": "2026-08-17T02:56:01.647988+00:00",
+        "c_usd": -4.75,
+        "closed_at_utc": "2026-08-17T12:28:00.832642+00:00",
         "exit_reason": "STOP",
         "fees_usd": -1.0,
-        "model_pnl_usd": -8.0,
-        "realized_pnl_usd": -6.0,
-        "side": "LONG",
-        "trade_id": "4eedea9e2849777f4a9bef12"
+        "model_pnl_usd": -17.0,
+        "realized_pnl_usd": -17.5,
+        "side": "SHORT",
+        "trade_id": "197dae939c000362f0b3fa82"
       },
       {
         "a_usd": -3.0,
-        "b_usd": 0.75,
-        "c_usd": 0.75,
-        "closed_at_utc": "2026-08-17T02:47:01.586934+00:00",
+        "b_usd": 1.5,
+        "c_usd": -0.5,
+        "closed_at_utc": "2026-08-17T12:24:01.643920+00:00",
         "exit_reason": "STOP_TIGHTENED",
         "fees_usd": -1.0,
         "model_pnl_usd": 0.0,
-        "realized_pnl_usd": 0.5,
+        "realized_pnl_usd": 1.0,
         "side": "LONG",
-        "trade_id": "f88c7b8120c035b78d1d61fb"
+        "trade_id": "bda8402539c1be89c11e7145"
+      },
+      {
+        "a_usd": -1.0,
+        "b_usd": -0.75,
+        "c_usd": 1.75,
+        "closed_at_utc": "2026-08-17T12:19:01.650692+00:00",
+        "exit_reason": "STOP_TIGHTENED",
+        "fees_usd": -1.0,
+        "model_pnl_usd": 0.0,
+        "realized_pnl_usd": -1.0,
+        "side": "LONG",
+        "trade_id": "0480e274afe890ff4f745808"
+      },
+      {
+        "a_usd": 3.25,
+        "b_usd": -1.5,
+        "c_usd": 2.25,
+        "closed_at_utc": "2026-08-17T12:14:01.659781+00:00",
+        "exit_reason": "STOP_TIGHTENED",
+        "fees_usd": -1.0,
+        "model_pnl_usd": 0.0,
+        "realized_pnl_usd": -5.0,
+        "side": "LONG",
+        "trade_id": "4e9d3cb98169b9f328330b25"
+      },
+      {
+        "a_usd": -7.0,
+        "b_usd": 0.0,
+        "c_usd": 8.0,
+        "closed_at_utc": "2026-08-17T12:11:00.811653+00:00",
+        "exit_reason": "STOP",
+        "fees_usd": -1.0,
+        "model_pnl_usd": -45.0,
+        "realized_pnl_usd": -47.0,
+        "side": "SHORT",
+        "trade_id": "13de9fe8d8cf075336d12356"
+      },
+      {
+        "a_usd": -1.0,
+        "b_usd": -1.5,
+        "c_usd": 3.0,
+        "closed_at_utc": "2026-08-17T12:03:00.797958+00:00",
+        "exit_reason": "STOP",
+        "fees_usd": -1.0,
+        "model_pnl_usd": -12.0,
+        "realized_pnl_usd": -13.5,
+        "side": "SHORT",
+        "trade_id": "31c57d39be0c628fcc4b0c7d"
+      },
+      {
+        "a_usd": 2.53,
+        "b_usd": 1.0,
+        "c_usd": -4.0,
+        "closed_at_utc": "2026-08-17T03:44:00.805510+00:00",
+        "exit_reason": "TARGET",
+        "fees_usd": -1.0,
+        "model_pnl_usd": 16.03,
+        "realized_pnl_usd": 15.5,
+        "side": "LONG",
+        "trade_id": "1acdfa26ba632e61d7a37d32"
+      },
+      {
+        "a_usd": -3.0,
+        "b_usd": -1.25,
+        "c_usd": 3.75,
+        "closed_at_utc": "2026-08-17T03:36:00.839760+00:00",
+        "exit_reason": "STOP",
+        "fees_usd": -1.0,
+        "model_pnl_usd": -13.5,
+        "realized_pnl_usd": -14.0,
+        "side": "SHORT",
+        "trade_id": "50cd9f54e5e0bcaa8480efa0"
       }
     ]
   },
@@ -504,19 +596,19 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 10,
-    "closed_trades_today": 10,
+    "closed_trades_all_time": 11,
+    "closed_trades_today": 11,
     "current_drawdown_usd": 0.0,
-    "display_equity_usd": 67.5,
+    "display_equity_usd": 93.5,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 6.75,
+    "expectancy_usd": 8.5,
     "losses": 6,
     "max_drawdown_usd": 83.0,
-    "profit_factor": 1.6888,
-    "realized_pnl_all_time_usd": 67.5,
-    "realized_pnl_today_usd": 67.5,
-    "win_rate": 0.4,
-    "wins": 4
+    "profit_factor": 1.9541,
+    "realized_pnl_all_time_usd": 93.5,
+    "realized_pnl_today_usd": 93.5,
+    "win_rate": 0.4545,
+    "wins": 5
   },
   "status": {
     "data_delayed": false,
