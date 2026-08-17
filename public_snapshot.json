@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-17T02:38:31.905176Z",
+  "data_as_of_utc": "2026-08-17T02:42:58.207393Z",
   "equity_curve": [],
   "execution_telemetry": {
     "sample_size": 0,
@@ -11,7 +11,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-08-17T02:38:31.905176Z",
+  "generated_at_utc": "2026-08-17T02:42:58.207393Z",
   "guardian_transitions": [
     {
       "from_state": "WARMUP",
@@ -24,150 +24,12 @@
       "reason": "reconciliation ok: both flat",
       "to_state": "WARMUP",
       "ts_utc": "2026-08-17T02:30:34.145344Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-17T02:30:33.795248Z"
-    },
-    {
-      "from_state": "VERIFY_FLAT",
-      "reason": "flat confirmed: both flat",
-      "to_state": "LOCKED",
-      "ts_utc": "2026-08-17T02:16:02.776807Z"
-    },
-    {
-      "from_state": "EXIT_PENDING",
-      "reason": "exit order submitted: emergency flatten order submitted: attempt 1: bracket accepted but not both legs confirmed Working (stop_working=False, target_working=False); attempt 2: bracket accepted but not both legs confirmed Working (stop_working=False, target_working=False)",
-      "to_state": "VERIFY_FLAT",
-      "ts_utc": "2026-08-17T02:16:02.608391Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "exit requested (PROTECTION_UNCONFIRMED): attempt 1: bracket accepted but not both legs confirmed Working (stop_working=False, target_working=False); attempt 2: bracket accepted but not both legs confirmed Working (stop_working=False, target_working=False)",
-      "to_state": "EXIT_PENDING",
-      "ts_utc": "2026-08-17T02:16:01.388058Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 30199.25",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-17T02:16:01.387906Z"
-    },
-    {
-      "from_state": "WARMUP",
-      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-17T02:11:37.887446Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-08-17T02:11:22.124713Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-17T02:11:21.778344Z"
-    },
-    {
-      "from_state": "WARMUP",
-      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-17T02:08:27.374379Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-08-17T02:08:11.320475Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-17T02:08:10.979591Z"
-    },
-    {
-      "from_state": "LOCKED",
-      "reason": "position closed while locked (remains locked, now flat): exit filled, reason=TIME",
-      "to_state": "LOCKED",
-      "ts_utc": "2026-08-17T01:50:01.153434Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation FAILED: ledger=buy 1.0 broker=sell 1",
-      "to_state": "LOCKED",
-      "ts_utc": "2026-08-17T01:41:26.241059Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-17T01:41:26.237363Z"
-    },
-    {
-      "from_state": "VERIFY_FLAT",
-      "reason": "flat confirmed: startup recovery verification",
-      "to_state": "LOCKED",
-      "ts_utc": "2026-08-17T01:41:26.219727Z"
-    },
-    {
-      "from_state": "EXIT_PENDING",
-      "reason": "exit order submitted: startup recovery: canceled 1 working order(s)",
-      "to_state": "VERIFY_FLAT",
-      "ts_utc": "2026-08-17T01:41:26.219723Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "startup recovery needed: position=no, working_orders=1",
-      "to_state": "EXIT_PENDING",
-      "ts_utc": "2026-08-17T01:41:26.219713Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-17T01:41:26.219437Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-08-17T01:41:26.213990Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-17T01:41:26.213713Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-08-17T01:41:26.195641Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-17T01:41:26.194638Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 100.0",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-17T01:41:26.156698Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 8,
+    "bars_sampled": 12,
     "cpu_median_pct": 8.3,
-    "load1_median": 0.17,
+    "load1_median": 0.14,
     "stages": {
       "get_account_http_ms": {
         "median_ms": null,
@@ -177,9 +39,9 @@
       },
       "ingest_and_decision_ms": {
         "median_ms": 76.6,
-        "n": 8,
-        "p95_ms": 223.7,
-        "p99_ms": 223.7
+        "n": 12,
+        "p95_ms": 231.9,
+        "p99_ms": 231.9
       },
       "poll_until_filled_ms": {
         "median_ms": null,
@@ -195,9 +57,9 @@
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 8,
-        "p95_ms": 0.3,
-        "p99_ms": 0.3
+        "n": 12,
+        "p95_ms": 1.2,
+        "p99_ms": 1.2
       },
       "submit_order_ms": {
         "median_ms": null,
@@ -233,10 +95,10 @@
   },
   "publication_delay_minutes": 0,
   "reliability": {
-    "crash_report_count": 2,
-    "first_started_at_utc": "2026-08-16T22:44:09.421678Z",
+    "crash_report_count": 0,
+    "first_started_at_utc": "2026-08-17T02:30:34Z",
     "last_started_at_utc": "2026-08-17T02:30:33.257262Z",
-    "restart_count": 9
+    "restart_count": 0
   },
   "schema_version": "1.0",
   "stats": {
