@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-18T06:45:26.386788Z",
+  "data_as_of_utc": "2026-08-18T07:00:26.506259Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 24.0,
@@ -66,7 +66,7 @@
     "submit_to_fill_ms_median": 498.6,
     "submit_to_fill_ms_p95": 509.8
   },
-  "generated_at_utc": "2026-08-18T06:45:26.386788Z",
+  "generated_at_utc": "2026-08-18T07:00:26.506259Z",
   "guardian_transitions": [
     {
       "from_state": "WARMUP",
@@ -88,7 +88,7 @@
     }
   ],
   "latency_health": {
-    "bars_sampled": 157,
+    "bars_sampled": 172,
     "cpu_median_pct": 0.5,
     "load1_median": 0.0,
     "stages": {
@@ -99,10 +99,10 @@
         "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": 121.1,
-        "n": 157,
+        "median_ms": 121.3,
+        "n": 172,
         "p95_ms": 306.6,
-        "p99_ms": 381.1
+        "p99_ms": 604.0
       },
       "poll_until_filled_ms": {
         "median_ms": null,
@@ -118,7 +118,7 @@
       },
       "queue_wait_ms": {
         "median_ms": 0.2,
-        "n": 157,
+        "n": 172,
         "p95_ms": 1.8,
         "p99_ms": 2.0
       },
