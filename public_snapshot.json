@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-18T04:00:27.318924Z",
+  "data_as_of_utc": "2026-08-18T04:15:26.576230Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 24.0,
@@ -66,68 +66,87 @@
     "submit_to_fill_ms_median": 498.6,
     "submit_to_fill_ms_p95": 509.8
   },
-  "generated_at_utc": "2026-08-18T04:00:27.318924Z",
-  "guardian_transitions": [],
+  "generated_at_utc": "2026-08-18T04:15:26.576230Z",
+  "guardian_transitions": [
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-18T04:08:44.673537Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-18T04:08:31.025360Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-18T04:08:30.694932Z"
+    }
+  ],
   "latency_health": {
-    "bars_sampled": 147,
-    "cpu_median_pct": 0.6,
-    "load1_median": 0.0,
+    "bars_sampled": 7,
+    "cpu_median_pct": 2.9,
+    "load1_median": 0.08,
     "stages": {
       "get_account_http_ms": {
-        "median_ms": 0.0,
-        "n": 3,
-        "p95_ms": 0.0,
-        "p99_ms": 0.0
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": 127.6,
-        "n": 147,
-        "p95_ms": 440.4,
-        "p99_ms": 1818.4
+        "median_ms": 118.8,
+        "n": 7,
+        "p95_ms": 278.8,
+        "p99_ms": 278.8
       },
       "poll_until_filled_ms": {
-        "median_ms": 0.0,
-        "n": 3,
-        "p95_ms": 0.0,
-        "p99_ms": 0.0
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": 170.3,
-        "n": 3,
-        "p95_ms": 171.0,
-        "p99_ms": 171.0
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "queue_wait_ms": {
-        "median_ms": 0.2,
-        "n": 147,
-        "p95_ms": 1.8,
-        "p99_ms": 1.9
+        "median_ms": 0.1,
+        "n": 7,
+        "p95_ms": 1.7,
+        "p99_ms": 1.7
       },
       "submit_order_ms": {
-        "median_ms": 495.6,
-        "n": 3,
-        "p95_ms": 498.6,
-        "p99_ms": 498.6
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 1227.8,
-        "n": 6,
-        "p95_ms": 1271.9,
-        "p99_ms": 1271.9
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       }
     },
-    "stalls_over_2s": 1,
-    "stalls_over_750ms": 6,
-    "verdict": "NEEDS_UPGRADE"
+    "stalls_over_2s": 0,
+    "stalls_over_750ms": 0,
+    "verdict": "HEALTHY"
   },
   "latest_trades": [
     {
       "closed_at_utc": "2026-08-18T03:20:01.715900+00:00",
       "duration_seconds": 120.561338,
-      "entry_host_cpu_user_pct": 1.4,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 27.6,
-      "entry_rss_mb": 224.0,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.4,
+      "entry_process_cpu_pct": 97.4,
+      "entry_rss_mb": 221.3,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -138,10 +157,10 @@
     {
       "closed_at_utc": "2026-08-18T02:36:01.730974+00:00",
       "duration_seconds": 900.594678,
-      "entry_host_cpu_user_pct": 1.1,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 23.6,
-      "entry_rss_mb": 223.6,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.34,
+      "entry_process_cpu_pct": 94.5,
+      "entry_rss_mb": 221.0,
       "exit_reason": "TIME",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -210,7 +229,7 @@
   "reliability": {
     "crash_report_count": 0,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-18T01:33:07.603752Z",
+    "last_started_at_utc": "2026-08-18T04:08:30.206662Z",
     "restart_count": 0
   },
   "schema_version": "1.0",
@@ -232,15 +251,15 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
+    "execution_enabled": true,
     "guardian_state": "ARMED",
     "market_data_state": "LIVE",
     "message": "Armed and watching for entries.",
     "service_state": "ARMED"
   },
   "warmup_replay": {
-    "bars_replayed": 213,
-    "elapsed_wall_seconds": 14.09,
-    "queue_wait_max_ms": 13978.4
+    "bars_replayed": 239,
+    "elapsed_wall_seconds": 12.85,
+    "queue_wait_max_ms": 12550.8
   }
 }
