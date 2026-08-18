@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-18T21:30:26.567053Z",
+  "data_as_of_utc": "2026-08-18T21:45:26.986593Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 24.0,
@@ -78,8 +78,26 @@
     "submit_to_fill_ms_median": 498.6,
     "submit_to_fill_ms_p95": 604.2
   },
-  "generated_at_utc": "2026-08-18T21:30:26.567053Z",
+  "generated_at_utc": "2026-08-18T21:45:26.986593Z",
   "guardian_transitions": [
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-18T21:34:53.673433Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-18T21:34:43.364324Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-18T21:34:43.060038Z"
+    },
     {
       "from_state": "IN_POSITION",
       "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED_DEBOUNCE_V2",
@@ -142,65 +160,65 @@
     }
   ],
   "latency_health": {
-    "bars_sampled": 5,
-    "cpu_median_pct": 4.4,
-    "load1_median": 0.13,
+    "bars_sampled": 0,
+    "cpu_median_pct": null,
+    "load1_median": null,
     "stages": {
       "get_account_http_ms": {
-        "median_ms": 0.0,
-        "n": 1,
-        "p95_ms": 0.0,
-        "p99_ms": 0.0
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": 116.5,
-        "n": 5,
-        "p95_ms": 609.7,
-        "p99_ms": 609.7
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "poll_until_filled_ms": {
-        "median_ms": 0.0,
-        "n": 1,
-        "p95_ms": 0.0,
-        "p99_ms": 0.0
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": 173.2,
-        "n": 1,
-        "p95_ms": 173.2,
-        "p99_ms": 173.2
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "queue_wait_ms": {
-        "median_ms": 0.2,
-        "n": 5,
-        "p95_ms": 1.3,
-        "p99_ms": 1.3
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "submit_order_ms": {
-        "median_ms": 604.2,
-        "n": 1,
-        "p95_ms": 604.2,
-        "p99_ms": 604.2
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 1387.2,
-        "n": 1,
-        "p95_ms": 1387.2,
-        "p99_ms": 1387.2
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       }
     },
     "stalls_over_2s": 0,
-    "stalls_over_750ms": 1,
-    "verdict": "MARGINAL"
+    "stalls_over_750ms": 0,
+    "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
     {
       "closed_at_utc": "2026-08-18T20:56:44.602774+00:00",
       "duration_seconds": 43.33303,
-      "entry_host_cpu_user_pct": 11.6,
-      "entry_host_load1": 0.52,
-      "entry_process_cpu_pct": 20.9,
-      "entry_rss_mb": 223.2,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.7,
+      "entry_process_cpu_pct": 93.0,
+      "entry_rss_mb": 220.7,
       "exit_reason": "STOP_TIGHTENED_DEBOUNCE_V2",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -311,7 +329,7 @@
   "reliability": {
     "crash_report_count": 0,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-18T20:55:28.283000Z",
+    "last_started_at_utc": "2026-08-18T21:34:42.524965Z",
     "restart_count": 0
   },
   "schema_version": "1.0",
@@ -340,8 +358,8 @@
     "service_state": "ARMED"
   },
   "warmup_replay": {
-    "bars_replayed": 239,
-    "elapsed_wall_seconds": 12.06,
-    "queue_wait_max_ms": 11764.0
+    "bars_replayed": 205,
+    "elapsed_wall_seconds": 9.46,
+    "queue_wait_max_ms": 9218.6
   }
 }
