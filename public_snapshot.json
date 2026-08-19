@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-19T00:45:26.772300Z",
+  "data_as_of_utc": "2026-08-19T01:00:26.966168Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 89.0,
@@ -49,7 +49,7 @@
     "submit_to_fill_ms_median": 498.6,
     "submit_to_fill_ms_p95": 523.1
   },
-  "generated_at_utc": "2026-08-19T00:45:26.772300Z",
+  "generated_at_utc": "2026-08-19T01:00:26.966168Z",
   "guardian_transitions": [
     {
       "from_state": "VERIFY_FLAT",
@@ -119,8 +119,8 @@
     }
   ],
   "latency_health": {
-    "bars_sampled": 44,
-    "cpu_median_pct": 0.8,
+    "bars_sampled": 59,
+    "cpu_median_pct": 0.9,
     "load1_median": 0.0,
     "stages": {
       "get_account_http_ms": {
@@ -130,8 +130,8 @@
         "p99_ms": 0.0
       },
       "ingest_and_decision_ms": {
-        "median_ms": 131.3,
-        "n": 44,
+        "median_ms": 138.7,
+        "n": 59,
         "p95_ms": 744.2,
         "p99_ms": 2964.6
       },
@@ -148,9 +148,9 @@
         "p99_ms": 151.4
       },
       "queue_wait_ms": {
-        "median_ms": 0.2,
-        "n": 44,
-        "p95_ms": 1.7,
+        "median_ms": 0.1,
+        "n": 59,
+        "p95_ms": 1.8,
         "p99_ms": 1.8
       },
       "submit_order_ms": {
@@ -160,8 +160,8 @@
         "p99_ms": 523.1
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 1394.3,
-        "n": 3,
+        "median_ms": 1286.0,
+        "n": 6,
         "p95_ms": 3462.7,
         "p99_ms": 3462.7
       }
