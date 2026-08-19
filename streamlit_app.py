@@ -148,7 +148,7 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
         "closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd", "expected_net_pnl_model_usd",
         "entry_rss_mb", "entry_process_cpu_pct", "entry_host_cpu_user_pct", "entry_host_load1",
     ]].copy()
-    table["closed_at_utc"] = pd.to_datetime(table["closed_at_utc"], utc=True)
+    table["closed_at_utc"] = pd.to_datetime(table["closed_at_utc"], utc=True).dt.tz_convert("America/Los_Angeles")
     st.caption(
         "\"Model\" is the frozen backtest's per-trade edge assumption, not a per-trade prediction -- "
         "same number on every row, there to compare against realized P&L, not to be read as a forecast. "
@@ -159,7 +159,7 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
         width="stretch",
         hide_index=True,
         column_config={
-            "closed_at_utc": st.column_config.DatetimeColumn("Closed (UTC)", format="YYYY-MM-DD HH:mm:ss"),
+            "closed_at_utc": st.column_config.DatetimeColumn("Closed (PST)", format="YYYY-MM-DD HH:mm:ss"),
             "mode": st.column_config.TextColumn("Mode"),
             "side": st.column_config.TextColumn("Side"),
             "exit_reason": st.column_config.TextColumn("Exit"),
@@ -256,13 +256,14 @@ def render_pnl_waterfall(snapshot: dict[str, Any]) -> None:
         st.caption(f"{wf['n_missing_decomposition']} real trade(s) still missing decomposition coverage (incomplete quote data) -- excluded above, not silently zeroed.")
 
     df = pd.DataFrame(wf["trades"])
+    df["closed_at_utc"] = pd.to_datetime(df["closed_at_utc"], utc=True).dt.tz_convert("America/Los_Angeles")
     st.dataframe(
         df,
         hide_index=True,
         use_container_width=True,
         column_order=["closed_at_utc", "side", "exit_reason", "model_pnl_usd", "a_usd", "b_usd", "c_usd", "fees_usd", "realized_pnl_usd"],
         column_config={
-            "closed_at_utc": st.column_config.DatetimeColumn("Closed"),
+            "closed_at_utc": st.column_config.DatetimeColumn("Closed (PST)", format="YYYY-MM-DD HH:mm:ss"),
             "side": "Side",
             "exit_reason": "Exit",
             "model_pnl_usd": st.column_config.NumberColumn("Model", format="$%.2f"),
