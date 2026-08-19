@@ -17,7 +17,23 @@ WEB_REPO=/home/joey/watchjoeylosemoney
 # anyway), so this repoints at V2 paper rather than adding a second feed
 # here. See live/HANDOFF.md's 2026-08-18 section for the V1-shadow-vs-V2
 # comparison, which lives on the private btc-dashboard instead.
+#
+# 2026-08-18/19: was TEMPORARILY repointed at runtime_live_slippage_v1/
+# for a user-authorized, capped 5-trade REAL-MONEY commissioning run
+# (TRADOVATE_ENV=live) -- completed (hit the 5-trade cap, one bracket-
+# rejection/tick-grid incident fixed mid-run, see live/HANDOFF.md's
+# 2026-08-19 section for the full incident + slippage writeup). Reverted
+# back to the paused demo bot's runtime now that it's resumed.
+#
+# 2026-08-19: export_private_snapshot.py's --mode used to be hardcoded
+# "DEMO" with no way to override it -- 5 real-money trades from the live
+# run above got published to the public dashboard labeled "DEMO" during
+# the window this pointed at runtime_live_slippage_v1/. Fixed at the
+# source: --mode is now required and must match whichever runtime dir
+# V2_RUNTIME actually points at. If this ever gets repointed at a live
+# runtime again, change BOTH V2_RUNTIME and --mode below together.
 V2_RUNTIME="$LIVE_REPO/runtime_v2_d20_paper"
+RUNTIME_MODE="DEMO"
 PRIVATE_SNAPSHOT="$LIVE_REPO/runtime/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
@@ -33,7 +49,8 @@ cd "$LIVE_REPO"
   --guardian-transitions "$V2_RUNTIME/guardian_transitions.jsonl" \
   --lifecycle "$V2_RUNTIME/service_lifecycle.json" \
   --pnl-waterfall "$V2_RUNTIME/pnl_waterfall.json" \
-  --output "$PRIVATE_SNAPSHOT"
+  --output "$PRIVATE_SNAPSHOT" \
+  --mode "$RUNTIME_MODE"
 
 cd "$WEB_REPO"
 "$WEB_REPO/.venv/bin/python3" sanitizer.py \
