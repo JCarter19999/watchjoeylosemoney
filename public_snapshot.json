@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-19T16:00:27.036277Z",
+  "data_as_of_utc": "2026-08-19T16:15:26.615281Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 24.0,
@@ -372,10 +372,22 @@
       "drawdown_usd": 88.0,
       "equity_usd": 325.5,
       "ts_utc": "2026-08-19T15:58:01.801497+00:00"
+    },
+    {
+      "cum_pnl_usd": 355.5,
+      "drawdown_usd": 58.0,
+      "equity_usd": 355.5,
+      "ts_utc": "2026-08-19T16:08:01.829144+00:00"
+    },
+    {
+      "cum_pnl_usd": 359.0,
+      "drawdown_usd": 54.5,
+      "equity_usd": 359.0,
+      "ts_utc": "2026-08-19T16:14:02.273120+00:00"
     }
   ],
   "execution_telemetry": {
-    "sample_size": 62,
+    "sample_size": 64,
     "slippage_by_exit_reason": {
       "EMERGENCY_FLATTEN": {
         "mean_ticks": 1.0,
@@ -388,9 +400,9 @@
         "n": 4
       },
       "STOP_TIGHTENED": {
-        "mean_ticks": 3.1765,
+        "mean_ticks": -0.8947,
         "median_ticks": 5.0,
-        "n": 17
+        "n": 19
       },
       "STOP_TIGHTENED_DEBOUNCE_V2": {
         "mean_ticks": 3.6667,
@@ -408,18 +420,42 @@
         "n": 4
       }
     },
-    "slippage_ticks_mean": 2.6353,
+    "slippage_ticks_mean": 1.4436,
     "slippage_ticks_median": 2.0,
     "slippage_ticks_p95": 27.0,
-    "slippage_usd_mean": 1.3176,
+    "slippage_usd_mean": 0.7218,
     "slippage_usd_median": 1.0,
-    "submit_to_ack_ms_median": 7.0,
+    "submit_to_ack_ms_median": 7.1,
     "submit_to_ack_ms_p95": 195.6,
-    "submit_to_fill_ms_median": 507.0,
-    "submit_to_fill_ms_p95": 591.2
+    "submit_to_fill_ms_median": 509.6,
+    "submit_to_fill_ms_p95": 604.2
   },
-  "generated_at_utc": "2026-08-19T16:00:27.036277Z",
+  "generated_at_utc": "2026-08-19T16:15:26.615281Z",
   "guardian_transitions": [
+    {
+      "from_state": "IN_POSITION",
+      "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-19T16:14:02.273566Z"
+    },
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 29640.75",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-19T16:09:01.521013Z"
+    },
+    {
+      "from_state": "IN_POSITION",
+      "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-19T16:08:01.829367Z"
+    },
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 29637.25",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-19T16:06:01.467937Z"
+    },
     {
       "from_state": "IN_POSITION",
       "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
@@ -545,85 +581,89 @@
       "reason": "position closed normally: exit filled, reason=TARGET",
       "to_state": "ARMED",
       "ts_utc": "2026-08-19T13:40:01.027379Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29671.75",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-19T13:36:01.257569Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-19T13:34:01.713166Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29689.5",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-19T13:32:01.203274Z"
-    },
-    {
-      "from_state": "WARMUP",
-      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-19T13:31:22.236901Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 149,
-    "cpu_median_pct": 2.2,
-    "load1_median": 0.83,
+    "bars_sampled": 164,
+    "cpu_median_pct": 2.1,
+    "load1_median": 0.97,
     "stages": {
       "get_account_http_ms": {
         "median_ms": 0.0,
-        "n": 12,
+        "n": 14,
         "p95_ms": 204.9,
         "p99_ms": 204.9
       },
       "ingest_and_decision_ms": {
-        "median_ms": 262.0,
-        "n": 149,
-        "p95_ms": 1559.2,
-        "p99_ms": 2024.0
+        "median_ms": 262.4,
+        "n": 164,
+        "p95_ms": 1827.2,
+        "p99_ms": 2134.2
       },
       "poll_until_filled_ms": {
         "median_ms": 0.0,
-        "n": 12,
+        "n": 14,
         "p95_ms": 0.0,
         "p99_ms": 0.0
       },
       "post_entry_reconciliation_ms": {
         "median_ms": 168.6,
-        "n": 12,
-        "p95_ms": 174.8,
-        "p99_ms": 174.8
+        "n": 14,
+        "p95_ms": 188.6,
+        "p99_ms": 188.6
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 149,
+        "n": 164,
         "p95_ms": 1.6,
         "p99_ms": 1.7
       },
       "submit_order_ms": {
-        "median_ms": 556.1,
-        "n": 12,
+        "median_ms": 563.6,
+        "n": 14,
         "p95_ms": 663.2,
         "p99_ms": 663.2
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 1535.9,
-        "n": 12,
+        "median_ms": 1536.0,
+        "n": 14,
         "p95_ms": 2978.1,
         "p99_ms": 2978.1
       }
     },
-    "stalls_over_2s": 2,
-    "stalls_over_750ms": 25,
+    "stalls_over_2s": 3,
+    "stalls_over_750ms": 29,
     "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
+    {
+      "closed_at_utc": "2026-08-19T16:14:02.273120+00:00",
+      "duration_seconds": 300.754768,
+      "entry_host_cpu_user_pct": 2.1,
+      "entry_host_load1": 1.13,
+      "entry_process_cpu_pct": 16.8,
+      "entry_rss_mb": 139.3,
+      "exit_reason": "STOP_TIGHTENED",
+      "expected_net_pnl_model_usd": 1.691,
+      "mode": "DEMO",
+      "pnl_usd": 3.5,
+      "session_date": "2026-08-19",
+      "side": "LONG"
+    },
+    {
+      "closed_at_utc": "2026-08-19T16:08:01.829144+00:00",
+      "duration_seconds": 120.361647,
+      "entry_host_cpu_user_pct": 2.5,
+      "entry_host_load1": 1.22,
+      "entry_process_cpu_pct": 16.6,
+      "entry_rss_mb": 137.4,
+      "exit_reason": "STOP_TIGHTENED",
+      "expected_net_pnl_model_usd": 1.691,
+      "mode": "DEMO",
+      "pnl_usd": 30.0,
+      "session_date": "2026-08-19",
+      "side": "LONG"
+    },
     {
       "closed_at_utc": "2026-08-19T15:58:01.801497+00:00",
       "duration_seconds": 120.257736,
@@ -945,34 +985,6 @@
       "pnl_usd": -20.0,
       "session_date": "2026-08-19",
       "side": "LONG"
-    },
-    {
-      "closed_at_utc": "2026-08-19T03:39:36.759287+00:00",
-      "duration_seconds": 35.580972,
-      "entry_host_cpu_user_pct": 5.7,
-      "entry_host_load1": 0.08,
-      "entry_process_cpu_pct": 21.0,
-      "entry_rss_mb": 227.9,
-      "exit_reason": "STOP_TIGHTENED_DEBOUNCE_V2",
-      "expected_net_pnl_model_usd": 1.691,
-      "mode": "DEMO",
-      "pnl_usd": -30.5,
-      "session_date": "2026-08-19",
-      "side": "LONG"
-    },
-    {
-      "closed_at_utc": "2026-08-19T03:38:00.831981+00:00",
-      "duration_seconds": 119.681233,
-      "entry_host_cpu_user_pct": 2.7,
-      "entry_host_load1": 0.48,
-      "entry_process_cpu_pct": 21.4,
-      "entry_rss_mb": 227.9,
-      "exit_reason": "TARGET",
-      "expected_net_pnl_model_usd": 1.691,
-      "mode": "DEMO",
-      "pnl_usd": 32.5,
-      "session_date": "2026-08-19",
-      "side": "LONG"
     }
   ],
   "mode": "DEMO",
@@ -999,19 +1011,19 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 1,
-    "closed_trades_all_time": 62,
-    "closed_trades_today": 46,
-    "current_drawdown_usd": 88.0,
-    "display_equity_usd": 325.5,
+    "closed_trades_all_time": 64,
+    "closed_trades_today": 48,
+    "current_drawdown_usd": 54.5,
+    "display_equity_usd": 359.0,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 5.25,
+    "expectancy_usd": 5.6094,
     "losses": 40,
     "max_drawdown_usd": 283.5,
-    "profit_factor": 1.4833,
-    "realized_pnl_all_time_usd": 325.5,
-    "realized_pnl_today_usd": 216.5,
-    "win_rate": 0.3387,
-    "wins": 21
+    "profit_factor": 1.533,
+    "realized_pnl_all_time_usd": 359.0,
+    "realized_pnl_today_usd": 250.0,
+    "win_rate": 0.3594,
+    "wins": 23
   },
   "status": {
     "data_delayed": false,
