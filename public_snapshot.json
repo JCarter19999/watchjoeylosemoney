@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-20T15:45:27.550788Z",
+  "data_as_of_utc": "2026-08-20T16:00:27.226213Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 24.0,
@@ -910,8 +910,32 @@
     "submit_to_fill_ms_median": 518.3,
     "submit_to_fill_ms_p95": 657.3
   },
-  "generated_at_utc": "2026-08-20T15:45:27.550788Z",
+  "generated_at_utc": "2026-08-20T16:00:27.226213Z",
   "guardian_transitions": [
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 29313.0",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-20T15:54:01.181767Z"
+    },
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-20T15:51:41.476111Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-20T15:51:25.900336Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-20T15:51:25.548900Z"
+    },
     {
       "from_state": "IN_POSITION",
       "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED_DEBOUNCE_V2",
@@ -1037,92 +1061,68 @@
       "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED_DEBOUNCE_V2",
       "to_state": "ARMED",
       "ts_utc": "2026-08-20T14:21:44.304033Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29369.75",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-20T14:21:01.292797Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-20T14:19:01.490806Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29326.75",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-20T14:17:01.269015Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-20T14:13:01.484197Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 627,
-    "cpu_median_pct": 1.0,
-    "load1_median": 0.0,
+    "bars_sampled": 9,
+    "cpu_median_pct": 2.1,
+    "load1_median": 0.02,
     "stages": {
       "get_account_http_ms": {
-        "median_ms": 168.8,
-        "n": 24,
-        "p95_ms": 225.1,
-        "p99_ms": 230.9
+        "median_ms": 0.0,
+        "n": 1,
+        "p95_ms": 0.0,
+        "p99_ms": 0.0
       },
       "ingest_and_decision_ms": {
-        "median_ms": 145.3,
-        "n": 627,
-        "p95_ms": 686.3,
-        "p99_ms": 1674.6
+        "median_ms": 123.6,
+        "n": 9,
+        "p95_ms": 585.2,
+        "p99_ms": 585.2
       },
       "poll_until_filled_ms": {
         "median_ms": 0.0,
-        "n": 24,
+        "n": 1,
         "p95_ms": 0.0,
         "p99_ms": 0.0
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": 172.4,
-        "n": 24,
-        "p95_ms": 215.7,
-        "p99_ms": 277.4
+        "median_ms": 153.9,
+        "n": 1,
+        "p95_ms": 153.9,
+        "p99_ms": 153.9
       },
       "queue_wait_ms": {
-        "median_ms": 0.1,
-        "n": 627,
-        "p95_ms": 1.7,
-        "p99_ms": 1.9
+        "median_ms": 0.4,
+        "n": 9,
+        "p95_ms": 1.5,
+        "p99_ms": 1.5
       },
       "submit_order_ms": {
-        "median_ms": 549.1,
-        "n": 24,
-        "p95_ms": 675.3,
-        "p99_ms": 768.7
+        "median_ms": 525.3,
+        "n": 1,
+        "p95_ms": 525.3,
+        "p99_ms": 525.3
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 1559.8,
-        "n": 24,
-        "p95_ms": 1967.5,
-        "p99_ms": 2117.5
+        "median_ms": 1264.4,
+        "n": 1,
+        "p95_ms": 1264.4,
+        "p99_ms": 1264.4
       }
     },
-    "stalls_over_2s": 5,
-    "stalls_over_750ms": 39,
-    "verdict": "NEEDS_UPGRADE"
+    "stalls_over_2s": 0,
+    "stalls_over_750ms": 1,
+    "verdict": "MARGINAL"
   },
   "latest_trades": [
     {
       "closed_at_utc": "2026-08-20T15:27:58.407339+00:00",
       "duration_seconds": 176.67037,
-      "entry_host_cpu_user_pct": 6.7,
-      "entry_host_load1": 0.44,
-      "entry_process_cpu_pct": 16.0,
-      "entry_rss_mb": 65.1,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.37,
+      "entry_process_cpu_pct": 89.0,
+      "entry_rss_mb": 219.7,
       "exit_reason": "STOP_TIGHTENED_DEBOUNCE_V2",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1133,10 +1133,10 @@
     {
       "closed_at_utc": "2026-08-20T15:15:23.572358+00:00",
       "duration_seconds": 21.687547,
-      "entry_host_cpu_user_pct": 97.9,
-      "entry_host_load1": 2.13,
-      "entry_process_cpu_pct": 14.1,
-      "entry_rss_mb": 64.4,
+      "entry_host_cpu_user_pct": 90.9,
+      "entry_host_load1": 0.37,
+      "entry_process_cpu_pct": 98.0,
+      "entry_rss_mb": 219.6,
       "exit_reason": "STOP_TIGHTENED_DEBOUNCE_V2",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1147,10 +1147,10 @@
     {
       "closed_at_utc": "2026-08-20T15:14:01.011153+00:00",
       "duration_seconds": 119.54777,
-      "entry_host_cpu_user_pct": 99.6,
-      "entry_host_load1": 2.05,
-      "entry_process_cpu_pct": 16.4,
-      "entry_rss_mb": 65.2,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.37,
+      "entry_process_cpu_pct": 97.3,
+      "entry_rss_mb": 219.6,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1175,10 +1175,10 @@
     {
       "closed_at_utc": "2026-08-20T15:04:01.021215+00:00",
       "duration_seconds": 119.342225,
-      "entry_host_cpu_user_pct": 99.8,
-      "entry_host_load1": 2.09,
-      "entry_process_cpu_pct": 17.2,
-      "entry_rss_mb": 63.2,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.37,
+      "entry_process_cpu_pct": 97.7,
+      "entry_rss_mb": 219.5,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1189,10 +1189,10 @@
     {
       "closed_at_utc": "2026-08-20T15:00:02.460239+00:00",
       "duration_seconds": 240.620604,
-      "entry_host_cpu_user_pct": 93.7,
-      "entry_host_load1": 2.13,
-      "entry_process_cpu_pct": 16.1,
-      "entry_rss_mb": 64.7,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.32,
+      "entry_process_cpu_pct": 98.0,
+      "entry_rss_mb": 219.4,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1203,10 +1203,10 @@
     {
       "closed_at_utc": "2026-08-20T14:53:01.642667+00:00",
       "duration_seconds": 119.926341,
-      "entry_host_cpu_user_pct": 93.2,
-      "entry_host_load1": 2.04,
-      "entry_process_cpu_pct": 16.2,
-      "entry_rss_mb": 98.3,
+      "entry_host_cpu_user_pct": 85.0,
+      "entry_host_load1": 0.32,
+      "entry_process_cpu_pct": 63.4,
+      "entry_rss_mb": 219.0,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1245,10 +1245,10 @@
     {
       "closed_at_utc": "2026-08-20T14:29:21.312085+00:00",
       "duration_seconds": 380.071959,
-      "entry_host_cpu_user_pct": 3.2,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 23.0,
-      "entry_rss_mb": 91.7,
+      "entry_host_cpu_user_pct": 91.7,
+      "entry_host_load1": 0.32,
+      "entry_process_cpu_pct": 96.9,
+      "entry_rss_mb": 218.8,
       "exit_reason": "STOP_TIGHTENED_DEBOUNCE_V2",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1329,10 +1329,10 @@
     {
       "closed_at_utc": "2026-08-20T13:57:22.881302+00:00",
       "duration_seconds": 21.502347,
-      "entry_host_cpu_user_pct": 3.1,
-      "entry_host_load1": 0.05,
-      "entry_process_cpu_pct": 21.9,
-      "entry_rss_mb": 150.9,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.26,
+      "entry_process_cpu_pct": 94.8,
+      "entry_rss_mb": 218.6,
       "exit_reason": "STOP_TIGHTENED_DEBOUNCE_V2",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1343,10 +1343,10 @@
     {
       "closed_at_utc": "2026-08-20T13:55:12.345720+00:00",
       "duration_seconds": 70.981425,
-      "entry_host_cpu_user_pct": 3.1,
-      "entry_host_load1": 0.01,
-      "entry_process_cpu_pct": 22.4,
-      "entry_rss_mb": 150.9,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.26,
+      "entry_process_cpu_pct": 92.4,
+      "entry_rss_mb": 218.5,
       "exit_reason": "STOP_TIGHTENED_DEBOUNCE_V2",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1371,10 +1371,10 @@
     {
       "closed_at_utc": "2026-08-20T13:49:11.748122+00:00",
       "duration_seconds": 790.296058,
-      "entry_host_cpu_user_pct": 9.9,
-      "entry_host_load1": 0.93,
-      "entry_process_cpu_pct": 20.5,
-      "entry_rss_mb": 150.5,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.26,
+      "entry_process_cpu_pct": 89.5,
+      "entry_rss_mb": 218.2,
       "exit_reason": "STOP_TIGHTENED_DEBOUNCE_V2",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1413,10 +1413,10 @@
     {
       "closed_at_utc": "2026-08-20T13:28:27.343943+00:00",
       "duration_seconds": 26.063001,
-      "entry_host_cpu_user_pct": 3.0,
-      "entry_host_load1": 0.09,
-      "entry_process_cpu_pct": 23.6,
-      "entry_rss_mb": 164.3,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.26,
+      "entry_process_cpu_pct": 94.6,
+      "entry_rss_mb": 218.0,
       "exit_reason": "STOP_TIGHTENED_DEBOUNCE_V2",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1485,8 +1485,8 @@
   "reliability": {
     "crash_report_count": 0,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-20T05:01:03.393963Z",
-    "restart_count": 4
+    "last_started_at_utc": "2026-08-20T15:51:25.007211Z",
+    "restart_count": 5
   },
   "schema_version": "1.0",
   "stats": {
@@ -1507,15 +1507,15 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "market_data_state": "DISCONNECTED",
-    "message": "Live process pid 693340 is not running.",
-    "service_state": "OFFLINE"
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "market_data_state": "LIVE",
+    "message": "Managing an open position.",
+    "service_state": "ARMED"
   },
   "warmup_replay": {
     "bars_replayed": 239,
-    "elapsed_wall_seconds": 13.87,
-    "queue_wait_max_ms": 13570.5
+    "elapsed_wall_seconds": 14.43,
+    "queue_wait_max_ms": 14129.2
   }
 }
