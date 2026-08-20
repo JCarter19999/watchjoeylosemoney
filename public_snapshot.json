@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-20T04:30:26.995275Z",
+  "data_as_of_utc": "2026-08-20T04:45:26.607164Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 24.0,
@@ -766,8 +766,44 @@
     "submit_to_fill_ms_median": 517.0,
     "submit_to_fill_ms_p95": 607.3
   },
-  "generated_at_utc": "2026-08-20T04:30:26.995275Z",
+  "generated_at_utc": "2026-08-20T04:45:26.607164Z",
   "guardian_transitions": [
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-20T04:38:06.414906Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-20T04:37:52.438053Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-20T04:37:52.082157Z"
+    },
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-20T04:34:10.150224Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-20T04:33:54.712794Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-20T04:33:54.386008Z"
+    },
     {
       "from_state": "WARMUP",
       "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
@@ -881,48 +917,12 @@
       "reason": "entry filled: entry filled @ 29617.25",
       "to_state": "IN_POSITION",
       "ts_utc": "2026-08-20T02:55:01.309567Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-20T02:50:00.796465Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29645.75",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-20T02:36:01.259103Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-20T02:35:00.871453Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29618.75",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-20T02:23:01.350535Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-20T02:21:00.856237Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29657.0",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-20T02:13:01.400476Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 20,
-    "cpu_median_pct": 3.4,
-    "load1_median": 0.0,
+    "bars_sampled": 7,
+    "cpu_median_pct": 97.9,
+    "load1_median": 0.89,
     "stages": {
       "get_account_http_ms": {
         "median_ms": null,
@@ -931,10 +931,10 @@
         "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": 130.5,
-        "n": 20,
-        "p95_ms": 309.4,
-        "p99_ms": 309.4
+        "median_ms": 182.8,
+        "n": 7,
+        "p95_ms": 412.2,
+        "p99_ms": 412.2
       },
       "poll_until_filled_ms": {
         "median_ms": null,
@@ -949,10 +949,10 @@
         "p99_ms": null
       },
       "queue_wait_ms": {
-        "median_ms": 0.2,
-        "n": 20,
-        "p95_ms": 1.9,
-        "p99_ms": 1.9
+        "median_ms": 0.1,
+        "n": 7,
+        "p95_ms": 0.5,
+        "p99_ms": 0.5
       },
       "submit_order_ms": {
         "median_ms": null,
@@ -975,10 +975,10 @@
     {
       "closed_at_utc": "2026-08-20T04:00:02.084266+00:00",
       "duration_seconds": 900.490551,
-      "entry_host_cpu_user_pct": 92.9,
-      "entry_host_load1": 0.53,
-      "entry_process_cpu_pct": 79.8,
-      "entry_rss_mb": 221.9,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.22,
+      "entry_process_cpu_pct": 96.3,
+      "entry_rss_mb": 222.0,
       "exit_reason": "TIME",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -990,9 +990,9 @@
       "closed_at_utc": "2026-08-20T03:36:01.755074+00:00",
       "duration_seconds": 300.597791,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.53,
-      "entry_process_cpu_pct": 95.4,
-      "entry_rss_mb": 221.8,
+      "entry_host_load1": 0.22,
+      "entry_process_cpu_pct": 97.7,
+      "entry_rss_mb": 221.9,
       "exit_reason": "TARGET",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1003,10 +1003,10 @@
     {
       "closed_at_utc": "2026-08-20T03:30:01.762054+00:00",
       "duration_seconds": 900.615366,
-      "entry_host_cpu_user_pct": 4.9,
-      "entry_host_load1": 0.04,
-      "entry_process_cpu_pct": 21.2,
-      "entry_rss_mb": 137.4,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.22,
+      "entry_process_cpu_pct": 97.6,
+      "entry_rss_mb": 221.9,
       "exit_reason": "TIME",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1017,10 +1017,10 @@
     {
       "closed_at_utc": "2026-08-20T03:14:00.867585+00:00",
       "duration_seconds": 59.491536,
-      "entry_host_cpu_user_pct": 5.8,
-      "entry_host_load1": 0.15,
-      "entry_process_cpu_pct": 22.3,
-      "entry_rss_mb": 137.4,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.22,
+      "entry_process_cpu_pct": 97.8,
+      "entry_rss_mb": 221.8,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1031,10 +1031,10 @@
     {
       "closed_at_utc": "2026-08-20T03:11:00.866708+00:00",
       "duration_seconds": 179.630956,
-      "entry_host_cpu_user_pct": 5.7,
-      "entry_host_load1": 0.1,
-      "entry_process_cpu_pct": 23.8,
-      "entry_rss_mb": 137.4,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.3,
+      "entry_process_cpu_pct": 98.2,
+      "entry_rss_mb": 222.0,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1045,10 +1045,10 @@
     {
       "closed_at_utc": "2026-08-20T03:07:00.879098+00:00",
       "duration_seconds": 239.670511,
-      "entry_host_cpu_user_pct": 7.0,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 23.3,
-      "entry_rss_mb": 137.6,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.22,
+      "entry_process_cpu_pct": 97.9,
+      "entry_rss_mb": 221.7,
       "exit_reason": "TARGET",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1074,9 +1074,9 @@
       "closed_at_utc": "2026-08-20T02:58:00.829669+00:00",
       "duration_seconds": 179.520491,
       "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.41,
-      "entry_process_cpu_pct": 93.3,
-      "entry_rss_mb": 221.2,
+      "entry_host_load1": 0.15,
+      "entry_process_cpu_pct": 92.3,
+      "entry_rss_mb": 221.1,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1101,10 +1101,10 @@
     {
       "closed_at_utc": "2026-08-20T02:35:00.871193+00:00",
       "duration_seconds": 719.521675,
-      "entry_host_cpu_user_pct": 100.0,
-      "entry_host_load1": 0.41,
-      "entry_process_cpu_pct": 66.8,
-      "entry_rss_mb": 221.0,
+      "entry_host_cpu_user_pct": 91.7,
+      "entry_host_load1": 0.15,
+      "entry_process_cpu_pct": 92.7,
+      "entry_rss_mb": 220.7,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1185,10 +1185,10 @@
     {
       "closed_at_utc": "2026-08-20T01:25:01.710219+00:00",
       "duration_seconds": 120.517173,
-      "entry_host_cpu_user_pct": 64.0,
-      "entry_host_load1": 0.21,
-      "entry_process_cpu_pct": 53.5,
-      "entry_rss_mb": 220.2,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.24,
+      "entry_process_cpu_pct": 99.1,
+      "entry_rss_mb": 220.1,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1341,8 +1341,8 @@
   "reliability": {
     "crash_report_count": 0,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-20T04:09:57.134606Z",
-    "restart_count": 0
+    "last_started_at_utc": "2026-08-20T04:37:51.562140Z",
+    "restart_count": 2
   },
   "schema_version": "1.0",
   "stats": {
@@ -1371,7 +1371,7 @@
   },
   "warmup_replay": {
     "bars_replayed": 240,
-    "elapsed_wall_seconds": 20.46,
-    "queue_wait_max_ms": 20173.7
+    "elapsed_wall_seconds": 13.12,
+    "queue_wait_max_ms": 12783.6
   }
 }
