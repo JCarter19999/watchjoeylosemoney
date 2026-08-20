@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-20T12:00:27.264593Z",
+  "data_as_of_utc": "2026-08-20T12:15:26.647647Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 24.0,
@@ -766,8 +766,14 @@
     "submit_to_fill_ms_median": 517.0,
     "submit_to_fill_ms_p95": 607.3
   },
-  "generated_at_utc": "2026-08-20T12:00:27.264593Z",
+  "generated_at_utc": "2026-08-20T12:15:26.647647Z",
   "guardian_transitions": [
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 29282.0",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-20T12:14:01.246367Z"
+    },
     {
       "from_state": "WARMUP",
       "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
@@ -911,64 +917,58 @@
       "reason": "position closed normally: exit filled, reason=STOP",
       "to_state": "ARMED",
       "ts_utc": "2026-08-20T03:11:00.867214Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29646.75",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-20T03:08:01.236740Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 419,
+    "bars_sampled": 434,
     "cpu_median_pct": 0.9,
     "load1_median": 0.0,
     "stages": {
       "get_account_http_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 0.0,
+        "n": 1,
+        "p95_ms": 0.0,
+        "p99_ms": 0.0
       },
       "ingest_and_decision_ms": {
-        "median_ms": 135.9,
-        "n": 419,
+        "median_ms": 136.5,
+        "n": 434,
         "p95_ms": 326.3,
-        "p99_ms": 609.0
+        "p99_ms": 628.0
       },
       "poll_until_filled_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 0.0,
+        "n": 1,
+        "p95_ms": 0.0,
+        "p99_ms": 0.0
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 149.2,
+        "n": 1,
+        "p95_ms": 149.2,
+        "p99_ms": 149.2
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 419,
+        "n": 434,
         "p95_ms": 1.7,
         "p99_ms": 1.9
       },
       "submit_order_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 549.1,
+        "n": 1,
+        "p95_ms": 549.1,
+        "p99_ms": 549.1
       },
       "total_bar_to_submit_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 1341.7,
+        "n": 1,
+        "p95_ms": 1341.7,
+        "p99_ms": 1341.7
       }
     },
     "stalls_over_2s": 0,
-    "stalls_over_750ms": 1,
+    "stalls_over_750ms": 2,
     "verdict": "MARGINAL"
   },
   "latest_trades": [
@@ -1366,7 +1366,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "market_data_state": "LIVE",
-    "message": "Armed and watching for entries.",
+    "message": "Managing an open position.",
     "service_state": "ARMED"
   },
   "warmup_replay": {
