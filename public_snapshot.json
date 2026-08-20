@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-20T02:30:27.045608Z",
+  "data_as_of_utc": "2026-08-20T02:45:27.249226Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 24.0,
@@ -660,10 +660,16 @@
       "drawdown_usd": 373.5,
       "equity_usd": 56.5,
       "ts_utc": "2026-08-20T02:21:00.855775+00:00"
+    },
+    {
+      "cum_pnl_usd": -5.0,
+      "drawdown_usd": 435.0,
+      "equity_usd": -5.0,
+      "ts_utc": "2026-08-20T02:35:00.871193+00:00"
     }
   ],
   "execution_telemetry": {
-    "sample_size": 110,
+    "sample_size": 111,
     "slippage_by_exit_reason": {
       "EMERGENCY_FLATTEN": {
         "mean_ticks": 1.0,
@@ -671,9 +677,9 @@
         "n": 1
       },
       "STOP": {
-        "mean_ticks": 1.3158,
-        "median_ticks": 0.0,
-        "n": 18
+        "mean_ticks": 1.7202,
+        "median_ticks": 1.0,
+        "n": 19
       },
       "STOP_TIGHTENED": {
         "mean_ticks": 8.1538,
@@ -696,18 +702,30 @@
         "n": 11
       }
     },
-    "slippage_ticks_mean": 4.9308,
+    "slippage_ticks_mean": 4.9675,
     "slippage_ticks_median": 2.0,
-    "slippage_ticks_p95": 45.0,
-    "slippage_usd_mean": 2.4654,
+    "slippage_ticks_p95": 36.0,
+    "slippage_usd_mean": 2.4837,
     "slippage_usd_median": 1.0,
-    "submit_to_ack_ms_median": 7.3,
-    "submit_to_ack_ms_p95": 210.2,
+    "submit_to_ack_ms_median": 7.4,
+    "submit_to_ack_ms_p95": 208.9,
     "submit_to_fill_ms_median": 517.5,
-    "submit_to_fill_ms_p95": 657.3
+    "submit_to_fill_ms_p95": 607.3
   },
-  "generated_at_utc": "2026-08-20T02:30:27.045608Z",
+  "generated_at_utc": "2026-08-20T02:45:27.249226Z",
   "guardian_transitions": [
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 29645.75",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-20T02:36:01.259103Z"
+    },
+    {
+      "from_state": "IN_POSITION",
+      "reason": "position closed normally: exit filled, reason=STOP",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-20T02:35:00.871453Z"
+    },
     {
       "from_state": "ARMED",
       "reason": "entry filled: entry filled @ 29618.75",
@@ -845,73 +863,75 @@
       "reason": "entry filled: entry filled @ 29629.25",
       "to_state": "IN_POSITION",
       "ts_utc": "2026-08-20T00:28:01.137385Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-20T00:27:00.825305Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29647.5",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-20T00:25:01.144190Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 233,
-    "cpu_median_pct": 1.7,
+    "bars_sampled": 248,
+    "cpu_median_pct": 1.8,
     "load1_median": 0.0,
     "stages": {
       "get_account_http_ms": {
         "median_ms": 0.0,
-        "n": 18,
+        "n": 19,
         "p95_ms": 212.2,
         "p99_ms": 212.2
       },
       "ingest_and_decision_ms": {
-        "median_ms": 248.2,
-        "n": 233,
-        "p95_ms": 1148.8,
+        "median_ms": 251.7,
+        "n": 248,
+        "p95_ms": 1135.2,
         "p99_ms": 1941.0
       },
       "poll_until_filled_ms": {
         "median_ms": 0.0,
-        "n": 18,
+        "n": 19,
         "p95_ms": 0.0,
         "p99_ms": 0.0
       },
       "post_entry_reconciliation_ms": {
         "median_ms": 169.2,
-        "n": 18,
+        "n": 19,
         "p95_ms": 179.5,
         "p99_ms": 179.5
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 233,
+        "n": 248,
         "p95_ms": 1.7,
         "p99_ms": 1.8
       },
       "submit_order_ms": {
         "median_ms": 508.3,
-        "n": 18,
+        "n": 19,
         "p95_ms": 563.7,
         "p99_ms": 563.7
       },
       "total_bar_to_submit_ms": {
         "median_ms": 1306.9,
-        "n": 18,
+        "n": 19,
         "p95_ms": 1497.0,
         "p99_ms": 1497.0
       }
     },
     "stalls_over_2s": 2,
-    "stalls_over_750ms": 38,
+    "stalls_over_750ms": 40,
     "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
+    {
+      "closed_at_utc": "2026-08-20T02:35:00.871193+00:00",
+      "duration_seconds": 719.521675,
+      "entry_host_cpu_user_pct": 2.9,
+      "entry_host_load1": 0.0,
+      "entry_process_cpu_pct": 23.0,
+      "entry_rss_mb": 138.3,
+      "exit_reason": "STOP",
+      "expected_net_pnl_model_usd": 1.691,
+      "mode": "DEMO",
+      "pnl_usd": -61.5,
+      "session_date": "2026-08-20",
+      "side": "SHORT"
+    },
     {
       "closed_at_utc": "2026-08-20T02:21:00.855775+00:00",
       "duration_seconds": 479.455683,
@@ -1247,20 +1267,6 @@
       "pnl_usd": -28.0,
       "session_date": "2026-08-19",
       "side": "SHORT"
-    },
-    {
-      "closed_at_utc": "2026-08-19T19:51:00.971077+00:00",
-      "duration_seconds": 839.515136,
-      "entry_host_cpu_user_pct": 5.5,
-      "entry_host_load1": 1.05,
-      "entry_process_cpu_pct": 17.2,
-      "entry_rss_mb": 139.2,
-      "exit_reason": "TARGET",
-      "expected_net_pnl_model_usd": 1.691,
-      "mode": "DEMO",
-      "pnl_usd": 111.0,
-      "session_date": "2026-08-19",
-      "side": "SHORT"
     }
   ],
   "mode": "DEMO",
@@ -1287,18 +1293,18 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 2,
-    "closed_trades_all_time": 110,
-    "closed_trades_today": 14,
-    "current_drawdown_usd": 373.5,
-    "display_equity_usd": 56.5,
+    "closed_trades_all_time": 111,
+    "closed_trades_today": 15,
+    "current_drawdown_usd": 435.0,
+    "display_equity_usd": -5.0,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 0.5136,
-    "losses": 73,
-    "max_drawdown_usd": 373.5,
-    "profit_factor": 1.0389,
-    "realized_pnl_all_time_usd": 56.5,
-    "realized_pnl_today_usd": -268.0,
-    "win_rate": 0.3182,
+    "expectancy_usd": -0.045,
+    "losses": 74,
+    "max_drawdown_usd": 435.0,
+    "profit_factor": 0.9967,
+    "realized_pnl_all_time_usd": -5.0,
+    "realized_pnl_today_usd": -329.5,
+    "win_rate": 0.3153,
     "wins": 35
   },
   "status": {
