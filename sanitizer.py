@@ -180,6 +180,26 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
         for reason, values in sorted(slip_by_reason.items())
     }
 
+    # 2026-08-21: RT1HealthEvaluator's execution-health telemetry was
+    # computed every trade but never surfaced anywhere -- exec_disable
+    # stopped halting trading 2026-08-19 (a legitimate D20-exit burst
+    # caused a false-positive halt), making it informational-only by
+    # design, but nothing ever displayed that information. This closes
+    # that gap: current status from the most recent real trade carrying
+    # it, plus a short trailing trend so a human can see drift building
+    # rather than only a point-in-time reading.
+    health_rows = [r for r in visible_trades if r.get("effective_cost_multiplier") is not None]
+    latest_health = health_rows[-1] if health_rows else None
+    recent_multipliers = [r["effective_cost_multiplier"] for r in health_rows[-10:]]
+    execution_health = {
+        "current_cost_multiplier": _round(latest_health["effective_cost_multiplier"]) if latest_health else None,
+        "current_warning": latest_health.get("execution_health_warning") if latest_health else None,
+        "current_disable": latest_health.get("execution_health_disable") if latest_health else None,
+        "mean_slippage_dollars_running": _round(latest_health.get("execution_health_mean_slippage_dollars")) if latest_health else None,
+        "trailing_10_cost_multipliers": [_round(m) for m in recent_multipliers],
+        "note": "execution_health_disable is informational only as of 2026-08-19 -- does not halt trading",
+    }
+
     public = {
         "schema_version": SCHEMA_VERSION,
         "generated_at_utc": now.isoformat().replace("+00:00", "Z"),
@@ -229,6 +249,7 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
             "slippage_usd_mean": _round(sum(slip_dollars) / len(slip_dollars)) if slip_dollars else None,
             "slippage_by_exit_reason": slippage_by_exit_reason,
         },
+        "execution_health": execution_health,
         "latency_health": {
             "bars_sampled": (latency := private.get("latency", {})).get("bars_sampled", 0),
             "stalls_over_750ms": latency.get("stalls_over_750ms", 0),

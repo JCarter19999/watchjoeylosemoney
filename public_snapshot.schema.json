@@ -26,6 +26,7 @@
     "status",
     "stats",
     "execution_telemetry",
+    "execution_health",
     "latency_health",
     "warmup_replay",
     "reliability",
@@ -114,6 +115,25 @@
             }
           }
         }
+      }
+    },
+    "execution_health": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current_cost_multiplier", "current_warning", "current_disable",
+        "mean_slippage_dollars_running", "trailing_10_cost_multipliers", "note"
+      ],
+      "properties": {
+        "current_cost_multiplier": { "type": ["number", "null"], "minimum": 0 },
+        "current_warning": { "type": ["boolean", "null"] },
+        "current_disable": { "type": ["boolean", "null"] },
+        "mean_slippage_dollars_running": { "type": ["number", "null"] },
+        "trailing_10_cost_multipliers": {
+          "type": "array",
+          "items": { "type": ["number", "null"], "minimum": 0 }
+        },
+        "note": { "type": "string" }
       }
     },
     "latency_health": {

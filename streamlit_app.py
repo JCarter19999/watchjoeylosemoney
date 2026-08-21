@@ -225,6 +225,32 @@ def render_execution_telemetry(snapshot: dict[str, Any]) -> None:
     st.caption(caption)
 
 
+def render_execution_health(snapshot: dict[str, Any]) -> None:
+    """RT1HealthEvaluator's cost-multiplier telemetry -- computed every
+    trade since the risk-limits module existed, but never displayed
+    anywhere until 2026-08-21. execution_health_disable stopped halting
+    trading 2026-08-19 (a legitimate D20-exit burst caused a false-positive
+    halt), so this is now the only way to actually see it."""
+    h = snapshot["execution_health"]
+    st.subheader("Execution cost health")
+    if h["current_cost_multiplier"] is None:
+        st.info("No real-fill samples yet.")
+        return
+    if h["current_disable"]:
+        st.error(f"Execution cost multiplier {h['current_cost_multiplier']:.2f}x -- disable threshold reached (informational only, does not halt).")
+    elif h["current_warning"]:
+        st.warning(f"Execution cost multiplier {h['current_cost_multiplier']:.2f}x -- warning threshold reached.")
+    else:
+        st.success(f"Execution cost multiplier {h['current_cost_multiplier']:.2f}x -- nominal.")
+    cols = st.columns(2)
+    cols[0].metric("Current cost multiplier", f"{h['current_cost_multiplier']:.2f}x", help="(commission + realized slippage) / $2.00 baseline. 1.0x = matches the backtest's own cost assumption.")
+    cols[1].metric("Running mean slippage", f"${h['mean_slippage_dollars_running']:.2f}" if h["mean_slippage_dollars_running"] is not None else "—")
+    trend = [m for m in h["trailing_10_cost_multipliers"] if m is not None]
+    if trend:
+        st.caption(f"Trailing cost multipliers (most recent last): {', '.join(f'{m:.2f}x' for m in trend)}")
+    st.caption(h["note"])
+
+
 def render_pnl_waterfall(snapshot: dict[str, Any]) -> None:
     """Backtest -> Live Bridge panel #1: where did the model's P&L go on
     the way to a real fill? Model P&L -> A (semantic/reference gap) -> B
@@ -399,6 +425,7 @@ def live_dashboard() -> None:
     render_trade_table(snapshot)
     render_pnl_waterfall(snapshot)
     render_execution_telemetry(snapshot)
+    render_execution_health(snapshot)
     render_latency_health(snapshot)
     render_warmup_replay(snapshot)
     render_reliability(snapshot)
