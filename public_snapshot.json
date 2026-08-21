@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-21T16:15:27.672156Z",
+  "data_as_of_utc": "2026-08-21T16:30:27.624179Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -26.72,
@@ -175,7 +175,7 @@
     "submit_to_fill_ms_median": 635.0,
     "submit_to_fill_ms_p95": 768.2
   },
-  "generated_at_utc": "2026-08-21T16:15:27.672156Z",
+  "generated_at_utc": "2026-08-21T16:30:27.624179Z",
   "guardian_transitions": [
     {
       "from_state": "ARMED",
@@ -329,7 +329,7 @@
     }
   ],
   "latency_health": {
-    "bars_sampled": 308,
+    "bars_sampled": 313,
     "cpu_median_pct": 95.3,
     "load1_median": 2.07,
     "stages": {
@@ -340,8 +340,8 @@
         "p99_ms": 760.1
       },
       "ingest_and_decision_ms": {
-        "median_ms": 481.1,
-        "n": 308,
+        "median_ms": 481.6,
+        "n": 313,
         "p95_ms": 1841.9,
         "p99_ms": 3071.8
       },
@@ -359,7 +359,7 @@
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 308,
+        "n": 313,
         "p95_ms": 13.1,
         "p99_ms": 18.4
       },
@@ -678,7 +678,7 @@
   },
   "publication_delay_minutes": 0,
   "reliability": {
-    "crash_report_count": 0,
+    "crash_report_count": 1,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
     "last_started_at_utc": "2026-08-21T11:06:33.954825Z",
     "restart_count": 9
@@ -702,11 +702,11 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": true,
-    "guardian_state": "ARMED",
-    "market_data_state": "LIVE",
-    "message": "Managing an open position.",
-    "service_state": "ARMED"
+    "execution_enabled": false,
+    "guardian_state": "NA",
+    "market_data_state": "DISCONNECTED",
+    "message": "Live process pid 734783 is not running.",
+    "service_state": "OFFLINE"
   },
   "warmup_replay": {
     "bars_replayed": 240,
