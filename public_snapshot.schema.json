@@ -125,13 +125,13 @@
         "mean_slippage_dollars_running", "trailing_10_cost_multipliers", "note"
       ],
       "properties": {
-        "current_cost_multiplier": { "type": ["number", "null"], "minimum": 0 },
+        "current_cost_multiplier": { "type": ["number", "null"] },
         "current_warning": { "type": ["boolean", "null"] },
         "current_disable": { "type": ["boolean", "null"] },
         "mean_slippage_dollars_running": { "type": ["number", "null"] },
         "trailing_10_cost_multipliers": {
           "type": "array",
-          "items": { "type": ["number", "null"], "minimum": 0 }
+          "items": { "type": ["number", "null"] }
         },
         "note": { "type": "string" }
       }
