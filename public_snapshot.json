@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-21T05:00:27.656868Z",
+  "data_as_of_utc": "2026-08-21T05:15:27.475333Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 24.0,
@@ -1240,8 +1240,20 @@
     "submit_to_fill_ms_median": 518.8,
     "submit_to_fill_ms_p95": 653.2
   },
-  "generated_at_utc": "2026-08-21T05:00:27.656868Z",
+  "generated_at_utc": "2026-08-21T05:15:27.475333Z",
   "guardian_transitions": [
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation FAILED: ledger=('buy', 1.0) broker=flat",
+      "to_state": "LOCKED",
+      "ts_utc": "2026-08-21T05:03:45.440333Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-21T05:03:45.267576Z"
+    },
     {
       "from_state": "ARMED",
       "reason": "entry filled: entry filled @ 29380.5",
@@ -1379,71 +1391,59 @@
       "reason": "entry filled: entry filled @ 29327.75",
       "to_state": "IN_POSITION",
       "ts_utc": "2026-08-21T01:01:01.758154Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-21T00:56:01.115559Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29347.5",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-21T00:53:01.678018Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 269,
-    "cpu_median_pct": 5.1,
-    "load1_median": 0.16,
+    "bars_sampled": 0,
+    "cpu_median_pct": null,
+    "load1_median": null,
     "stages": {
       "get_account_http_ms": {
-        "median_ms": 0.0,
-        "n": 28,
-        "p95_ms": 218.1,
-        "p99_ms": 226.8
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": 313.8,
-        "n": 269,
-        "p95_ms": 1639.6,
-        "p99_ms": 2113.4
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "poll_until_filled_ms": {
-        "median_ms": 0.0,
-        "n": 28,
-        "p95_ms": 0.0,
-        "p99_ms": 0.0
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": 167.4,
-        "n": 28,
-        "p95_ms": 179.7,
-        "p99_ms": 179.8
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "queue_wait_ms": {
-        "median_ms": 0.2,
-        "n": 269,
-        "p95_ms": 1.9,
-        "p99_ms": 3.4
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "submit_order_ms": {
-        "median_ms": 519.8,
-        "n": 28,
-        "p95_ms": 653.2,
-        "p99_ms": 664.1
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 1475.8,
-        "n": 28,
-        "p95_ms": 1928.3,
-        "p99_ms": 1950.3
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       }
     },
-    "stalls_over_2s": 4,
-    "stalls_over_750ms": 58,
-    "verdict": "NEEDS_UPGRADE"
+    "stalls_over_2s": 0,
+    "stalls_over_750ms": 0,
+    "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
     {
@@ -1477,10 +1477,10 @@
     {
       "closed_at_utc": "2026-08-21T01:55:01.439848+00:00",
       "duration_seconds": 119.849708,
-      "entry_host_cpu_user_pct": 50.6,
-      "entry_host_load1": 0.7,
-      "entry_process_cpu_pct": 17.7,
-      "entry_rss_mb": 137.2,
+      "entry_host_cpu_user_pct": 100.0,
+      "entry_host_load1": 0.65,
+      "entry_process_cpu_pct": 97.6,
+      "entry_rss_mb": 222.0,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1491,10 +1491,10 @@
     {
       "closed_at_utc": "2026-08-21T01:52:01.381774+00:00",
       "duration_seconds": 120.130263,
-      "entry_host_cpu_user_pct": 3.9,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 21.2,
-      "entry_rss_mb": 136.9,
+      "entry_host_cpu_user_pct": 91.7,
+      "entry_host_load1": 0.65,
+      "entry_process_cpu_pct": 98.2,
+      "entry_rss_mb": 221.9,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
@@ -1815,8 +1815,8 @@
   "reliability": {
     "crash_report_count": 0,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-20T21:46:20.889661Z",
-    "restart_count": 6
+    "last_started_at_utc": "2026-08-21T05:03:44.750298Z",
+    "restart_count": 7
   },
   "schema_version": "1.0",
   "stats": {
@@ -1837,15 +1837,15 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "market_data_state": "DISCONNECTED",
-    "message": "Live process pid 712773 is not running.",
-    "service_state": "OFFLINE"
+    "execution_enabled": true,
+    "guardian_state": "FAULT",
+    "market_data_state": "LIVE",
+    "message": "Locked -- needs an explicit resume or a restart.",
+    "service_state": "FAULT"
   },
   "warmup_replay": {
-    "bars_replayed": 193,
-    "elapsed_wall_seconds": 9.13,
-    "queue_wait_max_ms": 8918.2
+    "bars_replayed": 251,
+    "elapsed_wall_seconds": 673.79,
+    "queue_wait_max_ms": 13402.9
   }
 }
