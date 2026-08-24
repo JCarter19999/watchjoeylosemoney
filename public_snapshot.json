@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-24T01:45:27.283779Z",
+  "data_as_of_utc": "2026-08-24T01:47:10.448370Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -26.72,
@@ -384,8 +384,14 @@
     "submit_to_fill_ms_median": 553.9,
     "submit_to_fill_ms_p95": 768.2
   },
-  "generated_at_utc": "2026-08-24T01:45:27.283779Z",
+  "generated_at_utc": "2026-08-24T01:47:10.448370Z",
   "guardian_transitions": [
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 29391.5",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-24T01:47:01.120571Z"
+    },
     {
       "from_state": "IN_POSITION",
       "reason": "position closed normally: exit filled, reason=TIME",
@@ -529,416 +535,360 @@
       "reason": "reconciliation ok: both flat",
       "to_state": "WARMUP",
       "ts_utc": "2026-08-22T10:30:03.066518Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-22T10:30:02.706528Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 224,
+    "bars_sampled": 226,
     "cpu_median_pct": 0.5,
     "load1_median": 0.0,
     "stages": {
       "get_account_http_ms": {
         "median_ms": 0.0,
-        "n": 10,
+        "n": 11,
         "p95_ms": 149.2,
         "p99_ms": 149.2
       },
       "ingest_and_decision_ms": {
-        "median_ms": 116.1,
-        "n": 224,
+        "median_ms": 117.6,
+        "n": 226,
         "p95_ms": 902.5,
         "p99_ms": 1678.4
       },
       "poll_until_filled_ms": {
         "median_ms": 0.0,
-        "n": 10,
+        "n": 11,
         "p95_ms": 0.0,
         "p99_ms": 0.0
       },
       "post_entry_reconciliation_ms": {
         "median_ms": 169.7,
-        "n": 10,
+        "n": 11,
         "p95_ms": 177.0,
         "p99_ms": 177.0
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 224,
+        "n": 226,
         "p95_ms": 1.1,
         "p99_ms": 1.7
       },
       "submit_order_ms": {
-        "median_ms": 512.0,
-        "n": 10,
+        "median_ms": 506.2,
+        "n": 11,
         "p95_ms": 527.7,
         "p99_ms": 527.7
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 1301.6,
-        "n": 10,
+        "median_ms": 1232.1,
+        "n": 11,
         "p95_ms": 2271.4,
         "p99_ms": 2271.4
       }
     },
     "stalls_over_2s": 1,
-    "stalls_over_750ms": 22,
+    "stalls_over_750ms": 23,
     "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
     {
+      "c_same_at_entry": 1,
       "closed_at_utc": "2026-08-24T01:44:01.434501+00:00",
       "duration_seconds": 900.191094,
-      "entry_host_cpu_user_pct": 2.1,
-      "entry_host_load1": 0.01,
-      "entry_process_cpu_pct": 30.9,
-      "entry_rss_mb": 158.8,
       "exit_reason": "TIME",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 28.78,
       "session_date": "2026-08-24",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": 1.0
     },
     {
+      "c_same_at_entry": 1,
       "closed_at_utc": "2026-08-24T01:27:00.794141+00:00",
       "duration_seconds": 119.768037,
-      "entry_host_cpu_user_pct": 4.0,
-      "entry_host_load1": 0.06,
-      "entry_process_cpu_pct": 28.2,
-      "entry_rss_mb": 158.7,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -29.22,
       "session_date": "2026-08-24",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": 1.0
     },
     {
+      "c_same_at_entry": 2,
       "closed_at_utc": "2026-08-24T01:19:01.443515+00:00",
       "duration_seconds": 900.256825,
-      "entry_host_cpu_user_pct": 0.9,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 29.0,
-      "entry_rss_mb": 158.7,
       "exit_reason": "TIME",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 49.28,
       "session_date": "2026-08-24",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": 1.0
     },
     {
+      "c_same_at_entry": 5,
       "closed_at_utc": "2026-08-24T01:03:00.781323+00:00",
       "duration_seconds": 119.724651,
-      "entry_host_cpu_user_pct": 0.8,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 31.8,
-      "entry_rss_mb": 158.7,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -81.44,
       "session_date": "2026-08-24",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": 2.0
     },
     {
+      "c_same_at_entry": 4,
       "closed_at_utc": "2026-08-24T01:00:01.351289+00:00",
       "duration_seconds": 120.284066,
-      "entry_host_cpu_user_pct": 0.7,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 32.5,
-      "entry_rss_mb": 158.7,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 26.56,
       "session_date": "2026-08-24",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": 2.0
     },
     {
+      "c_same_at_entry": 1,
       "closed_at_utc": "2026-08-24T00:53:01.274207+00:00",
       "duration_seconds": 120.224548,
-      "entry_host_cpu_user_pct": 0.8,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 29.8,
-      "entry_rss_mb": 158.6,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -1.72,
       "session_date": "2026-08-24",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": 1.0
     },
     {
+      "c_same_at_entry": 5,
       "closed_at_utc": "2026-08-24T00:30:01.380358+00:00",
       "duration_seconds": 120.305589,
-      "entry_host_cpu_user_pct": 0.7,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 32.4,
-      "entry_rss_mb": 88.8,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -9.44,
       "session_date": "2026-08-24",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": 2.0
     },
     {
+      "c_same_at_entry": 6,
       "closed_at_utc": "2026-08-24T00:27:00.815273+00:00",
       "duration_seconds": 479.759209,
-      "entry_host_cpu_user_pct": 0.9,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 29.7,
-      "entry_rss_mb": 88.7,
       "exit_reason": "TARGET",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 151.56,
       "session_date": "2026-08-24",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": 2.0
     },
     {
+      "c_same_at_entry": 0,
       "closed_at_utc": "2026-08-24T00:16:00.824220+00:00",
       "duration_seconds": 899.533118,
-      "entry_host_cpu_user_pct": 1.1,
-      "entry_host_load1": 0.0,
-      "entry_process_cpu_pct": 34.1,
-      "entry_rss_mb": 88.6,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -49.22,
       "session_date": "2026-08-24",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": 1.0
     },
     {
+      "c_same_at_entry": 0,
       "closed_at_utc": "2026-08-23T23:26:00.813085+00:00",
       "duration_seconds": 418.667356,
-      "entry_host_cpu_user_pct": 1.1,
-      "entry_host_load1": 0.11,
-      "entry_process_cpu_pct": 29.0,
-      "entry_rss_mb": 87.0,
       "exit_reason": "TARGET",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 32.78,
       "session_date": "2026-08-23",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": 1.0
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T20:46:01.602472+00:00",
       "duration_seconds": 539.836987,
-      "entry_host_cpu_user_pct": 96.6,
-      "entry_host_load1": 1.27,
-      "entry_process_cpu_pct": 17.7,
-      "entry_rss_mb": 67.0,
       "exit_reason": "PRECLOSE_BLACKOUT_FLATTEN",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 9.78,
       "session_date": "2026-08-21",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T20:33:02.324459+00:00",
       "duration_seconds": 539.408405,
-      "entry_host_cpu_user_pct": 17.0,
-      "entry_host_load1": 1.17,
-      "entry_process_cpu_pct": 15.9,
-      "entry_rss_mb": 66.7,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -21.22,
       "session_date": "2026-08-21",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T20:07:01.631627+00:00",
       "duration_seconds": 900.368953,
-      "entry_host_cpu_user_pct": 3.4,
-      "entry_host_load1": 0.03,
-      "entry_process_cpu_pct": 19.2,
-      "entry_rss_mb": 55.0,
       "exit_reason": "TIME",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 37.28,
       "session_date": "2026-08-21",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T19:51:00.866154+00:00",
       "duration_seconds": 179.43029,
-      "entry_host_cpu_user_pct": 4.4,
-      "entry_host_load1": 0.04,
-      "entry_process_cpu_pct": 20.2,
-      "entry_rss_mb": 54.8,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -22.22,
       "session_date": "2026-08-21",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T19:41:00.880814+00:00",
       "duration_seconds": 59.449549,
-      "entry_host_cpu_user_pct": 7.4,
-      "entry_host_load1": 0.23,
-      "entry_process_cpu_pct": 20.3,
-      "entry_rss_mb": 54.7,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -14.72,
       "session_date": "2026-08-21",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T19:31:02.384441+00:00",
       "duration_seconds": 660.907796,
-      "entry_host_cpu_user_pct": 12.4,
-      "entry_host_load1": 0.18,
-      "entry_process_cpu_pct": 18.6,
-      "entry_rss_mb": 59.7,
       "exit_reason": "TARGET",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 38.78,
       "session_date": "2026-08-21",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T19:18:01.455674+00:00",
       "duration_seconds": 239.583486,
-      "entry_host_cpu_user_pct": 98.7,
-      "entry_host_load1": 0.95,
-      "entry_process_cpu_pct": 16.2,
-      "entry_rss_mb": 57.3,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 3.28,
       "session_date": "2026-08-21",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T19:08:00.839156+00:00",
       "duration_seconds": 119.338721,
-      "entry_host_cpu_user_pct": 93.4,
-      "entry_host_load1": 1.35,
-      "entry_process_cpu_pct": 16.7,
-      "entry_rss_mb": 56.2,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -21.22,
       "session_date": "2026-08-21",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T19:05:01.270344+00:00",
       "duration_seconds": 119.873567,
-      "entry_host_cpu_user_pct": 6.4,
-      "entry_host_load1": 0.01,
-      "entry_process_cpu_pct": 19.4,
-      "entry_rss_mb": 95.7,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -18.22,
       "session_date": "2026-08-21",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T18:59:02.093274+00:00",
       "duration_seconds": 540.46184,
-      "entry_host_cpu_user_pct": 4.1,
-      "entry_host_load1": 0.09,
-      "entry_process_cpu_pct": 16.2,
-      "entry_rss_mb": 66.3,
       "exit_reason": "TARGET",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 27.78,
       "session_date": "2026-08-21",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T18:42:01.680168+00:00",
       "duration_seconds": 900.422509,
-      "entry_host_cpu_user_pct": 3.2,
-      "entry_host_load1": 0.02,
-      "entry_process_cpu_pct": 19.5,
-      "entry_rss_mb": 132.3,
       "exit_reason": "TIME",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 12.78,
       "session_date": "2026-08-21",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T18:26:00.847301+00:00",
       "duration_seconds": 239.615823,
-      "entry_host_cpu_user_pct": 3.7,
-      "entry_host_load1": 0.04,
-      "entry_process_cpu_pct": 22.8,
-      "entry_rss_mb": 132.5,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -22.22,
       "session_date": "2026-08-21",
-      "side": "LONG"
+      "side": "LONG",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T18:20:01.084870+00:00",
       "duration_seconds": 59.880641,
-      "entry_host_cpu_user_pct": 5.5,
-      "entry_host_load1": 0.11,
-      "entry_process_cpu_pct": 20.1,
-      "entry_rss_mb": 132.6,
       "exit_reason": "STOP",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -17.72,
       "session_date": "2026-08-21",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T18:18:01.734123+00:00",
       "duration_seconds": 120.345546,
-      "entry_host_cpu_user_pct": 4.4,
-      "entry_host_load1": 0.11,
-      "entry_process_cpu_pct": 20.2,
-      "entry_rss_mb": 132.5,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": 2.28,
       "session_date": "2026-08-21",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": null
     },
     {
+      "c_same_at_entry": null,
       "closed_at_utc": "2026-08-21T18:13:00.890303+00:00",
       "duration_seconds": 119.633849,
-      "entry_host_cpu_user_pct": 3.1,
-      "entry_host_load1": 0.08,
-      "entry_process_cpu_pct": 19.6,
-      "entry_rss_mb": 132.5,
       "exit_reason": "STOP_TIGHTENED",
       "expected_net_pnl_model_usd": 1.691,
       "mode": "DEMO",
       "pnl_usd": -18.22,
       "session_date": "2026-08-21",
-      "side": "SHORT"
+      "side": "SHORT",
+      "sized_qty": null
     }
   ],
   "mode": "DEMO",
@@ -984,7 +934,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "market_data_state": "LIVE",
-    "message": "Armed and watching for entries.",
+    "message": "Managing an open position.",
     "service_state": "ARMED"
   },
   "warmup_replay": {
