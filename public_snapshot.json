@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-25T17:15:26.881015Z",
+  "data_as_of_utc": "2026-08-25T17:30:27.014907Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 32.78,
@@ -642,17 +642,27 @@
       "drawdown_usd": 1223.42,
       "equity_usd": -1072.9,
       "ts_utc": "2026-08-25T17:08:01.418636+00:00"
+    },
+    {
+      "cum_pnl_usd": -1112.12,
+      "drawdown_usd": 1262.64,
+      "equity_usd": -1112.12,
+      "ts_utc": "2026-08-25T17:20:00.867405+00:00"
+    },
+    {
+      "cum_pnl_usd": -1140.84,
+      "drawdown_usd": 1291.36,
+      "equity_usd": -1140.84,
+      "ts_utc": "2026-08-25T17:26:00.863367+00:00"
     }
   ],
   "execution_health": {
-    "current_cost_multiplier": 3.1785,
+    "current_cost_multiplier": 3.1059,
     "current_disable": true,
     "current_warning": true,
-    "mean_slippage_dollars_running": 5.1371,
+    "mean_slippage_dollars_running": 4.9917,
     "note": "execution_health_disable is informational only as of 2026-08-19 -- does not halt trading",
     "trailing_10_cost_multipliers": [
-      3.4425,
-      3.4046,
       3.3762,
       3.352,
       3.2676,
@@ -660,16 +670,18 @@
       3.2832,
       3.255,
       3.2243,
-      3.1785
+      3.1785,
+      3.1433,
+      3.1059
     ]
   },
   "execution_telemetry": {
-    "sample_size": 107,
+    "sample_size": 109,
     "slippage_by_exit_reason": {
       "STOP": {
-        "mean_ticks": 0.5402,
-        "median_ticks": 2.0,
-        "n": 28
+        "mean_ticks": 0.4375,
+        "median_ticks": 1.7088,
+        "n": 30
       },
       "STOP_TIGHTENED": {
         "mean_ticks": 35.1915,
@@ -687,18 +699,36 @@
         "n": 18
       }
     },
-    "slippage_ticks_mean": 16.7114,
+    "slippage_ticks_mean": 16.3865,
     "slippage_ticks_median": 4.0,
     "slippage_ticks_p95": 100.0,
-    "slippage_usd_mean": 8.3557,
+    "slippage_usd_mean": 8.1932,
     "slippage_usd_median": 2.0,
-    "submit_to_ack_ms_median": 4.4,
+    "submit_to_ack_ms_median": 4.3,
     "submit_to_ack_ms_p95": 176.0,
-    "submit_to_fill_ms_median": 506.2,
+    "submit_to_fill_ms_median": 505.6,
     "submit_to_fill_ms_p95": 536.3
   },
-  "generated_at_utc": "2026-08-25T17:15:26.881015Z",
+  "generated_at_utc": "2026-08-25T17:30:27.014907Z",
   "guardian_transitions": [
+    {
+      "from_state": "IN_POSITION",
+      "reason": "position closed normally: exit filled, reason=STOP",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-25T17:26:00.863685Z"
+    },
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 29245.25",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-25T17:21:01.257450Z"
+    },
+    {
+      "from_state": "IN_POSITION",
+      "reason": "position closed normally: exit filled, reason=STOP",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-25T17:20:00.867634Z"
+    },
     {
       "from_state": "ARMED",
       "reason": "entry filled: entry filled @ 29234.75",
@@ -830,79 +860,85 @@
       "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
       "to_state": "ARMED",
       "ts_utc": "2026-08-25T15:27:01.449315Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29237.25",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-25T15:25:01.184027Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-25T15:24:00.836323Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29259.5",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-25T15:22:01.138213Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 1392,
-    "cpu_median_pct": 0.4,
+    "bars_sampled": 1407,
+    "cpu_median_pct": 0.5,
     "load1_median": 0.0,
     "stages": {
       "get_account_http_ms": {
         "median_ms": 0.0,
-        "n": 81,
+        "n": 82,
         "p95_ms": 171.6,
         "p99_ms": 523.3
       },
       "ingest_and_decision_ms": {
-        "median_ms": 149.1,
-        "n": 1392,
-        "p95_ms": 964.3,
-        "p99_ms": 1677.3
+        "median_ms": 150.0,
+        "n": 1407,
+        "p95_ms": 965.6,
+        "p99_ms": 1671.5
       },
       "poll_until_filled_ms": {
         "median_ms": 0.0,
-        "n": 81,
+        "n": 82,
         "p95_ms": 0.0,
         "p99_ms": 0.0
       },
       "post_entry_reconciliation_ms": {
         "median_ms": 170.5,
-        "n": 81,
+        "n": 82,
         "p95_ms": 181.9,
         "p99_ms": 187.1
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 1392,
+        "n": 1407,
         "p95_ms": 0.2,
-        "p99_ms": 0.5
+        "p99_ms": 0.4
       },
       "submit_order_ms": {
         "median_ms": 506.9,
-        "n": 81,
+        "n": 82,
         "p95_ms": 536.3,
         "p99_ms": 844.2
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 1362.8,
-        "n": 82,
+        "median_ms": 1361.4,
+        "n": 83,
         "p95_ms": 1766.4,
         "p99_ms": 2427.6
       }
     },
     "stalls_over_2s": 3,
-    "stalls_over_750ms": 163,
+    "stalls_over_750ms": 166,
     "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": 2,
+      "closed_at_utc": "2026-08-25T17:26:00.863367+00:00",
+      "duration_seconds": 299.606416,
+      "exit_reason": "STOP",
+      "expected_net_pnl_model_usd": 1.691,
+      "mode": "DEMO",
+      "pnl_usd": -28.72,
+      "session_date": "2026-08-25",
+      "side": "LONG",
+      "sized_qty": 1.0
+    },
+    {
+      "c_same_at_entry": 2,
+      "closed_at_utc": "2026-08-25T17:20:00.867405+00:00",
+      "duration_seconds": 599.620116,
+      "exit_reason": "STOP",
+      "expected_net_pnl_model_usd": 1.691,
+      "mode": "DEMO",
+      "pnl_usd": -39.22,
+      "session_date": "2026-08-25",
+      "side": "SHORT",
+      "sized_qty": 1.0
+    },
     {
       "c_same_at_entry": 0,
       "closed_at_utc": "2026-08-25T17:08:01.418636+00:00",
@@ -1178,30 +1214,6 @@
       "session_date": "2026-08-25",
       "side": "SHORT",
       "sized_qty": 1.0
-    },
-    {
-      "c_same_at_entry": 7,
-      "closed_at_utc": "2026-08-25T14:12:01.530460+00:00",
-      "duration_seconds": 900.044157,
-      "exit_reason": "TIME",
-      "expected_net_pnl_model_usd": 1.691,
-      "mode": "DEMO",
-      "pnl_usd": 144.56,
-      "session_date": "2026-08-25",
-      "side": "SHORT",
-      "sized_qty": 2.0
-    },
-    {
-      "c_same_at_entry": 8,
-      "closed_at_utc": "2026-08-25T13:56:00.844452+00:00",
-      "duration_seconds": 839.569839,
-      "exit_reason": "STOP",
-      "expected_net_pnl_model_usd": 1.691,
-      "mode": "DEMO",
-      "pnl_usd": -178.44,
-      "session_date": "2026-08-25",
-      "side": "LONG",
-      "sized_qty": 2.0
     }
   ],
   "mode": "DEMO",
@@ -1228,18 +1240,18 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 107,
-    "closed_trades_today": 60,
-    "current_drawdown_usd": 1223.42,
-    "display_equity_usd": -1072.9,
+    "closed_trades_all_time": 109,
+    "closed_trades_today": 62,
+    "current_drawdown_usd": 1291.36,
+    "display_equity_usd": -1140.84,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": -10.0271,
-    "losses": 70,
+    "expectancy_usd": -10.4664,
+    "losses": 72,
     "max_drawdown_usd": 1295.94,
-    "profit_factor": 0.5979,
-    "realized_pnl_all_time_usd": -1072.9,
-    "realized_pnl_today_usd": -971.98,
-    "win_rate": 0.3458,
+    "profit_factor": 0.583,
+    "realized_pnl_all_time_usd": -1140.84,
+    "realized_pnl_today_usd": -1039.92,
+    "win_rate": 0.3394,
     "wins": 37
   },
   "status": {
@@ -1247,7 +1259,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "market_data_state": "LIVE",
-    "message": "Managing an open position.",
+    "message": "Armed and watching for entries.",
     "service_state": "ARMED"
   },
   "warmup_replay": {
