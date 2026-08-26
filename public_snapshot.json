@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-26T00:00:26.694605Z",
+  "data_as_of_utc": "2026-08-26T00:15:26.469738Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 32.78,
@@ -775,7 +775,7 @@
     "submit_to_fill_ms_median": 507.6,
     "submit_to_fill_ms_p95": 534.8
   },
-  "generated_at_utc": "2026-08-26T00:00:26.694605Z",
+  "generated_at_utc": "2026-08-26T00:15:26.469738Z",
   "guardian_transitions": [
     {
       "from_state": "RECONCILING",
@@ -1329,8 +1329,8 @@
     "service_state": "FAULT"
   },
   "warmup_replay": {
-    "bars_replayed": 424,
-    "elapsed_wall_seconds": 14691.07,
+    "bars_replayed": 439,
+    "elapsed_wall_seconds": 15591.08,
     "queue_wait_max_ms": 15196.9
   }
 }
