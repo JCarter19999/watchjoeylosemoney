@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-26T23:50:50.396168Z",
+  "data_as_of_utc": "2026-08-26T23:53:34.797030Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 32.78,
@@ -1098,8 +1098,14 @@
     "submit_to_fill_ms_median": 512.0,
     "submit_to_fill_ms_p95": 556.0
   },
-  "generated_at_utc": "2026-08-26T23:50:50.396168Z",
+  "generated_at_utc": "2026-08-26T23:53:34.797030Z",
   "guardian_transitions": [
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-26T23:53:19.370523Z"
+    },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation ok: both flat",
@@ -1243,12 +1249,6 @@
       "reason": "entry filled: entry filled @ 29328.75",
       "to_state": "IN_POSITION",
       "ts_utc": "2026-08-26T19:51:01.141614Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-26T19:50:00.974778Z"
     }
   ],
   "latency_health": {
@@ -1646,14 +1646,14 @@
   "status": {
     "data_delayed": false,
     "execution_enabled": true,
-    "guardian_state": "DISARMED",
+    "guardian_state": "ARMED",
     "market_data_state": "LIVE",
-    "message": "Warming up (filling its rolling buffer, not armed yet).",
-    "service_state": "STARTING"
+    "message": "Armed and watching for entries.",
+    "service_state": "ARMED"
   },
   "warmup_replay": {
-    "bars_replayed": 135,
-    "elapsed_wall_seconds": 389.39,
-    "queue_wait_max_ms": 389154.3
+    "bars_replayed": 188,
+    "elapsed_wall_seconds": 543.51,
+    "queue_wait_max_ms": 517471.9
   }
 }
