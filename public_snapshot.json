@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-26T06:15:26.512642Z",
+  "data_as_of_utc": "2026-08-26T06:30:27.170623Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 32.78,
@@ -775,8 +775,26 @@
     "submit_to_fill_ms_median": 507.6,
     "submit_to_fill_ms_p95": 534.8
   },
-  "generated_at_utc": "2026-08-26T06:15:26.512642Z",
+  "generated_at_utc": "2026-08-26T06:30:27.170623Z",
   "guardian_transitions": [
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-26T06:18:39.585268Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-26T06:18:28.257182Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-26T06:18:27.913070Z"
+    },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation FAILED: ledger=('sell', 1.0) broker=flat",
@@ -908,30 +926,12 @@
       "reason": "position closed normally: exit filled, reason=TIME",
       "to_state": "ARMED",
       "ts_utc": "2026-08-25T17:54:01.528546Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29231.5",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-25T17:39:01.271362Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-25T17:34:01.469742Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29226.75",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-25T17:32:01.183192Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 0,
-    "cpu_median_pct": null,
-    "load1_median": null,
+    "bars_sampled": 12,
+    "cpu_median_pct": 2.6,
+    "load1_median": 0.04,
     "stages": {
       "get_account_http_ms": {
         "median_ms": null,
@@ -940,10 +940,10 @@
         "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 72.3,
+        "n": 12,
+        "p95_ms": 270.7,
+        "p99_ms": 270.7
       },
       "poll_until_filled_ms": {
         "median_ms": null,
@@ -958,10 +958,10 @@
         "p99_ms": null
       },
       "queue_wait_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 0.1,
+        "n": 12,
+        "p95_ms": 0.3,
+        "p99_ms": 0.3
       },
       "submit_order_ms": {
         "median_ms": null,
@@ -978,7 +978,7 @@
     },
     "stalls_over_2s": 0,
     "stalls_over_750ms": 0,
-    "verdict": "INSUFFICIENT_DATA"
+    "verdict": "HEALTHY"
   },
   "latest_trades": [
     {
@@ -1300,8 +1300,8 @@
   "reliability": {
     "crash_report_count": 3,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-25T19:55:07.218514Z",
-    "restart_count": 15
+    "last_started_at_utc": "2026-08-26T06:18:27.376516Z",
+    "restart_count": 16
   },
   "schema_version": "1.0",
   "stats": {
@@ -1322,15 +1322,15 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "market_data_state": "DISCONNECTED",
-    "message": "Live process pid 844574 is not running.",
-    "service_state": "OFFLINE"
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "market_data_state": "LIVE",
+    "message": "Armed and watching for entries.",
+    "service_state": "ARMED"
   },
   "warmup_replay": {
-    "bars_replayed": 789,
-    "elapsed_wall_seconds": 36591.08,
-    "queue_wait_max_ms": 15196.9
+    "bars_replayed": 239,
+    "elapsed_wall_seconds": 10.3,
+    "queue_wait_max_ms": 10001.7
   }
 }
