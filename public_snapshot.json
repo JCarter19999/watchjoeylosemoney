@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-27T14:15:27.175654Z",
+  "data_as_of_utc": "2026-08-27T14:30:27.971765Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -216,8 +216,20 @@
     "submit_to_fill_ms_median": 529.8,
     "submit_to_fill_ms_p95": 567.6
   },
-  "generated_at_utc": "2026-08-27T14:15:27.175654Z",
+  "generated_at_utc": "2026-08-27T14:30:27.971765Z",
   "guardian_transitions": [
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-27T14:22:38.549555Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-27T14:22:38.204177Z"
+    },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation ok: both flat",
@@ -355,18 +367,6 @@
       "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
       "to_state": "ARMED",
       "ts_utc": "2026-08-27T10:01:32.947465Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-08-27T09:49:37.953996Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-27T09:49:37.603621Z"
     }
   ],
   "latency_health": {
@@ -741,8 +741,8 @@
   "reliability": {
     "crash_report_count": 4,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-27T14:09:24.478310Z",
-    "restart_count": 21
+    "last_started_at_utc": "2026-08-27T14:22:36.934200Z",
+    "restart_count": 22
   },
   "schema_version": "1.0",
   "stats": {
@@ -770,8 +770,8 @@
     "service_state": "STARTING"
   },
   "warmup_replay": {
-    "bars_replayed": 120,
-    "elapsed_wall_seconds": 355.39,
-    "queue_wait_max_ms": 355188.1
+    "bars_replayed": 154,
+    "elapsed_wall_seconds": 464.73,
+    "queue_wait_max_ms": 464509.5
   }
 }
