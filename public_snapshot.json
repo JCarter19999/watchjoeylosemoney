@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-28T16:45:35.007321Z",
+  "data_as_of_utc": "2026-08-28T17:00:27.291740Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -498,8 +498,20 @@
     "submit_to_fill_ms_median": 520.4,
     "submit_to_fill_ms_p95": 560.8
   },
-  "generated_at_utc": "2026-08-28T16:45:35.007321Z",
+  "generated_at_utc": "2026-08-28T17:00:27.291740Z",
   "guardian_transitions": [
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-28T16:50:16.293812Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-28T16:50:15.959840Z"
+    },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation ok: both flat",
@@ -637,18 +649,6 @@
       "reason": "position closed normally: exit filled, reason=TARGET",
       "to_state": "ARMED",
       "ts_utc": "2026-08-28T15:01:03.618318Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29756.0",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-28T14:52:05.867125Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=TARGET",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-28T14:48:03.577808Z"
     }
   ],
   "latency_health": {
@@ -1023,8 +1023,8 @@
   "reliability": {
     "crash_report_count": 8,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-28T16:25:14.055928Z",
-    "restart_count": 30
+    "last_started_at_utc": "2026-08-28T16:50:13.791045Z",
+    "restart_count": 31
   },
   "schema_version": "1.0",
   "stats": {
@@ -1048,12 +1048,12 @@
     "execution_enabled": false,
     "guardian_state": "NA",
     "market_data_state": "DISCONNECTED",
-    "message": "Live process pid 906350 is not running.",
+    "message": "Live process pid 907670 is not running.",
     "service_state": "OFFLINE"
   },
   "warmup_replay": {
-    "bars_replayed": 196,
-    "elapsed_wall_seconds": 1206.84,
-    "queue_wait_max_ms": 1206534.6
+    "bars_replayed": 26,
+    "elapsed_wall_seconds": 150.73,
+    "queue_wait_max_ms": 150629.3
   }
 }
