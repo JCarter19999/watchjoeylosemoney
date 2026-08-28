@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-28T16:31:36.831097Z",
+  "data_as_of_utc": "2026-08-28T16:45:35.007321Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -498,7 +498,7 @@
     "submit_to_fill_ms_median": 520.4,
     "submit_to_fill_ms_p95": 560.8
   },
-  "generated_at_utc": "2026-08-28T16:31:36.831097Z",
+  "generated_at_utc": "2026-08-28T16:45:35.007321Z",
   "guardian_transitions": [
     {
       "from_state": "RECONCILING",
@@ -1045,15 +1045,15 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": true,
-    "guardian_state": "DISARMED",
-    "market_data_state": "LIVE",
-    "message": "Warming up (filling its rolling buffer, not armed yet).",
-    "service_state": "STARTING"
+    "execution_enabled": false,
+    "guardian_state": "NA",
+    "market_data_state": "DISCONNECTED",
+    "message": "Live process pid 906350 is not running.",
+    "service_state": "OFFLINE"
   },
   "warmup_replay": {
-    "bars_replayed": 58,
-    "elapsed_wall_seconds": 351.07,
-    "queue_wait_max_ms": 350964.3
+    "bars_replayed": 196,
+    "elapsed_wall_seconds": 1206.84,
+    "queue_wait_max_ms": 1206534.6
   }
 }
