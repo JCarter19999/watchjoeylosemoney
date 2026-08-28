@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-28T15:45:54.062758Z",
+  "data_as_of_utc": "2026-08-28T16:01:40.171144Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -498,8 +498,56 @@
     "submit_to_fill_ms_median": 520.4,
     "submit_to_fill_ms_p95": 560.8
   },
-  "generated_at_utc": "2026-08-28T15:45:54.062758Z",
+  "generated_at_utc": "2026-08-28T16:01:40.171144Z",
   "guardian_transitions": [
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-28T16:00:09.487026Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-28T16:00:09.143816Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-28T15:55:09.050534Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-28T15:55:08.698882Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-28T15:52:51.207380Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-28T15:52:50.850978Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation FAILED: ledger=flat broker=('sell', 1.0)",
+      "to_state": "LOCKED",
+      "ts_utc": "2026-08-28T15:50:08.345034Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-28T15:50:08.173489Z"
+    },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation FAILED: ledger=flat broker=('sell', 1.0)",
@@ -601,54 +649,6 @@
       "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
       "to_state": "ARMED",
       "ts_utc": "2026-08-28T14:33:04.086032Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29644.0",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-28T14:31:21.876234Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-28T14:28:03.612818Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29639.5",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-28T14:27:14.139921Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-28T14:25:08.097672Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29666.75",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-28T14:23:05.745672Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-28T14:21:03.528406Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29576.25",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-28T14:07:05.727636Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=TARGET",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-28T14:06:03.625084Z"
     }
   ],
   "latency_health": {
@@ -1021,10 +1021,10 @@
   },
   "publication_delay_minutes": 0,
   "reliability": {
-    "crash_report_count": 5,
+    "crash_report_count": 8,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-28T15:45:07.514001Z",
-    "restart_count": 25
+    "last_started_at_utc": "2026-08-28T16:00:07.717978Z",
+    "restart_count": 29
   },
   "schema_version": "1.0",
   "stats": {
@@ -1046,14 +1046,14 @@
   "status": {
     "data_delayed": false,
     "execution_enabled": true,
-    "guardian_state": "FAULT",
+    "guardian_state": "DISARMED",
     "market_data_state": "LIVE",
-    "message": "Locked -- needs an explicit resume or a restart.",
-    "service_state": "FAULT"
+    "message": "Warming up (filling its rolling buffer, not armed yet).",
+    "service_state": "STARTING"
   },
   "warmup_replay": {
-    "bars_replayed": 14,
-    "elapsed_wall_seconds": 35.93,
-    "queue_wait_max_ms": 35835.4
+    "bars_replayed": 12,
+    "elapsed_wall_seconds": 49.46,
+    "queue_wait_max_ms": 49368.7
   }
 }
