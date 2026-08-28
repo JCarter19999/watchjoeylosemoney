@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-28T15:00:27.078292Z",
+  "data_as_of_utc": "2026-08-28T15:15:27.020535Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -402,29 +402,47 @@
       "drawdown_usd": 288.74,
       "equity_usd": 131.44,
       "ts_utc": "2026-08-28T14:48:03.577348+00:00"
+    },
+    {
+      "cum_pnl_usd": 336.0,
+      "drawdown_usd": 84.18,
+      "equity_usd": 336.0,
+      "ts_utc": "2026-08-28T15:01:03.617919+00:00"
+    },
+    {
+      "cum_pnl_usd": 380.56,
+      "drawdown_usd": 39.62,
+      "equity_usd": 380.56,
+      "ts_utc": "2026-08-28T15:04:04.164798+00:00"
+    },
+    {
+      "cum_pnl_usd": 263.12,
+      "drawdown_usd": 157.06,
+      "equity_usd": 263.12,
+      "ts_utc": "2026-08-28T15:13:03.534147+00:00"
     }
   ],
   "execution_health": {
-    "current_cost_multiplier": 2.2593,
+    "current_cost_multiplier": 1.0432,
     "current_disable": false,
     "current_warning": false,
-    "mean_slippage_dollars_running": 3.2986,
+    "mean_slippage_dollars_running": 0.8665,
     "note": "execution_health_disable is informational only as of 2026-08-19 -- does not halt trading",
     "trailing_10_cost_multipliers": [
-      1.7228,
-      5.86,
-      6.61,
       1.9433,
       -0.515,
       2.31,
       4.1933,
       3.302,
       2.528,
-      2.2593
+      2.2593,
+      2.1194,
+      2.1508,
+      1.0432
     ]
   },
   "execution_telemetry": {
-    "sample_size": 67,
+    "sample_size": 70,
     "slippage_by_exit_reason": {
       "EMERGENCY_FLATTEN": {
         "mean_ticks": 8.0,
@@ -432,19 +450,19 @@
         "n": 1
       },
       "STOP": {
-        "mean_ticks": -6.5824,
-        "median_ticks": -9.0,
-        "n": 18
+        "mean_ticks": -4.9503,
+        "median_ticks": 0.0,
+        "n": 19
       },
       "STOP_TIGHTENED": {
-        "mean_ticks": 7.92,
-        "median_ticks": 9.0,
-        "n": 25
+        "mean_ticks": 4.0,
+        "median_ticks": 5.0,
+        "n": 26
       },
       "TARGET": {
-        "mean_ticks": 12.0083,
-        "median_ticks": 4.9009,
-        "n": 14
+        "mean_ticks": 12.1971,
+        "median_ticks": 8.0,
+        "n": 15
       },
       "TIME": {
         "mean_ticks": 10.7778,
@@ -452,18 +470,54 @@
         "n": 9
       }
     },
-    "slippage_ticks_mean": 5.2632,
+    "slippage_ticks_mean": 4.2557,
     "slippage_ticks_median": 5.0,
     "slippage_ticks_p95": 68.0,
-    "slippage_usd_mean": 2.6316,
+    "slippage_usd_mean": 2.1279,
     "slippage_usd_median": 2.5,
     "submit_to_ack_ms_median": 4.7,
     "submit_to_ack_ms_p95": 182.2,
-    "submit_to_fill_ms_median": 521.4,
+    "submit_to_fill_ms_median": 519.3,
     "submit_to_fill_ms_p95": 563.4
   },
-  "generated_at_utc": "2026-08-28T15:00:27.078292Z",
+  "generated_at_utc": "2026-08-28T15:15:27.020535Z",
   "guardian_transitions": [
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 29759.0",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-28T15:14:05.882130Z"
+    },
+    {
+      "from_state": "IN_POSITION",
+      "reason": "position closed normally: exit filled, reason=STOP",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-28T15:13:03.534574Z"
+    },
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 29771.25",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-28T15:09:07.897235Z"
+    },
+    {
+      "from_state": "IN_POSITION",
+      "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-28T15:04:04.165199Z"
+    },
+    {
+      "from_state": "ARMED",
+      "reason": "entry filled: entry filled @ 29787.75",
+      "to_state": "IN_POSITION",
+      "ts_utc": "2026-08-28T15:02:09.820833Z"
+    },
+    {
+      "from_state": "IN_POSITION",
+      "reason": "position closed normally: exit filled, reason=TARGET",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-28T15:01:03.618318Z"
+    },
     {
       "from_state": "ARMED",
       "reason": "entry filled: entry filled @ 29756.0",
@@ -577,97 +631,97 @@
       "reason": "entry filled: entry filled @ 29689.75",
       "to_state": "IN_POSITION",
       "ts_utc": "2026-08-28T13:43:19.428881Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=TARGET",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-28T13:42:06.331451Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29626.5",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-28T13:38:15.363868Z"
-    },
-    {
-      "from_state": "WARMUP",
-      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-28T13:35:31.150523Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-08-28T13:20:20.357947Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-08-28T13:20:20.011121Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-08-28T13:10:31.900462Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 85,
-    "cpu_median_pct": 9.2,
-    "load1_median": 0.27,
+    "bars_sampled": 100,
+    "cpu_median_pct": 9.1,
+    "load1_median": 0.26,
     "stages": {
       "get_account_http_ms": {
         "median_ms": 0.0,
-        "n": 11,
+        "n": 14,
         "p95_ms": 0.0,
         "p99_ms": 0.0
       },
       "ingest_and_decision_ms": {
-        "median_ms": 5037.7,
-        "n": 85,
+        "median_ms": 4996.6,
+        "n": 100,
         "p95_ms": 18302.9,
         "p99_ms": 31399.2
       },
       "poll_until_filled_ms": {
         "median_ms": 0.0,
-        "n": 11,
+        "n": 14,
         "p95_ms": 0.0,
         "p99_ms": 0.0
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": 170.8,
-        "n": 11,
-        "p95_ms": 176.9,
-        "p99_ms": 176.9
+        "median_ms": 171.0,
+        "n": 14,
+        "p95_ms": 177.1,
+        "p99_ms": 177.1
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 85,
+        "n": 100,
         "p95_ms": 0.8,
         "p99_ms": 1.4
       },
       "submit_order_ms": {
         "median_ms": 517.9,
-        "n": 11,
+        "n": 14,
         "p95_ms": 16572.1,
         "p99_ms": 16572.1
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 15460.0,
-        "n": 11,
+        "median_ms": 14421.5,
+        "n": 14,
         "p95_ms": 32067.6,
         "p99_ms": 32067.6
       }
     },
-    "stalls_over_2s": 85,
-    "stalls_over_750ms": 85,
+    "stalls_over_2s": 100,
+    "stalls_over_750ms": 100,
     "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": 9,
+      "closed_at_utc": "2026-08-28T15:13:03.534147+00:00",
+      "duration_seconds": 235.637663,
+      "exit_reason": "STOP",
+      "expected_net_pnl_model_usd": 1.691,
+      "mode": "DEMO",
+      "pnl_usd": -117.44,
+      "session_date": "2026-08-28",
+      "side": "LONG",
+      "sized_qty": 2.0
+    },
+    {
+      "c_same_at_entry": 7,
+      "closed_at_utc": "2026-08-28T15:04:04.164798+00:00",
+      "duration_seconds": 114.344779,
+      "exit_reason": "STOP_TIGHTENED",
+      "expected_net_pnl_model_usd": 1.691,
+      "mode": "DEMO",
+      "pnl_usd": 44.56,
+      "session_date": "2026-08-28",
+      "side": "LONG",
+      "sized_qty": 2.0
+    },
+    {
+      "c_same_at_entry": 10,
+      "closed_at_utc": "2026-08-28T15:01:03.617919+00:00",
+      "duration_seconds": 537.751305,
+      "exit_reason": "TARGET",
+      "expected_net_pnl_model_usd": 1.691,
+      "mode": "DEMO",
+      "pnl_usd": 204.56,
+      "session_date": "2026-08-28",
+      "side": "LONG",
+      "sized_qty": 2.0
+    },
     {
       "c_same_at_entry": 16,
       "closed_at_utc": "2026-08-28T14:48:03.577348+00:00",
@@ -931,42 +985,6 @@
       "session_date": "2026-08-27",
       "side": "SHORT",
       "sized_qty": 2.0
-    },
-    {
-      "c_same_at_entry": 1,
-      "closed_at_utc": "2026-08-27T18:28:04.021065+00:00",
-      "duration_seconds": 168.665005,
-      "exit_reason": "TARGET",
-      "expected_net_pnl_model_usd": 1.691,
-      "mode": "DEMO",
-      "pnl_usd": 51.78,
-      "session_date": "2026-08-27",
-      "side": "SHORT",
-      "sized_qty": 1.0
-    },
-    {
-      "c_same_at_entry": 7,
-      "closed_at_utc": "2026-08-27T18:17:04.216864+00:00",
-      "duration_seconds": 111.556719,
-      "exit_reason": "STOP_TIGHTENED",
-      "expected_net_pnl_model_usd": 1.691,
-      "mode": "DEMO",
-      "pnl_usd": 19.56,
-      "session_date": "2026-08-27",
-      "side": "SHORT",
-      "sized_qty": 2.0
-    },
-    {
-      "c_same_at_entry": 4,
-      "closed_at_utc": "2026-08-27T18:08:04.366569+00:00",
-      "duration_seconds": 114.354924,
-      "exit_reason": "STOP_TIGHTENED",
-      "expected_net_pnl_model_usd": 1.691,
-      "mode": "DEMO",
-      "pnl_usd": 14.56,
-      "session_date": "2026-08-27",
-      "side": "SHORT",
-      "sized_qty": 2.0
     }
   ],
   "mode": "DEMO",
@@ -993,19 +1011,19 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 67,
-    "closed_trades_today": 11,
-    "current_drawdown_usd": 288.74,
-    "display_equity_usd": 131.44,
+    "closed_trades_all_time": 70,
+    "closed_trades_today": 14,
+    "current_drawdown_usd": 157.06,
+    "display_equity_usd": 263.12,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 1.9618,
-    "losses": 39,
+    "expectancy_usd": 3.7589,
+    "losses": 40,
     "max_drawdown_usd": 559.3,
-    "profit_factor": 1.0811,
-    "realized_pnl_all_time_usd": 131.44,
-    "realized_pnl_today_usd": -15.9,
-    "win_rate": 0.4179,
-    "wins": 28
+    "profit_factor": 1.1514,
+    "realized_pnl_all_time_usd": 263.12,
+    "realized_pnl_today_usd": 115.78,
+    "win_rate": 0.4286,
+    "wins": 30
   },
   "status": {
     "data_delayed": false,
