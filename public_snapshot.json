@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-28T01:00:27.285645Z",
+  "data_as_of_utc": "2026-08-28T01:15:26.705028Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -402,7 +402,7 @@
     "submit_to_fill_ms_median": 523.6,
     "submit_to_fill_ms_p95": 560.8
   },
-  "generated_at_utc": "2026-08-28T01:00:27.285645Z",
+  "generated_at_utc": "2026-08-28T01:15:26.705028Z",
   "guardian_transitions": [
     {
       "from_state": "IN_POSITION",
@@ -556,7 +556,7 @@
     }
   ],
   "latency_health": {
-    "bars_sampled": 565,
+    "bars_sampled": 580,
     "cpu_median_pct": 6.1,
     "load1_median": 0.13,
     "stages": {
@@ -567,8 +567,8 @@
         "p99_ms": 0.0
       },
       "ingest_and_decision_ms": {
-        "median_ms": 3583.9,
-        "n": 565,
+        "median_ms": 3547.5,
+        "n": 580,
         "p95_ms": 9423.7,
         "p99_ms": 12249.5
       },
@@ -586,7 +586,7 @@
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 565,
+        "n": 580,
         "p95_ms": 0.2,
         "p99_ms": 0.4
       },
@@ -603,8 +603,8 @@
         "p99_ms": 15644.3
       }
     },
-    "stalls_over_2s": 565,
-    "stalls_over_750ms": 565,
+    "stalls_over_2s": 580,
+    "stalls_over_750ms": 580,
     "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
