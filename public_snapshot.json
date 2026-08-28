@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-28T17:00:27.291740Z",
+  "data_as_of_utc": "2026-08-28T17:15:27.497485Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -498,8 +498,20 @@
     "submit_to_fill_ms_median": 520.4,
     "submit_to_fill_ms_p95": 560.8
   },
-  "generated_at_utc": "2026-08-28T17:00:27.291740Z",
+  "generated_at_utc": "2026-08-28T17:15:27.497485Z",
   "guardian_transitions": [
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-28T17:07:16.000921Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-28T17:07:15.650391Z"
+    },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation ok: both flat",
@@ -637,18 +649,6 @@
       "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
       "to_state": "ARMED",
       "ts_utc": "2026-08-28T15:04:04.165199Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29787.75",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-28T15:02:09.820833Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=TARGET",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-28T15:01:03.618318Z"
     }
   ],
   "latency_health": {
@@ -1023,8 +1023,8 @@
   "reliability": {
     "crash_report_count": 8,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-28T16:50:13.791045Z",
-    "restart_count": 31
+    "last_started_at_utc": "2026-08-28T17:07:14.334366Z",
+    "restart_count": 32
   },
   "schema_version": "1.0",
   "stats": {
@@ -1045,15 +1045,15 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "market_data_state": "DISCONNECTED",
-    "message": "Live process pid 907670 is not running.",
-    "service_state": "OFFLINE"
+    "execution_enabled": true,
+    "guardian_state": "DISARMED",
+    "market_data_state": "LIVE",
+    "message": "Warming up (filling its rolling buffer, not armed yet).",
+    "service_state": "STARTING"
   },
   "warmup_replay": {
-    "bars_replayed": 26,
-    "elapsed_wall_seconds": 150.73,
-    "queue_wait_max_ms": 150629.3
+    "bars_replayed": 165,
+    "elapsed_wall_seconds": 485.91,
+    "queue_wait_max_ms": 485685.2
   }
 }
