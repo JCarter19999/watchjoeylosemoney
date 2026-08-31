@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-31T06:15:26.973171Z",
+  "data_as_of_utc": "2026-08-31T06:30:27.276962Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -732,8 +732,26 @@
     "submit_to_fill_ms_median": 512.6,
     "submit_to_fill_ms_p95": 558.2
   },
-  "generated_at_utc": "2026-08-31T06:15:26.973171Z",
+  "generated_at_utc": "2026-08-31T06:30:27.276962Z",
   "guardian_transitions": [
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-08-31T06:29:22.611936Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-08-31T06:17:38.640099Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-08-31T06:17:38.290752Z"
+    },
     {
       "from_state": "IN_POSITION",
       "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
@@ -865,76 +883,58 @@
       "reason": "entry filled: entry filled @ 29314.75",
       "to_state": "IN_POSITION",
       "ts_utc": "2026-08-31T01:16:08.043554Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-31T01:15:04.251659Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29307.0",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-08-31T01:13:16.178643Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-08-31T01:07:03.527945Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 487,
-    "cpu_median_pct": 6.8,
-    "load1_median": 0.12,
+    "bars_sampled": 1,
+    "cpu_median_pct": 10.3,
+    "load1_median": 0.59,
     "stages": {
       "get_account_http_ms": {
-        "median_ms": 0.0,
-        "n": 25,
-        "p95_ms": 0.0,
-        "p99_ms": 0.0
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": 3628.3,
-        "n": 487,
-        "p95_ms": 5916.4,
-        "p99_ms": 11464.8
+        "median_ms": 3744.9,
+        "n": 1,
+        "p95_ms": 3744.9,
+        "p99_ms": 3744.9
       },
       "poll_until_filled_ms": {
-        "median_ms": 0.0,
-        "n": 25,
-        "p95_ms": 0.0,
-        "p99_ms": 0.0
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "post_entry_reconciliation_ms": {
-        "median_ms": 170.7,
-        "n": 25,
-        "p95_ms": 178.7,
-        "p99_ms": 179.6
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 487,
-        "p95_ms": 0.2,
-        "p99_ms": 0.5
+        "n": 1,
+        "p95_ms": 0.1,
+        "p99_ms": 0.1
       },
       "submit_order_ms": {
-        "median_ms": 500.5,
-        "n": 25,
-        "p95_ms": 532.2,
-        "p99_ms": 699.7
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       },
       "total_bar_to_submit_ms": {
-        "median_ms": 6608.2,
-        "n": 25,
-        "p95_ms": 16414.3,
-        "p99_ms": 16868.2
+        "median_ms": null,
+        "n": 0,
+        "p95_ms": null,
+        "p99_ms": null
       }
     },
-    "stalls_over_2s": 487,
-    "stalls_over_750ms": 487,
+    "stalls_over_2s": 1,
+    "stalls_over_750ms": 1,
     "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
@@ -1257,8 +1257,8 @@
   "reliability": {
     "crash_report_count": 8,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-08-30T22:08:10.679540Z",
-    "restart_count": 33
+    "last_started_at_utc": "2026-08-31T06:17:36.970901Z",
+    "restart_count": 34
   },
   "schema_version": "1.0",
   "stats": {
@@ -1286,8 +1286,8 @@
     "service_state": "ARMED"
   },
   "warmup_replay": {
-    "bars_replayed": 8,
-    "elapsed_wall_seconds": 20.32,
-    "queue_wait_max_ms": 20302.2
+    "bars_replayed": 251,
+    "elapsed_wall_seconds": 700.11,
+    "queue_wait_max_ms": 665609.0
   }
 }
