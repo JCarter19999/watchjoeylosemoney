@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-08-31T23:45:26.489544Z",
+  "data_as_of_utc": "2026-09-01T00:00:27.357756Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -996,7 +996,7 @@
     "submit_to_fill_ms_median": 512.2,
     "submit_to_fill_ms_p95": 554.4
   },
-  "generated_at_utc": "2026-08-31T23:45:26.489544Z",
+  "generated_at_utc": "2026-09-01T00:00:27.357756Z",
   "guardian_transitions": [
     {
       "from_state": "WARMUP",
@@ -1150,9 +1150,9 @@
     }
   ],
   "latency_health": {
-    "bars_sampled": 97,
+    "bars_sampled": 112,
     "cpu_median_pct": 4.9,
-    "load1_median": 0.08,
+    "load1_median": 0.06,
     "stages": {
       "get_account_http_ms": {
         "median_ms": null,
@@ -1161,10 +1161,10 @@
         "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": 2890.9,
-        "n": 97,
-        "p95_ms": 3610.5,
-        "p99_ms": 4283.0
+        "median_ms": 2893.2,
+        "n": 112,
+        "p95_ms": 3635.1,
+        "p99_ms": 3934.6
       },
       "poll_until_filled_ms": {
         "median_ms": null,
@@ -1180,9 +1180,9 @@
       },
       "queue_wait_ms": {
         "median_ms": 0.1,
-        "n": 97,
+        "n": 112,
         "p95_ms": 0.2,
-        "p99_ms": 0.4
+        "p99_ms": 0.3
       },
       "submit_order_ms": {
         "median_ms": null,
@@ -1197,8 +1197,8 @@
         "p99_ms": null
       }
     },
-    "stalls_over_2s": 97,
-    "stalls_over_750ms": 97,
+    "stalls_over_2s": 112,
+    "stalls_over_750ms": 112,
     "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
@@ -1528,7 +1528,7 @@
   "stats": {
     "breakeven": 0,
     "closed_trades_all_time": 156,
-    "closed_trades_today": 64,
+    "closed_trades_today": 0,
     "current_drawdown_usd": 250.52,
     "display_equity_usd": 648.82,
     "display_starting_equity_usd": 0.0,
@@ -1537,7 +1537,7 @@
     "max_drawdown_usd": 559.3,
     "profit_factor": 1.1911,
     "realized_pnl_all_time_usd": 648.82,
-    "realized_pnl_today_usd": 299.2,
+    "realized_pnl_today_usd": 0,
     "win_rate": 0.4295,
     "wins": 67
   },
