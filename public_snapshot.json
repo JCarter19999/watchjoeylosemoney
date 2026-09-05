@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-05T10:45:28.280716Z",
+  "data_as_of_utc": "2026-09-05T11:00:27.718081Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -2274,7 +2274,7 @@
     "submit_to_fill_ms_median": 509.3,
     "submit_to_fill_ms_p95": 550.5
   },
-  "generated_at_utc": "2026-09-05T10:45:28.280716Z",
+  "generated_at_utc": "2026-09-05T11:00:27.718081Z",
   "guardian_transitions": [
     {
       "from_state": "IN_POSITION",
@@ -2821,11 +2821,11 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": true,
-    "guardian_state": "ARMED",
-    "market_data_state": "LIVE",
-    "message": "Armed and watching for entries.",
-    "service_state": "ARMED"
+    "execution_enabled": false,
+    "guardian_state": "NA",
+    "market_data_state": "DISCONNECTED",
+    "message": "Live process pid 1007566 is not running.",
+    "service_state": "OFFLINE"
   },
   "warmup_replay": {
     "bars_replayed": 187,
