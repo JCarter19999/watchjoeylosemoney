@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-05T17:45:27.516892Z",
+  "data_as_of_utc": "2026-09-05T18:00:28.037824Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -2274,7 +2274,7 @@
     "submit_to_fill_ms_median": 509.3,
     "submit_to_fill_ms_p95": 550.5
   },
-  "generated_at_utc": "2026-09-05T17:45:27.516892Z",
+  "generated_at_utc": "2026-09-05T18:00:28.037824Z",
   "guardian_transitions": [
     {
       "from_state": "IN_POSITION",
