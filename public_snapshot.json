@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-06T14:00:26.856783Z",
+  "data_as_of_utc": "2026-09-06T14:15:27.181133Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -2274,8 +2274,20 @@
     "submit_to_fill_ms_median": 509.3,
     "submit_to_fill_ms_p95": 550.5
   },
-  "generated_at_utc": "2026-09-06T14:00:26.856783Z",
+  "generated_at_utc": "2026-09-06T14:15:27.181133Z",
   "guardian_transitions": [
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-09-06T14:09:12.328565Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-09-06T14:09:11.983581Z"
+    },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation ok: both flat",
@@ -2413,18 +2425,6 @@
       "reason": "position closed normally: exit filled, reason=TIME",
       "to_state": "ARMED",
       "ts_utc": "2026-09-04T17:59:12.381474Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29484.5",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-09-04T17:44:26.976658Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=TARGET",
-      "to_state": "ARMED",
-      "ts_utc": "2026-09-04T17:43:06.690701Z"
     }
   ],
   "latency_health": {
@@ -2799,8 +2799,8 @@
   "reliability": {
     "crash_report_count": 8,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-09-06T13:41:56.680744Z",
-    "restart_count": 42
+    "last_started_at_utc": "2026-09-06T14:09:11.461945Z",
+    "restart_count": 43
   },
   "schema_version": "1.0",
   "stats": {
