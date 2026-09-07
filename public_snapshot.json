@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-07T20:15:27.389218Z",
+  "data_as_of_utc": "2026-09-07T20:30:27.416038Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -2598,8 +2598,26 @@
     "submit_to_fill_ms_median": 508.4,
     "submit_to_fill_ms_p95": 550.3
   },
-  "generated_at_utc": "2026-09-07T20:15:27.389218Z",
+  "generated_at_utc": "2026-09-07T20:30:27.416038Z",
   "guardian_transitions": [
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-09-07T20:26:50.303552Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-09-07T20:25:16.307912Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-09-07T20:25:15.967455Z"
+    },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation ok: both flat",
@@ -2731,24 +2749,6 @@
       "reason": "entry filled: entry filled @ 29601.5",
       "to_state": "IN_POSITION",
       "ts_utc": "2026-09-07T16:33:01.125865Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
-      "to_state": "ARMED",
-      "ts_utc": "2026-09-07T16:29:01.410536Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29593.75",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-09-07T16:27:01.147284Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP_TIGHTENED",
-      "to_state": "ARMED",
-      "ts_utc": "2026-09-07T16:21:01.344598Z"
     }
   ],
   "latency_health": {
@@ -3123,8 +3123,8 @@
   "reliability": {
     "crash_report_count": 8,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-09-07T20:00:11.770677Z",
-    "restart_count": 54
+    "last_started_at_utc": "2026-09-07T20:25:14.607818Z",
+    "restart_count": 55
   },
   "schema_version": "1.0",
   "stats": {
@@ -3146,14 +3146,14 @@
   "status": {
     "data_delayed": false,
     "execution_enabled": true,
-    "guardian_state": "DISARMED",
+    "guardian_state": "ARMED",
     "market_data_state": "LIVE",
-    "message": "Warming up (filling its rolling buffer, not armed yet).",
-    "service_state": "STARTING"
+    "message": "Armed and watching for entries.",
+    "service_state": "ARMED"
   },
   "warmup_replay": {
-    "bars_replayed": 59,
-    "elapsed_wall_seconds": 174.15,
-    "queue_wait_max_ms": 174051.2
+    "bars_replayed": 34,
+    "elapsed_wall_seconds": 92.75,
+    "queue_wait_max_ms": 92653.0
   }
 }
