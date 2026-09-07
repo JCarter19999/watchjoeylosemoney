@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-07T21:00:27.572308Z",
+  "data_as_of_utc": "2026-09-07T21:15:27.022515Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -2598,7 +2598,7 @@
     "submit_to_fill_ms_median": 508.4,
     "submit_to_fill_ms_p95": 550.3
   },
-  "generated_at_utc": "2026-09-07T21:00:27.572308Z",
+  "generated_at_utc": "2026-09-07T21:15:27.022515Z",
   "guardian_transitions": [
     {
       "from_state": "WARMUP",
