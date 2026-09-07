@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-07T19:30:26.904588Z",
+  "data_as_of_utc": "2026-09-07T19:45:27.167779Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -2598,8 +2598,20 @@
     "submit_to_fill_ms_median": 508.4,
     "submit_to_fill_ms_p95": 550.3
   },
-  "generated_at_utc": "2026-09-07T19:30:26.904588Z",
+  "generated_at_utc": "2026-09-07T19:45:27.167779Z",
   "guardian_transitions": [
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-09-07T19:40:10.903521Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-09-07T19:40:10.549622Z"
+    },
     {
       "from_state": "RECONCILING",
       "reason": "reconciliation ok: both flat",
@@ -2737,18 +2749,6 @@
       "reason": "position closed normally: exit filled, reason=TARGET",
       "to_state": "ARMED",
       "ts_utc": "2026-09-07T16:16:00.885591Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29594.25",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-09-07T16:02:01.320582Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=STOP",
-      "to_state": "ARMED",
-      "ts_utc": "2026-09-07T16:00:00.834169Z"
     }
   ],
   "latency_health": {
@@ -3123,8 +3123,8 @@
   "reliability": {
     "crash_report_count": 8,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-09-07T19:15:09.002841Z",
-    "restart_count": 52
+    "last_started_at_utc": "2026-09-07T19:40:09.238030Z",
+    "restart_count": 53
   },
   "schema_version": "1.0",
   "stats": {
@@ -3152,8 +3152,8 @@
     "service_state": "STARTING"
   },
   "warmup_replay": {
-    "bars_replayed": 104,
-    "elapsed_wall_seconds": 321.58,
-    "queue_wait_max_ms": 321370.9
+    "bars_replayed": 79,
+    "elapsed_wall_seconds": 222.21,
+    "queue_wait_max_ms": 222103.3
   }
 }
