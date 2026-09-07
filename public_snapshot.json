@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-07T21:45:27.460978Z",
+  "data_as_of_utc": "2026-09-07T22:00:27.458098Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -2598,7 +2598,7 @@
     "submit_to_fill_ms_median": 508.4,
     "submit_to_fill_ms_p95": 550.3
   },
-  "generated_at_utc": "2026-09-07T21:45:27.460978Z",
+  "generated_at_utc": "2026-09-07T22:00:27.458098Z",
   "guardian_transitions": [
     {
       "from_state": "WARMUP",
@@ -3123,8 +3123,8 @@
   "reliability": {
     "crash_report_count": 8,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-09-07T20:45:11.057157Z",
-    "restart_count": 56
+    "last_started_at_utc": "2026-09-07T22:00:08.901057Z",
+    "restart_count": 57
   },
   "schema_version": "1.0",
   "stats": {
@@ -3145,11 +3145,11 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": true,
-    "guardian_state": "ARMED",
-    "market_data_state": "LIVE",
-    "message": "Armed and watching for entries.",
-    "service_state": "ARMED"
+    "execution_enabled": false,
+    "guardian_state": "NA",
+    "market_data_state": "DISCONNECTED",
+    "message": "Live process pid 1106594 is not running.",
+    "service_state": "OFFLINE"
   },
   "warmup_replay": {
     "bars_replayed": 14,
