@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-07T22:00:27.458098Z",
+  "data_as_of_utc": "2026-09-07T22:15:27.832429Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -2598,8 +2598,26 @@
     "submit_to_fill_ms_median": 508.4,
     "submit_to_fill_ms_p95": 550.3
   },
-  "generated_at_utc": "2026-09-07T22:00:27.458098Z",
+  "generated_at_utc": "2026-09-07T22:15:27.832429Z",
   "guardian_transitions": [
+    {
+      "from_state": "WARMUP",
+      "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
+      "to_state": "ARMED",
+      "ts_utc": "2026-09-07T22:05:33.610179Z"
+    },
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-09-07T22:05:09.735991Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-09-07T22:05:09.425960Z"
+    },
     {
       "from_state": "WARMUP",
       "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
@@ -2731,30 +2749,12 @@
       "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
       "to_state": "ARMED",
       "ts_utc": "2026-09-07T17:43:32.983243Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-09-07T17:43:19.414950Z"
-    },
-    {
-      "from_state": "BOOT",
-      "reason": "boot: entering reconciliation",
-      "to_state": "RECONCILING",
-      "ts_utc": "2026-09-07T17:43:19.085760Z"
-    },
-    {
-      "from_state": "RECONCILING",
-      "reason": "reconciliation ok: both flat",
-      "to_state": "WARMUP",
-      "ts_utc": "2026-09-07T17:15:11.341556Z"
     }
   ],
   "latency_health": {
-    "bars_sampled": 0,
-    "cpu_median_pct": null,
-    "load1_median": null,
+    "bars_sampled": 10,
+    "cpu_median_pct": 13.5,
+    "load1_median": 1.09,
     "stages": {
       "get_account_http_ms": {
         "median_ms": null,
@@ -2763,10 +2763,10 @@
         "p99_ms": null
       },
       "ingest_and_decision_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 6481.4,
+        "n": 10,
+        "p95_ms": 11129.9,
+        "p99_ms": 11129.9
       },
       "poll_until_filled_ms": {
         "median_ms": null,
@@ -2781,10 +2781,10 @@
         "p99_ms": null
       },
       "queue_wait_ms": {
-        "median_ms": null,
-        "n": 0,
-        "p95_ms": null,
-        "p99_ms": null
+        "median_ms": 11.1,
+        "n": 10,
+        "p95_ms": 20.0,
+        "p99_ms": 20.0
       },
       "submit_order_ms": {
         "median_ms": null,
@@ -2799,9 +2799,9 @@
         "p99_ms": null
       }
     },
-    "stalls_over_2s": 0,
-    "stalls_over_750ms": 0,
-    "verdict": "INSUFFICIENT_DATA"
+    "stalls_over_2s": 10,
+    "stalls_over_750ms": 10,
+    "verdict": "NEEDS_UPGRADE"
   },
   "latest_trades": [
     {
@@ -3123,8 +3123,8 @@
   "reliability": {
     "crash_report_count": 8,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-09-07T22:00:08.901057Z",
-    "restart_count": 57
+    "last_started_at_utc": "2026-09-07T22:05:07.323153Z",
+    "restart_count": 58
   },
   "schema_version": "1.0",
   "stats": {
@@ -3145,15 +3145,15 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "market_data_state": "DISCONNECTED",
-    "message": "Live process pid 1106594 is not running.",
-    "service_state": "OFFLINE"
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "market_data_state": "LIVE",
+    "message": "Armed and watching for entries.",
+    "service_state": "ARMED"
   },
   "warmup_replay": {
-    "bars_replayed": 14,
-    "elapsed_wall_seconds": 38.61,
-    "queue_wait_max_ms": 38511.3
+    "bars_replayed": 5,
+    "elapsed_wall_seconds": 22.9,
+    "queue_wait_max_ms": 22902.7
   }
 }
