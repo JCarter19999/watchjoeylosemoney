@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-07T20:30:27.416038Z",
+  "data_as_of_utc": "2026-09-07T20:45:55.312205Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 67.56,
@@ -2598,8 +2598,20 @@
     "submit_to_fill_ms_median": 508.4,
     "submit_to_fill_ms_p95": 550.3
   },
-  "generated_at_utc": "2026-09-07T20:30:27.416038Z",
+  "generated_at_utc": "2026-09-07T20:45:55.312205Z",
   "guardian_transitions": [
+    {
+      "from_state": "RECONCILING",
+      "reason": "reconciliation ok: both flat",
+      "to_state": "WARMUP",
+      "ts_utc": "2026-09-07T20:45:12.823024Z"
+    },
+    {
+      "from_state": "BOOT",
+      "reason": "boot: entering reconciliation",
+      "to_state": "RECONCILING",
+      "ts_utc": "2026-09-07T20:45:12.488151Z"
+    },
     {
       "from_state": "WARMUP",
       "reason": "warmup elapsed, healthy: Databento replay completed, backlog drained, stream healthy",
@@ -2737,18 +2749,6 @@
       "reason": "boot: entering reconciliation",
       "to_state": "RECONCILING",
       "ts_utc": "2026-09-07T17:15:11.046903Z"
-    },
-    {
-      "from_state": "IN_POSITION",
-      "reason": "position closed normally: exit filled, reason=TIME",
-      "to_state": "ARMED",
-      "ts_utc": "2026-09-07T16:48:01.509440Z"
-    },
-    {
-      "from_state": "ARMED",
-      "reason": "entry filled: entry filled @ 29601.5",
-      "to_state": "IN_POSITION",
-      "ts_utc": "2026-09-07T16:33:01.125865Z"
     }
   ],
   "latency_health": {
@@ -3123,8 +3123,8 @@
   "reliability": {
     "crash_report_count": 8,
     "first_started_at_utc": "2026-08-17T02:30:34Z",
-    "last_started_at_utc": "2026-09-07T20:25:14.607818Z",
-    "restart_count": 55
+    "last_started_at_utc": "2026-09-07T20:45:11.057157Z",
+    "restart_count": 56
   },
   "schema_version": "1.0",
   "stats": {
@@ -3146,14 +3146,14 @@
   "status": {
     "data_delayed": false,
     "execution_enabled": true,
-    "guardian_state": "ARMED",
+    "guardian_state": "DISARMED",
     "market_data_state": "LIVE",
-    "message": "Armed and watching for entries.",
-    "service_state": "ARMED"
+    "message": "Warming up (filling its rolling buffer, not armed yet).",
+    "service_state": "STARTING"
   },
   "warmup_replay": {
-    "bars_replayed": 34,
-    "elapsed_wall_seconds": 92.75,
-    "queue_wait_max_ms": 92653.0
+    "bars_replayed": 14,
+    "elapsed_wall_seconds": 38.61,
+    "queue_wait_max_ms": 38511.3
   }
 }
