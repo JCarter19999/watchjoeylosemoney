@@ -52,6 +52,13 @@ exec 9>"$LOCK"
 flock -n 9 || exit 0
 
 cd "$LIVE_REPO"
+# 2026-09-08: regenerate the execution-cost report (actual vs backtest-
+# assumed slippage/commission, strictly per-instrument) before exporting --
+# cheap (parses one small JSONL, light numpy percentile math), same
+# light-neighbor discipline as everything else in this cron.
+"$LIVE_REPO/.venv/bin/python3" -m scripts.g1_build_execution_cost_report \
+  --runtime-dir "$(basename "$G1_RUNTIME")" || true
+
 "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_g1_private_snapshot \
   --journal "$G1_RUNTIME/g1_trade_journal.jsonl" \
   --status "$G1_RUNTIME/live_status.json" \

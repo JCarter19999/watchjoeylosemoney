@@ -180,17 +180,22 @@ def render_regime_panel(snapshot: dict[str, Any]) -> None:
     marked against the historical $/day grid for the same cell."""
     extras = snapshot.get("dashboard_extras") or {}
     regime = extras.get("regime")
-    st.subheader("Market regime today")
+    st.subheader("Market regime")
+    st.caption(
+        "Classified once per completed session (00:35 UTC), not live -- ATR percentile and directional "
+        "efficiency are full-session statistics that would be noisy/misleading computed from a partial day."
+    )
     if not regime:
         st.info("No regime classification logged yet (runs once daily).")
         return
+    st.caption(f"Last classified session: {regime['date']}")
 
     today_cell = (
         {"high": "high", "mid": "mid", "low": "low"}.get(regime["atr_regime"], "mid"),
         {"trending": "trend", "choppy": "chop", "mixed": "mixed"}.get(regime["trend_regime"], "mixed"),
     )
     cols = st.columns(3)
-    cols[0].metric("Today's regime", f"{_REGIME_LABELS[today_cell[0]]} / {_REGIME_LABELS[today_cell[1]]}")
+    cols[0].metric("Session regime", f"{_REGIME_LABELS[today_cell[0]]} / {_REGIME_LABELS[today_cell[1]]}")
     cols[1].metric("Directional efficiency", f"{regime['directional_efficiency']:.4f}" if regime.get("directional_efficiency") is not None else "—",
                     help="|net move| / total churn -- near 0 is a round-trip/chop day, near 1 is a pure trend day.")
     cols[2].metric("Session range", f"{regime['session_range_pts']:.0f} pts" if regime.get("session_range_pts") is not None else "—")
@@ -206,7 +211,7 @@ def render_regime_panel(snapshot: dict[str, Any]) -> None:
                 "ATR": _REGIME_LABELS[atr_b], "Persistence": _REGIME_LABELS[trend_b],
                 "Avg $/day (history)": cell.get("avg_day_pnl"),
                 "Days observed": cell.get("n_days"),
-                "": "📍 TODAY" if is_today else "",
+                "": "📍 LAST SESSION" if is_today else "",
             })
         df = pd.DataFrame(rows)
         st.dataframe(
@@ -239,11 +244,15 @@ def render_giveback_panel(snapshot: dict[str, Any]) -> None:
         return
 
     latest = gb["latest_day"]
+    is_live = gb.get("latest_day_is_live", False)
+    label_prefix = "Today's" if is_live else f"{latest['date']}'s (last completed session)"
     cols = st.columns(4)
-    cols[0].metric("Today's peak", money(latest["peak"]))
-    cols[1].metric("Close", money(latest["close"]))
+    cols[0].metric(f"{label_prefix} peak", money(latest["peak"]))
+    cols[1].metric("Close (so far)" if is_live else "Close", money(latest["close"]))
     cols[2].metric("Giveback", f"{latest['giveback_pct']:.1f}%" if latest.get("giveback_pct") is not None else "—")
     cols[3].metric("Sample so far", f"{gb['n_days']} day(s)")
+    if is_live:
+        st.caption("Updates live as trades close today -- not waiting on the once-daily regime log.")
 
     rt1 = gb["rt1_reference"]
     comp = pd.DataFrame([
@@ -260,6 +269,44 @@ def render_giveback_panel(snapshot: dict[str, Any]) -> None:
         "tracking giveback: not whether G1 wins, but whether it keeps more of what it makes. "
         f"G1's own sample ({gb['n_days']} day{'s' if gb['n_days'] != 1 else ''}) is still far too small to "
         "call this settled either way."
+    )
+
+
+def render_execution_panel(snapshot: dict[str, Any]) -> None:
+    """Actual vs backtest-assumed execution cost, STRICTLY per-instrument --
+    NQ and MNQ are never blended into one number, since their fill-capacity
+    question is exactly why the mixed NQ+MNQ mapper exists in the first
+    place. Purely observational data (see g1_execution_telemetry.py);
+    unavailable here just means the telemetry hasn't accumulated yet, not
+    that anything is wrong."""
+    extras = snapshot.get("dashboard_extras") or {}
+    execution = extras.get("execution")
+    st.subheader("Execution: actual vs. assumed")
+    if not execution:
+        st.info("No completed round-trip execution telemetry yet.")
+        return
+
+    for instrument, stats in execution.items():
+        st.markdown(f"**{instrument}** (n={stats['n_complete_round_trips']} complete round trips)")
+        rt = stats["round_trip_slippage_ticks"]
+        cols = st.columns(4)
+        cols[0].metric("Backtest assumed", f"{2 * 1.0:.1f} ticks round trip")
+        cols[1].metric("Live median", f"{rt.get('median'):.2f} ticks" if rt.get("median") is not None else "—")
+        cols[2].metric("Live P90", f"{rt.get('p90'):.2f} ticks" if rt.get("p90") is not None else "—")
+        cols[3].metric(
+            "Incremental cost vs model",
+            money(stats.get("incremental_cost_vs_model_usd")) + "/contract" if stats.get("incremental_cost_vs_model_usd") is not None else "—",
+            delta_color="inverse",
+        )
+        lat = stats.get("entry_fill_latency_ms", {})
+        if lat.get("n"):
+            st.caption(f"Entry fill latency: median {lat['median']:.0f}ms, P90 {lat['p90']:.0f}ms (n={lat['n']}).")
+    st.caption(
+        "Backtest assumes 1 tick/side slippage (2 ticks round trip) plus the official commission "
+        "schedule. \"Incremental cost vs model\" is the actual median round-trip cost minus that "
+        "assumption, per contract -- positive means real execution is dragging more than the backtest "
+        "assumed. NQ and MNQ are always shown separately: this is precisely the question the mixed "
+        "execution mapper depends on getting right at scale."
     )
 
 
@@ -484,6 +531,9 @@ def live_dashboard() -> None:
 
     st.divider()
     render_regime_panel(snapshot)
+
+    st.divider()
+    render_execution_panel(snapshot)
 
     st.divider()
     render_scaling_panel(snapshot)
