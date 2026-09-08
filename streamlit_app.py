@@ -490,9 +490,15 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
         st.info("No closed public trades yet.")
         return
     trades["duration_min"] = trades["duration_seconds"] / 60.0
-    table = trades[[
+    # reindex, not direct [[...]] column selection -- a code deploy can land
+    # on Streamlit Cloud before the next cron-published public_snapshot.json
+    # carries a brand-new field (data updates on a ~15min cycle, independent
+    # of when code deploys), so a column this code expects can be legitimately
+    # absent for a few minutes. reindex fills it with NaN instead of raising
+    # KeyError and taking the whole page down (real incident, 2026-09-08).
+    table = trades.reindex(columns=[
         "closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd", "sized_qty", "mfe_atr", "mae_atr",
-    ]].copy()
+    ]).copy()
     table["closed_at_utc"] = pd.to_datetime(table["closed_at_utc"], utc=True).dt.tz_convert("America/Los_Angeles")
     st.caption(
         "Most recent 25 closed trades. \"Qty\" is the MNQ-equivalent size that trade was sized at. "
