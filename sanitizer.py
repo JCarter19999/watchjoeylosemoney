@@ -307,6 +307,8 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
                 "sized_qty": r.get("sized_qty"),
                 "c_same_at_entry": r.get("c_same_at_entry"),
                 "expected_net_pnl_model_usd": _round(r.get("expected_net_pnl_model")),
+                "mfe_atr": _round(r.get("mfe_atr"), 3),
+                "mae_atr": _round(r.get("mae_atr"), 3),
             }
             for r in visible_trades[-MAX_LATEST_TRADES:][::-1]
         ],

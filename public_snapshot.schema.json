@@ -684,6 +684,18 @@
               "number",
               "null"
             ]
+          },
+          "mfe_atr": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "mae_atr": {
+            "type": [
+              "number",
+              "null"
+            ]
           }
         }
       }

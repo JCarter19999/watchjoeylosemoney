@@ -167,6 +167,32 @@ def render_normality_panel(snapshot: dict[str, Any]) -> None:
     st.progress(min(1.0, n / _QUALIFICATION_TARGET_TRADES))
 
 
+def render_mfe_mae_panel(snapshot: dict[str, Any]) -> None:
+    """MFE/MAE in ATR units -- G1's behavioral fingerprint groundwork.
+    Stayed remarkably stable (~1.7 MFE_ATR / ~1.0 MAE_ATR) across every
+    year 2018-2026 including the very different low-ATR 2018-19 regime,
+    which is what makes it a real signal: if P&L moves but these don't,
+    that's likely a normal unfavorable realization; if these shift even
+    while P&L looks fine, that's the more concerning case."""
+    extras = snapshot.get("dashboard_extras") or {}
+    mm = extras.get("mfe_mae")
+    st.subheader("MFE / MAE fingerprint (early)")
+    if not mm:
+        st.info("No trades with MFE/MAE telemetry yet (added 2026-09-08 -- trades before that don't carry it).")
+        return
+    cols = st.columns(2)
+    cols[0].metric("MFE / ATR (live avg)", f"{mm['live_mfe_atr_mean']:.2f}" if mm.get("live_mfe_atr_mean") is not None else "—",
+                    f"historical {mm['historical_mfe_atr_mean']:.2f}")
+    cols[1].metric("MAE / ATR (live avg)", f"{mm['live_mae_atr_mean']:.2f}" if mm.get("live_mae_atr_mean") is not None else "—",
+                    f"historical {mm['historical_mae_atr_mean']:.2f}")
+    st.caption(
+        f"n={mm['n_trades']} trade(s) with telemetry -- far too small to read anything into a deviation yet. "
+        "This is groundwork for a real comparison once enough forward trades accumulate: these ratios stayed "
+        "nearly identical across every historical regime (2018-19 low-ATR through 2020-26), so a live deviation "
+        "here would be a more specific signal than P&L alone that something about the mechanics changed."
+    )
+
+
 _REGIME_CELL_ORDER = [("high", "chop"), ("high", "mixed"), ("high", "trend"),
                       ("mid", "chop"), ("mid", "mixed"), ("mid", "trend"),
                       ("low", "chop"), ("low", "mixed"), ("low", "trend")]
@@ -465,10 +491,13 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
         return
     trades["duration_min"] = trades["duration_seconds"] / 60.0
     table = trades[[
-        "closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd", "sized_qty",
+        "closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd", "sized_qty", "mfe_atr", "mae_atr",
     ]].copy()
     table["closed_at_utc"] = pd.to_datetime(table["closed_at_utc"], utc=True).dt.tz_convert("America/Los_Angeles")
-    st.caption("Most recent 25 closed trades. \"Qty\" is the MNQ-equivalent size that trade was sized at.")
+    st.caption(
+        "Most recent 25 closed trades. \"Qty\" is the MNQ-equivalent size that trade was sized at. "
+        "MFE/MAE (in ATR units) are blank for trades closed before 2026-09-08's telemetry was added."
+    )
     st.dataframe(
         table,
         width="stretch",
@@ -481,6 +510,8 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
             "duration_min": st.column_config.NumberColumn("Minutes", format="%.1f"),
             "pnl_usd": st.column_config.NumberColumn("P&L", format="$%.2f"),
             "sized_qty": st.column_config.NumberColumn("Qty", format="%.0f"),
+            "mfe_atr": st.column_config.NumberColumn("MFE/ATR", format="%.2f"),
+            "mae_atr": st.column_config.NumberColumn("MAE/ATR", format="%.2f"),
         },
     )
 
@@ -523,6 +554,9 @@ def live_dashboard() -> None:
 
     st.divider()
     render_normality_panel(snapshot)
+
+    st.divider()
+    render_mfe_mae_panel(snapshot)
 
     st.divider()
     st.subheader("Risk")
