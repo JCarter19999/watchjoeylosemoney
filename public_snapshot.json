@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-08T12:15:27.013318Z",
+  "data_as_of_utc": "2026-09-08T12:30:26.424037Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -29,7 +29,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-08T12:15:27.013318Z",
+  "generated_at_utc": "2026-09-08T12:30:26.424037Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -139,6 +139,7 @@
     "data_delayed": false,
     "execution_enabled": true,
     "guardian_state": "NA",
+    "in_position": false,
     "market_data_state": "LIVE",
     "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=1.",
     "service_state": "ARMED"
