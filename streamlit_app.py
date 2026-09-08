@@ -390,6 +390,10 @@ _GUARDIAN_STATE_ICON = {
 def render_guardian_transitions(snapshot: dict[str, Any]) -> None:
     transitions = snapshot["guardian_transitions"]
     st.subheader("Guardian state timeline")
+    if snapshot["status"].get("guardian_state") == "NA":
+        st.info("This strategy has no guardian/supervisor subsystem -- see the status message above "
+                "for its actual armed/execution state.")
+        return
     if not transitions:
         st.info("No state transitions logged yet.")
         return
