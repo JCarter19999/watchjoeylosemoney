@@ -284,14 +284,14 @@ def render_intraday_atr_panel(snapshot: dict[str, Any]) -> None:
     if atr_pts:
         atr_df = pd.DataFrame(atr_pts)
         atr_df["ts_utc"] = pd.to_datetime(atr_df["ts_utc"], utc=True)
-        st.line_chart(atr_df, x="ts_utc", y="atr", x_label="Time (UTC)", y_label="ATR (points)", height=220)
+        st.line_chart(atr_df, x="ts_utc", y="atr", x_label="Time (your local timezone)", y_label="ATR (points)", height=220)
     else:
         st.info("No ATR history logged yet today (telemetry added 2026-09-08 -- accumulates from now on).")
 
     if eq_pts:
         eq_df = pd.DataFrame(eq_pts)
         eq_df["ts_utc"] = pd.to_datetime(eq_df["ts_utc"], utc=True)
-        st.line_chart(eq_df, x="ts_utc", y="cum_pnl", x_label="Time (UTC)", y_label="Cumulative P&L today ($)", height=220)
+        st.line_chart(eq_df, x="ts_utc", y="cum_pnl", x_label="Time (your local timezone)", y_label="Cumulative P&L today ($)", height=220)
 
 
 def render_giveback_panel(snapshot: dict[str, Any]) -> None:
@@ -461,14 +461,14 @@ def render_charts(snapshot: dict[str, Any]) -> None:
 
     st.subheader("Hourly P&L")
     hourly = _resampled_cum_pnl("1h", "hour")
-    st.line_chart(hourly, x="hour", y="cumulative_pnl_usd", x_label="Hour (UTC)", y_label="Cumulative P&L ($)", height=280)
+    st.line_chart(hourly, x="hour", y="cumulative_pnl_usd", x_label="Hour (your local timezone)", y_label="Cumulative P&L ($)", height=280)
 
     st.subheader("Daily P&L")
     daily = _resampled_cum_pnl("1D", "date")
-    st.line_chart(daily, x="date", y="cumulative_pnl_usd", x_label="Date (UTC)", y_label="Cumulative P&L ($)", height=280)
+    st.line_chart(daily, x="date", y="cumulative_pnl_usd", x_label="Date (your local timezone)", y_label="Cumulative P&L ($)", height=280)
 
     st.subheader("Drawdown")
-    st.line_chart(curve, x="ts_utc", y="drawdown_usd", x_label="UTC", y_label="Drawdown ($)", height=240)
+    st.line_chart(curve, x="ts_utc", y="drawdown_usd", x_label="Your local timezone", y_label="Drawdown ($)", height=240)
 
 
 _WEEKDAY_ORDER = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
