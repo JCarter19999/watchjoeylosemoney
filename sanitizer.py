@@ -311,6 +311,12 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
             for r in visible_trades[-MAX_LATEST_TRADES:][::-1]
         ],
         "pnl_waterfall": _visible_waterfall(private, mode, cutoff),
+        # G1-only, loosely-typed (see schema) -- absent/empty for strategies
+        # (e.g. RT1) whose exporter doesn't produce it. Already aggregate-only
+        # (daily/rolling stats, no per-order timestamps), so no LIVE-delay
+        # embargo logic applies here the way it does for trades/waterfall/
+        # guardian_transitions above.
+        "dashboard_extras": private.get("dashboard_extras", {}),
     }
     return public
 

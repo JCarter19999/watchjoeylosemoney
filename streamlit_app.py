@@ -110,6 +110,224 @@ def render_metrics(snapshot: dict[str, Any]) -> None:
     )
 
 
+_QUALIFICATION_TARGET_TRADES = 1500  # max(6wk, 1500 trades) per the frozen forward-qualification protocol
+
+
+def render_normality_panel(snapshot: dict[str, Any]) -> None:
+    """"Is G1 behaving normally?" -- live stats compared against the
+    historical distribution of same-SIZE trade blocks (not the full 66k-trade
+    aggregate), so this is a real percentile, not apples vs oranges."""
+    extras = snapshot.get("dashboard_extras") or {}
+    norm = extras.get("normality")
+    st.subheader("Is G1 behaving normally?")
+    if not norm:
+        st.info("Not enough closed trades yet to compare against history.")
+        return
+
+    n = norm["n_trades"]
+    ref_n = norm.get("reference_n")
+    st.caption(
+        f"Live sample: {n} closed trade(s). Compared against every historical {ref_n}-trade block "
+        f"(overlapping windows, 2020-2026 basis) -- the nearest reference size to today's live sample, "
+        "not the full 66,000-trade aggregate." if ref_n else
+        f"Live sample: {n} closed trade(s). No historical reference available yet."
+    )
+    cols = st.columns(3)
+    cols[0].metric(
+        "Expectancy", money(norm["expectancy_usd"]),
+        f"{norm['expectancy_percentile']:.0f}th percentile" if "expectancy_percentile" in norm else None,
+    )
+    if norm.get("reference_expectancy_p50") is not None:
+        cols[0].caption(f"Historical median at this sample size: {money(norm['reference_expectancy_p50'])}")
+    cols[1].metric(
+        "Profit factor", f"{norm['profit_factor']:.2f}" if norm["profit_factor"] is not None else "—",
+        f"{norm['profit_factor_percentile']:.0f}th percentile" if "profit_factor_percentile" in norm else None,
+    )
+    if norm.get("reference_pf_p50") is not None:
+        cols[1].caption(f"Historical median: {norm['reference_pf_p50']:.2f}")
+    cols[2].metric(
+        "Max drawdown (this sample)", money(norm["mdd_usd"]),
+        f"{norm['mdd_percentile']:.0f}th percentile" if "mdd_percentile" in norm else None,
+        delta_color="inverse",
+    )
+    if norm.get("reference_mdd_p50") is not None:
+        cols[2].caption(
+            f"Historical median {money(norm['reference_mdd_p50'])} · "
+            f"Q95 {money(norm['reference_mdd_p95'])} · Q99 {money(norm['reference_mdd_p99'])}"
+        )
+    st.caption(
+        "Percentile = where the live number falls among every historical window of the same trade "
+        "count, low percentile on expectancy/PF is bad, low percentile on MDD (more negative) is also "
+        "bad. This answers \"is G1 behaving like G1\", not just \"is it making money right now.\""
+    )
+    st.caption(
+        f"Qualification progress: {n:,} / {_QUALIFICATION_TARGET_TRADES:,} trades toward the frozen "
+        "forward-qualification target (max of 6 weeks or 1,500 clean trades)."
+    )
+    st.progress(min(1.0, n / _QUALIFICATION_TARGET_TRADES))
+
+
+_REGIME_CELL_ORDER = [("high", "chop"), ("high", "mixed"), ("high", "trend"),
+                      ("mid", "chop"), ("mid", "mixed"), ("mid", "trend"),
+                      ("low", "chop"), ("low", "mixed"), ("low", "trend")]
+_REGIME_LABELS = {"high": "High ATR", "mid": "Mid ATR", "low": "Low ATR",
+                   "chop": "Choppy", "mixed": "Mixed", "trend": "Trending"}
+
+
+def render_regime_panel(snapshot: dict[str, Any]) -> None:
+    """ATR (opportunity size) x directional efficiency (trend vs chop) --
+    two genuinely separate axes discovered 2026-09-08. Today's session is
+    marked against the historical $/day grid for the same cell."""
+    extras = snapshot.get("dashboard_extras") or {}
+    regime = extras.get("regime")
+    st.subheader("Market regime today")
+    if not regime:
+        st.info("No regime classification logged yet (runs once daily).")
+        return
+
+    today_cell = (
+        {"high": "high", "mid": "mid", "low": "low"}.get(regime["atr_regime"], "mid"),
+        {"trending": "trend", "choppy": "chop", "mixed": "mixed"}.get(regime["trend_regime"], "mixed"),
+    )
+    cols = st.columns(3)
+    cols[0].metric("Today's regime", f"{_REGIME_LABELS[today_cell[0]]} / {_REGIME_LABELS[today_cell[1]]}")
+    cols[1].metric("Directional efficiency", f"{regime['directional_efficiency']:.4f}" if regime.get("directional_efficiency") is not None else "—",
+                    help="|net move| / total churn -- near 0 is a round-trip/chop day, near 1 is a pure trend day.")
+    cols[2].metric("Session range", f"{regime['session_range_pts']:.0f} pts" if regime.get("session_range_pts") is not None else "—")
+
+    all_cells = regime.get("all_cells")
+    if all_cells:
+        rows = []
+        for atr_b, trend_b in _REGIME_CELL_ORDER:
+            key = f"{atr_b}_{trend_b}"
+            cell = all_cells.get(key, {})
+            is_today = (atr_b, trend_b) == today_cell
+            rows.append({
+                "ATR": _REGIME_LABELS[atr_b], "Persistence": _REGIME_LABELS[trend_b],
+                "Avg $/day (history)": cell.get("avg_day_pnl"),
+                "Days observed": cell.get("n_days"),
+                "": "📍 TODAY" if is_today else "",
+            })
+        df = pd.DataFrame(rows)
+        st.dataframe(
+            df, hide_index=True, width="stretch",
+            column_config={
+                "Avg $/day (history)": st.column_config.NumberColumn(format="$%.0f"),
+                "Days observed": st.column_config.NumberColumn(format="%d"),
+            },
+        )
+        hist_cell = regime.get("historical_cell")
+        if hist_cell:
+            st.caption(
+                f"Historically, {_REGIME_LABELS[today_cell[0]].lower()} + {_REGIME_LABELS[today_cell[1]].lower()} "
+                f"days averaged {money(hist_cell['avg_day_pnl'])}/day across {hist_cell['n_days']} such days "
+                "(2020-2026 basis) -- this is the reference to judge today's realized P&L against, not the "
+                "grand average across all regimes."
+            )
+
+
+def render_giveback_panel(snapshot: dict[str, Any]) -> None:
+    """Peak-to-close giveback: how much of an intraday peak survives to the
+    close. Discovered 2026-09-08 as a possibly load-bearing difference vs
+    RT1 -- RT1's real live journal shows a 40% rate of days that closed
+    NEGATIVE despite a real intraday peak; this tracks whether G1 differs."""
+    extras = snapshot.get("dashboard_extras") or {}
+    gb = extras.get("giveback")
+    st.subheader("Peak-to-close giveback")
+    if not gb:
+        st.info("No day with a meaningful intraday peak logged yet.")
+        return
+
+    latest = gb["latest_day"]
+    cols = st.columns(4)
+    cols[0].metric("Today's peak", money(latest["peak"]))
+    cols[1].metric("Close", money(latest["close"]))
+    cols[2].metric("Giveback", f"{latest['giveback_pct']:.1f}%" if latest.get("giveback_pct") is not None else "—")
+    cols[3].metric("Sample so far", f"{gb['n_days']} day(s)")
+
+    rt1 = gb["rt1_reference"]
+    comp = pd.DataFrame([
+        {"Metric": "Median giveback", "G1 (live)": f"{gb['median_giveback_pct']:.1f}%" if gb.get("median_giveback_pct") is not None else "—",
+         "RT1 (live, reference)": f"{rt1['median_giveback_pct']:.1f}%"},
+        {"Metric": ">100% giveback rate", "G1 (live)": pct(gb.get("over_100pct_giveback_rate")),
+         "RT1 (live, reference)": pct(rt1["over_100pct_giveback_rate"])},
+        {"Metric": "n days (peak > $50)", "G1 (live)": str(gb["n_days"]), "RT1 (live, reference)": str(rt1["n_days"])},
+    ])
+    st.dataframe(comp, hide_index=True, width="stretch")
+    st.caption(
+        "\">100% giveback\" means the day closed negative despite a real intraday peak -- RT1's real live "
+        "journal shows this on 4 of 10 meaningful-peak days (40%). This comparison is the actual point of "
+        "tracking giveback: not whether G1 wins, but whether it keeps more of what it makes. "
+        f"G1's own sample ({gb['n_days']} day{'s' if gb['n_days'] != 1 else ''}) is still far too small to "
+        "call this settled either way."
+    )
+
+
+def render_scaling_panel(snapshot: dict[str, Any]) -> None:
+    """Makes the $3,000/contract ratchet tangible without turning the page
+    into a future-yacht calculator -- current tier, next tier, distance,
+    and the risk-capital floor, nothing about the eventual $30M projection."""
+    extras = snapshot.get("dashboard_extras") or {}
+    scaling = extras.get("scaling")
+    st.subheader("Scaling readiness")
+    if not scaling:
+        st.info("No sizer state yet.")
+        return
+
+    deployed = scaling["deployed_qty"]
+    ceiling = scaling["ceiling_qty"]
+    cap = scaling["max_qty_cap"]
+    next_tier = min(cap, ceiling + 1)
+    trigger_usd = 3000.0
+    peak = scaling["peak_equity"]
+    # ceiling = 3 + floor(peak/3000) -> next tier needs peak >= (next_tier-3)*3000
+    distance = max(0.0, (next_tier - 3) * trigger_usd - peak) if ceiling < cap else None
+
+    cols = st.columns(4)
+    cols[0].metric("Currently deployed", f"{deployed} MNQ-eq")
+    cols[1].metric("Earned ceiling", f"{ceiling} MNQ-eq" + (" (AT CAP)" if scaling.get("at_cap") else ""))
+    cols[2].metric("Next tier", f"{next_tier} MNQ-eq" if ceiling < cap else "At cap")
+    cols[3].metric("Distance to next tier", money(distance) if distance is not None else "—")
+
+    if scaling.get("circuit_breaker_active"):
+        st.warning(f"Q99 circuit breaker ACTIVE -- trading at base size ({deployed}) despite an earned ceiling of {ceiling}, "
+                   "because current drawdown exceeds the 99th-percentile expectation for that size.")
+    floor_2x = deployed * 2 * 975.05
+    st.caption(
+        f"Risk-capital floor at current size (2x Q99 MDD/unit): {money(floor_2x)}. "
+        f"Peak realized equity: {money(peak)}. Scaling is a one-way ratchet (+1 unit per $3,000 of peak "
+        "profit) with a Q99 drawdown circuit breaker that can drop to base size temporarily -- it never "
+        "reduces what's been earned, only what's deployed on any single trade."
+    )
+
+
+def render_concentration_panel(snapshot: dict[str, Any]) -> None:
+    extras = snapshot.get("dashboard_extras") or {}
+    conc = extras.get("concentration")
+    hist = extras.get("concentration_historical")
+    st.subheader("Profit concentration")
+    st.caption(
+        "G1's historical distribution is right-skewed by design -- a few big trades carry a lot of the "
+        "total. The question isn't whether forward P&L is concentrated, it's whether it's concentrated "
+        "MORE than history predicts."
+    )
+    rows = []
+    if hist:
+        rows.append({"Basis": "Historical (2020-2026, n=66,145)", "Top 1%": pct(hist["top_1pct_contribution"]),
+                     "Top 5%": pct(hist["top_5pct_contribution"]), "Top 10%": pct(hist["top_10pct_contribution"]),
+                     "P&L excl. best trade": money(hist["pnl_excl_best_trade"])})
+    if conc and not conc.get("insufficient_sample"):
+        rows.append({"Basis": f"Live (n={conc['n_trades']})", "Top 1%": pct(conc["top_1pct_contribution"]),
+                     "Top 5%": pct(conc["top_5pct_contribution"]), "Top 10%": pct(conc["top_10pct_contribution"]),
+                     "P&L excl. best trade": money(conc["pnl_excl_best_trade"])})
+    elif conc:
+        st.info(f"Live sample (n={conc['n_trades']}) too small for a meaningful concentration read yet.")
+    if rows:
+        st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
+    if conc and not conc.get("insufficient_sample") and conc["n_trades"] < 100:
+        st.caption(f"At only {conc['n_trades']} live trades, 1%/5%/10% can round to the same 1-2 trades -- treat the live row as directional only.")
+
+
 def render_charts(snapshot: dict[str, Any]) -> None:
     curve = pd.DataFrame(snapshot["equity_curve"])
     if curve.empty:
@@ -256,10 +474,28 @@ def live_dashboard() -> None:
             "exact entries, stops, targets, order IDs, and account details are never published."
         )
 
+    st.divider()
+    render_normality_panel(snapshot)
+
+    st.divider()
+    st.subheader("Risk")
     render_charts(snapshot)
+    render_giveback_panel(snapshot)
+
+    st.divider()
+    render_regime_panel(snapshot)
+
+    st.divider()
+    render_scaling_panel(snapshot)
+
+    st.divider()
     render_daily_pnl_heatmap(snapshot)
     render_trade_table(snapshot)
     render_reliability(snapshot)
+
+    st.divider()
+    with st.expander("Research: profit concentration"):
+        render_concentration_panel(snapshot)
 
 
 st.title("watch joey lose money")

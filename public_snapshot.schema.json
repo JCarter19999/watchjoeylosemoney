@@ -6,12 +6,38 @@
     "latency_stage": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["n", "median_ms", "p95_ms", "p99_ms"],
+      "required": [
+        "n",
+        "median_ms",
+        "p95_ms",
+        "p99_ms"
+      ],
       "properties": {
-        "n": { "type": "integer", "minimum": 0 },
-        "median_ms": { "type": ["number", "null"], "minimum": 0 },
-        "p95_ms": { "type": ["number", "null"], "minimum": 0 },
-        "p99_ms": { "type": ["number", "null"], "minimum": 0 }
+        "n": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "median_ms": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "p95_ms": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "p99_ms": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
       }
     }
   },
@@ -36,24 +62,86 @@
     "pnl_waterfall"
   ],
   "properties": {
-    "schema_version": { "type": "string" },
-    "generated_at_utc": { "type": "string", "format": "date-time" },
-    "data_as_of_utc": { "type": "string", "format": "date-time" },
-    "publication_delay_minutes": { "type": "integer", "minimum": 0 },
-    "mode": { "enum": ["SHADOW", "DEMO", "LIVE", "PAUSED", "FAULT", "OFFLINE"] },
+    "schema_version": {
+      "type": "string"
+    },
+    "generated_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "data_as_of_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "publication_delay_minutes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "mode": {
+      "enum": [
+        "SHADOW",
+        "DEMO",
+        "LIVE",
+        "PAUSED",
+        "FAULT",
+        "OFFLINE"
+      ]
+    },
     "status": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["service_state", "guardian_state", "market_data_state", "execution_enabled", "data_delayed", "message", "in_position"],
+      "required": [
+        "service_state",
+        "guardian_state",
+        "market_data_state",
+        "execution_enabled",
+        "data_delayed",
+        "message",
+        "in_position"
+      ],
       "properties": {
-        "service_state": { "enum": ["STARTING", "REPLAYING", "ARMED", "PAUSED", "FAULT", "OFFLINE"] },
-        "guardian_state": { "enum": ["ARMED", "DISARMED", "FAULT", "NA"] },
-        "market_data_state": { "enum": ["LIVE", "REPLAY", "STALE", "GAPPED", "DISCONNECTED", "UNKNOWN"] },
-        "execution_enabled": { "type": "boolean" },
-        "data_delayed": { "type": "boolean" },
-        "message": { "type": "string" },
+        "service_state": {
+          "enum": [
+            "STARTING",
+            "REPLAYING",
+            "ARMED",
+            "PAUSED",
+            "FAULT",
+            "OFFLINE"
+          ]
+        },
+        "guardian_state": {
+          "enum": [
+            "ARMED",
+            "DISARMED",
+            "FAULT",
+            "NA"
+          ]
+        },
+        "market_data_state": {
+          "enum": [
+            "LIVE",
+            "REPLAY",
+            "STALE",
+            "GAPPED",
+            "DISCONNECTED",
+            "UNKNOWN"
+          ]
+        },
+        "execution_enabled": {
+          "type": "boolean"
+        },
+        "data_delayed": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
         "in_position": {
-          "type": ["boolean", "null"],
+          "type": [
+            "boolean",
+            "null"
+          ],
           "description": "Whether the strategy currently holds an open position. Boolean status only -- never accompanied by entry price, stop/target, order id, or size, per this site's standing 'no actionable position detail' rule. null = unknown (e.g. process offline)."
         }
       }
@@ -62,60 +150,187 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "display_starting_equity_usd", "display_equity_usd",
-        "realized_pnl_today_usd", "realized_pnl_all_time_usd",
-        "current_drawdown_usd", "max_drawdown_usd",
-        "closed_trades_today", "closed_trades_all_time",
-        "wins", "losses", "breakeven",
-        "win_rate", "expectancy_usd", "profit_factor"
+        "display_starting_equity_usd",
+        "display_equity_usd",
+        "realized_pnl_today_usd",
+        "realized_pnl_all_time_usd",
+        "current_drawdown_usd",
+        "max_drawdown_usd",
+        "closed_trades_today",
+        "closed_trades_all_time",
+        "wins",
+        "losses",
+        "breakeven",
+        "win_rate",
+        "expectancy_usd",
+        "profit_factor"
       ],
       "properties": {
-        "display_starting_equity_usd": { "type": "number" },
-        "display_equity_usd": { "type": "number" },
-        "realized_pnl_today_usd": { "type": "number" },
-        "realized_pnl_all_time_usd": { "type": "number" },
-        "current_drawdown_usd": { "type": "number", "minimum": 0 },
-        "max_drawdown_usd": { "type": "number", "minimum": 0 },
-        "closed_trades_today": { "type": "integer", "minimum": 0 },
-        "closed_trades_all_time": { "type": "integer", "minimum": 0 },
-        "wins": { "type": "integer", "minimum": 0 },
-        "losses": { "type": "integer", "minimum": 0 },
-        "breakeven": { "type": "integer", "minimum": 0 },
-        "win_rate": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
-        "expectancy_usd": { "type": ["number", "null"] },
-        "profit_factor": { "type": ["number", "null"], "minimum": 0 }
+        "display_starting_equity_usd": {
+          "type": "number"
+        },
+        "display_equity_usd": {
+          "type": "number"
+        },
+        "realized_pnl_today_usd": {
+          "type": "number"
+        },
+        "realized_pnl_all_time_usd": {
+          "type": "number"
+        },
+        "current_drawdown_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_drawdown_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "closed_trades_today": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "closed_trades_all_time": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "wins": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "losses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "breakeven": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "win_rate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "expectancy_usd": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "profit_factor": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
       }
     },
     "execution_telemetry": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "sample_size", "submit_to_ack_ms_median", "submit_to_ack_ms_p95",
-        "submit_to_fill_ms_median", "submit_to_fill_ms_p95",
-        "slippage_ticks_median", "slippage_ticks_mean", "slippage_ticks_p95",
-        "slippage_usd_median", "slippage_usd_mean", "slippage_by_exit_reason"
+        "sample_size",
+        "submit_to_ack_ms_median",
+        "submit_to_ack_ms_p95",
+        "submit_to_fill_ms_median",
+        "submit_to_fill_ms_p95",
+        "slippage_ticks_median",
+        "slippage_ticks_mean",
+        "slippage_ticks_p95",
+        "slippage_usd_median",
+        "slippage_usd_mean",
+        "slippage_by_exit_reason"
       ],
       "properties": {
-        "sample_size": { "type": "integer", "minimum": 0 },
-        "submit_to_ack_ms_median": { "type": ["number", "null"] },
-        "submit_to_ack_ms_p95": { "type": ["number", "null"] },
-        "submit_to_fill_ms_median": { "type": ["number", "null"] },
-        "submit_to_fill_ms_p95": { "type": ["number", "null"] },
-        "slippage_ticks_median": { "type": ["number", "null"] },
-        "slippage_ticks_mean": { "type": ["number", "null"] },
-        "slippage_ticks_p95": { "type": ["number", "null"] },
-        "slippage_usd_median": { "type": ["number", "null"] },
-        "slippage_usd_mean": { "type": ["number", "null"] },
+        "sample_size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "submit_to_ack_ms_median": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "submit_to_ack_ms_p95": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "submit_to_fill_ms_median": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "submit_to_fill_ms_p95": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "slippage_ticks_median": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "slippage_ticks_mean": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "slippage_ticks_p95": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "slippage_usd_median": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "slippage_usd_mean": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
         "slippage_by_exit_reason": {
           "type": "object",
           "additionalProperties": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["n", "median_ticks", "mean_ticks"],
+            "required": [
+              "n",
+              "median_ticks",
+              "mean_ticks"
+            ],
             "properties": {
-              "n": { "type": "integer", "minimum": 0 },
-              "median_ticks": { "type": ["number", "null"] },
-              "mean_ticks": { "type": ["number", "null"] }
+              "n": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "median_ticks": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "mean_ticks": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
             }
           }
         }
@@ -125,48 +340,133 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "current_cost_multiplier", "current_warning", "current_disable",
-        "mean_slippage_dollars_running", "trailing_10_cost_multipliers", "note"
+        "current_cost_multiplier",
+        "current_warning",
+        "current_disable",
+        "mean_slippage_dollars_running",
+        "trailing_10_cost_multipliers",
+        "note"
       ],
       "properties": {
-        "current_cost_multiplier": { "type": ["number", "null"] },
-        "current_warning": { "type": ["boolean", "null"] },
-        "current_disable": { "type": ["boolean", "null"] },
-        "mean_slippage_dollars_running": { "type": ["number", "null"] },
+        "current_cost_multiplier": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "current_warning": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "current_disable": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "mean_slippage_dollars_running": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
         "trailing_10_cost_multipliers": {
           "type": "array",
-          "items": { "type": ["number", "null"] }
+          "items": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
         },
-        "note": { "type": "string" }
+        "note": {
+          "type": "string"
+        }
       }
     },
     "latency_health": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["bars_sampled", "stalls_over_750ms", "stalls_over_2s", "cpu_median_pct", "load1_median", "verdict", "stages"],
+      "required": [
+        "bars_sampled",
+        "stalls_over_750ms",
+        "stalls_over_2s",
+        "cpu_median_pct",
+        "load1_median",
+        "verdict",
+        "stages"
+      ],
       "properties": {
-        "bars_sampled": { "type": "integer", "minimum": 0 },
-        "stalls_over_750ms": { "type": "integer", "minimum": 0 },
-        "stalls_over_2s": { "type": "integer", "minimum": 0 },
-        "cpu_median_pct": { "type": ["number", "null"], "minimum": 0 },
-        "load1_median": { "type": ["number", "null"], "minimum": 0 },
-        "verdict": { "enum": ["HEALTHY", "MARGINAL", "NEEDS_UPGRADE", "INSUFFICIENT_DATA"] },
+        "bars_sampled": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stalls_over_750ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stalls_over_2s": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cpu_median_pct": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "load1_median": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "verdict": {
+          "enum": [
+            "HEALTHY",
+            "MARGINAL",
+            "NEEDS_UPGRADE",
+            "INSUFFICIENT_DATA"
+          ]
+        },
         "stages": {
           "type": "object",
           "additionalProperties": false,
           "required": [
-            "queue_wait_ms", "ingest_and_decision_ms", "get_account_http_ms",
-            "submit_order_ms", "poll_until_filled_ms", "post_entry_reconciliation_ms",
+            "queue_wait_ms",
+            "ingest_and_decision_ms",
+            "get_account_http_ms",
+            "submit_order_ms",
+            "poll_until_filled_ms",
+            "post_entry_reconciliation_ms",
             "total_bar_to_submit_ms"
           ],
           "properties": {
-            "queue_wait_ms": { "$ref": "#/$defs/latency_stage" },
-            "ingest_and_decision_ms": { "$ref": "#/$defs/latency_stage" },
-            "get_account_http_ms": { "$ref": "#/$defs/latency_stage" },
-            "submit_order_ms": { "$ref": "#/$defs/latency_stage" },
-            "poll_until_filled_ms": { "$ref": "#/$defs/latency_stage" },
-            "post_entry_reconciliation_ms": { "$ref": "#/$defs/latency_stage" },
-            "total_bar_to_submit_ms": { "$ref": "#/$defs/latency_stage" }
+            "queue_wait_ms": {
+              "$ref": "#/$defs/latency_stage"
+            },
+            "ingest_and_decision_ms": {
+              "$ref": "#/$defs/latency_stage"
+            },
+            "get_account_http_ms": {
+              "$ref": "#/$defs/latency_stage"
+            },
+            "submit_order_ms": {
+              "$ref": "#/$defs/latency_stage"
+            },
+            "poll_until_filled_ms": {
+              "$ref": "#/$defs/latency_stage"
+            },
+            "post_entry_reconciliation_ms": {
+              "$ref": "#/$defs/latency_stage"
+            },
+            "total_bar_to_submit_ms": {
+              "$ref": "#/$defs/latency_stage"
+            }
           }
         }
       }
@@ -174,22 +474,67 @@
     "warmup_replay": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["bars_replayed", "elapsed_wall_seconds", "queue_wait_max_ms"],
+      "required": [
+        "bars_replayed",
+        "elapsed_wall_seconds",
+        "queue_wait_max_ms"
+      ],
       "properties": {
-        "bars_replayed": { "type": "integer", "minimum": 0 },
-        "elapsed_wall_seconds": { "type": ["number", "null"], "minimum": 0 },
-        "queue_wait_max_ms": { "type": ["number", "null"], "minimum": 0 }
+        "bars_replayed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "elapsed_wall_seconds": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "queue_wait_max_ms": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
       }
     },
     "reliability": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["restart_count", "first_started_at_utc", "last_started_at_utc", "crash_report_count"],
+      "required": [
+        "restart_count",
+        "first_started_at_utc",
+        "last_started_at_utc",
+        "crash_report_count"
+      ],
       "properties": {
-        "restart_count": { "type": ["integer", "null"], "minimum": 0 },
-        "first_started_at_utc": { "type": ["string", "null"], "format": "date-time" },
-        "last_started_at_utc": { "type": ["string", "null"], "format": "date-time" },
-        "crash_report_count": { "type": "integer", "minimum": 0 }
+        "restart_count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "first_started_at_utc": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "last_started_at_utc": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "crash_report_count": {
+          "type": "integer",
+          "minimum": 0
+        }
       }
     },
     "guardian_transitions": {
@@ -198,16 +543,46 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["ts_utc", "from_state", "to_state", "reason"],
+        "required": [
+          "ts_utc",
+          "from_state",
+          "to_state",
+          "reason"
+        ],
         "properties": {
-          "ts_utc": { "type": "string", "format": "date-time" },
+          "ts_utc": {
+            "type": "string",
+            "format": "date-time"
+          },
           "from_state": {
-            "enum": ["BOOT", "RECONCILING", "WARMUP", "ARMED", "IN_POSITION", "EXIT_PENDING", "VERIFY_FLAT", "LOCKED", "EMERGENCY"]
+            "enum": [
+              "BOOT",
+              "RECONCILING",
+              "WARMUP",
+              "ARMED",
+              "IN_POSITION",
+              "EXIT_PENDING",
+              "VERIFY_FLAT",
+              "LOCKED",
+              "EMERGENCY"
+            ]
           },
           "to_state": {
-            "enum": ["BOOT", "RECONCILING", "WARMUP", "ARMED", "IN_POSITION", "EXIT_PENDING", "VERIFY_FLAT", "LOCKED", "EMERGENCY"]
+            "enum": [
+              "BOOT",
+              "RECONCILING",
+              "WARMUP",
+              "ARMED",
+              "IN_POSITION",
+              "EXIT_PENDING",
+              "VERIFY_FLAT",
+              "LOCKED",
+              "EMERGENCY"
+            ]
           },
-          "reason": { "type": "string" }
+          "reason": {
+            "type": "string"
+          }
         }
       }
     },
@@ -216,12 +591,27 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["ts_utc", "equity_usd", "cum_pnl_usd", "drawdown_usd"],
+        "required": [
+          "ts_utc",
+          "equity_usd",
+          "cum_pnl_usd",
+          "drawdown_usd"
+        ],
         "properties": {
-          "ts_utc": { "type": "string", "format": "date-time" },
-          "equity_usd": { "type": "number" },
-          "cum_pnl_usd": { "type": "number" },
-          "drawdown_usd": { "type": "number", "minimum": 0 }
+          "ts_utc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "equity_usd": {
+            "type": "number"
+          },
+          "cum_pnl_usd": {
+            "type": "number"
+          },
+          "drawdown_usd": {
+            "type": "number",
+            "minimum": 0
+          }
         }
       }
     },
@@ -232,45 +622,138 @@
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "closed_at_utc", "session_date", "side", "pnl_usd", "exit_reason", "duration_seconds", "mode",
-          "sized_qty", "c_same_at_entry",
+          "closed_at_utc",
+          "session_date",
+          "side",
+          "pnl_usd",
+          "exit_reason",
+          "duration_seconds",
+          "mode",
+          "sized_qty",
+          "c_same_at_entry",
           "expected_net_pnl_model_usd"
         ],
         "properties": {
-          "closed_at_utc": { "type": "string", "format": "date-time" },
-          "session_date": { "type": "string", "format": "date" },
-          "side": { "enum": ["LONG", "SHORT"] },
-          "pnl_usd": { "type": "number" },
-          "exit_reason": { "type": "string" },
-          "duration_seconds": { "type": "number", "minimum": 0 },
-          "mode": { "enum": ["SHADOW", "DEMO", "LIVE"] },
-          "sized_qty": { "type": ["number", "null"], "minimum": 0 },
-          "c_same_at_entry": { "type": ["integer", "null"], "minimum": 0 },
-          "expected_net_pnl_model_usd": { "type": ["number", "null"] }
+          "closed_at_utc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "session_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "side": {
+            "enum": [
+              "LONG",
+              "SHORT"
+            ]
+          },
+          "pnl_usd": {
+            "type": "number"
+          },
+          "exit_reason": {
+            "type": "string"
+          },
+          "duration_seconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "mode": {
+            "enum": [
+              "SHADOW",
+              "DEMO",
+              "LIVE"
+            ]
+          },
+          "sized_qty": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "c_same_at_entry": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "expected_net_pnl_model_usd": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
         }
       }
     },
     "pnl_waterfall": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["n_trades", "n_missing_decomposition", "aggregate", "trades"],
+      "required": [
+        "n_trades",
+        "n_missing_decomposition",
+        "aggregate",
+        "trades"
+      ],
       "properties": {
-        "n_trades": { "type": "integer", "minimum": 0 },
-        "n_missing_decomposition": { "type": "integer", "minimum": 0 },
+        "n_trades": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_missing_decomposition": {
+          "type": "integer",
+          "minimum": 0
+        },
         "aggregate": {
           "type": "object",
           "additionalProperties": false,
           "required": [
-            "model_expectancy_usd", "a_expectancy_usd", "b_expectancy_usd",
-            "c_expectancy_usd", "fees_expectancy_usd", "realized_expectancy_usd"
+            "model_expectancy_usd",
+            "a_expectancy_usd",
+            "b_expectancy_usd",
+            "c_expectancy_usd",
+            "fees_expectancy_usd",
+            "realized_expectancy_usd"
           ],
           "properties": {
-            "model_expectancy_usd": { "type": ["number", "null"] },
-            "a_expectancy_usd": { "type": ["number", "null"] },
-            "b_expectancy_usd": { "type": ["number", "null"] },
-            "c_expectancy_usd": { "type": ["number", "null"] },
-            "fees_expectancy_usd": { "type": ["number", "null"] },
-            "realized_expectancy_usd": { "type": ["number", "null"] }
+            "model_expectancy_usd": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "a_expectancy_usd": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "b_expectancy_usd": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "c_expectancy_usd": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "fees_expectancy_usd": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "realized_expectancy_usd": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
           }
         },
         "trades": {
@@ -280,24 +763,60 @@
             "type": "object",
             "additionalProperties": false,
             "required": [
-              "trade_id", "closed_at_utc", "side", "exit_reason",
-              "model_pnl_usd", "a_usd", "b_usd", "c_usd", "fees_usd", "realized_pnl_usd"
+              "trade_id",
+              "closed_at_utc",
+              "side",
+              "exit_reason",
+              "model_pnl_usd",
+              "a_usd",
+              "b_usd",
+              "c_usd",
+              "fees_usd",
+              "realized_pnl_usd"
             ],
             "properties": {
-              "trade_id": { "type": "string" },
-              "closed_at_utc": { "type": "string", "format": "date-time" },
-              "side": { "enum": ["LONG", "SHORT"] },
-              "exit_reason": { "type": "string" },
-              "model_pnl_usd": { "type": "number" },
-              "a_usd": { "type": "number" },
-              "b_usd": { "type": "number" },
-              "c_usd": { "type": "number" },
-              "fees_usd": { "type": "number" },
-              "realized_pnl_usd": { "type": "number" }
+              "trade_id": {
+                "type": "string"
+              },
+              "closed_at_utc": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "side": {
+                "enum": [
+                  "LONG",
+                  "SHORT"
+                ]
+              },
+              "exit_reason": {
+                "type": "string"
+              },
+              "model_pnl_usd": {
+                "type": "number"
+              },
+              "a_usd": {
+                "type": "number"
+              },
+              "b_usd": {
+                "type": "number"
+              },
+              "c_usd": {
+                "type": "number"
+              },
+              "fees_usd": {
+                "type": "number"
+              },
+              "realized_pnl_usd": {
+                "type": "number"
+              }
             }
           }
         }
       }
+    },
+    "dashboard_extras": {
+      "type": "object",
+      "description": "Optional G1-specific dashboard panels (scaling readiness, historical-normality percentiles, giveback, regime map, profit concentration). Loosely typed and NOT required -- absent/empty for strategies (e.g. RT1) that do not produce it."
     }
   }
 }
