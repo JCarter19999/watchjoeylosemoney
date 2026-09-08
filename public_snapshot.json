@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-08T17:00:26.707060Z",
+  "data_as_of_utc": "2026-09-08T17:15:27.258843Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -113,7 +113,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-08T17:00:26.707060Z",
+  "generated_at_utc": "2026-09-08T17:15:27.258843Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -391,9 +391,9 @@
     "data_delayed": false,
     "execution_enabled": true,
     "guardian_state": "NA",
-    "in_position": false,
+    "in_position": true,
     "market_data_state": "LIVE",
-    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=1.",
+    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=2.",
     "service_state": "ARMED"
   },
   "warmup_replay": {
