@@ -237,7 +237,7 @@ def render_regime_panel(snapshot: dict[str, Any]) -> None:
             is_today = (atr_b, trend_b) == today_cell
             rows.append({
                 "ATR": _REGIME_LABELS[atr_b], "Persistence": _REGIME_LABELS[trend_b],
-                "Avg $/day (history)": cell.get("avg_day_pnl"),
+                "Median $/day (history)": cell.get("median_day_pnl"),
                 "Days observed": cell.get("n_days"),
                 "": "📍 LAST SESSION" if is_today else "",
             })
@@ -245,7 +245,7 @@ def render_regime_panel(snapshot: dict[str, Any]) -> None:
         st.dataframe(
             df, hide_index=True, width="stretch",
             column_config={
-                "Avg $/day (history)": st.column_config.NumberColumn(format="$%.0f"),
+                "Median $/day (history)": st.column_config.NumberColumn(format="$%.0f"),
                 "Days observed": st.column_config.NumberColumn(format="%d"),
             },
         )
@@ -253,9 +253,10 @@ def render_regime_panel(snapshot: dict[str, Any]) -> None:
         if hist_cell:
             st.caption(
                 f"Historically, {_REGIME_LABELS[today_cell[0]].lower()} + {_REGIME_LABELS[today_cell[1]].lower()} "
-                f"days averaged {money(hist_cell['avg_day_pnl'])}/day across {hist_cell['n_days']} such days "
-                "(2020-2026 basis) -- this is the reference to judge today's realized P&L against, not the "
-                "grand average across all regimes."
+                f"days had a median of {money(hist_cell['median_day_pnl'])}/day across {hist_cell['n_days']} such days "
+                "(2020-2026 basis) -- median rather than mean since day-level P&L is right-skewed and a few huge "
+                "days would otherwise pull the average up; this is the reference to judge today's realized P&L "
+                "against, not the grand average across all regimes."
             )
 
 
