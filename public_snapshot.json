@@ -1,5 +1,5 @@
 {
-  "data_as_of_utc": "2026-09-08T14:00:27.053171Z",
+  "data_as_of_utc": "2026-09-08T14:15:26.345711Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -30,6 +30,12 @@
       "drawdown_usd": 0.0,
       "equity_usd": 190.2,
       "ts_utc": "2026-09-08T13:40:00+00:00"
+    },
+    {
+      "cum_pnl_usd": 351.54,
+      "drawdown_usd": 0.0,
+      "equity_usd": 351.54,
+      "ts_utc": "2026-09-08T14:00:00+00:00"
     }
   ],
   "execution_health": {
@@ -53,7 +59,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-08T14:00:27.053171Z",
+  "generated_at_utc": "2026-09-08T14:15:26.345711Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -108,6 +114,18 @@
     "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-09-08T14:00:00+00:00",
+      "duration_seconds": 900.0,
+      "exit_reason": "TIME",
+      "expected_net_pnl_model_usd": null,
+      "mode": "DEMO",
+      "pnl_usd": 161.34,
+      "session_date": "2026-09-08",
+      "side": "SHORT",
+      "sized_qty": 3.0
+    },
     {
       "c_same_at_entry": null,
       "closed_at_utc": "2026-09-08T13:40:00+00:00",
@@ -193,19 +211,19 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 5,
-    "closed_trades_today": 5,
+    "closed_trades_all_time": 6,
+    "closed_trades_today": 6,
     "current_drawdown_usd": 0.0,
-    "display_equity_usd": 190.2,
+    "display_equity_usd": 351.54,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 38.04,
+    "expectancy_usd": 58.59,
     "losses": 3,
     "max_drawdown_usd": 152.82,
-    "profit_factor": 1.944,
-    "realized_pnl_all_time_usd": 190.2,
-    "realized_pnl_today_usd": 190.2,
-    "win_rate": 0.4,
-    "wins": 2
+    "profit_factor": 2.7448,
+    "realized_pnl_all_time_usd": 351.54,
+    "realized_pnl_today_usd": 351.54,
+    "win_rate": 0.5,
+    "wins": 3
   },
   "status": {
     "data_delayed": false,
@@ -213,7 +231,7 @@
     "guardian_state": "NA",
     "in_position": true,
     "market_data_state": "LIVE",
-    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=4.",
+    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=5.",
     "service_state": "ARMED"
   },
   "warmup_replay": {
