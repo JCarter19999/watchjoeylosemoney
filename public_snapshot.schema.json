@@ -44,14 +44,18 @@
     "status": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["service_state", "guardian_state", "market_data_state", "execution_enabled", "data_delayed", "message"],
+      "required": ["service_state", "guardian_state", "market_data_state", "execution_enabled", "data_delayed", "message", "in_position"],
       "properties": {
         "service_state": { "enum": ["STARTING", "REPLAYING", "ARMED", "PAUSED", "FAULT", "OFFLINE"] },
         "guardian_state": { "enum": ["ARMED", "DISARMED", "FAULT", "NA"] },
         "market_data_state": { "enum": ["LIVE", "REPLAY", "STALE", "GAPPED", "DISCONNECTED", "UNKNOWN"] },
         "execution_enabled": { "type": "boolean" },
         "data_delayed": { "type": "boolean" },
-        "message": { "type": "string" }
+        "message": { "type": "string" },
+        "in_position": {
+          "type": ["boolean", "null"],
+          "description": "Whether the strategy currently holds an open position. Boolean status only -- never accompanied by entry price, stop/target, order id, or size, per this site's standing 'no actionable position detail' rule. null = unknown (e.g. process offline)."
+        }
       }
     },
     "stats": {

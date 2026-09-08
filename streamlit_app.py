@@ -84,6 +84,11 @@ def status_badge(snapshot: dict[str, Any]) -> None:
     label = labels.get(mode, mode)
     if status["data_delayed"]:
         label += f" · {snapshot['publication_delay_minutes']}m delayed"
+    in_position = status.get("in_position")
+    if in_position is True:
+        label += " · \U0001F535 in position"
+    elif in_position is False:
+        label += " · ⚪ flat, watching"
     st.markdown(f'<span class="wjlm-badge">{label}</span>', unsafe_allow_html=True)
     st.caption(status["message"])
 

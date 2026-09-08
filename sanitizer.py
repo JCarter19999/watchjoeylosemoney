@@ -213,6 +213,7 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
             "execution_enabled": bool(private["execution_enabled"]),
             "data_delayed": delay > 0,
             "message": private["message"],
+            "in_position": private.get("in_position"),
         },
         "stats": {
             "display_starting_equity_usd": round(starting_equity, 2),
