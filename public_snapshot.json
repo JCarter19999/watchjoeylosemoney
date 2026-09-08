@@ -737,7 +737,7 @@
       "MNQ": {
         "actual_round_trip_cost_per_contract": {
           "max": 29.148571428572467,
-          "mean": 5.386666666665453,
+          "mean": 5.386666666665454,
           "median": 0.9521428571412979,
           "min": -1.315714285717404,
           "n": 6,
@@ -990,7 +990,7 @@
       "peak_equity": 736.5600000000001
     }
   },
-  "data_as_of_utc": "2026-09-08T21:00:27.740961Z",
+  "data_as_of_utc": "2026-09-08T21:15:27.479927Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -1158,7 +1158,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-08T21:00:27.740961Z",
+  "generated_at_utc": "2026-09-08T21:15:27.479927Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -1593,9 +1593,9 @@
     "execution_enabled": true,
     "guardian_state": "NA",
     "in_position": false,
-    "market_data_state": "LIVE",
-    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=0.",
-    "service_state": "ARMED"
+    "market_data_state": "STALE",
+    "message": "G1: process alive but last bar (2026-09-08T20:59:00+00:00) is stale.",
+    "service_state": "REPLAYING"
   },
   "warmup_replay": {
     "bars_replayed": 0,
