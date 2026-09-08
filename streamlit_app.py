@@ -126,10 +126,12 @@ def render_normality_panel(snapshot: dict[str, Any]) -> None:
 
     n = norm["n_trades"]
     ref_n = norm.get("reference_n")
+    scale = norm.get("reference_scale_applied")
+    scale_note = f" Dollar figures rescaled {scale:.2f}x to match current live sizing." if scale and abs(scale - 1.0) > 0.01 else ""
     st.caption(
-        f"Live sample: {n} closed trade(s). Compared against every historical {ref_n}-trade block "
-        f"(overlapping windows, 2020-2026 basis) -- the nearest reference size to today's live sample, "
-        "not the full 66,000-trade aggregate." if ref_n else
+        (f"Live sample: {n} closed trade(s). Compared against every historical {ref_n}-trade block "
+         f"(overlapping windows, 2020-2026 basis, computed at qty=3) -- the nearest reference size to "
+         f"today's live sample, not the full 66,000-trade aggregate.{scale_note}") if ref_n else
         f"Live sample: {n} closed trade(s). No historical reference available yet."
     )
     cols = st.columns(3)
@@ -255,6 +257,40 @@ def render_regime_panel(snapshot: dict[str, Any]) -> None:
                 "(2020-2026 basis) -- this is the reference to judge today's realized P&L against, not the "
                 "grand average across all regimes."
             )
+
+
+def render_intraday_atr_panel(snapshot: dict[str, Any]) -> None:
+    """Two stacked charts sharing one time axis (ATR points, equity dollars
+    -- deliberately NOT a dual-axis chart, different units don't belong on
+    one scale) so a real intraday volatility compression coinciding with a
+    drawdown is visible directly, instead of only inferring it after the
+    fact from a single whole-session ATR average. Added 2026-09-08 after
+    exactly that pattern showed up live: ATR fell from ~20 (14:00 UTC) to
+    ~7 (18:00 UTC) while equity gave back over half its peak in the same
+    window -- the session-level regime panel alone couldn't show this."""
+    extras = snapshot.get("dashboard_extras") or {}
+    atr_pts = extras.get("atr_intraday") or []
+    eq_pts = extras.get("intraday_equity") or []
+    st.subheader("Today's ATR vs. equity")
+    if not atr_pts and not eq_pts:
+        st.info("No intraday data yet today.")
+        return
+    st.caption(
+        "Same time axis, two separate scales (points vs. dollars) -- look for a volatility compression "
+        "(ATR chart flattening/falling) lining up with a drawdown (equity chart falling) below it."
+    )
+
+    if atr_pts:
+        atr_df = pd.DataFrame(atr_pts)
+        atr_df["ts_utc"] = pd.to_datetime(atr_df["ts_utc"], utc=True)
+        st.line_chart(atr_df, x="ts_utc", y="atr", x_label="Time (UTC)", y_label="ATR (points)", height=220)
+    else:
+        st.info("No ATR history logged yet today (telemetry added 2026-09-08 -- accumulates from now on).")
+
+    if eq_pts:
+        eq_df = pd.DataFrame(eq_pts)
+        eq_df["ts_utc"] = pd.to_datetime(eq_df["ts_utc"], utc=True)
+        st.line_chart(eq_df, x="ts_utc", y="cum_pnl", x_label="Time (UTC)", y_label="Cumulative P&L today ($)", height=220)
 
 
 def render_giveback_panel(snapshot: dict[str, Any]) -> None:
@@ -567,6 +603,7 @@ def live_dashboard() -> None:
     st.divider()
     st.subheader("Risk")
     render_charts(snapshot)
+    render_intraday_atr_panel(snapshot)
     render_giveback_panel(snapshot)
 
     st.divider()
