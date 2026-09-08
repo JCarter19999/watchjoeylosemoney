@@ -108,6 +108,14 @@ def render_metrics(snapshot: dict[str, Any]) -> None:
         "show as negative before any gains offset them, rather than being hidden inside a "
         "cushion. Real-money accounting still happens on the broker side."
     )
+    ledger_adj = s.get("ledger_adjustment_usd", 0.0)
+    if ledger_adj:
+        direction = "credit" if ledger_adj > 0 else "debit"
+        st.caption(
+            f"Includes a documented {money(ledger_adj)} {direction} correction for a bug-affected "
+            "trade (forced exit from an operational bug, not a strategy decision) -- the raw trade "
+            "record is unchanged, only this total is corrected."
+        )
 
 
 _QUALIFICATION_TARGET_TRADES = 1500  # max(6wk, 1500 trades) per the frozen forward-qualification protocol

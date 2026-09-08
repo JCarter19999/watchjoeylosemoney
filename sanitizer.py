@@ -118,6 +118,29 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
 
     visible_trades.sort(key=lambda r: r["closed_at_utc"])
 
+    # Documented per-trade P&L corrections (2026-09-08), e.g. the pre-halt
+    # -flatten bug's -$24.66 mistaken exit -- see g1_ledger_adjustments.jsonl
+    # on the live side. Applied to a COPY of each affected trade's displayed
+    # pnl_usd only, at the exact point in the equity curve it occurred, so
+    # the curve/drawdown/expectancy/PF are all internally consistent with
+    # the corrected total -- never a flat nudge to just the grand total.
+    # The underlying private trade record (and this function's `private`
+    # input) is never mutated; only this display copy is adjusted.
+    adjustments_by_trade = {}
+    total_adjustment = 0.0
+    for adj in private.get("ledger_adjustments", []):
+        tid = adj.get("trade_id")
+        amt = float(adj.get("adjustment_usd", 0.0))
+        if tid:
+            adjustments_by_trade[tid] = adjustments_by_trade.get(tid, 0.0) + amt
+            total_adjustment += amt
+    if adjustments_by_trade:
+        visible_trades = [dict(row) for row in visible_trades]  # shallow copy before mutating pnl_usd
+        for row in visible_trades:
+            adj_amt = adjustments_by_trade.get(row.get("trade_id"))
+            if adj_amt:
+                row["pnl_usd"] = float(row["pnl_usd"]) + adj_amt
+
     starting_equity = float(private.get("display_starting_equity_usd", 0.0))
     equity_curve = []
     running = starting_equity
@@ -220,6 +243,7 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
             "display_equity_usd": round(starting_equity + realized_all_time, 2),
             "realized_pnl_today_usd": round(realized_today, 2),
             "realized_pnl_all_time_usd": round(realized_all_time, 2),
+            "ledger_adjustment_usd": round(total_adjustment, 2),
             "current_drawdown_usd": round(current_dd, 2),
             "max_drawdown_usd": round(max_dd, 2),
             "closed_trades_today": sum(1 for r in visible_trades if r["closed_at_utc"].startswith(today)),

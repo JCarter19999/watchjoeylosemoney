@@ -226,6 +226,10 @@
             "null"
           ],
           "minimum": 0
+        },
+        "ledger_adjustment_usd": {
+          "type": "number",
+          "description": "Sum of documented per-trade P&L corrections (see g1_ledger_adjustments.jsonl on the live side) applied to display_equity_usd/realized_pnl_all_time_usd -- e.g. refunding a bug-affected forced-exit's dollar impact. 0 if no adjustments exist. The underlying raw trade record is never altered; this reflects only a transparent, documented correction to derived totals."
         }
       }
     },
