@@ -650,6 +650,71 @@
         "atr": 4.232142857142857,
         "atr_pctile": 0.047060185185185184,
         "ts_utc": "2026-09-08T20:44:00+00:00"
+      },
+      {
+        "atr": 4.035714285714286,
+        "atr_pctile": 0.038287037037037036,
+        "ts_utc": "2026-09-08T20:45:00+00:00"
+      },
+      {
+        "atr": 4.0,
+        "atr_pctile": 0.036967592592592594,
+        "ts_utc": "2026-09-08T20:48:00+00:00"
+      },
+      {
+        "atr": 4.035714285714286,
+        "atr_pctile": 0.03837962962962963,
+        "ts_utc": "2026-09-08T20:49:00+00:00"
+      },
+      {
+        "atr": 4.071428571428571,
+        "atr_pctile": 0.04030092592592593,
+        "ts_utc": "2026-09-08T20:50:00+00:00"
+      },
+      {
+        "atr": 4.053571428571429,
+        "atr_pctile": 0.03930555555555556,
+        "ts_utc": "2026-09-08T20:51:00+00:00"
+      },
+      {
+        "atr": 3.8392857142857144,
+        "atr_pctile": 0.031296296296296294,
+        "ts_utc": "2026-09-08T20:52:00+00:00"
+      },
+      {
+        "atr": 3.8392857142857144,
+        "atr_pctile": 0.03131944444444444,
+        "ts_utc": "2026-09-08T20:53:00+00:00"
+      },
+      {
+        "atr": 3.642857142857143,
+        "atr_pctile": 0.023796296296296298,
+        "ts_utc": "2026-09-08T20:54:00+00:00"
+      },
+      {
+        "atr": 3.6607142857142856,
+        "atr_pctile": 0.024606481481481483,
+        "ts_utc": "2026-09-08T20:55:00+00:00"
+      },
+      {
+        "atr": 3.6607142857142856,
+        "atr_pctile": 0.02462962962962963,
+        "ts_utc": "2026-09-08T20:56:00+00:00"
+      },
+      {
+        "atr": 3.6785714285714284,
+        "atr_pctile": 0.025324074074074075,
+        "ts_utc": "2026-09-08T20:57:00+00:00"
+      },
+      {
+        "atr": 3.3214285714285716,
+        "atr_pctile": 0.014282407407407407,
+        "ts_utc": "2026-09-08T20:58:00+00:00"
+      },
+      {
+        "atr": 3.392857142857143,
+        "atr_pctile": 0.016319444444444445,
+        "ts_utc": "2026-09-08T20:59:00+00:00"
       }
     ],
     "concentration": {
@@ -925,7 +990,7 @@
       "peak_equity": 736.5600000000001
     }
   },
-  "data_as_of_utc": "2026-09-08T20:45:27.597328Z",
+  "data_as_of_utc": "2026-09-08T21:00:27.740961Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -1093,7 +1158,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-08T20:45:27.597328Z",
+  "generated_at_utc": "2026-09-08T21:00:27.740961Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -1529,7 +1594,7 @@
     "guardian_state": "NA",
     "in_position": false,
     "market_data_state": "LIVE",
-    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=6.",
+    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=0.",
     "service_state": "ARMED"
   },
   "warmup_replay": {
