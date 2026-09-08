@@ -152,8 +152,8 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
     st.caption(
         "\"Model\" is the frozen backtest's per-trade edge assumption, not a per-trade prediction -- "
         "same number on every row, there to compare against realized P&L, not to be read as a forecast. "
-        "\"Qty\" and \"c_same\" show the live position-sizing rule firing (qty=2 when same-direction "
-        "crowding at entry was >=3, qty=1 otherwise)."
+        "\"Qty\" is fixed (no conditional sizing for this strategy); \"c_same\" is left blank -- "
+        "that column only applies to strategies with crowding-conditional sizing, which this one doesn't use."
     )
     st.dataframe(
         table,
