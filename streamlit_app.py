@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
 
+import altair as alt
 import pandas as pd
 import streamlit as st
 from jsonschema import Draft202012Validator, FormatChecker
@@ -142,6 +143,55 @@ def render_charts(snapshot: dict[str, Any]) -> None:
     st.line_chart(curve, x="ts_utc", y="drawdown_usd", x_label="UTC", y_label="Drawdown ($)", height=240)
 
 
+_WEEKDAY_ORDER = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+
+def render_daily_pnl_heatmap(snapshot: dict[str, Any]) -> None:
+    curve = pd.DataFrame(snapshot["equity_curve"])
+    st.subheader("Daily P&L calendar")
+    if curve.empty:
+        st.info("No closed public trades yet.")
+        return
+    curve["ts_utc"] = pd.to_datetime(curve["ts_utc"], utc=True)
+
+    # One value per calendar day: last-known cumulative P&L that day (carried
+    # forward across no-trade days via ffill, same convention as the line
+    # charts above), then differenced to get that day's own net P&L.
+    daily_cum = curve.set_index("ts_utc")["cum_pnl_usd"].resample("1D").last().ffill()
+    daily_pnl = daily_cum.diff()
+    daily_pnl.iloc[0] = daily_cum.iloc[0]  # first day's P&L is its cum value from the $0 baseline
+    df = daily_pnl.reset_index()
+    df.columns = ["date", "pnl"]
+    df["week_start"] = df["date"] - pd.to_timedelta(df["date"].dt.weekday, unit="D")
+    df["weekday"] = df["date"].dt.weekday.map(dict(enumerate(_WEEKDAY_ORDER)))
+
+    max_abs = max(abs(df["pnl"].min()), abs(df["pnl"].max()), 1.0)
+    chart = (
+        alt.Chart(df)
+        .mark_rect(cornerRadius=3, stroke="#00000014", strokeWidth=1)
+        .encode(
+            x=alt.X("week_start:T", timeUnit="yearmonthdate", title=None, axis=alt.Axis(format="%b %d", grid=False)),
+            y=alt.Y("weekday:N", title=None, sort=_WEEKDAY_ORDER),
+            color=alt.Color(
+                "pnl:Q",
+                title="Daily P&L ($)",
+                scale=alt.Scale(domain=[-max_abs, 0, max_abs], range=["#e34948", "#f0efec", "#2a78d6"]),
+            ),
+            tooltip=[
+                alt.Tooltip("date:T", title="Date", format="%Y-%m-%d"),
+                alt.Tooltip("pnl:Q", title="P&L", format="$,.2f"),
+            ],
+        )
+        .properties(height=180)
+    )
+    st.altair_chart(chart, width="stretch")
+    st.caption(
+        "Each cell is one calendar day (UTC), colored by that day's net P&L -- blue for gains, red for "
+        "losses, pale gray near $0. A day with no trades shows as $0 (flat), same color as a day that "
+        "traded and broke even; hover a cell for the exact date and dollar figure."
+    )
+
+
 def render_trade_table(snapshot: dict[str, Any]) -> None:
     trades = pd.DataFrame(snapshot["latest_trades"])
     st.subheader("Latest closed trades")
@@ -150,16 +200,10 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
         return
     trades["duration_min"] = trades["duration_seconds"] / 60.0
     table = trades[[
-        "closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd", "expected_net_pnl_model_usd",
-        "sized_qty", "c_same_at_entry",
+        "closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd", "sized_qty",
     ]].copy()
     table["closed_at_utc"] = pd.to_datetime(table["closed_at_utc"], utc=True).dt.tz_convert("America/Los_Angeles")
-    st.caption(
-        "\"Model\" is the frozen backtest's per-trade edge assumption, not a per-trade prediction -- "
-        "same number on every row, there to compare against realized P&L, not to be read as a forecast. "
-        "\"Qty\" is fixed (no conditional sizing for this strategy); \"c_same\" is left blank -- "
-        "that column only applies to strategies with crowding-conditional sizing, which this one doesn't use."
-    )
+    st.caption("Most recent 25 closed trades. \"Qty\" is the MNQ-equivalent size that trade was sized at.")
     st.dataframe(
         table,
         width="stretch",
@@ -171,203 +215,9 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
             "exit_reason": st.column_config.TextColumn("Exit"),
             "duration_min": st.column_config.NumberColumn("Minutes", format="%.1f"),
             "pnl_usd": st.column_config.NumberColumn("P&L", format="$%.2f"),
-            "expected_net_pnl_model_usd": st.column_config.NumberColumn("Model P&L", format="$%.2f"),
             "sized_qty": st.column_config.NumberColumn("Qty", format="%.0f"),
-            "c_same_at_entry": st.column_config.NumberColumn("c_same", format="%.0f"),
         },
     )
-
-
-def render_execution_telemetry(snapshot: dict[str, Any]) -> None:
-    t = snapshot["execution_telemetry"]
-    st.subheader("Execution quality")
-    if t["sample_size"] == 0:
-        st.info("No real-fill execution samples yet.")
-        return
-    cols = st.columns(4)
-    cols[0].metric("Samples", f"{t['sample_size']:,}")
-    cols[1].metric("Median submit→ACK", f"{t['submit_to_ack_ms_median']:.0f} ms" if t["submit_to_ack_ms_median"] is not None else "—")
-    cols[2].metric("Median submit→fill", f"{t['submit_to_fill_ms_median']:.0f} ms" if t["submit_to_fill_ms_median"] is not None else "—")
-    cols[3].metric(
-        "Median reference-to-fill shortfall", f"{t['slippage_ticks_median']:.2f} ticks" if t["slippage_ticks_median"] is not None else "—",
-        help="Headline number -- resistant to a single large real trade. See tail-risk context below.",
-    )
-    by_reason = t.get("slippage_by_exit_reason") or {}
-    if by_reason:
-        st.caption("Median shortfall by exit reason -- the blended median above can look fine purely because ordinary exits outnumber STOP_TIGHTENED ones; this is the number that actually tracks whether STOP_TIGHTENED itself is improving.")
-        reason_cols = st.columns(len(by_reason))
-        for col, (reason, stats) in zip(reason_cols, by_reason.items()):
-            col.metric(
-                f"{reason} (n={stats['n']})",
-                f"{stats['median_ticks']:.2f} ticks" if stats["median_ticks"] is not None else "—",
-                help=f"mean {stats['mean_ticks']:.2f} ticks" if stats["mean_ticks"] is not None else None,
-            )
-    with st.expander("Tail-risk context (p95 / mean -- not the headline)"):
-        tail_cols = st.columns(3)
-        tail_cols[0].metric("p95 submit→ACK", f"{t['submit_to_ack_ms_p95']:.0f} ms" if t["submit_to_ack_ms_p95"] is not None else "—")
-        tail_cols[1].metric("p95 submit→fill", f"{t['submit_to_fill_ms_p95']:.0f} ms" if t["submit_to_fill_ms_p95"] is not None else "—")
-        tail_cols[2].metric("p95 reference-to-fill shortfall", f"{t['slippage_ticks_p95']:.2f} ticks" if t["slippage_ticks_p95"] is not None else "—")
-        st.caption(
-            f"Mean reference-to-fill shortfall: {t['slippage_ticks_mean']:.2f} ticks"
-            if t["slippage_ticks_mean"] is not None else "Mean reference-to-fill shortfall: —"
-        )
-        st.caption(
-            "At typical sample sizes here, a handful of large real trades in either direction can make "
-            "mean and p95 look consistently alarming while the median trade sits near $0 shortfall -- "
-            "neither number is wrong, but they answer \"how bad can it get\", not \"what usually happens\"."
-        )
-    caption = (
-        "\"Reference-to-fill shortfall\" (not \"slippage\"): the gap between RT1's own theoretical "
-        "signal/exit price and the real fill. This bundles multiple things -- market movement before "
-        "submit, actual broker/BBO execution cost, and (for exits specifically) a strategy-semantics "
-        "component from reacting only at bar-close rather than an intrabar touch. It does NOT mean "
-        "Tradovate cost this many ticks -- a decomposed breakdown is planned once enough trades "
-        "accumulate."
-    )
-    if t["sample_size"] < 30:
-        caption += f" Only {t['sample_size']} sample(s) so far -- treat as directional only, not a stable median."
-    st.caption(caption)
-
-
-def render_execution_health(snapshot: dict[str, Any]) -> None:
-    """RT1HealthEvaluator's cost-multiplier telemetry -- computed every
-    trade since the risk-limits module existed, but never displayed
-    anywhere until 2026-08-21. execution_health_disable stopped halting
-    trading 2026-08-19 (a legitimate D20-exit burst caused a false-positive
-    halt), so this is now the only way to actually see it."""
-    h = snapshot["execution_health"]
-    st.subheader("Execution cost health")
-    if h["current_cost_multiplier"] is None:
-        st.info("No real-fill samples yet.")
-        return
-    if h["current_disable"]:
-        st.error(f"Execution cost multiplier {h['current_cost_multiplier']:.2f}x -- disable threshold reached (informational only, does not halt).")
-    elif h["current_warning"]:
-        st.warning(f"Execution cost multiplier {h['current_cost_multiplier']:.2f}x -- warning threshold reached.")
-    else:
-        st.success(f"Execution cost multiplier {h['current_cost_multiplier']:.2f}x -- nominal.")
-    cols = st.columns(2)
-    cols[0].metric("Current cost multiplier", f"{h['current_cost_multiplier']:.2f}x", help="(commission + realized slippage) / $2.00 baseline. 1.0x = matches the backtest's own cost assumption.")
-    cols[1].metric("Running mean slippage", f"${h['mean_slippage_dollars_running']:.2f}" if h["mean_slippage_dollars_running"] is not None else "—")
-    trend = [m for m in h["trailing_10_cost_multipliers"] if m is not None]
-    if trend:
-        st.caption(f"Trailing cost multipliers (most recent last): {', '.join(f'{m:.2f}x' for m in trend)}")
-    st.caption(h["note"])
-
-
-def render_pnl_waterfall(snapshot: dict[str, Any]) -> None:
-    """Backtest -> Live Bridge panel #1: where did the model's P&L go on
-    the way to a real fill? Model P&L -> A (semantic/reference gap) -> B
-    (decision->submit movement) -> C (execution residual) -> Fees ->
-    Realized, both aggregated and per-trade."""
-    wf = snapshot["pnl_waterfall"]
-    st.subheader("Backtest → Live: P&L waterfall")
-    if wf["n_trades"] == 0:
-        st.info("No decomposed trades yet -- this fills in once real fills accumulate and the offline A/B/C decomposition has run for them.")
-        return
-
-    agg = wf["aggregate"]
-    st.caption(f"n={wf['n_trades']} decomposed trade(s), mean $/trade:")
-    cols = st.columns(6)
-    cols[0].metric("Model P&L", money(agg["model_expectancy_usd"]))
-    cols[1].metric("A: semantic/reference", money(agg["a_expectancy_usd"]))
-    cols[2].metric("B: decision→submit", money(agg["b_expectancy_usd"]))
-    cols[3].metric("C: execution residual", money(agg["c_expectancy_usd"]))
-    cols[4].metric("Fees", money(agg["fees_expectancy_usd"]))
-    cols[5].metric("Realized P&L", money(agg["realized_expectancy_usd"]))
-    st.caption(
-        "Model P&L is what the frozen backtest's own bar-close prices would have earned. A/B/C/Fees "
-        "are subtracted from it to reach Realized -- A is the gap between RT1's theoretical reference "
-        "price and the real market at decision time, B is market movement between deciding and "
-        "submitting, C is the actual broker/spread execution cost. If Model ≈ Realized, execution "
-        "isn't the problem; if they diverge, this shows exactly which layer (A, B, or C) is responsible."
-    )
-    if wf["n_missing_decomposition"]:
-        st.caption(f"{wf['n_missing_decomposition']} real trade(s) still missing decomposition coverage (incomplete quote data) -- excluded above, not silently zeroed.")
-
-    df = pd.DataFrame(wf["trades"])
-    df["closed_at_utc"] = pd.to_datetime(df["closed_at_utc"], utc=True).dt.tz_convert("America/Los_Angeles")
-    st.dataframe(
-        df,
-        hide_index=True,
-        use_container_width=True,
-        column_order=["closed_at_utc", "side", "exit_reason", "model_pnl_usd", "a_usd", "b_usd", "c_usd", "fees_usd", "realized_pnl_usd"],
-        column_config={
-            "closed_at_utc": st.column_config.DatetimeColumn("Closed (PST)", format="YYYY-MM-DD HH:mm:ss"),
-            "side": "Side",
-            "exit_reason": "Exit",
-            "model_pnl_usd": st.column_config.NumberColumn("Model", format="$%.2f"),
-            "a_usd": st.column_config.NumberColumn("A", format="$%.2f"),
-            "b_usd": st.column_config.NumberColumn("B", format="$%.2f"),
-            "c_usd": st.column_config.NumberColumn("C", format="$%.2f"),
-            "fees_usd": st.column_config.NumberColumn("Fees", format="$%.2f"),
-            "realized_pnl_usd": st.column_config.NumberColumn("Realized", format="$%.2f"),
-        },
-    )
-
-
-_LATENCY_STAGE_LABELS = {
-    "queue_wait_ms": "Queue wait",
-    "ingest_and_decision_ms": "Ingest + decision",
-    "get_account_http_ms": "get_account (HTTP)",
-    "submit_order_ms": "submit_order",
-    "poll_until_filled_ms": "Fill polling",
-    "post_entry_reconciliation_ms": "Post-entry reconciliation",
-    "total_bar_to_submit_ms": "Total (bar → submit)",
-}
-
-
-def render_latency_health(snapshot: dict[str, Any]) -> None:
-    lh = snapshot["latency_health"]
-    st.subheader("Bar-to-order latency")
-    if lh["verdict"] == "INSUFFICIENT_DATA":
-        st.info("No bar_timing.jsonl data yet.")
-        return
-
-    verdict_fn = {"HEALTHY": st.success, "MARGINAL": st.warning, "NEEDS_UPGRADE": st.error}[lh["verdict"]]
-    verdict_fn(
-        f"{lh['verdict']} -- {lh['bars_sampled']:,} bars sampled, "
-        f"{lh['stalls_over_750ms']} stall(s) > 750ms, {lh['stalls_over_2s']} stall(s) > 2s."
-    )
-
-    cols = st.columns(2)
-    cols[0].metric("Host CPU (median, user%)", f"{lh['cpu_median_pct']:.0f}%" if lh["cpu_median_pct"] is not None else "—")
-    cols[1].metric("Load average 1m (median)", f"{lh['load1_median']:.2f}" if lh["load1_median"] is not None else "—")
-    st.caption(
-        "Falsification check for a multi-second stall: host CPU/load spiking at the same "
-        "timestamp means contention is still plausible; a clean host means the delay is "
-        "inside one of the stages below (ingest/decision, get_account, submit, fill "
-        "polling, or reconciliation)."
-    )
-
-    for key, label in _LATENCY_STAGE_LABELS.items():
-        s = lh["stages"][key]
-        if not s["n"]:
-            st.write(f"**{label}**: no samples")
-            continue
-        st.write(
-            f"**{label}** (n={s['n']}): median={s['median_ms']:.1f}ms "
-            f"p95={s['p95_ms']:.1f}ms p99={s['p99_ms']:.1f}ms"
-        )
-
-
-def render_warmup_replay(snapshot: dict[str, Any]) -> None:
-    wr = snapshot["warmup_replay"]
-    st.subheader("Warmup / replay (diagnostic only)")
-    st.caption(
-        "Every restart re-requests a Databento replay window; once the market's open that window can "
-        "overlap already-processed minutes, which come back as a fast burst. This section exists so that "
-        "burst's queue backlog stays observable without ever mixing into the live latency numbers above -- "
-        "a 2026-08-16 incident let exactly this backlog (up to 1.4s) masquerade as a live queue stall."
-    )
-    if not wr["bars_replayed"]:
-        st.info("No replay burst on this run (or it hasn't happened yet).")
-        return
-    cols = st.columns(3)
-    cols[0].metric("Bars replayed", f"{wr['bars_replayed']:,}")
-    cols[1].metric("Elapsed", f"{wr['elapsed_wall_seconds']:.1f}s" if wr["elapsed_wall_seconds"] is not None else "—")
-    cols[2].metric("Max queue wait", f"{wr['queue_wait_max_ms']:.0f}ms" if wr["queue_wait_max_ms"] is not None else "—")
-
 
 def render_reliability(snapshot: dict[str, Any]) -> None:
     r = snapshot["reliability"]
@@ -382,29 +232,6 @@ def render_reliability(snapshot: dict[str, Any]) -> None:
         cols[2].metric("Uptime (current run)", "—")
     if r["first_started_at_utc"]:
         st.caption(f"First started {r['first_started_at_utc']}. A restart count that keeps climbing without a matching crash report usually means a deliberate config change, not instability.")
-
-
-_GUARDIAN_STATE_ICON = {
-    "BOOT": "⚪", "RECONCILING": "⚪", "WARMUP": "⚪",
-    "ARMED": "🟢", "IN_POSITION": "🔵",
-    "EXIT_PENDING": "🟠", "VERIFY_FLAT": "🟠",
-    "LOCKED": "🔴", "EMERGENCY": "🔴",
-}
-
-
-def render_guardian_transitions(snapshot: dict[str, Any]) -> None:
-    transitions = snapshot["guardian_transitions"]
-    st.subheader("Guardian state timeline")
-    if snapshot["status"].get("guardian_state") == "NA":
-        st.info("This strategy has no guardian/supervisor subsystem -- see the status message above "
-                "for its actual armed/execution state.")
-        return
-    if not transitions:
-        st.info("No state transitions logged yet.")
-        return
-    for t in transitions:
-        icon = _GUARDIAN_STATE_ICON.get(t["to_state"], "⚪")
-        st.write(f"{icon} `{t['ts_utc']}` **{t['from_state']}** → **{t['to_state']}** -- {t['reason']}")
 
 
 @st.fragment(run_every="30s")
@@ -430,14 +257,9 @@ def live_dashboard() -> None:
         )
 
     render_charts(snapshot)
+    render_daily_pnl_heatmap(snapshot)
     render_trade_table(snapshot)
-    render_pnl_waterfall(snapshot)
-    render_execution_telemetry(snapshot)
-    render_execution_health(snapshot)
-    render_latency_health(snapshot)
-    render_warmup_replay(snapshot)
     render_reliability(snapshot)
-    render_guardian_transitions(snapshot)
 
 
 st.title("watch joey lose money")
