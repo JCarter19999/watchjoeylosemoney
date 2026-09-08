@@ -32,7 +32,18 @@ WEB_REPO=/home/joey/watchjoeylosemoney
 # source: --mode is now required and must match whichever runtime dir
 # V2_RUNTIME actually points at. If this ever gets repointed at a live
 # runtime again, change BOTH V2_RUNTIME and --mode below together.
-V2_RUNTIME="$LIVE_REPO/runtime_v2_d20_paper"
+#
+# 2026-09-08: REPOINTED from RT1 (runtime_v2_d20_paper, now permanently
+# stopped) to G1 -- the frozen 30/15-breakout+retest+session+low-vol+
+# occupancy architecture discovered as a side effect of tonight's Wave 6
+# RT1-dissection research, now the primary forward-qualification
+# candidate (see nqg1_rt1_companion_candidate_2026_09_08 project memory).
+# G1 has its own exporter (export_g1_private_snapshot.py) since its
+# journal format/fields differ from RT1's -- NOT export_private_snapshot.py.
+# RT1's final snapshot was archived at
+# watchjoeylosemoney/archive/public_snapshot_RT1_final_2026-09-08.json
+# before this repoint.
+G1_RUNTIME="$LIVE_REPO/runtime_g1_paper"
 RUNTIME_MODE="DEMO"
 PRIVATE_SNAPSHOT="$LIVE_REPO/runtime/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
@@ -41,14 +52,9 @@ exec 9>"$LOCK"
 flock -n 9 || exit 0
 
 cd "$LIVE_REPO"
-"$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_private_snapshot \
-  --journal "$V2_RUNTIME/rt1_session_regime_journal/trade_journal.jsonl" \
-  --ledger "$V2_RUNTIME/rt1_session_regime.sqlite3" \
-  --status "$V2_RUNTIME/live_status.json" \
-  --bar-timing "$V2_RUNTIME/bar_timing.jsonl" \
-  --guardian-transitions "$V2_RUNTIME/guardian_transitions.jsonl" \
-  --lifecycle "$V2_RUNTIME/service_lifecycle.json" \
-  --pnl-waterfall "$V2_RUNTIME/pnl_waterfall.json" \
+"$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_g1_private_snapshot \
+  --journal "$G1_RUNTIME/g1_trade_journal.jsonl" \
+  --status "$G1_RUNTIME/live_status.json" \
   --output "$PRIVATE_SNAPSHOT" \
   --mode "$RUNTIME_MODE"
 
