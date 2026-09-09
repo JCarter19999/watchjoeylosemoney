@@ -6317,7 +6317,7 @@
       "MNQ": {
         "actual_round_trip_cost_per_contract": {
           "max": 29.148571428572467,
-          "mean": 2.7148979591832276,
+          "mean": 2.714897959183228,
           "median": 1.89857142856883,
           "min": -2.2800000000000002,
           "n": 42,
@@ -6615,7 +6615,7 @@
       "peak_equity": 1312.6371428571529
     }
   },
-  "data_as_of_utc": "2026-09-09T21:45:28.296488Z",
+  "data_as_of_utc": "2026-09-09T22:00:29.994037Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -6999,7 +6999,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-09T21:45:28.296488Z",
+  "generated_at_utc": "2026-09-09T22:00:29.994037Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
