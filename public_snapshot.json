@@ -5250,15 +5250,90 @@
         "atr": 8.553571428571429,
         "atr_pctile": 0.412662037037037,
         "ts_utc": "2026-09-09T17:29:00+00:00"
+      },
+      {
+        "atr": 8.589285714285714,
+        "atr_pctile": 0.4163425925925926,
+        "ts_utc": "2026-09-09T17:30:00+00:00"
+      },
+      {
+        "atr": 9.357142857142858,
+        "atr_pctile": 0.48368055555555556,
+        "ts_utc": "2026-09-09T17:31:00+00:00"
+      },
+      {
+        "atr": 9.0,
+        "atr_pctile": 0.45363425925925926,
+        "ts_utc": "2026-09-09T17:32:00+00:00"
+      },
+      {
+        "atr": 9.535714285714286,
+        "atr_pctile": 0.49997685185185187,
+        "ts_utc": "2026-09-09T17:33:00+00:00"
+      },
+      {
+        "atr": 9.75,
+        "atr_pctile": 0.5177083333333333,
+        "ts_utc": "2026-09-09T17:34:00+00:00"
+      },
+      {
+        "atr": 9.696428571428571,
+        "atr_pctile": 0.513449074074074,
+        "ts_utc": "2026-09-09T17:35:00+00:00"
+      },
+      {
+        "atr": 9.714285714285714,
+        "atr_pctile": 0.5149537037037037,
+        "ts_utc": "2026-09-09T17:36:00+00:00"
+      },
+      {
+        "atr": 9.696428571428571,
+        "atr_pctile": 0.5134722222222222,
+        "ts_utc": "2026-09-09T17:37:00+00:00"
+      },
+      {
+        "atr": 9.964285714285714,
+        "atr_pctile": 0.5350694444444445,
+        "ts_utc": "2026-09-09T17:38:00+00:00"
+      },
+      {
+        "atr": 9.714285714285714,
+        "atr_pctile": 0.515,
+        "ts_utc": "2026-09-09T17:39:00+00:00"
+      },
+      {
+        "atr": 10.071428571428571,
+        "atr_pctile": 0.5441666666666667,
+        "ts_utc": "2026-09-09T17:40:00+00:00"
+      },
+      {
+        "atr": 10.107142857142858,
+        "atr_pctile": 0.5468518518518518,
+        "ts_utc": "2026-09-09T17:41:00+00:00"
+      },
+      {
+        "atr": 10.196428571428571,
+        "atr_pctile": 0.5541203703703703,
+        "ts_utc": "2026-09-09T17:42:00+00:00"
+      },
+      {
+        "atr": 9.892857142857142,
+        "atr_pctile": 0.5290277777777778,
+        "ts_utc": "2026-09-09T17:43:00+00:00"
+      },
+      {
+        "atr": 9.803571428571429,
+        "atr_pctile": 0.5221064814814815,
+        "ts_utc": "2026-09-09T17:44:00+00:00"
       }
     ],
     "concentration": {
       "insufficient_sample": false,
-      "n_trades": 55,
-      "pnl_excl_best_trade": -22.78,
-      "top_10pct_contribution": 3.9701,
-      "top_1pct_contribution": 1.0743,
-      "top_5pct_contribution": 2.0018
+      "n_trades": 56,
+      "pnl_excl_best_trade": 81.56,
+      "top_10pct_contribution": 2.962,
+      "top_1pct_contribution": 0.8015,
+      "top_5pct_contribution": 1.4935
     },
     "concentration_historical": {
       "pnl_excl_best_trade": 827110.1742857154,
@@ -5272,54 +5347,54 @@
       "MNQ": {
         "actual_round_trip_cost_per_contract": {
           "max": 29.148571428572467,
-          "mean": 2.7373745173742643,
-          "median": 1.862857142855064,
+          "mean": 2.753834586465864,
+          "median": 1.89857142856883,
           "min": -2.2800000000000002,
-          "n": 37,
-          "p90": 4.462857142857971
+          "n": 38,
+          "p90": 4.277142857143488
         },
         "assumed_round_trip_cost_per_contract_usd": 2.22,
         "entry_fill_latency_ms": {
           "max": 947.438,
-          "mean": 622.0796486486486,
-          "median": 546.024,
+          "mean": 619.8846052631578,
+          "median": 545.841,
           "min": 500.865,
-          "n": 37,
-          "p90": 912.3716
+          "n": 38,
+          "p90": 911.7222
         },
         "entry_slippage_ticks": {
           "max": 55.0,
-          "mean": 2.2432432432432434,
+          "mean": 2.289473684210526,
           "median": 1.0,
           "min": -5.0,
-          "n": 37,
+          "n": 38,
           "p90": 5.0
         },
         "exit_slippage_ticks": {
           "max": 13.0,
-          "mean": 0.7915057915052859,
+          "mean": 0.7781954887212027,
           "median": 0.285714285710128,
           "min": -7.0,
-          "n": 37,
-          "p90": 3.099999999997088
+          "n": 38,
+          "p90": 2.985714285711588
         },
-        "incremental_cost_vs_model_usd": -0.3571,
-        "n_complete_round_trips": 37,
+        "incremental_cost_vs_model_usd": -0.3214,
+        "n_complete_round_trips": 38,
         "round_trip_slippage_ticks": {
           "max": 55.857142857144936,
-          "mean": 3.034749034748529,
-          "median": 1.285714285710128,
+          "mean": 3.067669172931729,
+          "median": 1.35714285713766,
           "min": -7.0,
-          "n": 37,
-          "p90": 6.485714285715943
+          "n": 38,
+          "p90": 6.114285714286978
         }
       }
     },
     "giveback": {
       "latest_day": {
-        "close": -8.44,
+        "close": 95.9,
         "date": "2026-09-09",
-        "giveback_pct": 100.9,
+        "giveback_pct": 90.1,
         "peak": 972.98
       },
       "latest_day_is_live": true,
@@ -5453,30 +5528,34 @@
       {
         "cum_pnl": -8.4428571428476,
         "ts_utc": "2026-09-09T17:19:00+00:00"
+      },
+      {
+        "cum_pnl": 95.8971428571524,
+        "ts_utc": "2026-09-09T17:38:00+00:00"
       }
     ],
     "mfe_mae": {
       "historical_mae_atr_mean": 0.99,
       "historical_mfe_atr_mean": 1.757,
-      "live_mae_atr_mean": 1.042,
-      "live_mfe_atr_mean": 1.354,
-      "n_trades": 37
+      "live_mae_atr_mean": 1.021,
+      "live_mfe_atr_mean": 1.4,
+      "n_trades": 38
     },
     "normality": {
-      "expectancy_percentile": 40.1,
-      "expectancy_usd": 5.57,
-      "mdd_percentile": 9.0,
+      "expectancy_percentile": 44.7,
+      "expectancy_usd": 7.34,
+      "mdd_percentile": 9.1,
       "mdd_usd": -981.42,
-      "n_trades": 55,
-      "profit_factor": 1.122,
-      "profit_factor_percentile": 33.1,
-      "reference_expectancy_p50": 9.47,
-      "reference_mdd_p50": -457.7,
-      "reference_mdd_p95": -207.15,
-      "reference_mdd_p99": -150.36,
-      "reference_n": 55,
+      "n_trades": 56,
+      "profit_factor": 1.163,
+      "profit_factor_percentile": 37.2,
+      "reference_expectancy_p50": 9.41,
+      "reference_mdd_p50": -461.79,
+      "reference_mdd_p95": -209.37,
+      "reference_mdd_p99": -150.59,
+      "reference_n": 56,
       "reference_n_windows": 2644,
-      "reference_pf_p50": 1.314,
+      "reference_pf_p50": 1.318,
       "reference_scale_applied": 1.0
     },
     "regime": {
@@ -5543,14 +5622,14 @@
       "at_cap": false,
       "ceiling_qty": 3,
       "circuit_breaker_active": false,
-      "cumulative_equity": 331.2171428571529,
-      "current_drawdown": 981.42,
+      "cumulative_equity": 435.55714285715294,
+      "current_drawdown": 877.0799999999999,
       "deployed_qty": 3,
       "max_qty_cap": 100,
       "peak_equity": 1312.6371428571529
     }
   },
-  "data_as_of_utc": "2026-09-09T17:30:29.020194Z",
+  "data_as_of_utc": "2026-09-09T17:45:28.229226Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -5881,6 +5960,12 @@
       "drawdown_usd": 981.42,
       "equity_usd": 331.22,
       "ts_utc": "2026-09-09T17:19:00+00:00"
+    },
+    {
+      "cum_pnl_usd": 435.56,
+      "drawdown_usd": 877.08,
+      "equity_usd": 435.56,
+      "ts_utc": "2026-09-09T17:38:00+00:00"
     }
   ],
   "execution_health": {
@@ -5904,7 +5989,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-09T17:30:29.020194Z",
+  "generated_at_utc": "2026-09-09T17:45:28.229226Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -5959,6 +6044,20 @@
     "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-09-09T17:38:00+00:00",
+      "duration_seconds": 300.0,
+      "exit_reason": "TARGET",
+      "expected_net_pnl_model_usd": null,
+      "mae_atr": 0.236,
+      "mfe_atr": 3.094,
+      "mode": "DEMO",
+      "pnl_usd": 104.34,
+      "session_date": "2026-09-09",
+      "side": "SHORT",
+      "sized_qty": 3
+    },
     {
       "c_same_at_entry": null,
       "closed_at_utc": "2026-09-09T17:19:00+00:00",
@@ -6294,20 +6393,6 @@
       "session_date": "2026-09-09",
       "side": "LONG",
       "sized_qty": 3
-    },
-    {
-      "c_same_at_entry": null,
-      "closed_at_utc": "2026-09-09T01:51:00+00:00",
-      "duration_seconds": 780.0,
-      "exit_reason": "STOP",
-      "expected_net_pnl_model_usd": null,
-      "mae_atr": 1.506,
-      "mfe_atr": 1.575,
-      "mode": "DEMO",
-      "pnl_usd": -60.66,
-      "session_date": "2026-09-09",
-      "side": "LONG",
-      "sized_qty": 3
     }
   ],
   "mode": "DEMO",
@@ -6334,20 +6419,20 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 1,
-    "closed_trades_all_time": 55,
-    "closed_trades_today": 30,
-    "current_drawdown_usd": 981.42,
-    "display_equity_usd": 331.22,
+    "closed_trades_all_time": 56,
+    "closed_trades_today": 31,
+    "current_drawdown_usd": 877.08,
+    "display_equity_usd": 435.56,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 6.0221,
+    "expectancy_usd": 7.7778,
     "ledger_adjustment_usd": 24.66,
     "losses": 32,
     "max_drawdown_usd": 981.42,
-    "profit_factor": 1.1328,
-    "realized_pnl_all_time_usd": 331.22,
-    "realized_pnl_today_usd": -8.44,
-    "win_rate": 0.4,
-    "wins": 22
+    "profit_factor": 1.1746,
+    "realized_pnl_all_time_usd": 435.56,
+    "realized_pnl_today_usd": 95.9,
+    "win_rate": 0.4107,
+    "wins": 23
   },
   "status": {
     "data_delayed": false,
@@ -6355,7 +6440,7 @@
     "guardian_state": "NA",
     "in_position": false,
     "market_data_state": "LIVE",
-    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=30.",
+    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=31.",
     "service_state": "ARMED"
   },
   "warmup_replay": {
