@@ -825,6 +825,81 @@
         "atr": 6.428571428571429,
         "atr_pctile": 0.20094907407407409,
         "ts_utc": "2026-09-09T02:44:00+00:00"
+      },
+      {
+        "atr": 6.357142857142857,
+        "atr_pctile": 0.19469907407407408,
+        "ts_utc": "2026-09-09T02:45:00+00:00"
+      },
+      {
+        "atr": 6.392857142857143,
+        "atr_pctile": 0.19784722222222223,
+        "ts_utc": "2026-09-09T02:46:00+00:00"
+      },
+      {
+        "atr": 6.446428571428571,
+        "atr_pctile": 0.2024074074074074,
+        "ts_utc": "2026-09-09T02:47:00+00:00"
+      },
+      {
+        "atr": 6.357142857142857,
+        "atr_pctile": 0.1947222222222222,
+        "ts_utc": "2026-09-09T02:48:00+00:00"
+      },
+      {
+        "atr": 6.375,
+        "atr_pctile": 0.19652777777777777,
+        "ts_utc": "2026-09-09T02:49:00+00:00"
+      },
+      {
+        "atr": 6.267857142857143,
+        "atr_pctile": 0.1875925925925926,
+        "ts_utc": "2026-09-09T02:50:00+00:00"
+      },
+      {
+        "atr": 6.553571428571429,
+        "atr_pctile": 0.21263888888888888,
+        "ts_utc": "2026-09-09T02:51:00+00:00"
+      },
+      {
+        "atr": 6.321428571428571,
+        "atr_pctile": 0.1919675925925926,
+        "ts_utc": "2026-09-09T02:52:00+00:00"
+      },
+      {
+        "atr": 6.589285714285714,
+        "atr_pctile": 0.21613425925925925,
+        "ts_utc": "2026-09-09T02:53:00+00:00"
+      },
+      {
+        "atr": 6.035714285714286,
+        "atr_pctile": 0.16916666666666666,
+        "ts_utc": "2026-09-09T02:54:00+00:00"
+      },
+      {
+        "atr": 6.107142857142857,
+        "atr_pctile": 0.17479166666666668,
+        "ts_utc": "2026-09-09T02:55:00+00:00"
+      },
+      {
+        "atr": 5.535714285714286,
+        "atr_pctile": 0.12916666666666668,
+        "ts_utc": "2026-09-09T02:56:00+00:00"
+      },
+      {
+        "atr": 5.267857142857143,
+        "atr_pctile": 0.10981481481481481,
+        "ts_utc": "2026-09-09T02:57:00+00:00"
+      },
+      {
+        "atr": 5.232142857142857,
+        "atr_pctile": 0.10717592592592592,
+        "ts_utc": "2026-09-09T02:58:00+00:00"
+      },
+      {
+        "atr": 5.0,
+        "atr_pctile": 0.09094907407407407,
+        "ts_utc": "2026-09-09T02:59:00+00:00"
       }
     ],
     "concentration": {
@@ -847,7 +922,7 @@
       "MNQ": {
         "actual_round_trip_cost_per_contract": {
           "max": 29.148571428572467,
-          "mean": 3.76591836734575,
+          "mean": 3.7659183673457504,
           "median": 2.0235714285688298,
           "min": -1.315714285717404,
           "n": 14,
@@ -946,19 +1021,20 @@
       "n_trades": 14
     },
     "normality": {
-      "expectancy_percentile": 55.2,
+      "expectancy_percentile": 54.9,
       "expectancy_usd": 10.97,
-      "mdd_percentile": 10.4,
+      "mdd_percentile": 20.4,
       "mdd_usd": -559.38,
       "n_trades": 32,
       "profit_factor": 1.295,
-      "profit_factor_percentile": 50.7,
-      "reference_expectancy_p50": 8.36,
-      "reference_mdd_p50": -259.98,
-      "reference_mdd_p95": -95.48,
-      "reference_mdd_p99": -64.34,
-      "reference_n": 20,
-      "reference_pf_p50": 1.282,
+      "profit_factor_percentile": 49.8,
+      "reference_expectancy_p50": 8.64,
+      "reference_mdd_p50": -347.09,
+      "reference_mdd_p95": -142.35,
+      "reference_mdd_p99": -101.94,
+      "reference_n": 32,
+      "reference_n_windows": 2645,
+      "reference_pf_p50": 1.297,
       "reference_scale_applied": 1.0
     },
     "regime": {
@@ -1032,7 +1108,7 @@
       "peak_equity": 736.5600000000001
     }
   },
-  "data_as_of_utc": "2026-09-09T02:45:27.534444Z",
+  "data_as_of_utc": "2026-09-09T03:00:28.183532Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -1248,7 +1324,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-09T02:45:27.534444Z",
+  "generated_at_utc": "2026-09-09T03:00:28.183532Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
