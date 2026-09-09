@@ -5995,15 +5995,90 @@
         "atr": 10.125,
         "atr_pctile": 0.5518055555555555,
         "ts_utc": "2026-09-09T19:59:00+00:00"
+      },
+      {
+        "atr": 10.303571428571429,
+        "atr_pctile": 0.5664814814814815,
+        "ts_utc": "2026-09-09T20:00:00+00:00"
+      },
+      {
+        "atr": 10.392857142857142,
+        "atr_pctile": 0.5741898148148148,
+        "ts_utc": "2026-09-09T20:01:00+00:00"
+      },
+      {
+        "atr": 10.339285714285714,
+        "atr_pctile": 0.5693055555555555,
+        "ts_utc": "2026-09-09T20:02:00+00:00"
+      },
+      {
+        "atr": 11.160714285714286,
+        "atr_pctile": 0.6289814814814815,
+        "ts_utc": "2026-09-09T20:03:00+00:00"
+      },
+      {
+        "atr": 10.392857142857142,
+        "atr_pctile": 0.5741666666666667,
+        "ts_utc": "2026-09-09T20:04:00+00:00"
+      },
+      {
+        "atr": 10.357142857142858,
+        "atr_pctile": 0.5709722222222222,
+        "ts_utc": "2026-09-09T20:05:00+00:00"
+      },
+      {
+        "atr": 10.232142857142858,
+        "atr_pctile": 0.5606018518518519,
+        "ts_utc": "2026-09-09T20:06:00+00:00"
+      },
+      {
+        "atr": 10.375,
+        "atr_pctile": 0.572662037037037,
+        "ts_utc": "2026-09-09T20:07:00+00:00"
+      },
+      {
+        "atr": 9.875,
+        "atr_pctile": 0.5312731481481482,
+        "ts_utc": "2026-09-09T20:08:00+00:00"
+      },
+      {
+        "atr": 8.660714285714286,
+        "atr_pctile": 0.4265509259259259,
+        "ts_utc": "2026-09-09T20:09:00+00:00"
+      },
+      {
+        "atr": 8.428571428571429,
+        "atr_pctile": 0.4038425925925926,
+        "ts_utc": "2026-09-09T20:10:00+00:00"
+      },
+      {
+        "atr": 8.553571428571429,
+        "atr_pctile": 0.4159027777777778,
+        "ts_utc": "2026-09-09T20:11:00+00:00"
+      },
+      {
+        "atr": 7.928571428571429,
+        "atr_pctile": 0.3532638888888889,
+        "ts_utc": "2026-09-09T20:12:00+00:00"
+      },
+      {
+        "atr": 6.660714285714286,
+        "atr_pctile": 0.22518518518518518,
+        "ts_utc": "2026-09-09T20:13:00+00:00"
+      },
+      {
+        "atr": 6.392857142857143,
+        "atr_pctile": 0.20016203703703703,
+        "ts_utc": "2026-09-09T20:14:00+00:00"
       }
     ],
     "concentration": {
       "insufficient_sample": false,
-      "n_trades": 59,
-      "pnl_excl_best_trade": -76.42,
-      "top_10pct_contribution": 4.8121,
-      "top_1pct_contribution": 1.3022,
-      "top_5pct_contribution": 2.4264
+      "n_trades": 60,
+      "pnl_excl_best_trade": -152.08,
+      "top_10pct_contribution": 7.7847,
+      "top_1pct_contribution": 1.858,
+      "top_5pct_contribution": 4.8462
     },
     "concentration_historical": {
       "pnl_excl_best_trade": 827110.1742857154,
@@ -6017,54 +6092,54 @@
       "MNQ": {
         "actual_round_trip_cost_per_contract": {
           "max": 29.148571428572467,
-          "mean": 2.6686062717765977,
-          "median": 1.862857142855064,
+          "mean": 2.714897959183227,
+          "median": 1.89857142856883,
           "min": -2.2800000000000002,
-          "n": 41,
-          "p90": 3.7199999999999998
+          "n": 42,
+          "p90": 4.523571428569556
         },
         "assumed_round_trip_cost_per_contract_usd": 2.22,
         "entry_fill_latency_ms": {
           "max": 1104.979,
-          "mean": 634.100780487805,
-          "median": 546.024,
+          "mean": 632.2345476190476,
+          "median": 546.383,
           "min": 500.865,
-          "n": 41,
-          "p90": 916.2679999999999
+          "n": 42,
+          "p90": 915.6185999999999
         },
         "entry_slippage_ticks": {
           "max": 55.0,
-          "mean": 2.1951219512195124,
+          "mean": 2.142857142857143,
           "median": 1.0,
           "min": -5.0,
-          "n": 41,
-          "p90": 5.0
+          "n": 42,
+          "p90": 4.899999999999999
         },
         "exit_slippage_ticks": {
           "max": 13.0,
-          "mean": 0.7020905923336835,
+          "mean": 0.8469387755093132,
           "median": 0.285714285710128,
           "min": -7.0,
-          "n": 41,
-          "p90": 2.642857142855064
+          "n": 42,
+          "p90": 3.67142857142462
         },
-        "incremental_cost_vs_model_usd": -0.3571,
-        "n_complete_round_trips": 41,
+        "incremental_cost_vs_model_usd": -0.3214,
+        "n_complete_round_trips": 42,
         "round_trip_slippage_ticks": {
           "max": 55.857142857144936,
-          "mean": 2.897212543553196,
-          "median": 1.285714285710128,
+          "mean": 2.989795918366456,
+          "median": 1.35714285713766,
           "min": -7.0,
-          "n": 41,
-          "p90": 5.0
+          "n": 42,
+          "p90": 6.607142857139113
         }
       }
     },
     "giveback": {
       "latest_day": {
-        "close": -62.08,
+        "close": -137.74,
         "date": "2026-09-09",
-        "giveback_pct": 106.4,
+        "giveback_pct": 114.2,
         "peak": 972.98
       },
       "latest_day_is_live": true,
@@ -6214,30 +6289,34 @@
       {
         "cum_pnl": -62.08285714284759,
         "ts_utc": "2026-09-09T19:59:00+00:00"
+      },
+      {
+        "cum_pnl": -137.74285714284758,
+        "ts_utc": "2026-09-09T20:03:00+00:00"
       }
     ],
     "mfe_mae": {
       "historical_mae_atr_mean": 0.99,
       "historical_mfe_atr_mean": 1.757,
-      "live_mae_atr_mean": 1.052,
-      "live_mfe_atr_mean": 1.376,
-      "n_trades": 41
+      "live_mae_atr_mean": 1.079,
+      "live_mfe_atr_mean": 1.343,
+      "n_trades": 42
     },
     "normality": {
-      "expectancy_percentile": 35.6,
-      "expectancy_usd": 4.29,
-      "mdd_percentile": 8.1,
-      "mdd_usd": -1035.06,
-      "n_trades": 59,
-      "profit_factor": 1.094,
-      "profit_factor_percentile": 29.8,
-      "reference_expectancy_p50": 9.37,
-      "reference_mdd_p50": -478.71,
-      "reference_mdd_p95": -215.18,
-      "reference_mdd_p99": -159.0,
-      "reference_n": 59,
+      "expectancy_percentile": 30.4,
+      "expectancy_usd": 2.95,
+      "mdd_percentile": 6.8,
+      "mdd_usd": -1110.72,
+      "n_trades": 60,
+      "profit_factor": 1.064,
+      "profit_factor_percentile": 26.5,
+      "reference_expectancy_p50": 9.14,
+      "reference_mdd_p50": -481.28,
+      "reference_mdd_p95": -217.28,
+      "reference_mdd_p99": -163.17,
+      "reference_n": 60,
       "reference_n_windows": 2644,
-      "reference_pf_p50": 1.313,
+      "reference_pf_p50": 1.311,
       "reference_scale_applied": 1.0
     },
     "regime": {
@@ -6304,14 +6383,14 @@
       "at_cap": false,
       "ceiling_qty": 3,
       "circuit_breaker_active": false,
-      "cumulative_equity": 277.57714285715304,
-      "current_drawdown": 1035.06,
+      "cumulative_equity": 201.91714285715304,
+      "current_drawdown": 1110.7199999999998,
       "deployed_qty": 3,
       "max_qty_cap": 100,
       "peak_equity": 1312.6371428571529
     }
   },
-  "data_as_of_utc": "2026-09-09T20:00:28.291024Z",
+  "data_as_of_utc": "2026-09-09T20:15:27.709903Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -6666,6 +6745,12 @@
       "drawdown_usd": 1035.06,
       "equity_usd": 277.58,
       "ts_utc": "2026-09-09T19:59:00+00:00"
+    },
+    {
+      "cum_pnl_usd": 201.92,
+      "drawdown_usd": 1110.72,
+      "equity_usd": 201.92,
+      "ts_utc": "2026-09-09T20:03:00+00:00"
     }
   ],
   "execution_health": {
@@ -6689,7 +6774,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-09T20:00:28.291024Z",
+  "generated_at_utc": "2026-09-09T20:15:27.709903Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -6744,6 +6829,20 @@
     "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-09-09T20:03:00+00:00",
+      "duration_seconds": 120.0,
+      "exit_reason": "STOP",
+      "expected_net_pnl_model_usd": null,
+      "mae_atr": 2.184,
+      "mfe_atr": 0.0,
+      "mode": "DEMO",
+      "pnl_usd": -75.66,
+      "session_date": "2026-09-09",
+      "side": "LONG",
+      "sized_qty": 3
+    },
     {
       "c_same_at_entry": null,
       "closed_at_utc": "2026-09-09T19:59:00+00:00",
@@ -7079,20 +7178,6 @@
       "session_date": "2026-09-09",
       "side": "SHORT",
       "sized_qty": 3
-    },
-    {
-      "c_same_at_entry": null,
-      "closed_at_utc": "2026-09-09T12:13:00+00:00",
-      "duration_seconds": 300.0,
-      "exit_reason": "TARGET",
-      "expected_net_pnl_model_usd": null,
-      "mae_atr": 0.465,
-      "mfe_atr": 2.686,
-      "mode": "DEMO",
-      "pnl_usd": 131.34,
-      "session_date": "2026-09-09",
-      "side": "SHORT",
-      "sized_qty": 3
     }
   ],
   "mode": "DEMO",
@@ -7119,19 +7204,19 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 1,
-    "closed_trades_all_time": 59,
-    "closed_trades_today": 34,
-    "current_drawdown_usd": 1035.06,
-    "display_equity_usd": 277.58,
+    "closed_trades_all_time": 60,
+    "closed_trades_today": 35,
+    "current_drawdown_usd": 1110.72,
+    "display_equity_usd": 201.92,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 4.7047,
+    "expectancy_usd": 3.3653,
     "ledger_adjustment_usd": 24.66,
-    "losses": 35,
-    "max_drawdown_usd": 1035.06,
-    "profit_factor": 1.1046,
-    "realized_pnl_all_time_usd": 277.58,
-    "realized_pnl_today_usd": -62.08,
-    "win_rate": 0.3898,
+    "losses": 36,
+    "max_drawdown_usd": 1110.72,
+    "profit_factor": 1.074,
+    "realized_pnl_all_time_usd": 201.92,
+    "realized_pnl_today_usd": -137.74,
+    "win_rate": 0.3833,
     "wins": 23
   },
   "status": {
@@ -7140,7 +7225,7 @@
     "guardian_state": "NA",
     "in_position": false,
     "market_data_state": "LIVE",
-    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=1.",
+    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=2.",
     "service_state": "ARMED"
   },
   "warmup_replay": {
