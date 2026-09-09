@@ -6615,7 +6615,7 @@
       "peak_equity": 1312.6371428571529
     }
   },
-  "data_as_of_utc": "2026-09-09T23:15:28.197088Z",
+  "data_as_of_utc": "2026-09-09T23:30:27.789322Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -6999,7 +6999,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-09T23:15:28.197088Z",
+  "generated_at_utc": "2026-09-09T23:30:27.789322Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
