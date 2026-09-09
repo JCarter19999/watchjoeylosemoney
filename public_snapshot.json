@@ -1125,6 +1125,81 @@
         "atr": 5.482142857142857,
         "atr_pctile": 0.12590277777777778,
         "ts_utc": "2026-09-09T03:44:00+00:00"
+      },
+      {
+        "atr": 5.607142857142857,
+        "atr_pctile": 0.13564814814814816,
+        "ts_utc": "2026-09-09T03:45:00+00:00"
+      },
+      {
+        "atr": 5.767857142857143,
+        "atr_pctile": 0.1489814814814815,
+        "ts_utc": "2026-09-09T03:46:00+00:00"
+      },
+      {
+        "atr": 6.321428571428571,
+        "atr_pctile": 0.19287037037037036,
+        "ts_utc": "2026-09-09T03:47:00+00:00"
+      },
+      {
+        "atr": 6.678571428571429,
+        "atr_pctile": 0.22534722222222223,
+        "ts_utc": "2026-09-09T03:48:00+00:00"
+      },
+      {
+        "atr": 7.053571428571429,
+        "atr_pctile": 0.26275462962962964,
+        "ts_utc": "2026-09-09T03:49:00+00:00"
+      },
+      {
+        "atr": 7.017857142857143,
+        "atr_pctile": 0.25949074074074074,
+        "ts_utc": "2026-09-09T03:50:00+00:00"
+      },
+      {
+        "atr": 7.107142857142857,
+        "atr_pctile": 0.26837962962962963,
+        "ts_utc": "2026-09-09T03:51:00+00:00"
+      },
+      {
+        "atr": 6.928571428571429,
+        "atr_pctile": 0.2496759259259259,
+        "ts_utc": "2026-09-09T03:52:00+00:00"
+      },
+      {
+        "atr": 6.857142857142857,
+        "atr_pctile": 0.24256944444444445,
+        "ts_utc": "2026-09-09T03:53:00+00:00"
+      },
+      {
+        "atr": 7.339285714285714,
+        "atr_pctile": 0.2912962962962963,
+        "ts_utc": "2026-09-09T03:54:00+00:00"
+      },
+      {
+        "atr": 7.517857142857143,
+        "atr_pctile": 0.30833333333333335,
+        "ts_utc": "2026-09-09T03:55:00+00:00"
+      },
+      {
+        "atr": 7.571428571428571,
+        "atr_pctile": 0.31342592592592594,
+        "ts_utc": "2026-09-09T03:56:00+00:00"
+      },
+      {
+        "atr": 7.232142857142857,
+        "atr_pctile": 0.28041666666666665,
+        "ts_utc": "2026-09-09T03:57:00+00:00"
+      },
+      {
+        "atr": 7.392857142857143,
+        "atr_pctile": 0.2966435185185185,
+        "ts_utc": "2026-09-09T03:58:00+00:00"
+      },
+      {
+        "atr": 7.375,
+        "atr_pctile": 0.29486111111111113,
+        "ts_utc": "2026-09-09T03:59:00+00:00"
       }
     ],
     "concentration": {
@@ -1147,7 +1222,7 @@
       "MNQ": {
         "actual_round_trip_cost_per_contract": {
           "max": 29.148571428572467,
-          "mean": 3.753333333332362,
+          "mean": 3.7533333333323626,
           "median": 2.1842857142825958,
           "min": -1.315714285717404,
           "n": 15,
@@ -1156,7 +1231,7 @@
         "assumed_round_trip_cost_per_contract_usd": 2.22,
         "entry_fill_latency_ms": {
           "max": 947.438,
-          "mean": 655.3431999999999,
+          "mean": 655.3432,
           "median": 546.742,
           "min": 500.865,
           "n": 15,
@@ -1337,7 +1412,7 @@
       "peak_equity": 736.5600000000001
     }
   },
-  "data_as_of_utc": "2026-09-09T03:45:28.586117Z",
+  "data_as_of_utc": "2026-09-09T04:00:28.706441Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -1559,7 +1634,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-09T03:45:28.586117Z",
+  "generated_at_utc": "2026-09-09T04:00:28.706441Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -2008,9 +2083,9 @@
     "data_delayed": false,
     "execution_enabled": true,
     "guardian_state": "NA",
-    "in_position": false,
+    "in_position": true,
     "market_data_state": "LIVE",
-    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=8.",
+    "message": "G1 (frozen: 30/15 breakout+retest + session gate + low-vol veto + occupancy + 1x/2x ATR bracket, qty=3) armed and watching for entries. Forward-qualification candidate, discovered as a side effect of Wave 6 RT1 research 2026-09-08. n_trades_executed=9.",
     "service_state": "ARMED"
   },
   "warmup_replay": {
