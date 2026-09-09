@@ -137,9 +137,9 @@ def render_normality_panel(snapshot: dict[str, Any]) -> None:
     scale = norm.get("reference_scale_applied")
     scale_note = f" Dollar figures rescaled {scale:.2f}x to match current live sizing." if scale and abs(scale - 1.0) > 0.01 else ""
     st.caption(
-        (f"Live sample: {n} closed trade(s). Compared against every historical {ref_n}-trade block "
-         f"(overlapping windows, 2020-2026 basis, computed at qty=3) -- the nearest reference size to "
-         f"today's live sample, not the full 66,000-trade aggregate.{scale_note}") if ref_n else
+        (f"Live sample: {n} closed trade(s). Compared against every historical {ref_n}-trade block, "
+         f"the EXACT same length as today's sample (overlapping windows, 2020-2026 basis, computed at "
+         f"qty=3), not a nearby bucket size or the full 66,000-trade aggregate.{scale_note}") if ref_n else
         f"Live sample: {n} closed trade(s). No historical reference available yet."
     )
     cols = st.columns(3)
