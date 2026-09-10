@@ -1,7 +1,14 @@
 {
   "dashboard_extras": {},
-  "data_as_of_utc": "2026-09-10T13:30:27.108162Z",
-  "equity_curve": [],
+  "data_as_of_utc": "2026-09-10T13:45:26.383867Z",
+  "equity_curve": [
+    {
+      "cum_pnl_usd": -31.1,
+      "drawdown_usd": 31.1,
+      "equity_usd": -31.1,
+      "ts_utc": "2026-09-10T13:40:01.318334+00:00"
+    }
+  ],
   "execution_health": {
     "current_cost_multiplier": null,
     "current_disable": null,
@@ -23,7 +30,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-10T13:30:27.108162Z",
+  "generated_at_utc": "2026-09-10T13:45:26.383867Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -77,7 +84,22 @@
     "stalls_over_750ms": 0,
     "verdict": "INSUFFICIENT_DATA"
   },
-  "latest_trades": [],
+  "latest_trades": [
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-09-10T13:40:01.318334+00:00",
+      "duration_seconds": 61.318334,
+      "exit_reason": "TIME_60S",
+      "expected_net_pnl_model_usd": null,
+      "mae_atr": null,
+      "mfe_atr": null,
+      "mode": "DEMO",
+      "pnl_usd": -31.1,
+      "session_date": "2026-09-10",
+      "side": "LONG",
+      "sized_qty": 5
+    }
+  ],
   "mode": "DEMO",
   "pnl_waterfall": {
     "aggregate": {
@@ -102,19 +124,19 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 0,
-    "closed_trades_today": 0,
-    "current_drawdown_usd": 0.0,
-    "display_equity_usd": 0.0,
+    "closed_trades_all_time": 1,
+    "closed_trades_today": 1,
+    "current_drawdown_usd": 31.1,
+    "display_equity_usd": -31.1,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": null,
+    "expectancy_usd": -31.1,
     "ledger_adjustment_usd": 0.0,
-    "losses": 0,
-    "max_drawdown_usd": 0.0,
-    "profit_factor": null,
-    "realized_pnl_all_time_usd": 0,
-    "realized_pnl_today_usd": 0,
-    "win_rate": null,
+    "losses": 1,
+    "max_drawdown_usd": 31.1,
+    "profit_factor": 0.0,
+    "realized_pnl_all_time_usd": -31.1,
+    "realized_pnl_today_usd": -31.1,
+    "win_rate": 0.0,
     "wins": 0
   },
   "status": {
