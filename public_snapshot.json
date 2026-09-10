@@ -1,6 +1,6 @@
 {
   "dashboard_extras": {},
-  "data_as_of_utc": "2026-09-10T08:15:26.646001Z",
+  "data_as_of_utc": "2026-09-10T08:16:50.212739Z",
   "equity_curve": [],
   "execution_health": {
     "current_cost_multiplier": null,
@@ -23,7 +23,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-10T08:15:26.646001Z",
+  "generated_at_utc": "2026-09-10T08:16:50.212739Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -78,7 +78,7 @@
     "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [],
-  "mode": "SHADOW",
+  "mode": "DEMO",
   "pnl_waterfall": {
     "aggregate": {
       "a_expectancy_usd": null,
