@@ -1,6 +1,6 @@
 {
   "dashboard_extras": {},
-  "data_as_of_utc": "2026-09-10T22:30:26.898084Z",
+  "data_as_of_utc": "2026-09-10T22:45:26.242021Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 61.4,
@@ -36,7 +36,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-10T22:30:26.898084Z",
+  "generated_at_utc": "2026-09-10T22:45:26.242021Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -99,7 +99,7 @@
       "expected_net_pnl_model_usd": null,
       "mae_atr": null,
       "mfe_atr": null,
-      "mode": "SHADOW",
+      "mode": "DEMO",
       "pnl_adjusted": false,
       "pnl_usd": 61.4,
       "raw_pnl_usd": null,
@@ -115,7 +115,7 @@
       "expected_net_pnl_model_usd": null,
       "mae_atr": null,
       "mfe_atr": null,
-      "mode": "SHADOW",
+      "mode": "DEMO",
       "pnl_adjusted": true,
       "pnl_usd": 61.4,
       "raw_pnl_usd": -31.1,
@@ -124,7 +124,7 @@
       "sized_qty": 5
     }
   ],
-  "mode": "SHADOW",
+  "mode": "DEMO",
   "pnl_waterfall": {
     "aggregate": {
       "a_expectancy_usd": null,
@@ -165,7 +165,7 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
+    "execution_enabled": true,
     "guardian_state": "NA",
     "in_position": false,
     "market_data_state": "LIVE",
