@@ -33,18 +33,24 @@ WEB_REPO=/home/joey/watchjoeylosemoney
 # V2_RUNTIME actually points at. If this ever gets repointed at a live
 # runtime again, change BOTH V2_RUNTIME and --mode below together.
 #
-# 2026-09-08: REPOINTED from RT1 (runtime_v2_d20_paper, now permanently
-# stopped) to G1 -- the frozen 30/15-breakout+retest+session+low-vol+
-# occupancy architecture discovered as a side effect of tonight's Wave 6
-# RT1-dissection research, now the primary forward-qualification
-# candidate (see nqg1_rt1_companion_candidate_2026_09_08 project memory).
-# G1 has its own exporter (export_g1_private_snapshot.py) since its
-# journal format/fields differ from RT1's -- NOT export_private_snapshot.py.
-# RT1's final snapshot was archived at
-# watchjoeylosemoney/archive/public_snapshot_RT1_final_2026-09-08.json
-# before this repoint.
-G1_RUNTIME="$LIVE_REPO/runtime_g1_paper"
-RUNTIME_MODE="DEMO"
+# 2026-09-08: REPOINTED from RT1 (runtime_v2_d20_paper, permanently
+# stopped) to G1. G1 itself was formally ARCHIVED 2026-09-09 (falsified
+# under causal reconstruction -- see g1_postmortem_ARCHIVED_2026_09_09
+# project memory); G1's final snapshot was archived at
+# watchjoeylosemoney/archive/public_snapshot_G1_final_2026-09-10.json
+# before this repoint (same convention as RT1's archive above).
+#
+# 2026-09-10: REPOINTED from G1 to DV_SIGNAL_V1 -- the frozen D_t/V_t
+# HIGH_V-interaction signal, currently deployed SHADOW-ONLY (no real or
+# even demo order submission; execution_enabled is always false for this
+# strategy right now). Has its own exporter
+# (export_dv_signal_private_snapshot.py) producing the same private-
+# snapshot shape, mode="SHADOW" (a schema-native value, not an
+# extension). Paper size is 5 MNQ-equivalent (DV_SIGNAL_SHADOW_QTY, a
+# pure quantity multiplier on the frozen decision, never a rule change)
+# -- see dv_signal_live_service.py's shadow_qty for the full rationale.
+DV_SIGNAL_RUNTIME="$LIVE_REPO/runtime_dv_signal_shadow"
+RUNTIME_MODE="SHADOW"
 PRIVATE_SNAPSHOT="$LIVE_REPO/runtime/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
@@ -52,16 +58,11 @@ exec 9>"$LOCK"
 flock -n 9 || exit 0
 
 cd "$LIVE_REPO"
-# 2026-09-08: regenerate the execution-cost report (actual vs backtest-
-# assumed slippage/commission, strictly per-instrument) before exporting --
-# cheap (parses one small JSONL, light numpy percentile math), same
-# light-neighbor discipline as everything else in this cron.
-"$LIVE_REPO/.venv/bin/python3" -m scripts.g1_build_execution_cost_report \
-  --runtime-dir "$(basename "$G1_RUNTIME")" || true
 
-"$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_g1_private_snapshot \
-  --journal "$G1_RUNTIME/g1_trade_journal.jsonl" \
-  --status "$G1_RUNTIME/live_status.json" \
+"$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_dv_signal_private_snapshot \
+  --decisions "$DV_SIGNAL_RUNTIME/dv_signal_decisions.jsonl" \
+  --trades "$DV_SIGNAL_RUNTIME/dv_signal_trades.jsonl" \
+  --status "$DV_SIGNAL_RUNTIME/live_status.json" \
   --output "$PRIVATE_SNAPSHOT" \
   --mode "$RUNTIME_MODE"
 
