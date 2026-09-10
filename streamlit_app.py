@@ -219,28 +219,64 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
     # KeyError and taking the whole page down (real incident, 2026-09-08).
     table = trades.reindex(columns=[
         "closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd", "sized_qty", "mfe_atr", "mae_atr",
+        "pnl_adjusted", "raw_pnl_usd",
     ]).copy()
     table["closed_at_utc"] = pd.to_datetime(table["closed_at_utc"], utc=True).dt.tz_convert("America/Los_Angeles")
+    # 2026-09-10: a trade whose displayed P&L is a documented, authorized
+    # correction (not its real fill outcome -- e.g. refunding a tooling-
+    # bug's dollar impact) must never be visually indistinguishable from an
+    # ordinary real trade. Two unrelated trades landing on the same dollar
+    # figure by pure market coincidence is exactly the scenario that
+    # otherwise reads as fabricated data. See sanitizer.py's pnl_adjusted/
+    # raw_pnl_usd fields.
+    adjusted_mask = table["pnl_adjusted"].fillna(False).astype(bool)
+    table["adjusted_note"] = ""
+    if adjusted_mask.any():
+        table.loc[adjusted_mask, "adjusted_note"] = table.loc[adjusted_mask, "raw_pnl_usd"].map(
+            lambda v: f"Adjusted -- real result was ${v:,.2f}" if pd.notna(v) else "Adjusted"
+        )
     st.caption(
         "Most recent 25 closed trades. \"Qty\" is the MNQ-equivalent size that trade was sized at. "
-        "MFE/MAE (in ATR units) are blank for trades closed before 2026-09-08's telemetry was added."
+        "MFE/MAE (in ATR units) are blank for trades closed before 2026-09-08's telemetry was added. "
+        "A trade marked ⚠️ Adjusted shows a documented, human-authorized correction to its displayed "
+        "P&L (e.g. refunding a since-fixed tooling bug's dollar impact) -- hover the note for the real result; "
+        "the underlying raw trade record itself is never altered."
     )
-    st.dataframe(
-        table,
-        width="stretch",
-        hide_index=True,
-        column_config={
-            "closed_at_utc": st.column_config.DatetimeColumn("Closed (PST)", format="YYYY-MM-DD HH:mm:ss"),
-            "mode": st.column_config.TextColumn("Mode"),
-            "side": st.column_config.TextColumn("Side"),
-            "exit_reason": st.column_config.TextColumn("Exit"),
-            "duration_min": st.column_config.NumberColumn("Minutes", format="%.1f"),
-            "pnl_usd": st.column_config.NumberColumn("P&L", format="$%.2f"),
-            "sized_qty": st.column_config.NumberColumn("Qty", format="%.0f"),
-            "mfe_atr": st.column_config.NumberColumn("MFE/ATR", format="%.2f"),
-            "mae_atr": st.column_config.NumberColumn("MAE/ATR", format="%.2f"),
-        },
-    )
+    if adjusted_mask.any():
+        st.dataframe(
+            table.drop(columns=["pnl_adjusted", "raw_pnl_usd"]),
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "closed_at_utc": st.column_config.DatetimeColumn("Closed (PST)", format="YYYY-MM-DD HH:mm:ss"),
+                "mode": st.column_config.TextColumn("Mode"),
+                "side": st.column_config.TextColumn("Side"),
+                "exit_reason": st.column_config.TextColumn("Exit"),
+                "duration_min": st.column_config.NumberColumn("Minutes", format="%.1f"),
+                "pnl_usd": st.column_config.NumberColumn("P&L", format="$%.2f"),
+                "sized_qty": st.column_config.NumberColumn("Qty", format="%.0f"),
+                "mfe_atr": st.column_config.NumberColumn("MFE/ATR", format="%.2f"),
+                "mae_atr": st.column_config.NumberColumn("MAE/ATR", format="%.2f"),
+                "adjusted_note": st.column_config.TextColumn("⚠️ Adjusted"),
+            },
+        )
+    else:
+        st.dataframe(
+            table.drop(columns=["pnl_adjusted", "raw_pnl_usd", "adjusted_note"]),
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "closed_at_utc": st.column_config.DatetimeColumn("Closed (PST)", format="YYYY-MM-DD HH:mm:ss"),
+                "mode": st.column_config.TextColumn("Mode"),
+                "side": st.column_config.TextColumn("Side"),
+                "exit_reason": st.column_config.TextColumn("Exit"),
+                "duration_min": st.column_config.NumberColumn("Minutes", format="%.1f"),
+                "pnl_usd": st.column_config.NumberColumn("P&L", format="$%.2f"),
+                "sized_qty": st.column_config.NumberColumn("Qty", format="%.0f"),
+                "mfe_atr": st.column_config.NumberColumn("MFE/ATR", format="%.2f"),
+                "mae_atr": st.column_config.NumberColumn("MAE/ATR", format="%.2f"),
+            },
+        )
 
 def render_reliability(snapshot: dict[str, Any]) -> None:
     r = snapshot["reliability"]

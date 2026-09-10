@@ -139,7 +139,16 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
         for row in visible_trades:
             adj_amt = adjustments_by_trade.get(row.get("trade_id"))
             if adj_amt:
+                # 2026-09-10: tag the row itself, not just the grand-total
+                # ledger_adjustment_usd figure -- a trade whose displayed
+                # pnl_usd doesn't match its real fills (by design, per the
+                # correction) must never look identical to an unadjusted
+                # real trade on the per-trade list, or a coincidental dollar
+                # match with an unrelated real trade reads as fabricated
+                # data. See streamlit_app.py's "adjusted" badge.
+                row["raw_pnl_usd"] = round(float(row["pnl_usd"]), 2)
                 row["pnl_usd"] = float(row["pnl_usd"]) + adj_amt
+                row["pnl_adjusted"] = True
 
     starting_equity = float(private.get("display_starting_equity_usd", 0.0))
     equity_curve = []
@@ -333,6 +342,8 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
                 "expected_net_pnl_model_usd": _round(r.get("expected_net_pnl_model")),
                 "mfe_atr": _round(r.get("mfe_atr"), 3),
                 "mae_atr": _round(r.get("mae_atr"), 3),
+                "pnl_adjusted": bool(r.get("pnl_adjusted", False)),
+                "raw_pnl_usd": _round(r.get("raw_pnl_usd")),
             }
             for r in visible_trades[-MAX_LATEST_TRADES:][::-1]
         ],

@@ -635,7 +635,9 @@
           "mode",
           "sized_qty",
           "c_same_at_entry",
-          "expected_net_pnl_model_usd"
+          "expected_net_pnl_model_usd",
+          "pnl_adjusted",
+          "raw_pnl_usd"
         ],
         "properties": {
           "closed_at_utc": {
@@ -700,6 +702,17 @@
               "number",
               "null"
             ]
+          },
+          "pnl_adjusted": {
+            "type": "boolean",
+            "description": "True if pnl_usd is a documented, human-authorized correction to this trade's displayed P&L (see ledger_adjustment_usd) rather than its raw real/reference fill outcome -- e.g. refunding a tooling-bug's dollar impact. raw_pnl_usd carries what actually happened. The underlying raw trade record is never altered; this flag exists specifically so an adjusted trade is never visually indistinguishable from an ordinary one."
+          },
+          "raw_pnl_usd": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "The trade's real/reference pnl_usd BEFORE any ledger adjustment. Null when pnl_adjusted is false (pnl_usd already IS the raw value)."
           }
         }
       }
