@@ -1,6 +1,6 @@
 {
   "dashboard_extras": {},
-  "data_as_of_utc": "2026-09-10T14:36:10.832767Z",
+  "data_as_of_utc": "2026-09-10T14:45:27.079668Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 61.4,
@@ -36,7 +36,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-10T14:36:10.832767Z",
+  "generated_at_utc": "2026-09-10T14:45:27.079668Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
