@@ -1,6 +1,6 @@
 {
   "dashboard_extras": {},
-  "data_as_of_utc": "2026-09-10T22:00:27.068272Z",
+  "data_as_of_utc": "2026-09-10T22:15:26.425015Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 61.4,
@@ -36,7 +36,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-10T22:00:27.068272Z",
+  "generated_at_utc": "2026-09-10T22:15:26.425015Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -167,10 +167,10 @@
     "data_delayed": false,
     "execution_enabled": false,
     "guardian_state": "NA",
-    "in_position": null,
-    "market_data_state": "STALE",
-    "message": "No update from the DV_SIGNAL_V1 process recently -- may be market-closed hours or a stuck/dead process.",
-    "service_state": "OFFLINE"
+    "in_position": false,
+    "market_data_state": "LIVE",
+    "message": "Ready and watching for a RTH-window decision (frozen HIGH_V + D_t rule).",
+    "service_state": "ARMED"
   },
   "warmup_replay": {
     "bars_replayed": 0,
