@@ -29,7 +29,7 @@
         "assumed_round_trip_cost_per_contract_usd": 2.22,
         "entry_fill_latency_ms": {
           "max": 1104.979,
-          "mean": 632.2345476190476,
+          "mean": 632.2345476190477,
           "median": 546.383,
           "min": 500.865,
           "n": 42,
@@ -176,7 +176,7 @@
       "peak_equity": 1312.6371428571529
     }
   },
-  "data_as_of_utc": "2026-09-10T01:00:27.949814Z",
+  "data_as_of_utc": "2026-09-10T01:15:28.577226Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -81.66,
@@ -560,7 +560,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-10T01:00:27.949814Z",
+  "generated_at_utc": "2026-09-10T01:15:28.577226Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
