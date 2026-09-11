@@ -1,6 +1,6 @@
 {
   "dashboard_extras": {},
-  "data_as_of_utc": "2026-09-11T17:00:26.807679Z",
+  "data_as_of_utc": "2026-09-11T17:15:27.132639Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 242.8,
@@ -211,6 +211,12 @@
       "drawdown_usd": 2284.8,
       "equity_usd": -2042.0,
       "ts_utc": "2026-09-11T16:56:00.107826+00:00"
+    },
+    {
+      "cum_pnl_usd": -2204.2,
+      "drawdown_usd": 2447.0,
+      "equity_usd": -2204.2,
+      "ts_utc": "2026-09-11T17:05:00.539950+00:00"
     }
   ],
   "execution_health": {
@@ -234,7 +240,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-11T17:00:26.807679Z",
+  "generated_at_utc": "2026-09-11T17:15:27.132639Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -289,6 +295,25 @@
     "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-09-11T17:05:00.539950+00:00",
+      "duration_seconds": 60.463194,
+      "exit_reason": "TIME_60S",
+      "expected_net_pnl_model_usd": null,
+      "information_available_ts": "2026-09-11T17:04:00+00:00",
+      "intended_exit_ts": "2026-09-11T17:05:00+00:00",
+      "mae_atr": null,
+      "mfe_atr": null,
+      "mode": "DEMO",
+      "pnl_adjusted": false,
+      "pnl_usd": -162.2,
+      "raw_pnl_usd": null,
+      "session_date": "2026-09-11",
+      "side": "LONG",
+      "sized_qty": 10,
+      "v_cohort_label": "V2_MARGINAL"
+    },
     {
       "c_same_at_entry": null,
       "closed_at_utc": "2026-09-11T16:56:00.107826+00:00",
@@ -744,25 +769,6 @@
       "side": "SHORT",
       "sized_qty": 10,
       "v_cohort_label": "V3_MARGINAL"
-    },
-    {
-      "c_same_at_entry": null,
-      "closed_at_utc": "2026-09-11T14:45:00.193691+00:00",
-      "duration_seconds": 59.28514,
-      "exit_reason": "TIME_60S",
-      "expected_net_pnl_model_usd": null,
-      "information_available_ts": "2026-09-11T14:44:00+00:00",
-      "intended_exit_ts": "2026-09-11T14:45:00+00:00",
-      "mae_atr": null,
-      "mfe_atr": null,
-      "mode": "DEMO",
-      "pnl_adjusted": false,
-      "pnl_usd": -367.2,
-      "raw_pnl_usd": null,
-      "session_date": "2026-09-11",
-      "side": "SHORT",
-      "sized_qty": 10,
-      "v_cohort_label": "V4_MARGINAL"
     }
   ],
   "mode": "DEMO",
@@ -789,19 +795,19 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 35,
-    "closed_trades_today": 35,
-    "current_drawdown_usd": 2284.8,
-    "display_equity_usd": -2042.0,
+    "closed_trades_all_time": 36,
+    "closed_trades_today": 36,
+    "current_drawdown_usd": 2447.0,
+    "display_equity_usd": -2204.2,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": -58.3429,
+    "expectancy_usd": -61.2278,
     "ledger_adjustment_usd": 0.0,
-    "losses": 27,
-    "max_drawdown_usd": 2284.8,
-    "profit_factor": 0.4901,
-    "realized_pnl_all_time_usd": -2042.0,
-    "realized_pnl_today_usd": -2042.0,
-    "win_rate": 0.2286,
+    "losses": 28,
+    "max_drawdown_usd": 2447.0,
+    "profit_factor": 0.471,
+    "realized_pnl_all_time_usd": -2204.2,
+    "realized_pnl_today_usd": -2204.2,
+    "win_rate": 0.2222,
     "wins": 8
   },
   "status": {
