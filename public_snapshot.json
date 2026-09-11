@@ -1,6 +1,6 @@
 {
   "dashboard_extras": {},
-  "data_as_of_utc": "2026-09-11T21:00:26.997423Z",
+  "data_as_of_utc": "2026-09-11T21:15:26.350304Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 242.8,
@@ -342,7 +342,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-11T21:00:26.997423Z",
+  "generated_at_utc": "2026-09-11T21:15:26.350304Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -914,12 +914,12 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": true,
-    "guardian_state": "ARMED",
-    "in_position": false,
-    "market_data_state": "LIVE",
-    "message": "Ready and watching for a D_t-extreme RTH decision (VALL, no V gate).",
-    "service_state": "ARMED"
+    "execution_enabled": false,
+    "guardian_state": "NA",
+    "in_position": null,
+    "market_data_state": "STALE",
+    "message": "No update from the FAST_EXPANDED_V1 process recently -- may be market-closed hours or a stuck/dead process.",
+    "service_state": "OFFLINE"
   },
   "warmup_replay": {
     "bars_replayed": 0,
