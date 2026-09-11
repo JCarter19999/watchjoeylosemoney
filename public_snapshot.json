@@ -1,6 +1,6 @@
 {
   "dashboard_extras": {},
-  "data_as_of_utc": "2026-09-11T06:30:26.430554Z",
+  "data_as_of_utc": "2026-09-11T06:45:26.683794Z",
   "equity_curve": [],
   "execution_health": {
     "current_cost_multiplier": null,
@@ -23,7 +23,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-11T06:30:26.430554Z",
+  "generated_at_utc": "2026-09-11T06:45:26.683794Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
