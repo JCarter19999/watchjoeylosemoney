@@ -6,7 +6,7 @@
 # on the trading side, push-only on the website side.
 set -euo pipefail
 
-LIVE_REPO=/home/joey/market_structure_ml-live/live
+LIVE_REPO=/home/joey/market_structure_ml-fast-expanded/live
 WEB_REPO=/home/joey/watchjoeylosemoney
 # 2026-08-18: RT1-V2-D20 commissioning -- old V1 production runtime/
 # archived (real execution stopped), V2 (D=20s debounce) now runs in
@@ -40,20 +40,20 @@ WEB_REPO=/home/joey/watchjoeylosemoney
 # watchjoeylosemoney/archive/public_snapshot_G1_final_2026-09-10.json
 # before this repoint (same convention as RT1's archive above).
 #
-# 2026-09-10: REPOINTED from G1 to DV_SIGNAL_V1 -- the frozen D_t/V_t
-# HIGH_V-interaction signal. Has its own exporter
-# (export_dv_signal_private_snapshot.py) producing the same private-
-# snapshot shape. Started SHADOW-ONLY, then moved to PAPER (real
-# Tradovate DEMO order submission, no real capital, 5-MNQ-equivalent
-# size via DV_SIGNAL_SHADOW_QTY) same day -- see dv_signal_live_service.py
-# for the full rationale. RUNTIME_MODE is read from the live process's
-# OWN reported live_status.json (its "mode" field is now derived from
-# the actual execution object, not a separate hardcoded flag -- see the
-# 2026-09-10 dv_signal_live_service.py fix) rather than hardcoded here a
-# second time -- a hardcoded copy is exactly what silently went stale
-# and showed "SHADOW" on the public site for a while after the real
-# switch to PAPER, caught by inspection of the live site itself.
-DV_SIGNAL_RUNTIME="$LIVE_REPO/runtime_dv_signal_shadow"
+# 2026-09-10: REPOINTED from DV_SIGNAL_V1 to FAST_EXPANDED_V1_VALL_D90_1M
+# -- same frozen D_t Ridge model, but no V_t entry gate (VALL: trades
+# every D_t-extreme decision, any volatility state; V_t still computed
+# for telemetry/cohort-labeling only). Deployed in a SEPARATE worktree
+# (market_structure_ml-fast-expanded, not market_structure_ml-live) --
+# LIVE_REPO above changed accordingly, not just the runtime subdir.
+# DV_SIGNAL_V1 itself was stopped the same night (flat, watchdog cron
+# paused not deleted); its final snapshot archived at
+# watchjoeylosemoney/archive/public_snapshot_DV_SIGNAL_V1_final_2026-09-10.json
+# before this repoint (same convention as every prior repoint above).
+# Own exporter: export_fast_expanded_v1_private_snapshot.py. RUNTIME_MODE
+# read dynamically from the live process's own live_status.json, same
+# stale-hardcoded-value lesson as the DV_SIGNAL_V1 repoint above.
+FAST_EXPANDED_RUNTIME="$LIVE_REPO/runtime_fast_expanded_v1"
 PRIVATE_SNAPSHOT="$LIVE_REPO/runtime/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
@@ -64,25 +64,24 @@ cd "$LIVE_REPO"
 
 RUNTIME_MODE=$("$LIVE_REPO/.venv/bin/python3" -c "
 import json
-# dv_signal_live_service.py's ExecutionInterface vocabulary is
-# {SHADOW, PAPER, LIVE} (matches this repo's PaperExecution/deploy_
-# schema_paper_demo.sh naming); this site's schema vocabulary is
+# fast_expanded_v1_live_service.py's ExecutionInterface vocabulary is
+# {SHADOW, PAPER, LIVE}; this site's schema vocabulary is
 # {SHADOW, DEMO, LIVE} (matches G1/RT1's convention where 'DEMO' means
 # real orders on a demo account). PAPER and DEMO are the same concept,
 # different word -- translate here rather than growing a third value
 # into the schema.
 mode = 'SHADOW'
 try:
-    mode = json.load(open('$DV_SIGNAL_RUNTIME/live_status.json')).get('mode', 'SHADOW')
+    mode = json.load(open('$FAST_EXPANDED_RUNTIME/live_status.json')).get('mode', 'SHADOW')
 except (FileNotFoundError, json.JSONDecodeError):
     pass
 print({'PAPER': 'DEMO'}.get(mode, mode))
 ")
 
-"$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_dv_signal_private_snapshot \
-  --decisions "$DV_SIGNAL_RUNTIME/dv_signal_decisions.jsonl" \
-  --trades "$DV_SIGNAL_RUNTIME/dv_signal_trades.jsonl" \
-  --status "$DV_SIGNAL_RUNTIME/live_status.json" \
+"$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_fast_expanded_v1_private_snapshot \
+  --decisions "$FAST_EXPANDED_RUNTIME/fast_expanded_decisions.jsonl" \
+  --trades "$FAST_EXPANDED_RUNTIME/fast_expanded_trades.jsonl" \
+  --status "$FAST_EXPANDED_RUNTIME/live_status.json" \
   --output "$PRIVATE_SNAPSHOT" \
   --mode "$RUNTIME_MODE"
 

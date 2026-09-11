@@ -219,8 +219,14 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
     # KeyError and taking the whole page down (real incident, 2026-09-08).
     table = trades.reindex(columns=[
         "closed_at_utc", "mode", "side", "exit_reason", "duration_min", "pnl_usd", "sized_qty", "mfe_atr", "mae_atr",
-        "pnl_adjusted", "raw_pnl_usd",
+        "pnl_adjusted", "raw_pnl_usd", "v_cohort_label",
     ]).copy()
+    # FAST_EXPANDED_V1 only -- was this trade also selected by the
+    # original, already-live DV_SIGNAL_V1 rule (V5_CORE) or only once the
+    # V_t gate was relaxed away (a *_MARGINAL cohort)? Blank/NaN for any
+    # strategy with no V-relaxation concept (e.g. historical DV_SIGNAL_V1
+    # rows), same reindex-fills-NaN convention as mfe_atr/mae_atr above.
+    table["v_cohort_label"] = table["v_cohort_label"].fillna("")
     table["closed_at_utc"] = pd.to_datetime(table["closed_at_utc"], utc=True).dt.tz_convert("America/Los_Angeles")
     # 2026-09-10: a trade whose displayed P&L is a documented, authorized
     # correction (not its real fill outcome -- e.g. refunding a tooling-
@@ -257,6 +263,7 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
                 "sized_qty": st.column_config.NumberColumn("Qty", format="%.0f"),
                 "mfe_atr": st.column_config.NumberColumn("MFE/ATR", format="%.2f"),
                 "mae_atr": st.column_config.NumberColumn("MAE/ATR", format="%.2f"),
+                "v_cohort_label": st.column_config.TextColumn("V Cohort"),
                 "adjusted_note": st.column_config.TextColumn("⚠️ Adjusted"),
             },
         )
@@ -275,6 +282,7 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
                 "sized_qty": st.column_config.NumberColumn("Qty", format="%.0f"),
                 "mfe_atr": st.column_config.NumberColumn("MFE/ATR", format="%.2f"),
                 "mae_atr": st.column_config.NumberColumn("MAE/ATR", format="%.2f"),
+                "v_cohort_label": st.column_config.TextColumn("V Cohort"),
             },
         )
 

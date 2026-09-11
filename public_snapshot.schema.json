@@ -713,6 +713,29 @@
               "null"
             ],
             "description": "The trade's real/reference pnl_usd BEFORE any ledger adjustment. Null when pnl_adjusted is false (pnl_usd already IS the raw value)."
+          },
+          "v_cohort_label": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "FAST_EXPANDED_V1 only: V5_CORE (also selected by the original DV_SIGNAL_V1 D90+V5 rule) vs V4/V3/V2/V1_MARGINAL (only selected once the V_t gate was relaxed away) vs UNKNOWN (V_t telemetry unavailable). Null for strategies with no V-relaxation concept."
+          },
+          "information_available_ts": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "FAST_EXPANDED_V1 only: the research-equivalent grid instant (bar_ts + 60s) at which the information behind this decision became causally available -- distinct from entry_decision_ts (the real wall-clock instant the reference price was captured)."
+          },
+          "intended_exit_ts": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "FAST_EXPANDED_V1 only: the fixed, research-equivalent exit boundary (bar_ts + 120s) this trade was scheduled to close at, independent of actual fill/processing latency -- compare against closed_at_utc to see real execution timing drift."
           }
         }
       }

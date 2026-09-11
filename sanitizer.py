@@ -344,6 +344,9 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
                 "mae_atr": _round(r.get("mae_atr"), 3),
                 "pnl_adjusted": bool(r.get("pnl_adjusted", False)),
                 "raw_pnl_usd": _round(r.get("raw_pnl_usd")),
+                "v_cohort_label": r.get("v_cohort_label"),
+                "information_available_ts": r.get("information_available_ts"),
+                "intended_exit_ts": r.get("intended_exit_ts"),
             }
             for r in visible_trades[-MAX_LATEST_TRADES:][::-1]
         ],
