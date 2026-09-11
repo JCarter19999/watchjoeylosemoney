@@ -1,6 +1,6 @@
 {
   "dashboard_extras": {},
-  "data_as_of_utc": "2026-09-11T18:45:26.672044Z",
+  "data_as_of_utc": "2026-09-11T19:00:27.213437Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 242.8,
@@ -295,6 +295,12 @@
       "drawdown_usd": 2735.6,
       "equity_usd": -2492.8,
       "ts_utc": "2026-09-11T18:25:00.162579+00:00"
+    },
+    {
+      "cum_pnl_usd": -2630.0,
+      "drawdown_usd": 2872.8,
+      "equity_usd": -2630.0,
+      "ts_utc": "2026-09-11T18:56:01.334086+00:00"
     }
   ],
   "execution_health": {
@@ -318,7 +324,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-11T18:45:26.672044Z",
+  "generated_at_utc": "2026-09-11T19:00:27.213437Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -373,6 +379,25 @@
     "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-09-11T18:56:01.334086+00:00",
+      "duration_seconds": 61.252239,
+      "exit_reason": "TIME_60S",
+      "expected_net_pnl_model_usd": null,
+      "information_available_ts": "2026-09-11T18:55:00+00:00",
+      "intended_exit_ts": "2026-09-11T18:56:00+00:00",
+      "mae_atr": null,
+      "mfe_atr": null,
+      "mode": "DEMO",
+      "pnl_adjusted": false,
+      "pnl_usd": -137.2,
+      "raw_pnl_usd": null,
+      "session_date": "2026-09-11",
+      "side": "SHORT",
+      "sized_qty": 10,
+      "v_cohort_label": "V1_MARGINAL"
+    },
     {
       "c_same_at_entry": null,
       "closed_at_utc": "2026-09-11T18:25:00.162579+00:00",
@@ -828,25 +853,6 @@
       "side": "SHORT",
       "sized_qty": 10,
       "v_cohort_label": "V2_MARGINAL"
-    },
-    {
-      "c_same_at_entry": null,
-      "closed_at_utc": "2026-09-11T15:36:00.057008+00:00",
-      "duration_seconds": 59.140847,
-      "exit_reason": "TIME_60S",
-      "expected_net_pnl_model_usd": null,
-      "information_available_ts": "2026-09-11T15:35:00+00:00",
-      "intended_exit_ts": "2026-09-11T15:36:00+00:00",
-      "mae_atr": null,
-      "mfe_atr": null,
-      "mode": "DEMO",
-      "pnl_adjusted": false,
-      "pnl_usd": -222.2,
-      "raw_pnl_usd": null,
-      "session_date": "2026-09-11",
-      "side": "LONG",
-      "sized_qty": 10,
-      "v_cohort_label": "V3_MARGINAL"
     }
   ],
   "mode": "DEMO",
@@ -873,29 +879,29 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 49,
-    "closed_trades_today": 49,
-    "current_drawdown_usd": 2735.6,
-    "display_equity_usd": -2492.8,
+    "closed_trades_all_time": 50,
+    "closed_trades_today": 50,
+    "current_drawdown_usd": 2872.8,
+    "display_equity_usd": -2630.0,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": -50.8735,
+    "expectancy_usd": -52.6,
     "ledger_adjustment_usd": 0.0,
-    "losses": 36,
-    "max_drawdown_usd": 2769.0,
-    "profit_factor": 0.4907,
-    "realized_pnl_all_time_usd": -2492.8,
-    "realized_pnl_today_usd": -2492.8,
-    "win_rate": 0.2653,
+    "losses": 37,
+    "max_drawdown_usd": 2872.8,
+    "profit_factor": 0.4773,
+    "realized_pnl_all_time_usd": -2630.0,
+    "realized_pnl_today_usd": -2630.0,
+    "win_rate": 0.26,
     "wins": 13
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "in_position": null,
-    "market_data_state": "STALE",
-    "message": "No update from the FAST_EXPANDED_V1 process recently -- may be market-closed hours or a stuck/dead process.",
-    "service_state": "OFFLINE"
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "in_position": false,
+    "market_data_state": "LIVE",
+    "message": "Ready and watching for a D_t-extreme RTH decision (VALL, no V gate).",
+    "service_state": "ARMED"
   },
   "warmup_replay": {
     "bars_replayed": 0,
