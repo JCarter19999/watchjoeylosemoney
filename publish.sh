@@ -6,7 +6,7 @@
 # on the trading side, push-only on the website side.
 set -euo pipefail
 
-LIVE_REPO=/home/joey/market_structure_ml-fast-expanded/live
+LIVE_REPO=/home/joey/market_structure_ml-live/live
 WEB_REPO=/home/joey/watchjoeylosemoney
 # 2026-08-18: RT1-V2-D20 commissioning -- old V1 production runtime/
 # archived (real execution stopped), V2 (D=20s debounce) now runs in
@@ -53,8 +53,14 @@ WEB_REPO=/home/joey/watchjoeylosemoney
 # Own exporter: export_fast_expanded_v1_private_snapshot.py. RUNTIME_MODE
 # read dynamically from the live process's own live_status.json, same
 # stale-hardcoded-value lesson as the DV_SIGNAL_V1 repoint above.
-FAST_EXPANDED_RUNTIME="$LIVE_REPO/runtime_fast_expanded_v1"
-PRIVATE_SNAPSHOT="$LIVE_REPO/runtime/private_snapshot.json"
+#
+# 2026-09-20: REPOINTED from FAST_EXPANDED_V1_VALL_D90_1M (stopped 2026-09-11, causal-entry-lookahead finding) to T1
+# (canonical 09:33 entry -> RTH-close exit, Tradovate DEMO, 5 MNQ). Own exporter: export_t1_private_snapshot.py in the
+# market_structure_ml-live worktree (branch t1-live-demo), same private-snapshot shape so the deployed schema/sanitizer/
+# app stay UNCHANGED (no deploy-gap risk). Only real DEMO_EXEC trades from runtime_t1_demo/t1_trades.jsonl are recorded.
+# FAST_EXPANDED's final snapshot archived at archive/public_snapshot_FAST_EXPANDED_V1_final_2026-09-20.json first.
+T1_RUNTIME="$LIVE_REPO/runtime_t1_demo"
+PRIVATE_SNAPSHOT="$LIVE_REPO/runtime_t1_demo/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
 exec 9>"$LOCK"
@@ -64,24 +70,18 @@ cd "$LIVE_REPO"
 
 RUNTIME_MODE=$("$LIVE_REPO/.venv/bin/python3" -c "
 import json
-# fast_expanded_v1_live_service.py's ExecutionInterface vocabulary is
-# {SHADOW, PAPER, LIVE}; this site's schema vocabulary is
-# {SHADOW, DEMO, LIVE} (matches G1/RT1's convention where 'DEMO' means
-# real orders on a demo account). PAPER and DEMO are the same concept,
-# different word -- translate here rather than growing a third value
-# into the schema.
+# T1's live_status.json mode vocabulary is {OBSERVE, DEMO_EXEC}; this site's is {SHADOW, DEMO, LIVE}.
 mode = 'SHADOW'
 try:
-    mode = json.load(open('$FAST_EXPANDED_RUNTIME/live_status.json')).get('mode', 'SHADOW')
+    mode = json.load(open('$T1_RUNTIME/live_status.json')).get('mode', 'OBSERVE')
 except (FileNotFoundError, json.JSONDecodeError):
     pass
-print({'PAPER': 'DEMO'}.get(mode, mode))
+print({'DEMO_EXEC': 'DEMO', 'OBSERVE': 'SHADOW'}.get(mode, 'SHADOW'))
 ")
 
-"$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_fast_expanded_v1_private_snapshot \
-  --decisions "$FAST_EXPANDED_RUNTIME/fast_expanded_decisions.jsonl" \
-  --trades "$FAST_EXPANDED_RUNTIME/fast_expanded_trades.jsonl" \
-  --status "$FAST_EXPANDED_RUNTIME/live_status.json" \
+PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_t1_private_snapshot \
+  --trades "$T1_RUNTIME/t1_trades.jsonl" \
+  --status "$T1_RUNTIME/live_status.json" \
   --output "$PRIVATE_SNAPSHOT" \
   --mode "$RUNTIME_MODE"
 
