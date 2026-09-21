@@ -301,6 +301,38 @@ def render_reliability(snapshot: dict[str, Any]) -> None:
         st.caption(f"First started {r['first_started_at_utc']}. A restart count that keeps climbing without a matching crash report usually means a deliberate config change, not instability.")
 
 
+def render_shadow_controllers(snapshot: dict[str, Any]) -> None:
+    """Optional panel (dashboard_extras.t1_shadow_controllers): aggregate points only. Absent for strategies without it."""
+    sh = (snapshot.get("dashboard_extras") or {}).get("t1_shadow_controllers")
+    if not sh:
+        return
+    st.divider()
+    st.subheader("Shadow exit/re-entry variants (research only)")
+    st.caption(
+        "The demo bot trades one candidate exit/re-entry rule (C3). C2 and the plain hold-to-close rule are replayed next to it "
+        "on every signal day for comparison (this table is a replay, not the fills). Points, not dollars. The rules were picked "
+        "on historical data, so they are unproven until many more live signal days accumulate."
+    )
+    n = int(sh.get("episodes", 0))
+    if n == 0:
+        st.info("Waiting for the first completed signal day.")
+        return
+    rows = [{"variant": "Hold to close (certified rule)", "ordering": "-", "total pts": sh["hold_total_pts"], "vs hold": 0.0,
+             "exits": 0, "re-entries": 0, "worst intraday mark": None}]
+    for name, by_order in sh["variants"].items():
+        for order, label in (("pess", "conservative fills"), ("alt", "alternate fills")):
+            v = by_order[order]
+            rows.append({"variant": name, "ordering": label, "total pts": v["total_pts"], "vs hold": v["vs_hold_pts"],
+                         "exits": v["exits"], "re-entries": v["reentries"], "worst intraday mark": v["worst_mark_pts"]})
+    st.caption(f"{n} completed signal day{'s' if n != 1 else ''}. Two fill orderings are shown because one-minute bars hide the true intrabar order.")
+    st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
+    cum = sh.get("cumulative") or {}
+    if n >= 2 and cum:
+        chart = pd.DataFrame({k: v for k, v in cum.items() if len(v) == n}, index=range(1, n + 1))
+        chart.index.name = "signal day #"
+        st.line_chart(chart)
+
+
 @st.fragment(run_every="30s")
 def live_dashboard() -> None:
     try:
@@ -330,6 +362,7 @@ def live_dashboard() -> None:
     st.divider()
     render_daily_pnl_heatmap(snapshot)
     render_trade_table(snapshot)
+    render_shadow_controllers(snapshot)
     render_reliability(snapshot)
 
 

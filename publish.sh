@@ -79,6 +79,12 @@ except (FileNotFoundError, json.JSONDecodeError):
 print({'DEMO_EXEC': 'DEMO', 'OBSERVE': 'SHADOW'}.get(mode, 'SHADOW'))
 ")
 
+# 2026-09-21: refresh the offline SHADOW-controller tracker (C2/C3 vs HOLD; research telemetry only, read-only on the live
+# runtime files, writes only t1_shadow_controllers.jsonl) so the exporter can publish aggregate points into the pass-through
+# dashboard_extras. Non-fatal: a tracker failure must never block the normal publish. Low priority (single-core box).
+PYTHONPATH="$LIVE_REPO/src" nice -n 15 "$LIVE_REPO/.venv/bin/python3" -m scripts.t1_shadow_controllers \
+  --runtime "$T1_RUNTIME" >/dev/null 2>&1 || echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) shadow tracker failed (non-fatal)"
+
 PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_t1_private_snapshot \
   --trades "$T1_RUNTIME/t1_trades.jsonl" \
   --status "$T1_RUNTIME/live_status.json" \
