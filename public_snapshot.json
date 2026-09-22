@@ -59,7 +59,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-22T08:30:26.668581Z",
+  "data_as_of_utc": "2026-09-22T08:45:26.948470Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 225.0,
@@ -89,7 +89,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-22T08:30:26.668581Z",
+  "generated_at_utc": "2026-09-22T08:45:26.948470Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
