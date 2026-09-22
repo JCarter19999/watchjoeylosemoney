@@ -114,6 +114,29 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     for col, (label, val) in zip(cols, rows):
         col.metric(f"{label} — unrealized", money(val))
     st.caption("Mark-to-market off the last received bar, not a fill -- no commission or slippage included, and it moves every minute the market does.")
+    render_fill_slippage_check(leg)
+
+
+def render_fill_slippage_check(leg: dict[str, Any] | None) -> None:
+    """Surfaces the 6J leg's most recent fill-vs-market-reference check (dashboard_extras.t1_6j_leg.
+    last_fill_slippage_check), added 2026-09-22 after a genuine Tradovate DEMO fill was found 59 ticks off the
+    contemporaneous market on 6J's first-ever live fill -- a demo fill-simulation artifact, not real 6J
+    liquidity. Flags it plainly rather than letting a distorted fill silently sit inside the P&L numbers
+    above. Absent entirely once no fill has happened yet."""
+    check = (leg or {}).get("last_fill_slippage_check")
+    if not check:
+        return
+    label = "entry" if check["event"] == "entry_slippage_check" else "exit"
+    msg = (f"6J {label} fill vs. market reference: filled {check['fill_price']} against a reference of "
+          f"{check['market_reference']} ({check['slippage_ticks']:+.1f} ticks, {money(check['slippage_usd'])}).")
+    if check["anomalous"]:
+        st.warning(
+            f"⚠️ {msg} This is well outside normal execution noise and looks like a Tradovate DEMO "
+            "fill-simulation artifact rather than real market slippage -- displayed P&L on this leg may be "
+            "distorted by it. See the 2026-09-22 finding."
+        )
+    else:
+        st.caption(msg + " Within normal range.")
 
 
 def render_metrics(snapshot: dict[str, Any]) -> None:
