@@ -11,13 +11,13 @@
       "n_alerts": 0,
       "order_qty": 2,
       "phase": "IN_POSITION",
-      "raw_unrealized_pnl_usd": -912.5,
+      "raw_unrealized_pnl_usd": -937.5,
       "session": "2026-09-22",
       "stream_health": "GAPPED",
       "total_pnl_usd": 225.0,
       "unrealized_adjustment_reason": "Tradovate DEMO reported this fill ~60 ticks off the contemporaneous market (confirmed via the raw /fill/list and /order/item records, not a bug in our code; every surrounding bar traded 0.006383-0.006384). Implausible as real liquidity slippage for a 2-lot order. Documented correction only -- the actual Tradovate fill record is never edited. Assumes the normal 2-tick backtest baseline slippage (the frozen COST_TICKS base case used throughout this project's research) applied to the market reference at decision time (the 08:02 London bar's own close) instead of the anomalous reported fill.",
       "unrealized_pnl_adjusted": true,
-      "unrealized_pnl_usd": -187.5
+      "unrealized_pnl_usd": -212.5
     },
     "t1_shadow_controllers": {
       "cumulative": {
@@ -64,7 +64,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-22T17:15:27.281899Z",
+  "data_as_of_utc": "2026-09-22T17:30:27.089458Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 225.0,
@@ -94,7 +94,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-22T17:15:27.281899Z",
+  "generated_at_utc": "2026-09-22T17:30:27.089458Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -216,7 +216,7 @@
     "market_data_state": "LIVE",
     "message": "In a T1 long position (5 MNQ demo); an exit/re-entry rule is active, otherwise held to the RTH close. (1 alert(s) logged)",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": 832.5
+    "unrealized_pnl_usd": 955.0
   },
   "warmup_replay": {
     "bars_replayed": 0,
