@@ -14,7 +14,7 @@
       "session": "2026-09-22",
       "stream_health": "HEALTHY",
       "total_pnl_usd": 225.0,
-      "unrealized_pnl_usd": -1050.0
+      "unrealized_pnl_usd": -950.0
     },
     "t1_shadow_controllers": {
       "cumulative": {
@@ -61,7 +61,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-22T15:30:27.023864Z",
+  "data_as_of_utc": "2026-09-22T15:45:27.244289Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 225.0,
@@ -91,7 +91,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-22T15:30:27.023864Z",
+  "generated_at_utc": "2026-09-22T15:45:27.244289Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -213,7 +213,7 @@
     "market_data_state": "LIVE",
     "message": "In a T1 long position (5 MNQ demo); an exit/re-entry rule is active, otherwise held to the RTH close. (1 alert(s) logged)",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": 702.5
+    "unrealized_pnl_usd": 420.0
   },
   "warmup_replay": {
     "bars_replayed": 0,
