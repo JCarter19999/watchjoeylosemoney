@@ -114,6 +114,11 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     for col, (label, val) in zip(cols, rows):
         col.metric(f"{label} — unrealized", money(val))
     st.caption("Mark-to-market off the last received bar, not a fill -- no commission or slippage included, and it moves every minute the market does.")
+    if leg and leg.get("unrealized_pnl_adjusted"):
+        st.info(
+            f"6J's unrealized figure above is a documented correction, not the raw broker number: the actual "
+            f"Tradovate fill would show **{money(leg['raw_unrealized_pnl_usd'])}**. {leg['unrealized_adjustment_reason']}"
+        )
     render_fill_slippage_check(leg)
 
 
