@@ -45,7 +45,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-22T04:00:27.035046Z",
+  "data_as_of_utc": "2026-09-22T04:15:27.054622Z",
   "equity_curve": [],
   "execution_health": {
     "current_cost_multiplier": null,
@@ -68,7 +68,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-22T04:00:27.035046Z",
+  "generated_at_utc": "2026-09-22T04:15:27.054622Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -168,7 +168,7 @@
     "guardian_state": "ARMED",
     "in_position": false,
     "market_data_state": "LIVE",
-    "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
+    "message": "Watching for the T1 setup at 09:33 ET (5 MNQ demo; entry needs a persistent move >= 1.5x its usual size).",
     "service_state": "ARMED"
   },
   "warmup_replay": {
