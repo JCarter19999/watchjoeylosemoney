@@ -3,13 +3,13 @@
     "t1_6j_leg": {
       "backfilled_trades": 1,
       "closed_trades": 1,
-      "direction": null,
-      "entry_fill": null,
+      "direction": -1,
+      "entry_fill": 0.006354,
       "instrument": "6J.v.0",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "order_qty": 2,
-      "phase": "IDLE",
+      "phase": "IN_POSITION",
       "session": "2026-09-22",
       "stream_health": "GAPPED",
       "total_pnl_usd": 225.0
@@ -59,7 +59,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-22T07:00:26.482154Z",
+  "data_as_of_utc": "2026-09-22T07:15:26.740726Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 225.0,
@@ -89,7 +89,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-22T07:00:26.482154Z",
+  "generated_at_utc": "2026-09-22T07:15:26.740726Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
