@@ -97,7 +97,8 @@
         "execution_enabled",
         "data_delayed",
         "message",
-        "in_position"
+        "in_position",
+        "unrealized_pnl_usd"
       ],
       "properties": {
         "service_state": {
@@ -142,7 +143,14 @@
             "boolean",
             "null"
           ],
-          "description": "Whether the strategy currently holds an open position. Boolean status only -- never accompanied by entry price, stop/target, order id, or size, per this site's standing 'no actionable position detail' rule. null = unknown (e.g. process offline)."
+          "description": "Whether the strategy currently holds an open position. For DEMO/SHADOW, entry price and size are derivable from unrealized_pnl_usd above (the old blanket \"never accompanied by any position detail\" rule was retired 2026-09-22 at the user's request); a real-money LIVE deployment still discloses only this boolean, nothing else, in real time. null = unknown (e.g. process offline)."
+        },
+        "unrealized_pnl_usd": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Mark-to-market P/L on the currently open position, off the last received bar close -- not a fill, not cost-adjusted. null when flat, unknown, or (deliberately) when mode is LIVE: a real-money deployment keeps this hidden in real time, matching the site's existing LIVE-delay pattern, even though the older blanket no-position-detail rule below was retired for DEMO/SHADOW on 2026-09-22."
         }
       }
     },
