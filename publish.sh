@@ -59,7 +59,16 @@ WEB_REPO=/home/joey/watchjoeylosemoney
 # market_structure_ml-live worktree (branch t1-live-demo), same private-snapshot shape so the deployed schema/sanitizer/
 # app stay UNCHANGED (no deploy-gap risk). Only real DEMO_EXEC trades from runtime_t1_demo/t1_trades.jsonl are recorded.
 # FAST_EXPANDED's final snapshot archived at archive/public_snapshot_FAST_EXPANDED_V1_final_2026-09-20.json first.
+#
+# 2026-09-22: T1 now runs FUSED with a second, independent instrument (run_t1_fused_live.py: 5 MNQ C3, unchanged,
+# plus 2x 6J.v.0 HOLD -- a London-open opening-burst analogue of the same rule; T1_6J_LONDON_C3_PORT_V1 found the
+# exit/re-entry controller doesn't transfer to 6J, so it's HOLD-only). The MNQ leg's export path above is completely
+# unchanged (still the only thing that fills the core schema); the 6J leg is added ONLY as an optional
+# dashboard_extras['t1_6j_leg'] panel (see export_t1_private_snapshot.py's --t1-6j-status/--t1-6j-trades and
+# streamlit_app.py's render_6j_leg) -- same additive, schema-safe convention as t1_shadow_controllers, so this
+# cannot regress the existing MNQ dashboard even if the 6J runtime dir is ever missing or stale.
 T1_RUNTIME="$LIVE_REPO/runtime_t1_demo"
+T1_6J_RUNTIME="$LIVE_REPO/runtime_t1_6j_demo"
 PRIVATE_SNAPSHOT="$LIVE_REPO/runtime_t1_demo/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
@@ -85,11 +94,17 @@ print({'DEMO_EXEC': 'DEMO', 'OBSERVE': 'SHADOW'}.get(mode, 'SHADOW'))
 PYTHONPATH="$LIVE_REPO/src" nice -n 15 "$LIVE_REPO/.venv/bin/python3" -m scripts.t1_shadow_controllers \
   --runtime "$T1_RUNTIME" >/dev/null 2>&1 || echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) shadow tracker failed (non-fatal)"
 
+EXTRA_6J_ARGS=()
+if [ -f "$T1_6J_RUNTIME/live_status.json" ]; then
+  EXTRA_6J_ARGS=(--t1-6j-status "$T1_6J_RUNTIME/live_status.json" --t1-6j-trades "$T1_6J_RUNTIME/t1_6j_trades.jsonl")
+fi
+
 PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_t1_private_snapshot \
   --trades "$T1_RUNTIME/t1_trades.jsonl" \
   --status "$T1_RUNTIME/live_status.json" \
   --output "$PRIVATE_SNAPSHOT" \
-  --mode "$RUNTIME_MODE"
+  --mode "$RUNTIME_MODE" \
+  "${EXTRA_6J_ARGS[@]}"
 
 cd "$WEB_REPO"
 "$WEB_REPO/.venv/bin/python3" sanitizer.py \

@@ -333,6 +333,36 @@ def render_shadow_controllers(snapshot: dict[str, Any]) -> None:
         st.line_chart(chart)
 
 
+def render_6j_leg(snapshot: dict[str, Any]) -> None:
+    """Optional panel (dashboard_extras.t1_6j_leg): the second, independent instrument the fused bot trades
+    alongside T1/MNQ -- 6J.v.0 (Japanese Yen futures), a London-open opening-burst analogue of the same rule,
+    HOLD-only (no exit/re-entry controller -- a dedicated study found the controller doesn't help this
+    instrument). Absent entirely for a snapshot from before this leg existed, or if it isn't running."""
+    leg = (snapshot.get("dashboard_extras") or {}).get("t1_6j_leg")
+    if not leg:
+        return
+    st.divider()
+    st.subheader("6J (Japanese Yen) leg")
+    st.caption(
+        "A second, independent T1-rule instrument running alongside the MNQ bot in the same process: 08:00 London-open "
+        "anchor instead of 09:30 ET, held to 15:59 America/Chicago close, no exit/re-entry controller. Unproven -- this "
+        "is its first live demo period, with no forward track record yet."
+    )
+    cols = st.columns(4)
+    cols[0].metric("Phase", leg.get("phase") or "—")
+    cols[1].metric("Contracts", leg.get("order_qty"))
+    cols[2].metric("Closed trades", leg.get("closed_trades", 0))
+    pnl = leg.get("total_pnl_usd")
+    cols[3].metric("Total P&L (closed)", f"${pnl:,.2f}" if pnl is not None else "—")
+    if leg.get("stream_health") not in (None, "HEALTHY", "StreamHealth.HEALTHY"):
+        st.warning(f"6J data stream health: {leg.get('stream_health')}")
+    if leg.get("n_alerts"):
+        st.warning(f"{leg['n_alerts']} alert(s) logged for the 6J leg.")
+    lt = leg.get("last_trade")
+    if lt:
+        st.caption(f"Last closed trade: {lt['session']} {lt['side']} -> ${lt['pnl_usd']:,.2f} ({lt['closed_at_utc']})")
+
+
 @st.fragment(run_every="30s")
 def live_dashboard() -> None:
     try:
@@ -363,6 +393,7 @@ def live_dashboard() -> None:
     render_daily_pnl_heatmap(snapshot)
     render_trade_table(snapshot)
     render_shadow_controllers(snapshot)
+    render_6j_leg(snapshot)
     render_reliability(snapshot)
 
 
