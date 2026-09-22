@@ -8,7 +8,7 @@
       "instrument": "6J.v.0",
       "last_fill_slippage_check": null,
       "mode": "DEMO_EXEC",
-      "n_alerts": 163,
+      "n_alerts": 321,
       "order_qty": 2,
       "phase": "EXIT_PENDING",
       "raw_unrealized_pnl_usd": -1087.5,
@@ -70,7 +70,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-22T21:15:26.443875Z",
+  "data_as_of_utc": "2026-09-22T21:30:27.236041Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 225.0,
@@ -106,7 +106,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-22T21:15:26.443875Z",
+  "generated_at_utc": "2026-09-22T21:30:27.236041Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
