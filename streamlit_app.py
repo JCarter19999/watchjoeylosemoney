@@ -334,45 +334,34 @@ def render_shadow_controllers(snapshot: dict[str, Any]) -> None:
 
 
 def render_6j_leg(snapshot: dict[str, Any]) -> None:
-    """Optional panel (dashboard_extras.t1_6j_leg): the second, independent instrument the fused bot trades
-    alongside T1/MNQ -- 6J.v.0 (Japanese Yen futures), a London-open opening-burst analogue of the same rule,
-    HOLD-only (no exit/re-entry controller -- a dedicated study found the controller doesn't help this
-    instrument). Absent entirely for a snapshot from before this leg existed, or if it isn't running."""
+    """Optional panel (dashboard_extras.t1_6j_leg): STATUS ONLY for the second, independent instrument the
+    fused bot trades alongside T1/MNQ -- 6J.v.0 (Japanese Yen futures), a London-open opening-burst analogue of
+    the same rule, HOLD-only (no exit/re-entry controller -- a dedicated study found the controller doesn't
+    help this instrument). Its closed trades are NOT shown again here -- they're merged onto the main
+    cumulative-P&L ledger/latest-trades table above (exit_reason 'NATIVE_CLOSE_BOUNDARY' for a real 6J fill,
+    'BACKTEST' for a backfilled one -- see export_t1_private_snapshot.py), at the user's explicit request, so
+    this panel only needs to cover what the main ledger can't: current phase and data-stream health. Absent
+    entirely for a snapshot from before this leg existed, or if it isn't running."""
     leg = (snapshot.get("dashboard_extras") or {}).get("t1_6j_leg")
     if not leg:
         return
     st.divider()
-    st.subheader("6J (Japanese Yen) leg")
+    st.subheader("6J (Japanese Yen) leg — status")
     st.caption(
         "A second, independent T1-rule instrument running alongside the MNQ bot in the same process: 08:00 London-open "
-        "anchor instead of 09:30 ET, held to 15:59 America/Chicago close, no exit/re-entry controller. Unproven -- this "
-        "is its first live demo period, with no forward track record yet."
+        "anchor instead of 09:30 ET, held to 15:59 America/Chicago close, no exit/re-entry controller. Its closed trades "
+        "appear in the main P&L/trade table above (exit_reason NATIVE_CLOSE_BOUNDARY, or BACKTEST for a backfilled entry "
+        "recorded before the bot was live to trade it). Unproven -- this is its first live demo period."
     )
-    cols = st.columns(4)
+    cols = st.columns(3)
     cols[0].metric("Phase", leg.get("phase") or "—")
     cols[1].metric("Contracts", leg.get("order_qty"))
-    cols[2].metric("Closed trades", leg.get("closed_trades", 0))
-    pnl = leg.get("total_pnl_usd")
-    cols[3].metric("Total P&L (closed)", f"${pnl:,.2f}" if pnl is not None else "—")
+    if leg.get("backfilled_trades"):
+        cols[2].metric("Backfilled trades", leg["backfilled_trades"])
     if leg.get("stream_health") not in (None, "HEALTHY", "StreamHealth.HEALTHY"):
         st.warning(f"6J data stream health: {leg.get('stream_health')}")
     if leg.get("n_alerts"):
         st.warning(f"{leg['n_alerts']} alert(s) logged for the 6J leg.")
-    if leg.get("backfilled_trades"):
-        st.info(
-            f"{leg['backfilled_trades']} of {leg['closed_trades']} trade(s) shown are BACKFILLED, not real fills -- "
-            "the detector fired before the bot was actually running to trade it, replayed offline against real "
-            "market data. No slippage, commission, or execution latency is modeled. Included for the record, not "
-            "as a demo-account result."
-        )
-    trades = leg.get("trades") or []
-    if trades:
-        rows = [{"session": t["session"], "side": t["side"], "P&L": t["pnl_usd"],
-                 "closed": t["closed_at_utc"], "real fill": not t.get("backfilled", False)} for t in trades]
-        st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
-    lt = leg.get("last_trade")
-    if lt and lt.get("backfilled"):
-        st.caption(f"Backfill note: {lt.get('backfill_reason', '')}")
 
 
 @st.fragment(run_every="30s")
