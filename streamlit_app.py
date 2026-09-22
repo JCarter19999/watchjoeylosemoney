@@ -358,9 +358,21 @@ def render_6j_leg(snapshot: dict[str, Any]) -> None:
         st.warning(f"6J data stream health: {leg.get('stream_health')}")
     if leg.get("n_alerts"):
         st.warning(f"{leg['n_alerts']} alert(s) logged for the 6J leg.")
+    if leg.get("backfilled_trades"):
+        st.info(
+            f"{leg['backfilled_trades']} of {leg['closed_trades']} trade(s) shown are BACKFILLED, not real fills -- "
+            "the detector fired before the bot was actually running to trade it, replayed offline against real "
+            "market data. No slippage, commission, or execution latency is modeled. Included for the record, not "
+            "as a demo-account result."
+        )
+    trades = leg.get("trades") or []
+    if trades:
+        rows = [{"session": t["session"], "side": t["side"], "P&L": t["pnl_usd"],
+                 "closed": t["closed_at_utc"], "real fill": not t.get("backfilled", False)} for t in trades]
+        st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
     lt = leg.get("last_trade")
-    if lt:
-        st.caption(f"Last closed trade: {lt['session']} {lt['side']} -> ${lt['pnl_usd']:,.2f} ({lt['closed_at_utc']})")
+    if lt and lt.get("backfilled"):
+        st.caption(f"Backfill note: {lt.get('backfill_reason', '')}")
 
 
 @st.fragment(run_every="30s")
