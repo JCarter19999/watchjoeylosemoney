@@ -78,7 +78,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-23T13:30:27.562299Z",
+  "data_as_of_utc": "2026-09-23T13:45:26.663620Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 225.0,
@@ -120,7 +120,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-23T13:30:27.562299Z",
+  "generated_at_utc": "2026-09-23T13:45:26.663620Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -276,11 +276,11 @@
     "data_delayed": false,
     "execution_enabled": true,
     "guardian_state": "ARMED",
-    "in_position": false,
+    "in_position": true,
     "market_data_state": "LIVE",
-    "message": "Watching for the T1 setup at 09:33 ET (5 MNQ demo; entry needs a persistent move >= 1.5x its usual size).",
+    "message": "In a T1 short position (5 MNQ demo); an exit/re-entry rule is active, otherwise held to the RTH close.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": null
+    "unrealized_pnl_usd": 282.5
   },
   "warmup_replay": {
     "bars_replayed": 0,
