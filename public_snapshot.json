@@ -30,55 +30,58 @@
     "t1_shadow_controllers": {
       "cumulative": {
         "C2": [
-          169.5
+          169.5,
+          336.5
         ],
         "C3": [
-          169.5
+          169.5,
+          336.5
         ],
         "HOLD": [
-          169.5
+          169.5,
+          336.5
         ]
       },
-      "episodes": 1,
-      "hold_total_pts": 169.5,
+      "episodes": 2,
+      "hold_total_pts": 336.5,
       "unit": "points",
       "variants": {
         "C2": {
           "alt": {
             "exits": 0,
             "reentries": 0,
-            "total_pts": 169.5,
+            "total_pts": 336.5,
             "vs_hold_pts": 0.0,
-            "worst_mark_pts": -16.75
+            "worst_mark_pts": -19.0
           },
           "pess": {
             "exits": 0,
             "reentries": 0,
-            "total_pts": 169.5,
+            "total_pts": 336.5,
             "vs_hold_pts": 0.0,
-            "worst_mark_pts": -16.75
+            "worst_mark_pts": -19.0
           }
         },
         "C3": {
           "alt": {
             "exits": 0,
             "reentries": 0,
-            "total_pts": 169.5,
+            "total_pts": 336.5,
             "vs_hold_pts": 0.0,
-            "worst_mark_pts": -16.75
+            "worst_mark_pts": -19.0
           },
           "pess": {
             "exits": 0,
             "reentries": 0,
-            "total_pts": 169.5,
+            "total_pts": 336.5,
             "vs_hold_pts": 0.0,
-            "worst_mark_pts": -16.75
+            "worst_mark_pts": -19.0
           }
         }
       }
     }
   },
-  "data_as_of_utc": "2026-09-23T19:45:27.715057Z",
+  "data_as_of_utc": "2026-09-23T20:00:27.873889Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 225.0,
@@ -120,7 +123,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-23T19:45:27.715057Z",
+  "generated_at_utc": "2026-09-23T20:00:27.873889Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -276,11 +279,11 @@
     "data_delayed": false,
     "execution_enabled": true,
     "guardian_state": "ARMED",
-    "in_position": true,
+    "in_position": false,
     "market_data_state": "LIVE",
-    "message": "In a T1 short position (5 MNQ demo); an exit/re-entry rule is active, otherwise held to the RTH close.",
+    "message": "T1 traded and exited today; done until the next session. (1 alert(s) logged)",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": 1910.0
+    "unrealized_pnl_usd": null
   },
   "warmup_replay": {
     "bars_replayed": 0,
