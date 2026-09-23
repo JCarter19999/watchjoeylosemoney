@@ -18,9 +18,9 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 1,
       "order_qty": 2,
-      "phase": "NO_TRADE",
+      "phase": "IDLE",
       "raw_unrealized_pnl_usd": null,
-      "session": "2026-09-23",
+      "session": "2026-09-24",
       "stream_health": "GAPPED",
       "total_pnl_usd": -412.5,
       "unrealized_adjustment_reason": null,
@@ -81,7 +81,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-23T23:00:26.856467Z",
+  "data_as_of_utc": "2026-09-23T23:15:27.227052Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 225.0,
@@ -129,7 +129,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-23T23:00:26.856467Z",
+  "generated_at_utc": "2026-09-23T23:15:27.227052Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
