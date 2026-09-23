@@ -81,7 +81,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-23T21:00:27.122112Z",
+  "data_as_of_utc": "2026-09-23T21:15:26.558216Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 225.0,
@@ -129,7 +129,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-23T21:00:27.122112Z",
+  "generated_at_utc": "2026-09-23T21:15:26.558216Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -305,7 +305,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "in_position": false,
-    "market_data_state": "LIVE",
+    "market_data_state": "STALE",
     "message": "T1 traded and exited today; done until the next session. (1 alert(s) logged)",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
