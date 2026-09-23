@@ -16,7 +16,7 @@
         "slippage_usd": -500.0
       },
       "mode": "DEMO_EXEC",
-      "n_alerts": 546,
+      "n_alerts": 1,
       "order_qty": 2,
       "phase": "IDLE",
       "raw_unrealized_pnl_usd": null,
@@ -78,7 +78,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-23T06:00:26.906506Z",
+  "data_as_of_utc": "2026-09-23T06:15:27.617481Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 225.0,
@@ -120,7 +120,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-23T06:00:26.906506Z",
+  "generated_at_utc": "2026-09-23T06:15:27.617481Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -274,12 +274,12 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "in_position": null,
-    "market_data_state": "STALE",
-    "message": "No update from the T1 process recently -- market-closed hours or a stopped process.",
-    "service_state": "OFFLINE",
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "in_position": false,
+    "market_data_state": "LIVE",
+    "message": "Watching for the T1 setup at 09:33 ET (5 MNQ demo; entry needs a persistent move >= 1.5x its usual size).",
+    "service_state": "ARMED",
     "unrealized_pnl_usd": null
   },
   "warmup_replay": {
