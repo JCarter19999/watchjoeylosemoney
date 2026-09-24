@@ -1,21 +1,24 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-09-24T18:00:26.818825Z",
+      "as_of_utc": "2026-09-24T18:08:03.220975Z",
       "legs": {
         "6j": {
           "controller": null,
           "instrument": "6J",
+          "live": true,
           "order_qty": 6
         },
         "on001": {
           "controller": null,
           "instrument": "ES",
+          "live": false,
           "order_qty": 1
         },
         "t1": {
           "controller": "C3",
           "instrument": "MNQ",
+          "live": true,
           "order_qty": 8
         }
       }
@@ -26,7 +29,7 @@
       "direction": null,
       "entry_fill": null,
       "instrument": "ES.c.0",
-      "mode": "DEMO_EXEC",
+      "mode": "OBSERVE",
       "n_alerts": 0,
       "order_qty": 1,
       "phase": "SKIPPED",
@@ -35,21 +38,38 @@
       "total_pnl_usd": 1824.42
     },
     "projection": {
-      "caveat": "Backtest projection scaled to current live contract sizing, NOT the live account's actual realized rate (too few real days to measure that yet). Uses a real 3-YEAR window for all three legs (switched from an earlier ~11-month sample on 2026-09-24 after confirming that shorter window ran hot -- T1 ~1.3x, ON-001/ES ~6x -- ON-001's prior ~2 years were actually net negative at 1x). MDD is the observed historical-window figure at this sizing, not a statistically projected annual MDD -- drawdown magnitude does not scale with elapsed time the way P&L does, so this number should not be annualized.",
+      "caveat": "'funded' (T1+6J) is the primary projection -- real live capital, real 3-year backtest data for both legs. 'es_shadow' is informational only: ON-001/ES is running in SHADOW mode (OBSERVE, no real orders) as of 2026-09-24. ES's own figures (and 'combined_if_es_live') EXCLUDE 2024-2025 entirely -- both the P&L/MDD and the annualization denominator -- at the user's explicit request, since ES is being prospectively re-evaluated starting in 2026 rather than judged on the pre-shadow-decision regime; the earlier full-3yr finding that motivated the shadow move (recent edge ~84% carried by 3 monster trades, prior 2yr window net negative) still stands as the reason ES isn't live, it just isn't re-litigated by every subsequent shadow projection. 'combined_if_es_live' shows what the portfolio would look like if ES's shadow qty were promoted to live capital -- NOT the number driving current sizing. None of these are the live account's actual realized rate (too few real days to measure that yet). MDD figures are the observed historical-window figure at this sizing, not a statistically projected annual MDD -- drawdown magnitude does not scale with elapsed time the way P&L does, so it should not be annualized.",
+      "combined_if_es_live": {
+        "projected_annualized_pnl_usd": 98229.19,
+        "window_max_drawdown_usd": -15028.5,
+        "window_pnl_usd": 294485.88
+      },
       "contracts": {
-        "on001_es": 1,
+        "on001_es_shadow": 1,
         "sixj": 6,
         "t1_mnq": 8
       },
-      "projected_annualized_pnl_usd": 97051.56,
+      "es_shadow": {
+        "excluded_years": [
+          2024,
+          2025
+        ],
+        "included_days": 365,
+        "projected_annualized_pnl_usd": 10136.32,
+        "window_max_drawdown_usd": -3244.76,
+        "window_pnl_usd": 10129.38
+      },
+      "funded": {
+        "projected_annualized_pnl_usd": 94850.42,
+        "window_max_drawdown_usd": -15028.5,
+        "window_pnl_usd": 284356.5
+      },
       "start_capital_usd": 25000.0,
       "window": {
         "elapsed_days": 1095,
         "end": "2026-08-20",
         "start": "2023-08-21"
-      },
-      "window_max_drawdown_usd": -20729.08,
-      "window_pnl_usd": 290955.4
+      }
     },
     "t1_6j_leg": {
       "backfilled_trades": 1,
@@ -73,7 +93,7 @@
       "raw_unrealized_pnl_usd": null,
       "session": "2026-09-24",
       "stream_health": "HEALTHY",
-      "total_pnl_usd": -525.0,
+      "total_pnl_usd": -412.5,
       "unrealized_adjustment_reason": null,
       "unrealized_pnl_adjusted": false,
       "unrealized_pnl_usd": null
@@ -132,36 +152,36 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-24T18:00:26.985125Z",
+  "data_as_of_utc": "2026-09-24T18:08:03.326330Z",
   "equity_curve": [
     {
-      "cum_pnl_usd": 112.5,
+      "cum_pnl_usd": 225.0,
       "drawdown_usd": 0.0,
-      "equity_usd": 112.5,
+      "equity_usd": 225.0,
       "ts_utc": "2026-09-21T20:59:00Z"
     },
     {
-      "cum_pnl_usd": 1806.4,
+      "cum_pnl_usd": 1918.9,
       "drawdown_usd": 0.0,
-      "equity_usd": 1806.4,
+      "equity_usd": 1918.9,
       "ts_utc": "2026-09-22T19:59:59.695994Z"
     },
     {
-      "cum_pnl_usd": 1893.9,
+      "cum_pnl_usd": 2006.4,
       "drawdown_usd": 0.0,
-      "equity_usd": 1893.9,
+      "equity_usd": 2006.4,
       "ts_utc": "2026-09-22T22:00:01.292787Z"
     },
     {
-      "cum_pnl_usd": 3557.8,
+      "cum_pnl_usd": 3670.3,
       "drawdown_usd": 0.0,
-      "equity_usd": 3557.8,
+      "equity_usd": 3670.3,
       "ts_utc": "2026-09-23T20:00:05.466847Z"
     },
     {
-      "cum_pnl_usd": 5382.22,
+      "cum_pnl_usd": 5494.72,
       "drawdown_usd": 0.0,
-      "equity_usd": 5382.22,
+      "equity_usd": 5494.72,
       "ts_utc": "2026-09-24T14:34:00Z"
     }
   ],
@@ -186,7 +206,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-24T18:00:26.985125Z",
+  "generated_at_utc": "2026-09-24T18:08:03.326330Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -329,11 +349,11 @@
       "mfe_atr": null,
       "mode": "DEMO",
       "pnl_adjusted": false,
-      "pnl_usd": 112.5,
+      "pnl_usd": 225.0,
       "raw_pnl_usd": null,
       "session_date": "2026-09-21",
       "side": "SHORT",
-      "sized_qty": 1,
+      "sized_qty": 2,
       "v_cohort_label": "T1_6J_LONDON"
     }
   ],
@@ -364,14 +384,14 @@
     "closed_trades_all_time": 5,
     "closed_trades_today": 1,
     "current_drawdown_usd": 0.0,
-    "display_equity_usd": 5382.22,
+    "display_equity_usd": 5494.72,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 1076.444,
+    "expectancy_usd": 1098.944,
     "ledger_adjustment_usd": 0.0,
     "losses": 0,
     "max_drawdown_usd": 0.0,
     "profit_factor": null,
-    "realized_pnl_all_time_usd": 5382.22,
+    "realized_pnl_all_time_usd": 5494.72,
     "realized_pnl_today_usd": 1824.42,
     "win_rate": 1.0,
     "wins": 5
