@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-09-24T18:18:53.182613Z",
+      "as_of_utc": "2026-09-24T18:22:46.327671Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -16,7 +16,7 @@
           "order_qty": 1
         },
         "t1": {
-          "controller": "C3",
+          "controller": null,
           "instrument": "MNQ",
           "live": true,
           "order_qty": 7
@@ -152,37 +152,31 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-24T18:18:53.436272Z",
+  "data_as_of_utc": "2026-09-24T18:22:46.437190Z",
   "equity_curve": [
     {
-      "cum_pnl_usd": 225.0,
+      "cum_pnl_usd": 450.0,
       "drawdown_usd": 0.0,
-      "equity_usd": 225.0,
+      "equity_usd": 450.0,
       "ts_utc": "2026-09-21T20:59:00Z"
     },
     {
-      "cum_pnl_usd": 1918.9,
+      "cum_pnl_usd": 2821.46,
       "drawdown_usd": 0.0,
-      "equity_usd": 1918.9,
+      "equity_usd": 2821.46,
       "ts_utc": "2026-09-22T19:59:59.695994Z"
     },
     {
-      "cum_pnl_usd": 2006.4,
+      "cum_pnl_usd": 2908.96,
       "drawdown_usd": 0.0,
-      "equity_usd": 2006.4,
+      "equity_usd": 2908.96,
       "ts_utc": "2026-09-22T22:00:01.292787Z"
     },
     {
-      "cum_pnl_usd": 3670.3,
+      "cum_pnl_usd": 5238.42,
       "drawdown_usd": 0.0,
-      "equity_usd": 3670.3,
+      "equity_usd": 5238.42,
       "ts_utc": "2026-09-23T20:00:05.466847Z"
-    },
-    {
-      "cum_pnl_usd": 5494.72,
-      "drawdown_usd": 0.0,
-      "equity_usd": 5494.72,
-      "ts_utc": "2026-09-24T14:34:00Z"
     }
   ],
   "execution_health": {
@@ -206,7 +200,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-24T18:18:53.436272Z",
+  "generated_at_utc": "2026-09-24T18:22:46.437190Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -273,11 +267,11 @@
       "mfe_atr": null,
       "mode": "DEMO",
       "pnl_adjusted": false,
-      "pnl_usd": 1824.42,
+      "pnl_usd": 608.14,
       "raw_pnl_usd": null,
       "session_date": "2026-09-24",
       "side": "LONG",
-      "sized_qty": 3,
+      "sized_qty": 1,
       "v_cohort_label": "ON001_ES_OVERNIGHT"
     },
     {
@@ -291,12 +285,12 @@
       "mae_atr": null,
       "mfe_atr": null,
       "mode": "DEMO",
-      "pnl_adjusted": false,
-      "pnl_usd": 1663.9,
-      "raw_pnl_usd": null,
+      "pnl_adjusted": true,
+      "pnl_usd": 2329.46,
+      "raw_pnl_usd": 1663.9,
       "session_date": "2026-09-23",
       "side": "SHORT",
-      "sized_qty": 5,
+      "sized_qty": 7,
       "v_cohort_label": "T1_CANONICAL"
     },
     {
@@ -329,12 +323,12 @@
       "mae_atr": null,
       "mfe_atr": null,
       "mode": "DEMO",
-      "pnl_adjusted": false,
-      "pnl_usd": 1693.9,
-      "raw_pnl_usd": null,
+      "pnl_adjusted": true,
+      "pnl_usd": 2371.46,
+      "raw_pnl_usd": 1693.9,
       "session_date": "2026-09-22",
       "side": "LONG",
-      "sized_qty": 5,
+      "sized_qty": 7,
       "v_cohort_label": "T1_CANONICAL"
     },
     {
@@ -349,11 +343,11 @@
       "mfe_atr": null,
       "mode": "DEMO",
       "pnl_adjusted": false,
-      "pnl_usd": 225.0,
+      "pnl_usd": 450.0,
       "raw_pnl_usd": null,
       "session_date": "2026-09-21",
       "side": "SHORT",
-      "sized_qty": 2,
+      "sized_qty": 4,
       "v_cohort_label": "T1_6J_LONDON"
     }
   ],
@@ -381,20 +375,20 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 5,
-    "closed_trades_today": 1,
+    "closed_trades_all_time": 4,
+    "closed_trades_today": 0,
     "current_drawdown_usd": 0.0,
-    "display_equity_usd": 5494.72,
+    "display_equity_usd": 5238.42,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 1098.944,
+    "expectancy_usd": 1309.605,
     "ledger_adjustment_usd": 0.0,
     "losses": 0,
     "max_drawdown_usd": 0.0,
     "profit_factor": null,
-    "realized_pnl_all_time_usd": 5494.72,
-    "realized_pnl_today_usd": 1824.42,
+    "realized_pnl_all_time_usd": 5238.42,
+    "realized_pnl_today_usd": 0,
     "win_rate": 1.0,
-    "wins": 5
+    "wins": 4
   },
   "status": {
     "data_delayed": false,
