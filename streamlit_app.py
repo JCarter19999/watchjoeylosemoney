@@ -281,7 +281,7 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
     # strategy with no V-relaxation concept (e.g. historical DV_SIGNAL_V1
     # rows), same reindex-fills-NaN convention as mfe_atr/mae_atr above.
     table["v_cohort_label"] = table["v_cohort_label"].fillna("")
-    table["closed_at_utc"] = pd.to_datetime(table["closed_at_utc"], utc=True).dt.tz_convert("America/Los_Angeles")
+    table["closed_at_utc"] = pd.to_datetime(table["closed_at_utc"], utc=True, format="ISO8601").dt.tz_convert("America/Los_Angeles")
     # 2026-09-10: a trade whose displayed P&L is a documented, authorized
     # correction (not its real fill outcome -- e.g. refunding a tooling-
     # bug's dollar impact) must never be visually indistinguishable from an
