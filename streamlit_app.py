@@ -340,6 +340,42 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
             },
         )
 
+def render_contract_distribution(snapshot: dict[str, Any]) -> None:
+    """Current live order_qty per leg (dashboard_extras.contract_distribution) -- what size each strategy is
+    running right now, separate from the closed-trade ledger. Absent entirely on an older snapshot or if this
+    leg's status file isn't present, same additive convention as the other dashboard_extras panels."""
+    dist = (snapshot.get("dashboard_extras") or {}).get("contract_distribution")
+    if not dist or not dist.get("legs"):
+        return
+    st.subheader("Current contract distribution")
+    labels = {"t1": "T1 / MNQ", "6j": "6J London", "on001": "ON-001 / ES"}
+    legs = dist["legs"]
+    cols = st.columns(len(legs))
+    for col, (key, leg) in zip(cols, legs.items()):
+        label = labels.get(key, key)
+        qty = leg.get("order_qty")
+        suffix = f" ({leg['controller']})" if leg.get("controller") else ""
+        col.metric(label, f"{qty}{suffix}" if qty is not None else "—")
+    st.caption(f"As of {format_pst(dist['as_of_utc'])}. Reflects live order size right now, not the size any past trade in the ledger below was taken at.")
+
+
+def render_projection(snapshot: dict[str, Any]) -> None:
+    """Projected annualized P&L + historical-window MDD at whatever contract sizing is currently live
+    (dashboard_extras.projection, written by scripts/project_annualized_mdd.py). A BACKTEST projection scaled
+    to today's live sizing, not the account's actual realized rate -- explicitly labeled as such, since the
+    live account has far too few real days yet to measure a real annualized figure on its own."""
+    proj = (snapshot.get("dashboard_extras") or {}).get("projection")
+    if not proj:
+        return
+    st.subheader("Projected annualized P&L + max drawdown")
+    c = proj.get("contracts", {})
+    st.caption(f"At current live sizing: {c.get('t1_mnq')} MNQ / {c.get('sixj')} 6J / {c.get('on001_es')} ES")
+    col1, col2 = st.columns(2)
+    col1.metric("Projected annualized P&L", money(proj["projected_annualized_pnl_usd"]))
+    col2.metric("Historical-window max drawdown", money(proj["window_max_drawdown_usd"]))
+    st.caption(proj.get("caveat", ""))
+
+
 def render_reliability(snapshot: dict[str, Any]) -> None:
     r = snapshot["reliability"]
     st.subheader("Process reliability")
@@ -370,6 +406,8 @@ def live_dashboard() -> None:
     status_badge(snapshot)
     st.caption(f"Last updated: {format_pst(snapshot['generated_at_utc'])}")
     render_metrics(snapshot)
+    render_contract_distribution(snapshot)
+    render_projection(snapshot)
 
     if snapshot["mode"] == "LIVE":
         st.info(
