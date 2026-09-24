@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-09-24T21:00:27.930127Z",
+      "as_of_utc": "2026-09-24T21:15:27.609189Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -54,7 +54,7 @@
       "order_qty": 1,
       "phase": "SKIPPED",
       "session": "2026-09-24",
-      "stream_health": "HEALTHY",
+      "stream_health": "STALE",
       "total_pnl_usd": 1824.42
     },
     "projection": {
@@ -179,7 +179,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-24T21:00:28.092014Z",
+  "data_as_of_utc": "2026-09-24T21:15:27.768141Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -227,7 +227,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-24T21:00:28.092014Z",
+  "generated_at_utc": "2026-09-24T21:15:27.768141Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -422,7 +422,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "in_position": false,
-    "market_data_state": "LIVE",
+    "market_data_state": "STALE",
     "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
