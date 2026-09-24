@@ -28,6 +28,7 @@ from jsonschema import Draft202012Validator, FormatChecker
 SCHEMA_VERSION = "1.0"
 MIN_LIVE_DELAY_MINUTES = 10
 MAX_LATEST_TRADES = 25
+STATS_EXCLUDED_COHORTS = {"ON001_ES_OVERNIGHT"}
 
 # Thresholds match scripts/analyze_bar_timing.py and the private dashboard's
 # RT1 tab in the live repo (2026-08-15 clean-host latency experiment) --
@@ -149,6 +150,12 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
                 row["raw_pnl_usd"] = round(float(row["pnl_usd"]), 2)
                 row["pnl_usd"] = float(row["pnl_usd"]) + adj_amt
                 row["pnl_adjusted"] = True
+
+    # 2026-09-24 (user: "i want ES removed from the P/L at the top"): a SHADOW cohort (ON-001/ES, not funded)
+    # stays in the per-trade TABLE for transparency but is excluded from every headline figure -- equity
+    # curve, all-time/today P&L, drawdown, expectancy, win rate, counts -- since no real capital is behind it.
+    table_trades = visible_trades
+    visible_trades = [r for r in visible_trades if r.get("v_cohort_label") not in STATS_EXCLUDED_COHORTS]
 
     starting_equity = float(private.get("display_starting_equity_usd", 0.0))
     equity_curve = []
@@ -349,7 +356,7 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
                 "information_available_ts": r.get("information_available_ts"),
                 "intended_exit_ts": r.get("intended_exit_ts"),
             }
-            for r in visible_trades[-MAX_LATEST_TRADES:][::-1]
+            for r in table_trades[-MAX_LATEST_TRADES:][::-1]
         ],
         "pnl_waterfall": _visible_waterfall(private, mode, cutoff),
         # G1-only, loosely-typed (see schema) -- absent/empty for strategies
