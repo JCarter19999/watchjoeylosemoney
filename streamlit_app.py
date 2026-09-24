@@ -342,8 +342,9 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
 
 def render_contract_distribution(snapshot: dict[str, Any]) -> None:
     """Current live order_qty per leg (dashboard_extras.contract_distribution) -- what size each strategy is
-    running right now, separate from the closed-trade ledger. Absent entirely on an older snapshot or if this
-    leg's status file isn't present, same additive convention as the other dashboard_extras panels."""
+    running right now, separate from the closed-trade ledger. A leg running in SHADOW (OBSERVE, no real orders
+    -- e.g. ON-001/ES as of 2026-09-24) is labeled explicitly rather than looking like a live position. Absent
+    entirely on an older snapshot or if this leg's status file isn't present."""
     dist = (snapshot.get("dashboard_extras") or {}).get("contract_distribution")
     if not dist or not dist.get("legs"):
         return
@@ -355,24 +356,47 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
         label = labels.get(key, key)
         qty = leg.get("order_qty")
         suffix = f" ({leg['controller']})" if leg.get("controller") else ""
-        col.metric(label, f"{qty}{suffix}" if qty is not None else "—")
-    st.caption(f"As of {format_pst(dist['as_of_utc'])}. Reflects live order size right now, not the size any past trade in the ledger below was taken at.")
+        value = f"{qty}{suffix}" if qty is not None else "—"
+        if leg.get("live") is False:
+            col.metric(label, value, delta="SHADOW", delta_color="off")
+        else:
+            col.metric(label, value)
+    st.caption(f"As of {format_pst(dist['as_of_utc'])}. Reflects live order size right now, not the size any past trade in the ledger below was taken at. SHADOW = tracked for research, no real orders placed.")
 
 
 def render_projection(snapshot: dict[str, Any]) -> None:
-    """Projected annualized P&L + historical-window MDD at whatever contract sizing is currently live
-    (dashboard_extras.projection, written by scripts/project_annualized_mdd.py). A BACKTEST projection scaled
-    to today's live sizing, not the account's actual realized rate -- explicitly labeled as such, since the
-    live account has far too few real days yet to measure a real annualized figure on its own."""
+    """Projected annualized P&L + historical-window MDD, split into the FUNDED wheel (T1+6J, real live capital)
+    and ES as a separate SHADOW projection (dashboard_extras.projection, written by
+    scripts/project_annualized_mdd.py). Switched to this split 2026-09-24 when ES moved from live-executing to
+    shadow-only. A BACKTEST projection, not the account's actual realized rate -- explicitly labeled as such."""
     proj = (snapshot.get("dashboard_extras") or {}).get("projection")
     if not proj:
         return
     st.subheader("Projected annualized P&L + max drawdown")
     c = proj.get("contracts", {})
-    st.caption(f"At current live sizing: {c.get('t1_mnq')} MNQ / {c.get('sixj')} 6J / {c.get('on001_es')} ES")
-    col1, col2 = st.columns(2)
-    col1.metric("Projected annualized P&L", money(proj["projected_annualized_pnl_usd"]))
-    col2.metric("Historical-window max drawdown", money(proj["window_max_drawdown_usd"]))
+    funded = proj.get("funded")
+    if funded:
+        st.caption(f"Funded wheel (real live capital): {c.get('t1_mnq')} MNQ / {c.get('sixj')} 6J")
+        col1, col2 = st.columns(2)
+        col1.metric("Projected annualized P&L", money(funded["projected_annualized_pnl_usd"]))
+        col2.metric("Historical-window max drawdown", money(funded["window_max_drawdown_usd"]))
+        es_shadow = proj.get("es_shadow")
+        if es_shadow:
+            st.caption(f"ON-001/ES — SHADOW only ({c.get('on001_es_shadow')} contract, no real capital):")
+            col3, col4 = st.columns(2)
+            col3.metric("Shadow projected annualized P&L", money(es_shadow["projected_annualized_pnl_usd"]))
+            col4.metric("Shadow historical-window MDD", money(es_shadow["window_max_drawdown_usd"]))
+        combined = proj.get("combined_if_es_live")
+        if combined:
+            st.caption(f"For reference only, NOT current sizing — if ES's shadow qty were promoted to live: "
+                      f"annualized {money(combined['projected_annualized_pnl_usd'])}, "
+                      f"MDD {money(combined['window_max_drawdown_usd'])}.")
+    else:
+        # older snapshot shape (pre-shadow-split): flat fields, no funded/es_shadow breakdown
+        st.caption(f"At current live sizing: {c.get('t1_mnq')} MNQ / {c.get('sixj')} 6J / {c.get('on001_es')} ES")
+        col1, col2 = st.columns(2)
+        col1.metric("Projected annualized P&L", money(proj.get("projected_annualized_pnl_usd", 0)))
+        col2.metric("Historical-window max drawdown", money(proj.get("window_max_drawdown_usd", 0)))
     st.caption(proj.get("caveat", ""))
 
 
