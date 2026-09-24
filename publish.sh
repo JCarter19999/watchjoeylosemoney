@@ -70,6 +70,7 @@ WEB_REPO=/home/joey/watchjoeylosemoney
 T1_RUNTIME="$LIVE_REPO/runtime_t1_demo"
 T1_6J_RUNTIME="$LIVE_REPO/runtime_t1_6j_demo"
 ON001_RUNTIME="$LIVE_REPO/runtime_on001_demo"
+LE_RUNTIME="$LIVE_REPO/runtime_le_demo"
 PRIVATE_SNAPSHOT="$LIVE_REPO/runtime_t1_demo/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
@@ -112,12 +113,19 @@ fi
 # "I also want a project annualized + projected max drawdown section") -- reads live order_qty fresh off each
 # leg's status file every cycle, so it always reflects a same-day resize. Non-fatal: a failure here must never
 # block the normal publish (same convention as the shadow-controller tracker above).
+# LE (Live Cattle) leg -- FUNDED third leg as of 2026-09-24 (replaced ES): same additive convention as 6J/ES above.
+EXTRA_LE_ARGS=()
+if [ -f "$LE_RUNTIME/live_status.json" ]; then
+  EXTRA_LE_ARGS=(--le-status "$LE_RUNTIME/live_status.json" --le-trades "$LE_RUNTIME/le_trades.jsonl")
+fi
+LE_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$LE_RUNTIME/live_status.json')).get('order_qty',0))" 2>/dev/null || echo 0)
+
 PROJECTION_JSON="$T1_RUNTIME/portfolio_projection.json"
 T1_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$T1_RUNTIME/live_status.json')).get('order_qty',5))" 2>/dev/null || echo 5)
 SIXJ_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$T1_6J_RUNTIME/live_status.json')).get('order_qty',4))" 2>/dev/null || echo 4)
 ES_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$ON001_RUNTIME/live_status.json')).get('order_qty',3))" 2>/dev/null || echo 3)
 PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/project_annualized_mdd.py" \
-  --t1-qty "$T1_QTY" --sixj-qty "$SIXJ_QTY" --es-qty "$ES_QTY" --output "$PROJECTION_JSON" \
+  --t1-qty "$T1_QTY" --sixj-qty "$SIXJ_QTY" --es-qty "$ES_QTY" --le-qty "$LE_QTY" --output "$PROJECTION_JSON" \
   >/dev/null 2>&1 || echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) projection calc failed (non-fatal)"
 EXTRA_PROJECTION_ARGS=()
 if [ -f "$PROJECTION_JSON" ]; then
@@ -131,6 +139,7 @@ PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.expor
   --mode "$RUNTIME_MODE" \
   "${EXTRA_6J_ARGS[@]}" \
   "${EXTRA_ON001_ARGS[@]}" \
+  "${EXTRA_LE_ARGS[@]}" \
   "${EXTRA_PROJECTION_ARGS[@]}"
 
 cd "$WEB_REPO"

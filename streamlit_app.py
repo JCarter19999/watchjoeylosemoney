@@ -349,7 +349,7 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
     if not dist or not dist.get("legs"):
         return
     st.subheader("Current contract distribution")
-    labels = {"t1": "T1 / MNQ", "6j": "6J London", "on001": "ON-001 / ES"}
+    labels = {"t1": "T1 / MNQ", "6j": "6J London", "le": "LE Cattle", "on001": "ON-001 / ES"}
     legs = dist["legs"]
     cols = st.columns(len(legs))
     for col, (key, leg) in zip(cols, legs.items()):
@@ -376,10 +376,17 @@ def render_projection(snapshot: dict[str, Any]) -> None:
     c = proj.get("contracts", {})
     funded = proj.get("funded")
     if funded:
-        st.caption(f"Funded wheel (real live capital): {c.get('t1_mnq')} MNQ / {c.get('sixj')} 6J")
+        st.caption(f"Funded wheel (real live capital): {c.get('t1_mnq')} MNQ / {c.get('sixj')} 6J" + (f" / {c.get('le')} LE cattle" if c.get('le') else ""))
         col1, col2 = st.columns(2)
         col1.metric("Projected annualized P&L", money(funded["projected_annualized_pnl_usd"]))
         col2.metric("Historical-window max drawdown", money(funded["window_max_drawdown_usd"]))
+        if funded.get("reordered_mdd_p50_usd") is not None:
+            st.caption("The historical drawdown is the ONE ordering that happened, and it was on the lucky end. Re-shuffling the same days "
+                       "gives the drawdowns to actually plan around:")
+            r1, r2, r3 = st.columns(3)
+            r1.metric("Typical (P50)", money(funded["reordered_mdd_p50_usd"]))
+            r2.metric("Bad (1 in 10)", money(funded["reordered_mdd_p90_usd"]))
+            r3.metric("Very bad (1 in 20)", money(funded["reordered_mdd_p95_usd"]))
         es_shadow = proj.get("es_shadow")
         if es_shadow:
             st.caption(f"ON-001/ES — SHADOW only ({c.get('on001_es_shadow')} contract, no real capital):")
