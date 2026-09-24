@@ -1,5 +1,25 @@
 {
   "dashboard_extras": {
+    "contract_distribution": {
+      "as_of_utc": "2026-09-24T17:40:05.992298Z",
+      "legs": {
+        "6j": {
+          "controller": null,
+          "instrument": "6J",
+          "order_qty": 5
+        },
+        "on001": {
+          "controller": null,
+          "instrument": "ES",
+          "order_qty": 4
+        },
+        "t1": {
+          "controller": "C3",
+          "instrument": "MNQ",
+          "order_qty": 6
+        }
+      }
+    },
     "on001_leg": {
       "backfilled_trades": 1,
       "closed_trades": 1,
@@ -8,11 +28,28 @@
       "instrument": "ES.c.0",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
-      "order_qty": 3,
+      "order_qty": 4,
       "phase": "SKIPPED",
       "session": "2026-09-24",
       "stream_health": "HEALTHY",
       "total_pnl_usd": 1824.42
+    },
+    "projection": {
+      "caveat": "Backtest projection scaled to current live contract sizing, NOT the live account's actual realized rate (too few real days to measure that yet). MDD is the observed historical-window figure at this sizing, not a statistically projected annual MDD -- drawdown magnitude does not scale with elapsed time the way P&L does, so this number should not be annualized.",
+      "contracts": {
+        "on001_es": 4,
+        "sixj": 5,
+        "t1_mnq": 6
+      },
+      "projected_annualized_pnl_usd": 132594.26,
+      "start_capital_usd": 25000.0,
+      "window": {
+        "elapsed_days": 331,
+        "end": "2026-08-20",
+        "start": "2025-09-23"
+      },
+      "window_max_drawdown_usd": -15186.63,
+      "window_pnl_usd": 120160.71
     },
     "t1_6j_leg": {
       "backfilled_trades": 1,
@@ -31,12 +68,12 @@
       },
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
-      "order_qty": 4,
+      "order_qty": 5,
       "phase": "NO_TRADE",
       "raw_unrealized_pnl_usd": null,
       "session": "2026-09-24",
       "stream_health": "GAPPED",
-      "total_pnl_usd": -825.0,
+      "total_pnl_usd": -1031.25,
       "unrealized_adjustment_reason": null,
       "unrealized_pnl_adjusted": false,
       "unrealized_pnl_usd": null
@@ -95,36 +132,36 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-24T17:30:27.333240Z",
+  "data_as_of_utc": "2026-09-24T17:40:06.099173Z",
   "equity_curve": [
     {
-      "cum_pnl_usd": 450.0,
+      "cum_pnl_usd": 562.5,
       "drawdown_usd": 0.0,
-      "equity_usd": 450.0,
+      "equity_usd": 562.5,
       "ts_utc": "2026-09-21T20:59:00Z"
     },
     {
-      "cum_pnl_usd": 2143.9,
+      "cum_pnl_usd": 2256.4,
       "drawdown_usd": 0.0,
-      "equity_usd": 2143.9,
+      "equity_usd": 2256.4,
       "ts_utc": "2026-09-22T19:59:59.695994Z"
     },
     {
-      "cum_pnl_usd": 2318.9,
+      "cum_pnl_usd": 2475.15,
       "drawdown_usd": 0.0,
-      "equity_usd": 2318.9,
+      "equity_usd": 2475.15,
       "ts_utc": "2026-09-22T22:00:01.292787Z"
     },
     {
-      "cum_pnl_usd": 3982.8,
+      "cum_pnl_usd": 4139.05,
       "drawdown_usd": 0.0,
-      "equity_usd": 3982.8,
+      "equity_usd": 4139.05,
       "ts_utc": "2026-09-23T20:00:05.466847Z"
     },
     {
-      "cum_pnl_usd": 5807.22,
+      "cum_pnl_usd": 5963.47,
       "drawdown_usd": 0.0,
-      "equity_usd": 5807.22,
+      "equity_usd": 5963.47,
       "ts_utc": "2026-09-24T14:34:00Z"
     }
   ],
@@ -149,7 +186,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-24T17:30:27.333240Z",
+  "generated_at_utc": "2026-09-24T17:40:06.099173Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -254,11 +291,11 @@
       "mfe_atr": null,
       "mode": "DEMO",
       "pnl_adjusted": true,
-      "pnl_usd": 175.0,
-      "raw_pnl_usd": -1275.0,
+      "pnl_usd": 218.75,
+      "raw_pnl_usd": -1593.75,
       "session_date": "2026-09-22",
       "side": "SHORT",
-      "sized_qty": 4,
+      "sized_qty": 5,
       "v_cohort_label": "T1_6J_LONDON"
     },
     {
@@ -292,11 +329,11 @@
       "mfe_atr": null,
       "mode": "DEMO",
       "pnl_adjusted": false,
-      "pnl_usd": 450.0,
+      "pnl_usd": 562.5,
       "raw_pnl_usd": null,
       "session_date": "2026-09-21",
       "side": "SHORT",
-      "sized_qty": 4,
+      "sized_qty": 5,
       "v_cohort_label": "T1_6J_LONDON"
     }
   ],
@@ -327,14 +364,14 @@
     "closed_trades_all_time": 5,
     "closed_trades_today": 1,
     "current_drawdown_usd": 0.0,
-    "display_equity_usd": 5807.22,
+    "display_equity_usd": 5963.47,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 1161.444,
+    "expectancy_usd": 1192.694,
     "ledger_adjustment_usd": 0.0,
     "losses": 0,
     "max_drawdown_usd": 0.0,
     "profit_factor": null,
-    "realized_pnl_all_time_usd": 5807.22,
+    "realized_pnl_all_time_usd": 5963.47,
     "realized_pnl_today_usd": 1824.42,
     "win_rate": 1.0,
     "wins": 5
