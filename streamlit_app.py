@@ -177,7 +177,11 @@ def render_charts(snapshot: dict[str, Any]) -> None:
     if curve.empty:
         st.info("No closed public trades yet.")
         return
-    curve["ts_utc"] = pd.to_datetime(curve["ts_utc"], utc=True)
+    # timestamps mix fixed-second and microsecond-precision ISO strings (some snapshot writers
+    # round to the second, others don't) -- format="ISO8601" parses per-element instead of
+    # inferring one fixed format from the first value and applying it array-wide, which breaks
+    # on that mix under pandas' fast strptime path.
+    curve["ts_utc"] = pd.to_datetime(curve["ts_utc"], utc=True, format="ISO8601")
 
     def _resampled_cum_pnl(rule: str, label: str) -> pd.DataFrame:
         # One point per period (last known cumulative P&L that period,
@@ -214,7 +218,7 @@ def render_daily_pnl_heatmap(snapshot: dict[str, Any]) -> None:
     if curve.empty:
         st.info("No closed public trades yet.")
         return
-    curve["ts_utc"] = pd.to_datetime(curve["ts_utc"], utc=True)
+    curve["ts_utc"] = pd.to_datetime(curve["ts_utc"], utc=True, format="ISO8601")
 
     # One value per calendar day: last-known cumulative P&L that day (carried
     # forward across no-trade days via ffill, same convention as the line
