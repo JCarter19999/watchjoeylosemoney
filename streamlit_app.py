@@ -349,7 +349,7 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
     if not dist or not dist.get("legs"):
         return
     st.subheader("Current contract distribution")
-    labels = {"t1": "T1 / MNQ", "6j": "6J London", "le": "LE Cattle", "on001": "ON-001 / ES"}
+    labels = {"t1": "T1 / MNQ", "6j": "6J London", "le": "LE Cattle", "on001": "ON-001 / ES", "eia_ho": "EIA sleeve: HO", "eia_rb": "EIA sleeve: RB"}
     legs = dist["legs"]
     cols = st.columns(len(legs))
     for col, (key, leg) in zip(cols, legs.items()):
@@ -361,7 +361,8 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
             col.metric(label, value, delta="SHADOW", delta_color="off")
         else:
             col.metric(label, value)
-    st.caption(f"As of {format_pst(dist['as_of_utc'])}. Reflects live order size right now, not the size any past trade in the ledger below was taken at. SHADOW = tracked for research, no real orders placed.")
+    sleeve_note = " HO and RB are ONE EIA petroleum-report sleeve (same event and Wednesdays, trade P&L correlation about +0.6) -- one event exposure, not two independent legs; max 1 contract each." if any(v.get("sleeve") == "EIA" for v in legs.values()) else ""
+    st.caption(f"As of {format_pst(dist['as_of_utc'])}. Reflects live order size right now, not the size any past trade in the ledger below was taken at. SHADOW = tracked for research, no real orders placed.{sleeve_note}")
 
 
 def render_projection(snapshot: dict[str, Any]) -> None:
@@ -376,7 +377,7 @@ def render_projection(snapshot: dict[str, Any]) -> None:
     c = proj.get("contracts", {})
     funded = proj.get("funded")
     if funded:
-        st.caption(f"Funded wheel (real live capital): {c.get('t1_mnq')} MNQ / {c.get('sixj')} 6J" + (f" / {c.get('le')} LE cattle" if c.get('le') else ""))
+        st.caption(f"Funded wheel (real live capital): {c.get('t1_mnq')} MNQ / {c.get('sixj')} 6J" + (f" / {c.get('le')} LE cattle" if c.get('le') else "") + (f" / EIA sleeve {c.get('eia_ho', 0)} HO + {c.get('eia_rb', 0)} RB" if (c.get('eia_ho') or c.get('eia_rb')) else ""))
         col1, col2 = st.columns(2)
         col1.metric("Projected annualized P&L", money(funded["projected_annualized_pnl_usd"]))
         col2.metric("Historical-window max drawdown", money(funded["window_max_drawdown_usd"]))
