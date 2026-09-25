@@ -71,6 +71,7 @@ T1_RUNTIME="$LIVE_REPO/runtime_t1_demo"
 T1_6J_RUNTIME="$LIVE_REPO/runtime_t1_6j_demo"
 ON001_RUNTIME="$LIVE_REPO/runtime_on001_demo"
 LE_RUNTIME="$LIVE_REPO/runtime_le_demo"
+EIA_RUNTIME="$LIVE_REPO/runtime_eia_demo"
 PRIVATE_SNAPSHOT="$LIVE_REPO/runtime_t1_demo/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
@@ -118,6 +119,13 @@ EXTRA_LE_ARGS=()
 if [ -f "$LE_RUNTIME/live_status.json" ]; then
   EXTRA_LE_ARGS=(--le-status "$LE_RUNTIME/live_status.json" --le-trades "$LE_RUNTIME/le_trades.jsonl")
 fi
+# EIA petroleum sleeve (HO x1 + RB x1, ONE sleeve; 2026-09-24): per-product status/trades files inside one runtime dir; same additive convention.
+EXTRA_EIA_ARGS=()
+if [ -f "$EIA_RUNTIME/live_status_ho.json" ] || [ -f "$EIA_RUNTIME/live_status_rb.json" ]; then
+  EXTRA_EIA_ARGS=(--eia-dir "$EIA_RUNTIME")
+fi
+EIA_HO_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_ho.json')).get('order_qty',0))" 2>/dev/null || echo 0)
+EIA_RB_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_rb.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 LE_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$LE_RUNTIME/live_status.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 
 PROJECTION_JSON="$T1_RUNTIME/portfolio_projection.json"
@@ -125,7 +133,7 @@ T1_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$
 SIXJ_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$T1_6J_RUNTIME/live_status.json')).get('order_qty',4))" 2>/dev/null || echo 4)
 ES_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$ON001_RUNTIME/live_status.json')).get('order_qty',3))" 2>/dev/null || echo 3)
 PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/project_annualized_mdd.py" \
-  --t1-qty "$T1_QTY" --sixj-qty "$SIXJ_QTY" --es-qty "$ES_QTY" --le-qty "$LE_QTY" --output "$PROJECTION_JSON" \
+  --t1-qty "$T1_QTY" --sixj-qty "$SIXJ_QTY" --es-qty "$ES_QTY" --le-qty "$LE_QTY" --eia-ho-qty "$EIA_HO_QTY" --eia-rb-qty "$EIA_RB_QTY" --output "$PROJECTION_JSON" \
   >/dev/null 2>&1 || echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) projection calc failed (non-fatal)"
 EXTRA_PROJECTION_ARGS=()
 if [ -f "$PROJECTION_JSON" ]; then
@@ -140,6 +148,7 @@ PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.expor
   "${EXTRA_6J_ARGS[@]}" \
   "${EXTRA_ON001_ARGS[@]}" \
   "${EXTRA_LE_ARGS[@]}" \
+  "${EXTRA_EIA_ARGS[@]}" \
   "${EXTRA_PROJECTION_ARGS[@]}"
 
 cd "$WEB_REPO"
