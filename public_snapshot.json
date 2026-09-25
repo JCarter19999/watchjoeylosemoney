@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-09-25T07:00:26.921386Z",
+      "as_of_utc": "2026-09-25T07:15:27.099318Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -173,7 +173,7 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "order_qty": 4,
-      "phase": "IDLE",
+      "phase": "NO_TRADE",
       "raw_unrealized_pnl_usd": null,
       "session": "2026-09-25",
       "stream_health": "GAPPED",
@@ -236,7 +236,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-25T07:00:27.023792Z",
+  "data_as_of_utc": "2026-09-25T07:15:27.200297Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -284,7 +284,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-25T07:00:27.023792Z",
+  "generated_at_utc": "2026-09-25T07:15:27.200297Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
