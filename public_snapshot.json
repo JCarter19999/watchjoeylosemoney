@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-09-25T01:15:27.739069Z",
+      "as_of_utc": "2026-09-25T01:30:26.987758Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -119,7 +119,7 @@
       "phase": "IDLE",
       "raw_unrealized_pnl_usd": null,
       "session": "2026-09-25",
-      "stream_health": "GAPPED",
+      "stream_health": "HEALTHY",
       "total_pnl_usd": -412.5,
       "unrealized_adjustment_reason": null,
       "unrealized_pnl_adjusted": false,
@@ -179,7 +179,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-25T01:15:27.870532Z",
+  "data_as_of_utc": "2026-09-25T01:30:27.095706Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -227,7 +227,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-25T01:15:27.870532Z",
+  "generated_at_utc": "2026-09-25T01:30:27.095706Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -419,12 +419,12 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "in_position": null,
-    "market_data_state": "STALE",
-    "message": "No update from the T1 process recently -- market-closed hours or a stopped process.",
-    "service_state": "OFFLINE",
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "in_position": false,
+    "market_data_state": "LIVE",
+    "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
+    "service_state": "ARMED",
     "unrealized_pnl_usd": null
   },
   "warmup_replay": {
