@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-09-24T23:45:27.475394Z",
+      "as_of_utc": "2026-09-25T00:00:26.805257Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -179,7 +179,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-24T23:45:27.644242Z",
+  "data_as_of_utc": "2026-09-25T00:00:26.913969Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -227,7 +227,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-24T23:45:27.644242Z",
+  "generated_at_utc": "2026-09-25T00:00:26.913969Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -419,12 +419,12 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": true,
-    "guardian_state": "ARMED",
-    "in_position": false,
-    "market_data_state": "LIVE",
-    "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
-    "service_state": "ARMED",
+    "execution_enabled": false,
+    "guardian_state": "NA",
+    "in_position": null,
+    "market_data_state": "STALE",
+    "message": "No update from the T1 process recently -- market-closed hours or a stopped process.",
+    "service_state": "OFFLINE",
     "unrealized_pnl_usd": null
   },
   "warmup_replay": {
