@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-09-25T00:30:27.340741Z",
+      "as_of_utc": "2026-09-25T00:45:26.784702Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -179,7 +179,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-25T00:30:27.525226Z",
+  "data_as_of_utc": "2026-09-25T00:45:26.929954Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -227,7 +227,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-25T00:30:27.525226Z",
+  "generated_at_utc": "2026-09-25T00:45:26.929954Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
