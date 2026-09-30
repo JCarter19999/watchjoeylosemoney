@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-09-30T19:45:26.928393Z",
+      "as_of_utc": "2026-09-30T20:00:27.371116Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -186,57 +186,60 @@
       "cumulative": {
         "C2": [
           169.5,
-          336.5
+          336.5,
+          168.75
         ],
         "C3": [
           169.5,
-          336.5
+          336.5,
+          193.5
         ],
         "HOLD": [
           169.5,
-          336.5
+          336.5,
+          270.75
         ]
       },
-      "episodes": 2,
-      "hold_total_pts": 336.5,
+      "episodes": 3,
+      "hold_total_pts": 270.75,
       "unit": "points",
       "variants": {
         "C2": {
           "alt": {
-            "exits": 0,
-            "reentries": 0,
-            "total_pts": 336.5,
-            "vs_hold_pts": 0.0,
-            "worst_mark_pts": -19.0
+            "exits": 2,
+            "reentries": 2,
+            "total_pts": 168.75,
+            "vs_hold_pts": -102.0,
+            "worst_mark_pts": -180.25
           },
           "pess": {
-            "exits": 0,
-            "reentries": 0,
-            "total_pts": 336.5,
-            "vs_hold_pts": 0.0,
-            "worst_mark_pts": -19.0
+            "exits": 2,
+            "reentries": 2,
+            "total_pts": 168.75,
+            "vs_hold_pts": -102.0,
+            "worst_mark_pts": -180.25
           }
         },
         "C3": {
           "alt": {
-            "exits": 0,
-            "reentries": 0,
-            "total_pts": 336.5,
-            "vs_hold_pts": 0.0,
-            "worst_mark_pts": -19.0
+            "exits": 3,
+            "reentries": 2,
+            "total_pts": 193.5,
+            "vs_hold_pts": -77.25,
+            "worst_mark_pts": -143.0
           },
           "pess": {
-            "exits": 0,
-            "reentries": 0,
-            "total_pts": 336.5,
-            "vs_hold_pts": 0.0,
-            "worst_mark_pts": -19.0
+            "exits": 3,
+            "reentries": 2,
+            "total_pts": 193.5,
+            "vs_hold_pts": -77.25,
+            "worst_mark_pts": -143.0
           }
         }
       }
     }
   },
-  "data_as_of_utc": "2026-09-30T19:45:27.067043Z",
+  "data_as_of_utc": "2026-09-30T20:00:27.540045Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -267,6 +270,12 @@
       "drawdown_usd": 0.0,
       "equity_usd": 8665.62,
       "ts_utc": "2026-09-30T15:35:01.075171Z"
+    },
+    {
+      "cum_pnl_usd": 7631.58,
+      "drawdown_usd": 1034.04,
+      "equity_usd": 7631.58,
+      "ts_utc": "2026-09-30T19:59:58.831173Z"
     }
   ],
   "execution_health": {
@@ -290,7 +299,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-30T19:45:27.067043Z",
+  "generated_at_utc": "2026-09-30T20:00:27.540045Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -345,6 +354,25 @@
     "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-09-30T19:59:58.831173Z",
+      "duration_seconds": 23217.009654,
+      "exit_reason": "RTH_CLOSE",
+      "expected_net_pnl_model_usd": null,
+      "information_available_ts": "2026-09-30T09:33:00-04:00",
+      "intended_exit_ts": "2026-09-30T16:00:00-04:00",
+      "mae_atr": null,
+      "mfe_atr": null,
+      "mode": "DEMO",
+      "pnl_adjusted": false,
+      "pnl_usd": -1034.04,
+      "raw_pnl_usd": null,
+      "session_date": "2026-09-30",
+      "side": "LONG",
+      "sized_qty": 7,
+      "v_cohort_label": "T1_CANONICAL"
+    },
     {
       "c_same_at_entry": null,
       "closed_at_utc": "2026-09-30T15:35:01.075171Z",
@@ -484,30 +512,30 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 5,
-    "closed_trades_today": 1,
-    "current_drawdown_usd": 0.0,
-    "display_equity_usd": 8665.62,
+    "closed_trades_all_time": 6,
+    "closed_trades_today": 2,
+    "current_drawdown_usd": 1034.04,
+    "display_equity_usd": 7631.58,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 1733.124,
+    "expectancy_usd": 1271.93,
     "ledger_adjustment_usd": 0.0,
-    "losses": 0,
-    "max_drawdown_usd": 0.0,
-    "profit_factor": null,
-    "realized_pnl_all_time_usd": 8665.62,
-    "realized_pnl_today_usd": 3427.2,
-    "win_rate": 1.0,
+    "losses": 1,
+    "max_drawdown_usd": 1034.04,
+    "profit_factor": 8.3804,
+    "realized_pnl_all_time_usd": 7631.58,
+    "realized_pnl_today_usd": 2393.16,
+    "win_rate": 0.8333,
     "wins": 5
   },
   "status": {
     "data_delayed": false,
     "execution_enabled": true,
     "guardian_state": "ARMED",
-    "in_position": true,
+    "in_position": false,
     "market_data_state": "LIVE",
-    "message": "In a T1 long position (7 MNQ demo); holding to the RTH close, no stop by design.",
+    "message": "T1 traded and exited today; done until the next session.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": 948.5
+    "unrealized_pnl_usd": null
   },
   "warmup_replay": {
     "bars_replayed": 0,
