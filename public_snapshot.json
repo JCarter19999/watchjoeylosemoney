@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-09-30T15:30:27.619102Z",
+      "as_of_utc": "2026-09-30T15:45:27.174768Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -44,7 +44,7 @@
       }
     },
     "eia_sleeve": {
-      "closed_trades": 0,
+      "closed_trades": 1,
       "max_contracts": {
         "HO": 1,
         "RB": 1
@@ -52,18 +52,18 @@
       "products": {
         "HO": {
           "backfilled_trades": 0,
-          "closed_trades": 0,
+          "closed_trades": 1,
           "direction": -1,
           "entry_fill": 4.759,
           "instrument": "HO.v.0",
           "mode": "DEMO_EXEC",
           "n_alerts": 2,
           "order_qty": 1,
-          "phase": "IN_POSITION",
+          "phase": "EXITED",
           "session": "2026-09-30",
           "skip_reason": null,
           "stream_health": "GAPPED",
-          "total_pnl_usd": 0
+          "total_pnl_usd": 3427.2
         },
         "RB": {
           "backfilled_trades": 0,
@@ -82,7 +82,7 @@
         }
       },
       "sleeve": "EIA petroleum report (one event exposure)",
-      "total_pnl_usd": 0.0
+      "total_pnl_usd": 3427.2
     },
     "le_leg": {
       "backfilled_trades": 0,
@@ -236,7 +236,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-30T15:30:27.876995Z",
+  "data_as_of_utc": "2026-09-30T15:45:27.325905Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -261,6 +261,12 @@
       "drawdown_usd": 0.0,
       "equity_usd": 5238.42,
       "ts_utc": "2026-09-23T20:00:05.466847Z"
+    },
+    {
+      "cum_pnl_usd": 8665.62,
+      "drawdown_usd": 0.0,
+      "equity_usd": 8665.62,
+      "ts_utc": "2026-09-30T15:35:01.075171Z"
     }
   ],
   "execution_health": {
@@ -284,7 +290,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-30T15:30:27.876995Z",
+  "generated_at_utc": "2026-09-30T15:45:27.325905Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -339,6 +345,25 @@
     "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-09-30T15:35:01.075171Z",
+      "duration_seconds": 3570.577969,
+      "exit_reason": "NATIVE_CLOSE_BOUNDARY",
+      "expected_net_pnl_model_usd": null,
+      "information_available_ts": "2026-09-30T14:35:30.497202+00:00",
+      "intended_exit_ts": "2026-09-30T15:35:01.075171+00:00",
+      "mae_atr": null,
+      "mfe_atr": null,
+      "mode": "DEMO",
+      "pnl_adjusted": false,
+      "pnl_usd": 3427.2,
+      "raw_pnl_usd": null,
+      "session_date": "2026-09-30",
+      "side": "SHORT",
+      "sized_qty": 1,
+      "v_cohort_label": "EIA_PETROLEUM"
+    },
     {
       "c_same_at_entry": null,
       "closed_at_utc": "2026-09-24T14:34:00Z",
@@ -459,20 +484,20 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 4,
-    "closed_trades_today": 0,
+    "closed_trades_all_time": 5,
+    "closed_trades_today": 1,
     "current_drawdown_usd": 0.0,
-    "display_equity_usd": 5238.42,
+    "display_equity_usd": 8665.62,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 1309.605,
+    "expectancy_usd": 1733.124,
     "ledger_adjustment_usd": 0.0,
     "losses": 0,
     "max_drawdown_usd": 0.0,
     "profit_factor": null,
-    "realized_pnl_all_time_usd": 5238.42,
-    "realized_pnl_today_usd": 0,
+    "realized_pnl_all_time_usd": 8665.62,
+    "realized_pnl_today_usd": 3427.2,
     "win_rate": 1.0,
-    "wins": 4
+    "wins": 5
   },
   "status": {
     "data_delayed": false,
@@ -482,7 +507,7 @@
     "market_data_state": "LIVE",
     "message": "In a T1 long position (7 MNQ demo); holding to the RTH close, no stop by design.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": 1358.0
+    "unrealized_pnl_usd": 1046.5
   },
   "warmup_replay": {
     "bars_replayed": 0,
