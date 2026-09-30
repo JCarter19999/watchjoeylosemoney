@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-09-30T14:30:27.177596Z",
+      "as_of_utc": "2026-09-30T14:45:27.440828Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -53,13 +53,13 @@
         "HO": {
           "backfilled_trades": 0,
           "closed_trades": 0,
-          "direction": null,
-          "entry_fill": null,
+          "direction": -1,
+          "entry_fill": 4.759,
           "instrument": "HO.v.0",
           "mode": "DEMO_EXEC",
-          "n_alerts": 0,
+          "n_alerts": 2,
           "order_qty": 1,
-          "phase": "IDLE",
+          "phase": "IN_POSITION",
           "session": "2026-09-30",
           "skip_reason": null,
           "stream_health": "GAPPED",
@@ -74,7 +74,7 @@
           "mode": "DEMO_EXEC",
           "n_alerts": 0,
           "order_qty": 1,
-          "phase": "IDLE",
+          "phase": "NO_TRADE",
           "session": "2026-09-30",
           "skip_reason": null,
           "stream_health": "GAPPED",
@@ -236,7 +236,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-09-30T14:30:27.283142Z",
+  "data_as_of_utc": "2026-09-30T14:45:27.592923Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -284,7 +284,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-09-30T14:30:27.283142Z",
+  "generated_at_utc": "2026-09-30T14:45:27.592923Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -482,7 +482,7 @@
     "market_data_state": "LIVE",
     "message": "In a T1 long position (7 MNQ demo); holding to the RTH close, no stop by design.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": 955.5
+    "unrealized_pnl_usd": 532.0
   },
   "warmup_replay": {
     "bars_replayed": 0,
