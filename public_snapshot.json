@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-01T04:00:29.310765Z",
+      "as_of_utc": "2026-10-01T04:15:27.747713Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -53,14 +53,14 @@
         "HO": {
           "backfilled_trades": 0,
           "closed_trades": 1,
-          "direction": -1,
-          "entry_fill": 4.759,
+          "direction": null,
+          "entry_fill": null,
           "instrument": "HO.v.0",
           "mode": "DEMO_EXEC",
           "n_alerts": 2,
           "order_qty": 1,
-          "phase": "EXITED",
-          "session": "2026-09-30",
+          "phase": "IDLE",
+          "session": "2026-10-01",
           "skip_reason": null,
           "stream_health": "GAPPED",
           "total_pnl_usd": 3427.2
@@ -74,8 +74,8 @@
           "mode": "DEMO_EXEC",
           "n_alerts": 0,
           "order_qty": 1,
-          "phase": "NO_TRADE",
-          "session": "2026-09-30",
+          "phase": "IDLE",
+          "session": "2026-10-01",
           "skip_reason": null,
           "stream_health": "GAPPED",
           "total_pnl_usd": 0
@@ -107,8 +107,8 @@
       "mode": "OBSERVE",
       "n_alerts": 0,
       "order_qty": 1,
-      "phase": "NO_TRADE",
-      "session": "2026-09-30",
+      "phase": "IDLE",
+      "session": "2026-10-01",
       "stream_health": "HEALTHY",
       "total_pnl_usd": 1824.42
     },
@@ -239,7 +239,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-01T04:00:29.526390Z",
+  "data_as_of_utc": "2026-10-01T04:15:27.964353Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -299,7 +299,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-01T04:00:29.526390Z",
+  "generated_at_utc": "2026-10-01T04:15:27.964353Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -533,7 +533,7 @@
     "guardian_state": "ARMED",
     "in_position": false,
     "market_data_state": "LIVE",
-    "message": "T1 traded and exited today; done until the next session.",
+    "message": "Watching for the T1 setup at 09:33 ET (7 MNQ demo; entry needs a persistent move >= 1.5x its usual size).",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
   },
