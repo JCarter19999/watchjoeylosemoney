@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-01T22:00:26.962483Z",
+      "as_of_utc": "2026-10-01T22:15:27.502253Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -57,7 +57,7 @@
           "entry_fill": null,
           "instrument": "HO.v.0",
           "mode": "DEMO_EXEC",
-          "n_alerts": 2,
+          "n_alerts": 0,
           "order_qty": 1,
           "phase": "IDLE",
           "session": "2026-10-01",
@@ -95,7 +95,7 @@
       "order_qty": 1,
       "phase": "NO_TRADE",
       "session": "2026-10-01",
-      "stream_health": "GAPPED",
+      "stream_health": "BOOT",
       "total_pnl_usd": 0
     },
     "on001_leg": {
@@ -109,7 +109,7 @@
       "order_qty": 1,
       "phase": "NO_TRADE",
       "session": "2026-10-01",
-      "stream_health": "STALE",
+      "stream_health": "HEALTHY",
       "total_pnl_usd": 1824.42
     },
     "projection": {
@@ -239,7 +239,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-01T22:00:27.065423Z",
+  "data_as_of_utc": "2026-10-01T22:15:27.603889Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -299,7 +299,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-01T22:00:27.065423Z",
+  "generated_at_utc": "2026-10-01T22:15:27.603889Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -532,7 +532,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "in_position": false,
-    "market_data_state": "STALE",
+    "market_data_state": "LIVE",
     "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
