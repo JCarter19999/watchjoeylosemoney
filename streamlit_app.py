@@ -97,10 +97,12 @@ def status_badge(snapshot: dict[str, Any]) -> None:
 
 def render_unrealized(snapshot: dict[str, Any]) -> None:
     """Live, throughout-the-day mark-to-market P/L on any currently open position(s) -- MNQ from status.
-    unrealized_pnl_usd, 6J (if that leg is running) from dashboard_extras.t1_6j_leg.unrealized_pnl_usd. Both are
-    None (shown as nothing) when flat, and always None for a real-money LIVE deployment regardless of position --
-    unlike DEMO/SHADOW, LIVE never discloses position-level detail in real time (see the schema's own note on
-    status.unrealized_pnl_usd)."""
+    unrealized_pnl_usd, 6J/LE (if that leg is running) from dashboard_extras.{t1_6j_leg,le_leg}.
+    unrealized_pnl_usd. All are None (shown as nothing) when flat, and always None for a real-money LIVE
+    deployment regardless of position -- unlike DEMO/SHADOW, LIVE never discloses position-level detail in
+    real time (see the schema's own note on status.unrealized_pnl_usd). LE's unrealized figure was missing
+    entirely until 2026-10-02 -- the exporter never computed it, so LE could sit IN_POSITION with nothing shown
+    here even though T1/MNQ and 6J both already had this."""
     rows = []
     mnq_u = snapshot["status"].get("unrealized_pnl_usd")
     if mnq_u is not None:
@@ -108,6 +110,9 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     leg = (snapshot.get("dashboard_extras") or {}).get("t1_6j_leg")
     if leg and leg.get("unrealized_pnl_usd") is not None:
         rows.append(("6J London", leg["unrealized_pnl_usd"]))
+    le_leg = (snapshot.get("dashboard_extras") or {}).get("le_leg")
+    if le_leg and le_leg.get("unrealized_pnl_usd") is not None:
+        rows.append(("LE Cattle", le_leg["unrealized_pnl_usd"]))
     if not rows:
         return
     cols = st.columns(len(rows))
