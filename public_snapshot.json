@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-02T13:30:26.878788Z",
+      "as_of_utc": "2026-10-02T13:45:27.155700Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -87,15 +87,15 @@
     "le_leg": {
       "backfilled_trades": 0,
       "closed_trades": 0,
-      "direction": null,
-      "entry_fill": null,
+      "direction": -1,
+      "entry_fill": 222.4,
       "instrument": "LE.v.0",
       "mode": "DEMO_EXEC",
-      "n_alerts": 0,
+      "n_alerts": 1,
       "order_qty": 1,
-      "phase": "NO_TRADE",
-      "session": "2026-10-01",
-      "stream_health": "BOOT",
+      "phase": "IN_POSITION",
+      "session": "2026-10-02",
+      "stream_health": "HEALTHY",
       "total_pnl_usd": 0
     },
     "on001_leg": {
@@ -107,7 +107,7 @@
       "mode": "OBSERVE",
       "n_alerts": 0,
       "order_qty": 1,
-      "phase": "IDLE",
+      "phase": "NO_TRADE",
       "session": "2026-10-02",
       "stream_health": "HEALTHY",
       "total_pnl_usd": 1824.42
@@ -239,7 +239,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-02T13:30:26.985797Z",
+  "data_as_of_utc": "2026-10-02T13:45:27.254906Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -299,7 +299,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-02T13:30:26.985797Z",
+  "generated_at_utc": "2026-10-02T13:45:27.254906Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -531,11 +531,11 @@
     "data_delayed": false,
     "execution_enabled": true,
     "guardian_state": "ARMED",
-    "in_position": false,
+    "in_position": true,
     "market_data_state": "LIVE",
-    "message": "Watching for the T1 setup at 09:33 ET (7 MNQ demo; entry needs a persistent move >= 1.5x its usual size).",
+    "message": "In a T1 short position (7 MNQ demo); holding to the RTH close, no stop by design.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": null
+    "unrealized_pnl_usd": -1134.0
   },
   "warmup_replay": {
     "bars_replayed": 0,
