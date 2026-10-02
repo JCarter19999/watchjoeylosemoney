@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-02T22:00:27.042969Z",
+      "as_of_utc": "2026-10-02T22:15:27.780535Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -62,7 +62,7 @@
           "phase": "IDLE",
           "session": "2026-10-02",
           "skip_reason": null,
-          "stream_health": "GAPPED",
+          "stream_health": "BOOT",
           "total_pnl_usd": 3427.2
         },
         "RB": {
@@ -77,7 +77,7 @@
           "phase": "IDLE",
           "session": "2026-10-02",
           "skip_reason": null,
-          "stream_health": "GAPPED",
+          "stream_health": "BOOT",
           "total_pnl_usd": 0
         }
       },
@@ -110,7 +110,7 @@
       "order_qty": 1,
       "phase": "NO_TRADE",
       "session": "2026-10-02",
-      "stream_health": "STALE",
+      "stream_health": "BOOT",
       "total_pnl_usd": 1824.42
     },
     "projection": {
@@ -177,7 +177,7 @@
       "phase": "NO_TRADE",
       "raw_unrealized_pnl_usd": null,
       "session": "2026-10-02",
-      "stream_health": "GAPPED",
+      "stream_health": "BOOT",
       "total_pnl_usd": -412.5,
       "unrealized_adjustment_reason": null,
       "unrealized_pnl_adjusted": false,
@@ -243,7 +243,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-02T22:00:27.143046Z",
+  "data_as_of_utc": "2026-10-02T22:15:27.884373Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -315,7 +315,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-02T22:00:27.143046Z",
+  "generated_at_utc": "2026-10-02T22:15:27.884373Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -586,7 +586,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "in_position": false,
-    "market_data_state": "STALE",
+    "market_data_state": "UNKNOWN",
     "message": "T1 traded and exited today; done until the next session.",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
