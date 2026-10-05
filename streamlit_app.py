@@ -129,10 +129,15 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
 
 def render_fill_slippage_check(leg: dict[str, Any] | None) -> None:
     """Surfaces the 6J leg's most recent fill-vs-market-reference check (dashboard_extras.t1_6j_leg.
-    last_fill_slippage_check), added 2026-09-22 after a genuine Tradovate DEMO fill was found 59 ticks off the
-    contemporaneous market on 6J's first-ever live fill -- a demo fill-simulation artifact, not real 6J
-    liquidity. Flags it plainly rather than letting a distorted fill silently sit inside the P&L numbers
-    above. Absent entirely once no fill has happened yet."""
+    last_fill_slippage_check). First found 2026-09-22 (~59 ticks) and root-caused 2026-10-05 (confirmed via
+    direct Databento symbology.resolve): this is the Oct/Dec contract mismatch -- Tradovate's symbol search
+    resolves the front (expiring, e.g. 6JV6) month while the data feed (6J.v.0) has already rolled to the next
+    liquid month (e.g. 6JZ6); comparing a fill on one against a market reference on the other produces a large
+    fake slippage reading that's really just the calendar-spread basis between the two contracts, not execution
+    quality. live/src/mnq_rt1_live/contract_match.py exists specifically to prevent this by re-pointing the
+    broker at the data contract before every entry; this alert fires when that protection was bypassed (as it
+    was for the manual 2026-10-05 outage-backfill order) or failed. Absent entirely once no fill has happened
+    yet."""
     check = (leg or {}).get("last_fill_slippage_check")
     if not check:
         return
@@ -141,9 +146,9 @@ def render_fill_slippage_check(leg: dict[str, Any] | None) -> None:
           f"{check['market_reference']} ({check['slippage_ticks']:+.1f} ticks, {money(check['slippage_usd'])}).")
     if check["anomalous"]:
         st.warning(
-            f"⚠️ {msg} This is well outside normal execution noise and looks like a Tradovate DEMO "
-            "fill-simulation artifact rather than real market slippage -- displayed P&L on this leg may be "
-            "distorted by it. See the 2026-09-22 finding."
+            f"⚠️ {msg} This is well outside normal execution noise and is consistent with the known Oct/Dec "
+            "contract-mismatch pattern (front-month fill vs. next-month data reference), not real market "
+            "slippage -- displayed P&L on this leg may be distorted by it."
         )
     else:
         st.caption(msg + " Within normal range.")
