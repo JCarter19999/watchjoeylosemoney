@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-05T14:49:56.572706Z",
+      "as_of_utc": "2026-10-05T14:58:48.044974Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -181,7 +181,7 @@
       "total_pnl_usd": 1837.5,
       "unrealized_adjustment_reason": null,
       "unrealized_pnl_adjusted": false,
-      "unrealized_pnl_usd": -1650.0
+      "unrealized_pnl_usd": -1750.0
     },
     "t1_shadow_controllers": {
       "cumulative": {
@@ -243,7 +243,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-05T14:49:56.683074Z",
+  "data_as_of_utc": "2026-10-05T14:58:48.149729Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -321,7 +321,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-05T14:49:56.683074Z",
+  "generated_at_utc": "2026-10-05T14:58:48.149729Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -614,7 +614,7 @@
     "market_data_state": "LIVE",
     "message": "In a T1 long position (7 MNQ demo); holding to the RTH close, no stop by design. (1 alert(s) logged)",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": -192.5
+    "unrealized_pnl_usd": 199.5
   },
   "warmup_replay": {
     "bars_replayed": 0,
