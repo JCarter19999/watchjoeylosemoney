@@ -3,6 +3,13 @@ name: Validate public dashboard
 on:
   push:
     branches: [main]
+    # publish.sh pushes a pure-data commit every 15 minutes (public_snapshot.json only, confirmed via
+    # `git add` in publish.sh) -- those don't need pytest/py_compile and were piling up faster than the
+    # runner could finish them, cancelling each other and emailing a "failure" every ~15 min (found
+    # 2026-10-05: 4 same-day runs, all `cancelled`, none an actual test failure). Code changes (incl. the
+    # sanitizer/schema/app this workflow actually validates) still trigger normally.
+    paths-ignore:
+      - "public_snapshot.json"
   pull_request:
     branches: [main]
 
