@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-05T20:30:26.931624Z",
+      "as_of_utc": "2026-10-05T20:45:27.264745Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -264,7 +264,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-05T20:30:27.036330Z",
+  "data_as_of_utc": "2026-10-05T20:45:27.370258Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -315,15 +315,21 @@
       "ts_utc": "2026-10-02T19:59:58.550299Z"
     },
     {
-      "cum_pnl_usd": 10775.54,
+      "cum_pnl_usd": 9453.54,
       "drawdown_usd": 0.0,
-      "equity_usd": 10775.54,
+      "equity_usd": 9453.54,
+      "ts_utc": "2026-10-05T14:27:48.664775Z"
+    },
+    {
+      "cum_pnl_usd": 11703.54,
+      "drawdown_usd": 0.0,
+      "equity_usd": 11703.54,
       "ts_utc": "2026-10-05T14:27:50.020883Z"
     },
     {
-      "cum_pnl_usd": 11852.0,
+      "cum_pnl_usd": 12780.0,
       "drawdown_usd": 0.0,
-      "equity_usd": 11852.0,
+      "equity_usd": 12780.0,
       "ts_utc": "2026-10-05T19:54:59.434323Z"
     }
   ],
@@ -348,7 +354,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-05T20:30:27.036330Z",
+  "generated_at_utc": "2026-10-05T20:45:27.370258Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -440,6 +446,25 @@
       "side": "SHORT",
       "sized_qty": 4,
       "v_cohort_label": "T1_6J_LONDON"
+    },
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-10-05T14:27:48.664775Z",
+      "duration_seconds": 3288.664775,
+      "exit_reason": "BACKTEST",
+      "expected_net_pnl_model_usd": null,
+      "information_available_ts": "2026-10-05T13:33:00+00:00",
+      "intended_exit_ts": "2026-10-05T14:27:48.664775+00:00",
+      "mae_atr": null,
+      "mfe_atr": null,
+      "mode": "DEMO",
+      "pnl_adjusted": false,
+      "pnl_usd": 928.0,
+      "raw_pnl_usd": null,
+      "session_date": "2026-10-05",
+      "side": "SHORT",
+      "sized_qty": 1,
+      "v_cohort_label": "PA_PALLADIUM"
     },
     {
       "c_same_at_entry": null,
@@ -637,20 +662,20 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 10,
-    "closed_trades_today": 2,
+    "closed_trades_all_time": 11,
+    "closed_trades_today": 3,
     "current_drawdown_usd": 0.0,
-    "display_equity_usd": 11852.0,
+    "display_equity_usd": 12780.0,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 1185.2,
+    "expectancy_usd": 1161.8182,
     "ledger_adjustment_usd": 0.0,
     "losses": 1,
     "max_drawdown_usd": 1034.04,
-    "profit_factor": 12.4618,
-    "realized_pnl_all_time_usd": 11852.0,
-    "realized_pnl_today_usd": 3326.46,
-    "win_rate": 0.9,
-    "wins": 9
+    "profit_factor": 13.3593,
+    "realized_pnl_all_time_usd": 12780.0,
+    "realized_pnl_today_usd": 4254.46,
+    "win_rate": 0.9091,
+    "wins": 10
   },
   "status": {
     "data_delayed": false,
