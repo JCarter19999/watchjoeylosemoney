@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-05T13:45:27.108801Z",
+      "as_of_utc": "2026-10-05T14:00:27.342651Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -60,9 +60,9 @@
           "n_alerts": 0,
           "order_qty": 1,
           "phase": "IDLE",
-          "session": "2026-10-02",
+          "session": "2026-10-05",
           "skip_reason": null,
-          "stream_health": "BOOT",
+          "stream_health": "HEALTHY",
           "total_pnl_usd": 3427.2
         },
         "RB": {
@@ -75,9 +75,9 @@
           "n_alerts": 0,
           "order_qty": 1,
           "phase": "IDLE",
-          "session": "2026-10-02",
+          "session": "2026-10-05",
           "skip_reason": null,
-          "stream_health": "BOOT",
+          "stream_health": "HEALTHY",
           "total_pnl_usd": 0
         }
       },
@@ -87,15 +87,15 @@
     "le_leg": {
       "backfilled_trades": 0,
       "closed_trades": 1,
-      "direction": -1,
-      "entry_fill": 222.4,
+      "direction": null,
+      "entry_fill": null,
       "instrument": "LE.v.0",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "order_qty": 1,
-      "phase": "EXITED",
-      "session": "2026-10-02",
-      "stream_health": "BOOT",
+      "phase": "NO_TRADE",
+      "session": "2026-10-05",
+      "stream_health": "HEALTHY",
       "total_pnl_usd": 360.0,
       "unrealized_pnl_usd": null
     },
@@ -109,8 +109,8 @@
       "n_alerts": 0,
       "order_qty": 1,
       "phase": "NO_TRADE",
-      "session": "2026-10-02",
-      "stream_health": "BOOT",
+      "session": "2026-10-05",
+      "stream_health": "HEALTHY",
       "total_pnl_usd": 1824.42
     },
     "projection": {
@@ -174,10 +174,10 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "order_qty": 4,
-      "phase": "NO_TRADE",
+      "phase": "IDLE",
       "raw_unrealized_pnl_usd": null,
-      "session": "2026-10-02",
-      "stream_health": "BOOT",
+      "session": "2026-10-05",
+      "stream_health": "HEALTHY",
       "total_pnl_usd": -412.5,
       "unrealized_adjustment_reason": null,
       "unrealized_pnl_adjusted": false,
@@ -243,7 +243,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-05T13:45:27.209026Z",
+  "data_as_of_utc": "2026-10-05T14:00:27.523191Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -315,7 +315,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-05T13:45:27.209026Z",
+  "generated_at_utc": "2026-10-05T14:00:27.523191Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -583,12 +583,12 @@
   },
   "status": {
     "data_delayed": false,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "in_position": null,
-    "market_data_state": "STALE",
-    "message": "No update from the T1 process recently -- market-closed hours or a stopped process.",
-    "service_state": "OFFLINE",
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "in_position": false,
+    "market_data_state": "LIVE",
+    "message": "T1 skipped today: stream_replay_not_completed. (1 alert(s) logged)",
+    "service_state": "ARMED",
     "unrealized_pnl_usd": null
   },
   "warmup_replay": {
