@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-05T23:00:27.390299Z",
+      "as_of_utc": "2026-10-05T23:15:27.599629Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -177,8 +177,8 @@
     "t1_6j_leg": {
       "backfilled_trades": 2,
       "closed_trades": 4,
-      "direction": -1,
-      "entry_fill": 0.0063295,
+      "direction": null,
+      "entry_fill": null,
       "instrument": "6J.v.0",
       "last_fill_slippage_check": {
         "anomalous": true,
@@ -192,9 +192,9 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 577,
       "order_qty": 4,
-      "phase": "EXITED",
+      "phase": "IDLE",
       "raw_unrealized_pnl_usd": null,
-      "session": "2026-10-05",
+      "session": "2026-10-06",
       "stream_health": "GAPPED",
       "total_pnl_usd": 1212.5,
       "unrealized_adjustment_reason": null,
@@ -264,7 +264,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-05T23:00:27.530764Z",
+  "data_as_of_utc": "2026-10-05T23:15:27.711780Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -366,7 +366,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-05T23:00:27.530764Z",
+  "generated_at_utc": "2026-10-05T23:15:27.711780Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
