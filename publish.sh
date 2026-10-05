@@ -72,6 +72,7 @@ T1_6J_RUNTIME="$LIVE_REPO/runtime_t1_6j_demo"
 ON001_RUNTIME="$LIVE_REPO/runtime_on001_demo"
 LE_RUNTIME="$LIVE_REPO/runtime_le_demo"
 EIA_RUNTIME="$LIVE_REPO/runtime_eia_demo"
+PA_RUNTIME="$LIVE_REPO/runtime_pa_demo"
 PRIVATE_SNAPSHOT="$LIVE_REPO/runtime_t1_demo/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
@@ -124,6 +125,11 @@ EXTRA_EIA_ARGS=()
 if [ -f "$EIA_RUNTIME/live_status_ho.json" ] || [ -f "$EIA_RUNTIME/live_status_rb.json" ]; then
   EXTRA_EIA_ARGS=(--eia-dir "$EIA_RUNTIME")
 fi
+# PA (palladium) leg -- added 2026-10-05, same additive convention as 6J/LE above.
+EXTRA_PA_ARGS=()
+if [ -f "$PA_RUNTIME/live_status.json" ]; then
+  EXTRA_PA_ARGS=(--pa-status "$PA_RUNTIME/live_status.json" --pa-trades "$PA_RUNTIME/pa_trades.jsonl")
+fi
 EIA_HO_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_ho.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 EIA_RB_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_rb.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 LE_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$LE_RUNTIME/live_status.json')).get('order_qty',0))" 2>/dev/null || echo 0)
@@ -149,6 +155,7 @@ PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.expor
   "${EXTRA_ON001_ARGS[@]}" \
   "${EXTRA_LE_ARGS[@]}" \
   "${EXTRA_EIA_ARGS[@]}" \
+  "${EXTRA_PA_ARGS[@]}" \
   "${EXTRA_PROJECTION_ARGS[@]}"
 
 cd "$WEB_REPO"

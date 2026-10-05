@@ -113,6 +113,9 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     le_leg = (snapshot.get("dashboard_extras") or {}).get("le_leg")
     if le_leg and le_leg.get("unrealized_pnl_usd") is not None:
         rows.append(("LE Cattle", le_leg["unrealized_pnl_usd"]))
+    pa_leg = (snapshot.get("dashboard_extras") or {}).get("pa_leg")
+    if pa_leg and pa_leg.get("unrealized_pnl_usd") is not None:
+        rows.append(("PA Palladium", pa_leg["unrealized_pnl_usd"]))
     if not rows:
         return
     cols = st.columns(len(rows))
@@ -123,6 +126,11 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
         st.info(
             f"6J's unrealized figure above is a documented correction, not the raw broker number: the actual "
             f"Tradovate fill would show **{money(leg['raw_unrealized_pnl_usd'])}**. {leg['unrealized_adjustment_reason']}"
+        )
+    if pa_leg and pa_leg.get("unrealized_pnl_adjusted"):
+        st.info(
+            f"PA's unrealized figure above is a documented correction, not the raw broker number: the actual "
+            f"Tradovate fill would show **{money(pa_leg['raw_unrealized_pnl_usd'])}**. {pa_leg['unrealized_adjustment_reason']}"
         )
     render_fill_slippage_check(leg)
 
