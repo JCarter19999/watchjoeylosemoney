@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-07T13:45:27.290500Z",
+      "as_of_utc": "2026-10-07T14:00:27.652659Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -62,7 +62,7 @@
           "phase": "IDLE",
           "session": "2026-10-07",
           "skip_reason": null,
-          "stream_health": "GAPPED",
+          "stream_health": "HEALTHY",
           "total_pnl_usd": 3427.2
         },
         "RB": {
@@ -77,7 +77,7 @@
           "phase": "IDLE",
           "session": "2026-10-07",
           "skip_reason": null,
-          "stream_health": "GAPPED",
+          "stream_health": "HEALTHY",
           "total_pnl_usd": 0
         }
       },
@@ -95,7 +95,7 @@
       "order_qty": 1,
       "phase": "NO_TRADE",
       "session": "2026-10-07",
-      "stream_health": "GAPPED",
+      "stream_health": "HEALTHY",
       "total_pnl_usd": 360.0,
       "unrealized_pnl_usd": null
     },
@@ -120,7 +120,7 @@
       "entry_fill": null,
       "instrument": "PA.v.0",
       "mode": "DEMO_EXEC",
-      "n_alerts": 1,
+      "n_alerts": 0,
       "order_qty": 1,
       "phase": "NO_TRADE",
       "raw_unrealized_pnl_usd": null,
@@ -190,7 +190,7 @@
         "slippage_usd": -1425.0
       },
       "mode": "DEMO_EXEC",
-      "n_alerts": 1,
+      "n_alerts": 0,
       "order_qty": 4,
       "phase": "NO_TRADE",
       "raw_unrealized_pnl_usd": null,
@@ -264,7 +264,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-07T13:45:27.397230Z",
+  "data_as_of_utc": "2026-10-07T14:00:27.818238Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -354,7 +354,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-07T13:45:27.397230Z",
+  "generated_at_utc": "2026-10-07T14:00:27.818238Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
