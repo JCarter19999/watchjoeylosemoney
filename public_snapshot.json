@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-07T15:00:26.976282Z",
+      "as_of_utc": "2026-10-07T15:15:27.189750Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -63,7 +63,8 @@
           "session": "2026-10-07",
           "skip_reason": null,
           "stream_health": "HEALTHY",
-          "total_pnl_usd": 3427.2
+          "total_pnl_usd": 3427.2,
+          "unrealized_pnl_usd": -487.2
         },
         "RB": {
           "backfilled_trades": 0,
@@ -78,11 +79,13 @@
           "session": "2026-10-07",
           "skip_reason": null,
           "stream_health": "HEALTHY",
-          "total_pnl_usd": 0
+          "total_pnl_usd": 0,
+          "unrealized_pnl_usd": -134.4
         }
       },
       "sleeve": "EIA petroleum report (one event exposure)",
-      "total_pnl_usd": 3427.2
+      "total_pnl_usd": 3427.2,
+      "unrealized_pnl_usd": -621.6
     },
     "le_leg": {
       "backfilled_trades": 0,
@@ -264,7 +267,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-07T15:00:27.084965Z",
+  "data_as_of_utc": "2026-10-07T15:15:27.298318Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -336,7 +339,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-07T15:00:27.084965Z",
+  "generated_at_utc": "2026-10-07T15:15:27.298318Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
