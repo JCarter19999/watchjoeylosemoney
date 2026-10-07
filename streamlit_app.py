@@ -116,6 +116,9 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     pa_leg = (snapshot.get("dashboard_extras") or {}).get("pa_leg")
     if pa_leg and pa_leg.get("unrealized_pnl_usd") is not None:
         rows.append(("PA Palladium", pa_leg["unrealized_pnl_usd"]))
+    for prod, p in (((snapshot.get("dashboard_extras") or {}).get("eia_sleeve") or {}).get("products") or {}).items():
+        if p.get("unrealized_pnl_usd") is not None:
+            rows.append((f"EIA {prod}", p["unrealized_pnl_usd"]))
     if not rows:
         return
     cols = st.columns(len(rows))
