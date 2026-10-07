@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-07T15:15:27.189750Z",
+      "as_of_utc": "2026-10-07T15:30:27.200191Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -64,7 +64,7 @@
           "skip_reason": null,
           "stream_health": "HEALTHY",
           "total_pnl_usd": 3427.2,
-          "unrealized_pnl_usd": -487.2
+          "unrealized_pnl_usd": -512.4
         },
         "RB": {
           "backfilled_trades": 0,
@@ -80,12 +80,12 @@
           "skip_reason": null,
           "stream_health": "HEALTHY",
           "total_pnl_usd": 0,
-          "unrealized_pnl_usd": -134.4
+          "unrealized_pnl_usd": -365.4
         }
       },
       "sleeve": "EIA petroleum report (one event exposure)",
       "total_pnl_usd": 3427.2,
-      "unrealized_pnl_usd": -621.6
+      "unrealized_pnl_usd": -877.8
     },
     "le_leg": {
       "backfilled_trades": 0,
@@ -116,9 +116,27 @@
       "stream_health": "HEALTHY",
       "total_pnl_usd": 1824.42
     },
+    "outage_retro_sessions": [
+      {
+        "actual_fill_pnl_usd": 1076.46,
+        "leg": "T1",
+        "reason": "Outage retro: bot down through the 09:33 ET anchor; position opened by a manual retroactive order ~14:27 UTC. Actual fill P&L stays in the ledger as OUTAGE_RETRO (not a frozen-spec execution, excluded from clean-live statistics); the hypothetical backfill lead-in is shown separately, never summed.",
+        "session": "2026-10-05",
+        "shadow_backfill_pnl_usd": 1214.5,
+        "treatment": "actual fill kept in ledger as OUTAGE_RETRO; backfill shown here only (never summed)"
+      },
+      {
+        "actual_fill_pnl_usd": 198.78,
+        "leg": "PA",
+        "reason": "Outage retro: bot down through the 09:33 ET anchor; position opened by a manual retroactive order ~14:27 UTC. Actual fill P&L stays in the ledger as OUTAGE_RETRO (not a frozen-spec execution, excluded from clean-live statistics); the hypothetical backfill lead-in is shown separately, never summed.",
+        "session": "2026-10-05",
+        "shadow_backfill_pnl_usd": 928.0,
+        "treatment": "actual fill kept in ledger as OUTAGE_RETRO; backfill shown here only (never summed)"
+      }
+    ],
     "pa_leg": {
       "backfilled_trades": 0,
-      "closed_trades": 1,
+      "closed_trades": 2,
       "direction": null,
       "entry_fill": null,
       "instrument": "PA.v.0",
@@ -129,7 +147,7 @@
       "raw_unrealized_pnl_usd": null,
       "session": "2026-10-07",
       "stream_health": "GAPPED",
-      "total_pnl_usd": 598.78,
+      "total_pnl_usd": 797.56,
       "unrealized_adjustment_reason": null,
       "unrealized_pnl_adjusted": false,
       "unrealized_pnl_usd": null
@@ -267,7 +285,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-07T15:15:27.298318Z",
+  "data_as_of_utc": "2026-10-07T15:30:27.306102Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -312,9 +330,21 @@
       "ts_utc": "2026-10-02T19:59:58.550299Z"
     },
     {
-      "cum_pnl_usd": 9036.82,
+      "cum_pnl_usd": 9514.5,
       "drawdown_usd": 0.0,
-      "equity_usd": 9036.82,
+      "equity_usd": 9514.5,
+      "ts_utc": "2026-10-05T19:54:59.434323Z"
+    },
+    {
+      "cum_pnl_usd": 9713.28,
+      "drawdown_usd": 0.0,
+      "equity_usd": 9713.28,
+      "ts_utc": "2026-10-05T20:59:32.115816Z"
+    },
+    {
+      "cum_pnl_usd": 10312.06,
+      "drawdown_usd": 0.0,
+      "equity_usd": 10312.06,
       "ts_utc": "2026-10-06T20:59:32.216310Z"
     }
   ],
@@ -339,7 +369,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-07T15:15:27.298318Z",
+  "generated_at_utc": "2026-10-07T15:30:27.306102Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -412,6 +442,44 @@
       "side": "LONG",
       "sized_qty": 1,
       "v_cohort_label": "PA_PALLADIUM"
+    },
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-10-05T20:59:32.115816Z",
+      "duration_seconds": 23503.451041,
+      "exit_reason": "OUTAGE_RETRO",
+      "expected_net_pnl_model_usd": null,
+      "information_available_ts": "2026-10-05T14:27:48.664775+00:00",
+      "intended_exit_ts": "2026-10-05T20:59:32.115816+00:00",
+      "mae_atr": null,
+      "mfe_atr": null,
+      "mode": "DEMO",
+      "pnl_adjusted": false,
+      "pnl_usd": 198.78,
+      "raw_pnl_usd": null,
+      "session_date": "2026-10-05",
+      "side": "SHORT",
+      "sized_qty": 1,
+      "v_cohort_label": "PA_PALLADIUM"
+    },
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-10-05T19:54:59.434323Z",
+      "duration_seconds": 19632.129962,
+      "exit_reason": "OUTAGE_RETRO",
+      "expected_net_pnl_model_usd": null,
+      "information_available_ts": "2026-10-05T09:33:00-04:00",
+      "intended_exit_ts": "2026-10-05T16:00:00-04:00",
+      "mae_atr": null,
+      "mfe_atr": null,
+      "mode": "DEMO",
+      "pnl_adjusted": false,
+      "pnl_usd": 1076.46,
+      "raw_pnl_usd": null,
+      "session_date": "2026-10-05",
+      "side": "LONG",
+      "sized_qty": 7,
+      "v_cohort_label": "T1_CANONICAL"
     },
     {
       "c_same_at_entry": null,
@@ -590,20 +658,20 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 8,
+    "closed_trades_all_time": 10,
     "closed_trades_today": 0,
     "current_drawdown_usd": 0.0,
-    "display_equity_usd": 9036.82,
+    "display_equity_usd": 10312.06,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 1129.6025,
+    "expectancy_usd": 1031.206,
     "ledger_adjustment_usd": 0.0,
     "losses": 1,
     "max_drawdown_usd": 1034.04,
-    "profit_factor": 9.7393,
-    "realized_pnl_all_time_usd": 9036.82,
+    "profit_factor": 10.9726,
+    "realized_pnl_all_time_usd": 10312.06,
     "realized_pnl_today_usd": 0,
-    "win_rate": 0.875,
-    "wins": 7
+    "win_rate": 0.9,
+    "wins": 9
   },
   "status": {
     "data_delayed": false,
