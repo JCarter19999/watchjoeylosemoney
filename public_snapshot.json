@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-09T20:45:27.041263Z",
+      "as_of_utc": "2026-10-09T21:00:27.431574Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -136,21 +136,21 @@
     ],
     "pa_leg": {
       "backfilled_trades": 1,
-      "closed_trades": 4,
+      "closed_trades": 5,
       "direction": 1,
       "entry_fill": 1154.5,
       "instrument": "PA.v.0",
       "mode": "DEMO_EXEC",
       "n_alerts": 1,
       "order_qty": 1,
-      "phase": "IN_POSITION",
+      "phase": "EXITED",
       "raw_unrealized_pnl_usd": null,
       "session": "2026-10-09",
       "stream_health": "GAPPED",
-      "total_pnl_usd": 2024.34,
+      "total_pnl_usd": 1573.12,
       "unrealized_adjustment_reason": null,
       "unrealized_pnl_adjusted": false,
-      "unrealized_pnl_usd": -400.0
+      "unrealized_pnl_usd": null
     },
     "projection": {
       "caveat": "'funded' (T1 + 6J + LE Live Cattle + the EIA petroleum sleeve HO/RB, one event exposure) is the primary projection -- real live capital, real 3-year backtest data for both legs. 'es_shadow' is informational only: ON-001/ES is running in SHADOW mode (OBSERVE, no real orders) as of 2026-09-24. ES's own figures (and 'combined_if_es_live') EXCLUDE 2024-2025 entirely -- both the P&L/MDD and the annualization denominator -- at the user's explicit request, since ES is being prospectively re-evaluated starting in 2026 rather than judged on the pre-shadow-decision regime; the earlier full-3yr finding that motivated the shadow move (recent edge ~84% carried by 3 monster trades, prior 2yr window net negative) still stands as the reason ES isn't live, it just isn't re-litigated by every subsequent shadow projection. 'combined_if_es_live' shows what the portfolio would look like if ES's shadow qty were promoted to live capital -- NOT the number driving current sizing. None of these are the live account's actual realized rate (too few real days to measure that yet). MDD figures are the observed historical-window figure at this sizing, not a statistically projected annual MDD -- drawdown magnitude does not scale with elapsed time the way P&L does, so it should not be annualized.",
@@ -285,7 +285,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-09T20:45:27.145550Z",
+  "data_as_of_utc": "2026-10-09T21:00:27.552703Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -370,6 +370,12 @@
       "drawdown_usd": 83.42,
       "equity_usd": 11429.64,
       "ts_utc": "2026-10-08T20:59:32.540746Z"
+    },
+    {
+      "cum_pnl_usd": 10978.42,
+      "drawdown_usd": 534.64,
+      "equity_usd": 10978.42,
+      "ts_utc": "2026-10-09T20:59:32.486497Z"
     }
   ],
   "execution_health": {
@@ -393,7 +399,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-09T20:45:27.145550Z",
+  "generated_at_utc": "2026-10-09T21:00:27.552703Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -448,6 +454,25 @@
     "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-10-09T20:59:32.486497Z",
+      "duration_seconds": 26790.004748,
+      "exit_reason": "NATIVE_CLOSE_BOUNDARY",
+      "expected_net_pnl_model_usd": null,
+      "information_available_ts": "2026-10-09T13:33:02.481749+00:00",
+      "intended_exit_ts": "2026-10-09T20:59:32.486497+00:00",
+      "mae_atr": null,
+      "mfe_atr": null,
+      "mode": "DEMO",
+      "pnl_adjusted": false,
+      "pnl_usd": -451.22,
+      "raw_pnl_usd": null,
+      "session_date": "2026-10-09",
+      "side": "LONG",
+      "sized_qty": 1,
+      "v_cohort_label": "PA_PALLADIUM"
+    },
     {
       "c_same_at_entry": null,
       "closed_at_utc": "2026-10-08T20:59:32.540746Z",
@@ -758,19 +783,19 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 14,
-    "closed_trades_today": 0,
-    "current_drawdown_usd": 83.42,
-    "display_equity_usd": 11429.64,
+    "closed_trades_all_time": 15,
+    "closed_trades_today": 1,
+    "current_drawdown_usd": 534.64,
+    "display_equity_usd": 10978.42,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 816.4029,
+    "expectancy_usd": 731.8947,
     "ledger_adjustment_usd": 0.0,
-    "losses": 2,
+    "losses": 3,
     "max_drawdown_usd": 1034.04,
-    "profit_factor": 9.0704,
-    "realized_pnl_all_time_usd": 11429.64,
-    "realized_pnl_today_usd": 0,
-    "win_rate": 0.8571,
+    "profit_factor": 6.8788,
+    "realized_pnl_all_time_usd": 10978.42,
+    "realized_pnl_today_usd": -451.22,
+    "win_rate": 0.8,
     "wins": 12
   },
   "status": {
