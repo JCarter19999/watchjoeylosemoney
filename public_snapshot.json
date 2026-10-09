@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-09T04:00:27.202618Z",
+      "as_of_utc": "2026-10-09T04:15:26.995310Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -60,7 +60,7 @@
           "n_alerts": 0,
           "order_qty": 1,
           "phase": "IDLE",
-          "session": "2026-10-08",
+          "session": "2026-10-09",
           "skip_reason": null,
           "stream_health": "GAPPED",
           "total_pnl_usd": 3045.0,
@@ -76,7 +76,7 @@
           "n_alerts": 0,
           "order_qty": 1,
           "phase": "IDLE",
-          "session": "2026-10-08",
+          "session": "2026-10-09",
           "skip_reason": null,
           "stream_health": "GAPPED",
           "total_pnl_usd": 273.0,
@@ -111,8 +111,8 @@
       "mode": "OBSERVE",
       "n_alerts": 0,
       "order_qty": 1,
-      "phase": "NO_TRADE",
-      "session": "2026-10-08",
+      "phase": "IDLE",
+      "session": "2026-10-09",
       "stream_health": "HEALTHY",
       "total_pnl_usd": 1824.42
     },
@@ -137,15 +137,15 @@
     "pa_leg": {
       "backfilled_trades": 1,
       "closed_trades": 4,
-      "direction": 1,
-      "entry_fill": 1125.0,
+      "direction": null,
+      "entry_fill": null,
       "instrument": "PA.v.0",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "order_qty": 1,
-      "phase": "EXITED",
+      "phase": "IDLE",
       "raw_unrealized_pnl_usd": null,
-      "session": "2026-10-08",
+      "session": "2026-10-09",
       "stream_health": "GAPPED",
       "total_pnl_usd": 2024.34,
       "unrealized_adjustment_reason": null,
@@ -285,7 +285,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-09T04:00:27.310381Z",
+  "data_as_of_utc": "2026-10-09T04:15:27.101868Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -393,7 +393,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-09T04:00:27.310381Z",
+  "generated_at_utc": "2026-10-09T04:15:27.101868Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -779,7 +779,7 @@
     "guardian_state": "ARMED",
     "in_position": false,
     "market_data_state": "LIVE",
-    "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
+    "message": "Watching for the T1 setup at 09:33 ET (7 MNQ demo; entry needs a persistent move >= 1.5x its usual size).",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
   },
