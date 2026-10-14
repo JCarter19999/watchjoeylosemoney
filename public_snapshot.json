@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-13T23:45:27.423908Z",
+      "as_of_utc": "2026-10-14T00:00:27.376469Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -288,7 +288,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-13T23:45:27.530949Z",
+  "data_as_of_utc": "2026-10-14T00:00:27.487687Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -414,7 +414,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-13T23:45:27.530949Z",
+  "generated_at_utc": "2026-10-14T00:00:27.487687Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -837,7 +837,7 @@
   "stats": {
     "breakeven": 0,
     "closed_trades_all_time": 17,
-    "closed_trades_today": 1,
+    "closed_trades_today": 0,
     "current_drawdown_usd": 1101.22,
     "display_equity_usd": 10866.16,
     "display_starting_equity_usd": 0.0,
@@ -847,7 +847,7 @@
     "max_drawdown_usd": 1101.22,
     "profit_factor": 4.6603,
     "realized_pnl_all_time_usd": 10866.16,
-    "realized_pnl_today_usd": -1101.22,
+    "realized_pnl_today_usd": 0,
     "win_rate": 0.7647,
     "wins": 13
   },
