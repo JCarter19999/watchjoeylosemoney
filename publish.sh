@@ -73,6 +73,12 @@ ON001_RUNTIME="$LIVE_REPO/runtime_on001_demo"
 LE_RUNTIME="$LIVE_REPO/runtime_le_demo"
 EIA_RUNTIME="$LIVE_REPO/runtime_eia_demo"
 PA_RUNTIME="$LIVE_REPO/runtime_pa_demo"
+# Wheel demo-deploy legs (MES/MGC/MNQCONT), added 2026-10-15 -- same additive dashboard_extras
+# convention as every leg above (see cached-soaring-aho.md). Paper/commissioning runtime dirs,
+# not "_demo" like the others, matching their own deploy scripts' naming.
+MES_RUNTIME="$LIVE_REPO/runtime_mes_paper"
+MGC_RUNTIME="$LIVE_REPO/runtime_mgc_paper"
+MNQCONT_RUNTIME="$LIVE_REPO/runtime_mnqcont_paper"
 PRIVATE_SNAPSHOT="$LIVE_REPO/runtime_t1_demo/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
@@ -130,6 +136,20 @@ EXTRA_PA_ARGS=()
 if [ -f "$PA_RUNTIME/live_status.json" ]; then
   EXTRA_PA_ARGS=(--pa-status "$PA_RUNTIME/live_status.json" --pa-trades "$PA_RUNTIME/pa_trades.jsonl")
 fi
+# Wheel demo-deploy legs -- same additive convention, same schema-safety guarantee (absent
+# entirely if a runtime dir is missing or stale, cannot regress the existing dashboard).
+EXTRA_MES_ARGS=()
+if [ -f "$MES_RUNTIME/live_status.json" ]; then
+  EXTRA_MES_ARGS=(--mes-status "$MES_RUNTIME/live_status.json" --mes-trades "$MES_RUNTIME/mes_trades.jsonl")
+fi
+EXTRA_MGC_ARGS=()
+if [ -f "$MGC_RUNTIME/live_status.json" ]; then
+  EXTRA_MGC_ARGS=(--mgc-status "$MGC_RUNTIME/live_status.json" --mgc-trades "$MGC_RUNTIME/mgc_trades.jsonl")
+fi
+EXTRA_MNQCONT_ARGS=()
+if [ -f "$MNQCONT_RUNTIME/live_status.json" ]; then
+  EXTRA_MNQCONT_ARGS=(--mnqcont-status "$MNQCONT_RUNTIME/live_status.json" --mnqcont-trades "$MNQCONT_RUNTIME/mnqcont_trades.jsonl")
+fi
 EIA_HO_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_ho.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 EIA_RB_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_rb.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 LE_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$LE_RUNTIME/live_status.json')).get('order_qty',0))" 2>/dev/null || echo 0)
@@ -156,6 +176,9 @@ PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.expor
   "${EXTRA_LE_ARGS[@]}" \
   "${EXTRA_EIA_ARGS[@]}" \
   "${EXTRA_PA_ARGS[@]}" \
+  "${EXTRA_MES_ARGS[@]}" \
+  "${EXTRA_MGC_ARGS[@]}" \
+  "${EXTRA_MNQCONT_ARGS[@]}" \
   "${EXTRA_PROJECTION_ARGS[@]}"
 
 cd "$WEB_REPO"
