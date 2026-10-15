@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-15T12:00:27.770972Z",
+      "as_of_utc": "2026-10-15T12:15:27.460859Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -26,6 +26,24 @@
         "le": {
           "controller": null,
           "instrument": "LE",
+          "live": true,
+          "order_qty": 1
+        },
+        "mes": {
+          "controller": null,
+          "instrument": "MES",
+          "live": true,
+          "order_qty": 1
+        },
+        "mgc": {
+          "controller": null,
+          "instrument": "MGC",
+          "live": true,
+          "order_qty": 1
+        },
+        "mnqcont": {
+          "controller": null,
+          "instrument": "MNQ",
           "live": true,
           "order_qty": 1
         },
@@ -100,6 +118,51 @@
       "session": "2026-10-14",
       "stream_health": "GAPPED",
       "total_pnl_usd": 360.0,
+      "unrealized_pnl_usd": null
+    },
+    "mes_leg": {
+      "backfilled_trades": 0,
+      "closed_trades": 0,
+      "direction": null,
+      "entry_fill": null,
+      "instrument": "MES",
+      "mode": "DEMO_EXEC",
+      "n_alerts": 0,
+      "order_qty": 1,
+      "phase": "IDLE",
+      "session": "2026-10-15",
+      "stream_health": "HEALTHY",
+      "total_pnl_usd": 0,
+      "unrealized_pnl_usd": null
+    },
+    "mgc_leg": {
+      "backfilled_trades": 0,
+      "closed_trades": 0,
+      "direction": null,
+      "entry_fill": null,
+      "instrument": "MGC",
+      "mode": "DEMO_EXEC",
+      "n_alerts": 0,
+      "order_qty": 1,
+      "phase": "IDLE",
+      "session": "2026-10-15",
+      "stream_health": "HEALTHY",
+      "total_pnl_usd": 0,
+      "unrealized_pnl_usd": null
+    },
+    "mnqcont_leg": {
+      "backfilled_trades": 0,
+      "closed_trades": 0,
+      "direction": null,
+      "entry_fill": null,
+      "instrument": "MNQ",
+      "mode": "DEMO_EXEC",
+      "n_alerts": 0,
+      "order_qty": 1,
+      "phase": "IDLE",
+      "session": "2026-10-15",
+      "stream_health": "HEALTHY",
+      "total_pnl_usd": 0,
       "unrealized_pnl_usd": null
     },
     "on001_leg": {
@@ -288,7 +351,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-15T12:00:27.918953Z",
+  "data_as_of_utc": "2026-10-15T12:15:27.564576Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -414,7 +477,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-15T12:00:27.918953Z",
+  "generated_at_utc": "2026-10-15T12:15:27.564576Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
