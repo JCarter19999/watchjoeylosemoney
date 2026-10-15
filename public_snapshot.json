@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-15T18:15:27.620690Z",
+      "as_of_utc": "2026-10-15T18:30:27.147050Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -86,7 +86,7 @@
           "phase": "IDLE",
           "session": "2026-10-15",
           "skip_reason": null,
-          "stream_health": "GAPPED",
+          "stream_health": "HEALTHY",
           "total_pnl_usd": 3045.0,
           "unrealized_pnl_usd": null
         },
@@ -102,7 +102,7 @@
           "phase": "IDLE",
           "session": "2026-10-15",
           "skip_reason": null,
-          "stream_health": "GAPPED",
+          "stream_health": "HEALTHY",
           "total_pnl_usd": 273.0,
           "unrealized_pnl_usd": null
         }
@@ -144,13 +144,13 @@
     "mgc_leg": {
       "backfilled_trades": 0,
       "closed_trades": 0,
-      "direction": null,
+      "direction": 1,
       "entry_fill": null,
       "instrument": "MGC",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "order_qty": 1,
-      "phase": "WATCHING",
+      "phase": "ENTER_PENDING",
       "session": "2026-10-15",
       "stream_health": "HEALTHY",
       "total_pnl_usd": 0,
@@ -357,7 +357,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-15T18:15:27.743544Z",
+  "data_as_of_utc": "2026-10-15T18:30:27.257203Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -483,7 +483,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-15T18:15:27.743544Z",
+  "generated_at_utc": "2026-10-15T18:30:27.257203Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
