@@ -102,7 +102,8 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     deployment regardless of position -- unlike DEMO/SHADOW, LIVE never discloses position-level detail in
     real time (see the schema's own note on status.unrealized_pnl_usd). LE's unrealized figure was missing
     entirely until 2026-10-02 -- the exporter never computed it, so LE could sit IN_POSITION with nothing shown
-    here even though T1/MNQ and 6J both already had this."""
+    here even though T1/MNQ and 6J both already had this. Same gap found and fixed for MES/MGC/MNQCONT on
+    2026-10-15 (dashboard_extras.{mes,mgc,mnqcont}_leg.unrealized_pnl_usd)."""
     rows = []
     mnq_u = snapshot["status"].get("unrealized_pnl_usd")
     if mnq_u is not None:
@@ -119,6 +120,10 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     for prod, p in (((snapshot.get("dashboard_extras") or {}).get("eia_sleeve") or {}).get("products") or {}).items():
         if p.get("unrealized_pnl_usd") is not None:
             rows.append((f"EIA {prod}", p["unrealized_pnl_usd"]))
+    for key, label in (("mes", "MES H60"), ("mgc", "MGC H60"), ("mnqcont", "MNQ Continuation")):
+        g_leg = (snapshot.get("dashboard_extras") or {}).get(f"{key}_leg")
+        if g_leg and g_leg.get("unrealized_pnl_usd") is not None:
+            rows.append((label, g_leg["unrealized_pnl_usd"]))
     if not rows:
         return
     cols = st.columns(len(rows))
