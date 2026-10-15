@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-15T14:45:27.324324Z",
+      "as_of_utc": "2026-10-15T15:00:26.852724Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -159,13 +159,13 @@
     "mnqcont_leg": {
       "backfilled_trades": 0,
       "closed_trades": 0,
-      "direction": null,
+      "direction": 1,
       "entry_fill": null,
       "instrument": "MNQ",
       "mode": "DEMO_EXEC",
-      "n_alerts": 0,
+      "n_alerts": 1,
       "order_qty": 1,
-      "phase": "WATCHING",
+      "phase": "SKIPPED",
       "session": "2026-10-15",
       "stream_health": "HEALTHY",
       "total_pnl_usd": 0,
@@ -357,7 +357,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-15T14:45:27.426464Z",
+  "data_as_of_utc": "2026-10-15T15:00:26.954076Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -483,7 +483,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-15T14:45:27.426464Z",
+  "generated_at_utc": "2026-10-15T15:00:26.954076Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
