@@ -371,7 +371,7 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
         return
     st.subheader("Current contract distribution")
     labels = {"t1": "T1 / MNQ", "6j": "6J London", "le": "LE Cattle", "on001": "ON-001 / ES", "eia_ho": "EIA sleeve: HO", "eia_rb": "EIA sleeve: RB",
-              "mes": "MES H60", "mgc": "MGC H60", "mnqcont": "MNQ Continuation"}
+              "mes": "MES H60", "mgc": "MGC H60", "mnqcont": "MNQ Continuation", "pa": "PA Palladium"}
     legs = dist["legs"]
     cols = st.columns(len(legs))
     for col, (key, leg) in zip(cols, legs.items()):
