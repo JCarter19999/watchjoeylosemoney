@@ -464,7 +464,8 @@ def _horizon_line_chart(df: pd.DataFrame, y_col: str, y_title: str, y_format: st
             color=alt.Color("series:N", title=None, sort=list(_RISK_COLORS),
                             scale=alt.Scale(domain=list(_RISK_COLORS), range=list(_RISK_COLORS.values()))),
             tooltip=[alt.Tooltip("months:Q", title="Months"), alt.Tooltip("series:N", title="Scenario"),
-                     alt.Tooltip(f"{y_col}:Q", title=y_title, format=y_format)],
+                     alt.Tooltip(f"{y_col}:Q", title=y_title, format=y_format),
+                     alt.Tooltip("pnl:Q", title="Median profit", format="$,.0f")],
         )
         .properties(height=280)
         .configure_view(strokeWidth=0)
@@ -491,28 +492,32 @@ def render_projection(snapshot: dict[str, Any]) -> None:
 
     pct_rows = []
     for h in horizons:
-        pct_rows.append({"months": h["months"], "series": "Typical (P50)", "pct": h["mdd_p50_pct_of_equity"]})
-        pct_rows.append({"months": h["months"], "series": "Very bad (P95)", "pct": h["mdd_p95_pct_of_equity"]})
+        pct_rows.append({"months": h["months"], "series": "Typical (P50)", "pct": h["mdd_p50_pct_of_equity"], "pnl": h["median_pnl_usd"]})
+        pct_rows.append({"months": h["months"], "series": "Very bad (P95)", "pct": h["mdd_p95_pct_of_equity"], "pnl": h["median_pnl_usd"]})
     pct_df = pd.DataFrame(pct_rows)
-    st.altair_chart(_horizon_line_chart(pct_df, "pct", "Max drawdown so far, as % of equity", ".1f"), width="stretch")
-    st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
-               "equity, but shrink as a SHARE of the account once it's grown enough to absorb them. Where this "
-               "curve stops improving is worth watching, not assuming.")
+    pnl_df = pd.DataFrame([{"months": h["months"], "pnl": h["median_pnl_usd"]} for h in horizons])
 
-    eq_df = pd.DataFrame([{"months": h["months"], "equity": h["median_equity_usd"]} for h in horizons])
-    eq_chart = (
-        alt.Chart(eq_df)
-        .mark_line(point=True, strokeWidth=2, color="#4f8fd6")
-        .encode(
-            x=alt.X("months:Q", title="Months from today", axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
-            y=alt.Y("equity:Q", title="Median projected equity ($)", axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
-            tooltip=[alt.Tooltip("months:Q", title="Months"), alt.Tooltip("equity:Q", title="Equity", format="$,.0f")],
+    col1, col2 = st.columns(2)
+    with col1:
+        st.altair_chart(_horizon_line_chart(pct_df, "pct", "Max drawdown so far, as % of equity", ".1f"), width="stretch")
+    with col2:
+        pnl_chart = (
+            alt.Chart(pnl_df)
+            .mark_line(point=True, strokeWidth=2, color="#4f8fd6")
+            .encode(
+                x=alt.X("months:Q", title="Months from today", axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
+                y=alt.Y("pnl:Q", title="Median projected profit ($)", axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
+                tooltip=[alt.Tooltip("months:Q", title="Months"), alt.Tooltip("pnl:Q", title="Median profit", format="$,.0f")],
+            )
+            .properties(height=280)
+            .configure_view(strokeWidth=0)
         )
-        .properties(height=240)
-        .configure_view(strokeWidth=0)
-    )
-    st.altair_chart(eq_chart, width="stretch")
+        st.altair_chart(pnl_chart, width="stretch")
 
+    st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
+               "equity, but shrink as a SHARE of the account once it's grown enough to absorb them (left). Profit "
+               "(right) is the other side of the same simulated paths -- same horizon, same P2 sizing. Where the "
+               "left curve stops improving is worth watching, not assuming.")
     st.caption(hr.get("caveat", ""))
 
 
