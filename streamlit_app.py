@@ -140,14 +140,17 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
 
 
 _CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Continuation"),
-                     ("mgc10_leg", "MGC Tail (10R)"), ("mes2r_leg", "MES Tail (2R)")]
+                     ("mes_leg", "MES 1R"), ("mgc_leg", "MGC 1R")]
+_ENTRY_COLOR, _TARGET_COLOR, _STOP_COLOR = "#9aa4b2", "#3ecf8e", "#e34948"
 
 
-def _candlestick_chart(bars: pd.DataFrame, entry_fill: float | None, direction: int | None) -> alt.Chart:
+def _candlestick_chart(bars: pd.DataFrame, entry_fill: float | None, direction: int | None,
+                       stop_price: float | None = None, target_price: float | None = None) -> alt.Chart:
     """Classic OHLC candlestick: mark_rule for the high-low wick, mark_bar for the open-close
     body, colored by direction (blue = closed up, red = closed down -- matches the diverging
-    pair already used elsewhere on this dashboard, e.g. the daily P&L calendar). An entry-price
-    rule + label overlay when a position is open, color-coded long/short."""
+    pair already used elsewhere on this dashboard, e.g. the daily P&L calendar). When a position
+    is open: a gray dashed entry line, plus green/red dashed target/stop lines when the leg's
+    bracket is a known fixed R-multiple (T1 has no such fixed bracket, so these stay None there)."""
     up_color, down_color = "#4f8fd6", "#e34948"
     base = alt.Chart(bars).encode(
         x=alt.X("ts:T", title=None, axis=alt.Axis(grid=False, format="%H:%M")),
@@ -163,18 +166,23 @@ def _candlestick_chart(bars: pd.DataFrame, entry_fill: float | None, direction: 
                  alt.Tooltip("close:Q", title="Close", format=",.2f")],
     )
     layers = [wick, body]
+
+    def _level(y: float, color: str) -> alt.Chart:
+        return alt.Chart(pd.DataFrame({"y": [y]})).mark_rule(strokeDash=[4, 3], strokeWidth=1.5, color=color).encode(y="y:Q")
+
     if entry_fill is not None:
-        entry_df = pd.DataFrame({"y": [entry_fill]})
-        entry_color = up_color if direction == 1 else (down_color if direction == -1 else "#9aa4b2")
-        entry_line = alt.Chart(entry_df).mark_rule(strokeDash=[4, 3], strokeWidth=1.5, color=entry_color).encode(y="y:Q")
-        layers.append(entry_line)
+        layers.append(_level(entry_fill, _ENTRY_COLOR))
+    if target_price is not None:
+        layers.append(_level(target_price, _TARGET_COLOR))
+    if stop_price is not None:
+        layers.append(_level(stop_price, _STOP_COLOR))
     return alt.layer(*layers).properties(height=220).configure_view(strokeWidth=0)
 
 
 def render_candlesticks(snapshot: dict[str, Any]) -> None:
-    """Current-session candlestick view per leg (dashboard_extras.{key}.ohlc_bars), with the
-    open position's entry price overlaid as a dashed rule when one exists. Legs with no bars
-    yet (not live, or no data this session) are skipped entirely rather than shown empty."""
+    """Trailing-window candlestick view per leg (dashboard_extras.{key}.ohlc_bars), with the open
+    position's entry/stop/target overlaid as dashed rules when one exists. Legs with no bars yet
+    (not live, or no recent data) are skipped entirely rather than shown empty."""
     extras = snapshot.get("dashboard_extras") or {}
     panels = []
     for key, label in _CANDLESTICK_LEGS:
@@ -196,8 +204,11 @@ def render_candlesticks(snapshot: dict[str, Any]) -> None:
             if unrealized is not None:
                 title += f" — unrealized {money(unrealized)}"
             st.caption(title)
-            st.altair_chart(_candlestick_chart(df, leg.get("overlay_entry_fill"), leg.get("overlay_direction")), width="stretch")
-    st.caption("Current trading session only, 1-minute bars. Dashed line marks the open position's entry price, when one exists.")
+            st.altair_chart(_candlestick_chart(df, leg.get("overlay_entry_fill"), leg.get("overlay_direction"),
+                                               leg.get("overlay_stop_price"), leg.get("overlay_target_price")),
+                            width="stretch")
+    st.caption("Last 2 hours, 1-minute bars. Dashed lines mark the open position's entry (gray), target (green) "
+               "and stop (red), when one exists.")
 
 
 def render_metrics(snapshot: dict[str, Any]) -> None:
