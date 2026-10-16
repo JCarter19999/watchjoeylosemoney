@@ -450,47 +450,28 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
 
 
 def render_projection(snapshot: dict[str, Any]) -> None:
-    """Projected annualized P&L + historical-window MDD, split into the FUNDED wheel (T1+6J, real live capital)
-    and ES as a separate SHADOW projection (dashboard_extras.projection, written by
-    scripts/project_annualized_mdd.py). Switched to this split 2026-09-24 when ES moved from live-executing to
-    shadow-only. A BACKTEST projection, not the account's actual realized rate -- explicitly labeled as such."""
+    """Projected annualized P&L + historical-window MDD for the full current 6-leg wheel
+    (T1, MNQCONT, MES 1R, MGC 1R, MGC10, MES2R), written by scripts/project_wheel_current.py.
+    Rewritten 2026-10-15 for that script's flat output shape (no more funded/es_shadow split --
+    EIA and 6J/LE are gone, ES is not part of this wheel). A BACKTEST projection at today's live
+    contract sizing, not the account's own realized rate -- explicitly labeled as such."""
     proj = (snapshot.get("dashboard_extras") or {}).get("projection")
     if not proj:
         return
-    st.subheader("Projected annualized P&L + max drawdown")
+    st.subheader("Projected annualized P&L + max drawdown (all 6 legs combined)")
     c = proj.get("contracts", {})
-    funded = proj.get("funded")
-    if funded:
-        # 6J/LE disabled 2026-10-15 -- deliberately not surfaced even if a stale snapshot still carries them.
-        st.caption(f"Funded wheel (real live capital): {c.get('t1_mnq')} MNQ" +
-                   (f" / EIA sleeve {c.get('eia_ho', 0)} HO + {c.get('eia_rb', 0)} RB" if (c.get('eia_ho') or c.get('eia_rb')) else ""))
-        col1, col2 = st.columns(2)
-        col1.metric("Projected annualized P&L", money(funded["projected_annualized_pnl_usd"]))
-        col2.metric("Historical-window max drawdown", money(funded["window_max_drawdown_usd"]))
-        if funded.get("reordered_mdd_p50_usd") is not None:
-            st.caption("The historical drawdown is the ONE ordering that happened, and it was on the lucky end. Re-shuffling the same days "
-                       "gives the drawdowns to actually plan around:")
-            r1, r2, r3 = st.columns(3)
-            r1.metric("Typical (P50)", money(funded["reordered_mdd_p50_usd"]))
-            r2.metric("Bad (1 in 10)", money(funded["reordered_mdd_p90_usd"]))
-            r3.metric("Very bad (1 in 20)", money(funded["reordered_mdd_p95_usd"]))
-        es_shadow = proj.get("es_shadow")
-        if es_shadow:
-            st.caption(f"ON-001/ES — SHADOW only ({c.get('on001_es_shadow')} contract, no real capital):")
-            col3, col4 = st.columns(2)
-            col3.metric("Shadow projected annualized P&L", money(es_shadow["projected_annualized_pnl_usd"]))
-            col4.metric("Shadow historical-window MDD", money(es_shadow["window_max_drawdown_usd"]))
-        combined = proj.get("combined_if_es_live")
-        if combined:
-            st.caption(f"For reference only, NOT current sizing — if ES's shadow qty were promoted to live: "
-                      f"annualized {money(combined['projected_annualized_pnl_usd'])}, "
-                      f"MDD {money(combined['window_max_drawdown_usd'])}.")
-    else:
-        # older snapshot shape (pre-shadow-split): flat fields, no funded/es_shadow breakdown
-        st.caption(f"At current live sizing: {c.get('t1_mnq')} MNQ / {c.get('sixj')} 6J / {c.get('on001_es')} ES")
-        col1, col2 = st.columns(2)
-        col1.metric("Projected annualized P&L", money(proj.get("projected_annualized_pnl_usd", 0)))
-        col2.metric("Historical-window max drawdown", money(proj.get("window_max_drawdown_usd", 0)))
+    st.caption(f"At current live sizing: T1/CONT {c.get('t1_cont_qty')} / MES 1R {c.get('mes_qty')} / "
+               f"MGC 1R {c.get('mgc_qty')} / MGC10 {c.get('mgc10_qty')} / MES2R {c.get('mes2r_qty')}")
+    col1, col2 = st.columns(2)
+    col1.metric("Projected annualized P&L", money(proj.get("projected_annualized_pnl_usd", 0)))
+    col2.metric("Historical-window max drawdown", money(proj.get("window_max_drawdown_usd", 0)))
+    if proj.get("reordered_mdd_p50_usd") is not None:
+        st.caption("The historical drawdown is the ONE ordering that happened, and it was on the lucky end. "
+                   "Re-shuffling the same days gives the drawdowns to actually plan around:")
+        r1, r2, r3 = st.columns(3)
+        r1.metric("Typical (P50)", money(proj["reordered_mdd_p50_usd"]))
+        r2.metric("Bad (1 in 10)", money(proj["reordered_mdd_p90_usd"]))
+        r3.metric("Very bad (1 in 20)", money(proj["reordered_mdd_p95_usd"]))
     st.caption(proj.get("caveat", ""))
 
 

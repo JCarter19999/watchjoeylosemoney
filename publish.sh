@@ -166,11 +166,19 @@ EIA_RB_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(ope
 LE_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$LE_RUNTIME/live_status.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 
 PROJECTION_JSON="$T1_RUNTIME/portfolio_projection.json"
-T1_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$T1_RUNTIME/live_status.json')).get('order_qty',5))" 2>/dev/null || echo 5)
-SIXJ_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$T1_6J_RUNTIME/live_status.json')).get('order_qty',4))" 2>/dev/null || echo 4)
-ES_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$ON001_RUNTIME/live_status.json')).get('order_qty',3))" 2>/dev/null || echo 3)
-PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/project_annualized_mdd.py" \
-  --t1-qty "$T1_QTY" --sixj-qty "$SIXJ_QTY" --es-qty "$ES_QTY" --le-qty "$LE_QTY" --eia-ho-qty "$EIA_HO_QTY" --eia-rb-qty "$EIA_RB_QTY" --output "$PROJECTION_JSON" \
+# Real current 6-leg Wheel (T1 + MNQCONT + MES 1R + MGC 1R + MGC10 + MES2R), real current
+# sizing -- supersedes the old T1/6J/LE/ES-shadow projection (2026-10-15; 6J/LE disabled, ES
+# is shadow-only, EIA dropped at explicit request -- none belong in this projection anymore).
+# T1 and CONT share ONE qty (mutually exclusive legs, same P2 ladder level); MES/MGC are NOT
+# P2-governed (not part of today's ladder research), sized at whatever's actually running.
+T1_CONT_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$T1_RUNTIME/live_status.json')).get('order_qty',5))" 2>/dev/null || echo 5)
+MES_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$MES_RUNTIME/live_status.json')).get('order_qty',1))" 2>/dev/null || echo 1)
+MGC_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$MGC_RUNTIME/live_status.json')).get('order_qty',1))" 2>/dev/null || echo 1)
+MGC10_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$MGC10_RUNTIME/live_status.json')).get('order_qty',1))" 2>/dev/null || echo 1)
+MES2R_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$MES2R_RUNTIME/live_status.json')).get('order_qty',1))" 2>/dev/null || echo 1)
+PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/project_wheel_current.py" \
+  --t1-cont-qty "$T1_CONT_QTY" --mes-qty "$MES_QTY" --mgc-qty "$MGC_QTY" \
+  --mgc10-qty "$MGC10_QTY" --mes2r-qty "$MES2R_QTY" --output "$PROJECTION_JSON" \
   >/dev/null 2>&1 || echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) projection calc failed (non-fatal)"
 EXTRA_PROJECTION_ARGS=()
 if [ -f "$PROJECTION_JSON" ]; then
