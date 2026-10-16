@@ -118,14 +118,13 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     time (see the schema's own note on status.unrealized_pnl_usd).
 
     6J/LE/PA were disabled 2026-10-15 (see market_structure_ml-live/CLAUDE.md) and are deliberately not
-    shown here anymore -- removed, not hidden, since those legs are no longer trading at all."""
+    shown here anymore -- removed, not hidden, since those legs are no longer trading at all. EIA and
+    ON-001/ES dropped 2026-10-16 for the same reason: not robust enough to keep running alongside the
+    stronger legs."""
     rows = []
     mnq_u = snapshot["status"].get("unrealized_pnl_usd")
     if mnq_u is not None:
         rows.append(("T1 / MNQ", mnq_u))
-    for prod, p in (((snapshot.get("dashboard_extras") or {}).get("eia_sleeve") or {}).get("products") or {}).items():
-        if p.get("unrealized_pnl_usd") is not None:
-            rows.append((f"EIA {prod}", p["unrealized_pnl_usd"]))
     for key, label in (("mes", "MES H60"), ("mgc", "MGC H60"), ("mnqcont", "MNQ Continuation"),
                         ("mgc10", "MGC Tail (10R)"), ("mes2r", "MES Tail (2R)")):
         g_leg = (snapshot.get("dashboard_extras") or {}).get(f"{key}_leg")
@@ -425,21 +424,21 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
 
 def render_contract_distribution(snapshot: dict[str, Any]) -> None:
     """Current live order_qty per leg (dashboard_extras.contract_distribution) -- what size each strategy is
-    running right now, separate from the closed-trade ledger. A leg running in SHADOW (OBSERVE, no real orders
-    -- e.g. ON-001/ES as of 2026-09-24) is labeled explicitly rather than looking like a live position. Absent
-    entirely on an older snapshot or if this leg's status file isn't present.
+    running right now, separate from the closed-trade ledger. A leg running in SHADOW (OBSERVE, no real orders)
+    is labeled explicitly rather than looking like a live position. Absent entirely on an older snapshot or if
+    this leg's status file isn't present.
 
-    6J/LE/PA were disabled 2026-10-15 and are intentionally excluded from `labels` -- if the underlying
+    6J/LE/PA were disabled 2026-10-15, and EIA/ON-001/ES dropped 2026-10-16 (not robust enough to keep
+    running alongside the stronger legs) -- all intentionally excluded from `labels`. If the underlying
     snapshot still carries a stale entry for one of them, it falls through to the generic `key` fallback
     below rather than being actively displayed with a maintained label."""
     dist = (snapshot.get("dashboard_extras") or {}).get("contract_distribution")
     if not dist or not dist.get("legs"):
         return
     st.subheader("Current contract distribution")
-    labels = {"t1": "T1 / MNQ", "on001": "ON-001 / ES", "eia_ho": "EIA sleeve: HO", "eia_rb": "EIA sleeve: RB",
-              "mes": "MES H60", "mgc": "MGC H60", "mnqcont": "MNQ Continuation",
+    labels = {"t1": "T1 / MNQ", "mes": "MES H60", "mgc": "MGC H60", "mnqcont": "MNQ Continuation",
               "mgc10": "MGC Tail (10R)", "mes2r": "MES Tail (2R)"}
-    legs = {k: v for k, v in dist["legs"].items() if k not in ("6j", "le", "pa")}
+    legs = {k: v for k, v in dist["legs"].items() if k not in ("6j", "le", "pa", "on001", "eia_ho", "eia_rb")}
     if not legs:
         return
     cols = st.columns(len(legs))
@@ -452,8 +451,7 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
             col.metric(label, value, delta="SHADOW", delta_color="off")
         else:
             col.metric(label, value)
-    sleeve_note = " HO and RB are ONE EIA petroleum-report sleeve (same event and Wednesdays, trade P&L correlation about +0.6) -- one event exposure, not two independent legs; max 1 contract each." if any(v.get("sleeve") == "EIA" for v in legs.values()) else ""
-    st.caption(f"As of {format_pst(dist['as_of_utc'])}. Reflects live order size right now, not the size any past trade in the ledger below was taken at. SHADOW = tracked for research, no real orders placed.{sleeve_note}")
+    st.caption(f"As of {format_pst(dist['as_of_utc'])}. Reflects live order size right now, not the size any past trade in the ledger below was taken at. SHADOW = tracked for research, no real orders placed.")
 
 
 def render_projection(snapshot: dict[str, Any]) -> None:
@@ -474,35 +472,48 @@ def render_projection(snapshot: dict[str, Any]) -> None:
     st.caption(f"Block-bootstrap simulation ({hr.get('n_paths', '—')} paths) of the real P2-governed ladder, "
                f"starting from ${hr.get('start_equity_usd', 0):,.0f}. Not a live realized track record.")
 
-    table = pd.DataFrame([{
-        "Months": h["months"],
-        "Median profit ($)": h["median_pnl_usd"],
-        "Median equity ($)": h["median_equity_usd"],
-        "MDD typical, P50 ($)": h["mdd_p50_usd"],
-        "MDD typical, P50 (% equity)": h["mdd_p50_pct_of_equity"],
-        "MDD bad, P90 ($)": h["mdd_p90_usd"],
-        "MDD very bad, P95 ($)": h["mdd_p95_usd"],
-        "MDD very bad, P95 (% equity)": h["mdd_p95_pct_of_equity"],
-    } for h in horizons])
-    st.dataframe(
-        table,
-        hide_index=True,
-        width="stretch",
-        column_config={
-            "Months": st.column_config.NumberColumn(format="%d"),
-            "Median profit ($)": st.column_config.NumberColumn(format="$%,.0f"),
-            "Median equity ($)": st.column_config.NumberColumn(format="$%,.0f"),
-            "MDD typical, P50 ($)": st.column_config.NumberColumn(format="$%,.0f"),
-            "MDD typical, P50 (% equity)": st.column_config.NumberColumn(format="%.1f%%"),
-            "MDD bad, P90 ($)": st.column_config.NumberColumn(format="$%,.0f"),
-            "MDD very bad, P95 ($)": st.column_config.NumberColumn(format="$%,.0f"),
-            "MDD very bad, P95 (% equity)": st.column_config.NumberColumn(format="%.1f%%"),
-        },
-    )
+    def _build_table(suffix: str) -> pd.DataFrame:
+        def f(h: dict, field: str) -> Any:
+            return h[f"{field}{suffix}"]
+        return pd.DataFrame([{
+            "Months": h["months"],
+            "Median profit ($)": f(h, "median_pnl_usd"),
+            "Median equity ($)": f(h, "median_equity_usd"),
+            "MDD typical, P50 ($)": f(h, "mdd_p50_usd"),
+            "MDD typical, P50 (% equity)": f(h, "mdd_p50_pct_of_equity"),
+            "MDD bad, P90 ($)": f(h, "mdd_p90_usd"),
+            "MDD very bad, P95 ($)": f(h, "mdd_p95_usd"),
+            "MDD very bad, P95 (% equity)": f(h, "mdd_p95_pct_of_equity"),
+            "Note": "ladder hit sanity cap" if f(h, "level_capped") else "",
+        } for h in horizons])
+
+    column_config = {
+        "Months": st.column_config.NumberColumn(format="%d"),
+        "Median profit ($)": st.column_config.NumberColumn(format="$%,.0f"),
+        "Median equity ($)": st.column_config.NumberColumn(format="$%,.0f"),
+        "MDD typical, P50 ($)": st.column_config.NumberColumn(format="$%,.0f"),
+        "MDD typical, P50 (% equity)": st.column_config.NumberColumn(format="%.1f%%"),
+        "MDD bad, P90 ($)": st.column_config.NumberColumn(format="$%,.0f"),
+        "MDD very bad, P95 ($)": st.column_config.NumberColumn(format="$%,.0f"),
+        "MDD very bad, P95 (% equity)": st.column_config.NumberColumn(format="%.1f%%"),
+    }
+
+    st.caption("**Plain P2** (no overlay)")
+    st.dataframe(_build_table(""), hide_index=True, width="stretch", column_config=column_config)
+
+    k = hr.get("overlay_k")
+    p0, b = hr.get("overlay_p0_usd"), hr.get("overlay_b_usd")
+    st.caption(f"**Surplus-aggression overlay, k={k}** (protected principal ${p0:,.0f}, buffer ${b:,.0f} -- "
+               f"same policy scripts/compute_p2_sizing.py deploys live; dormant below ${(p0 or 0) + (b or 0):,.0f} "
+               f"equity, same as plain P2 above)")
+    st.dataframe(_build_table("_k05"), hide_index=True, width="stretch", column_config=column_config)
+
     st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
                "equity, but shrink as a SHARE of the account once it's grown enough to absorb them. Profit is the "
-               "other side of the same simulated paths -- same horizon, same P2 sizing. Where the % column stops "
-               "improving is worth watching, not assuming.")
+               "other side of the same simulated paths -- same horizon, same sizing policy within each table. "
+               "Where the % column stops improving is worth watching, not assuming. 'Ladder hit sanity cap' means "
+               "the median path's qty hit the MAX_LEVEL ceiling at that horizon -- treat that row as the model "
+               "running out of room, not a real projection.")
     st.caption(hr.get("caveat", ""))
 
 
