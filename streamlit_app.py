@@ -264,10 +264,6 @@ def render_charts(snapshot: dict[str, Any]) -> None:
             .rename(columns={"ts_utc": label, "cum_pnl_usd": "cumulative_pnl_usd"})
         )
 
-    st.subheader("Hourly P&L")
-    hourly = _resampled_cum_pnl("1h", "hour")
-    st.altair_chart(_area_chart(hourly, "hour", "cumulative_pnl_usd", "Hour", "Cumulative P&L ($)"), width="stretch")
-
     st.subheader("Daily P&L")
     daily = _resampled_cum_pnl("1D", "date")
     st.altair_chart(_area_chart(daily, "date", "cumulative_pnl_usd", "Date", "Cumulative P&L ($)"), width="stretch")
