@@ -28,11 +28,26 @@ st.markdown(
     <style>
     .wjlm-badge {
         display: inline-block;
-        padding: 0.2rem 0.7rem;
+        padding: 0.25rem 0.8rem;
         border-radius: 999px;
-        background: rgba(127,127,127,0.15);
+        background: rgba(79, 143, 214, 0.16);
+        border: 1px solid rgba(79, 143, 214, 0.28);
         font-weight: 600;
         font-size: 0.95rem;
+        letter-spacing: 0.01em;
+    }
+    div[data-testid="stMetric"] {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 10px;
+        padding: 0.85rem 1rem 0.6rem;
+    }
+    div[data-testid="stMetricLabel"] {
+        opacity: 0.75;
+    }
+    hr {
+        margin: 2rem 0 1.5rem 0;
+        opacity: 0.12;
     }
     </style>
     """,
@@ -96,31 +111,23 @@ def status_badge(snapshot: dict[str, Any]) -> None:
 
 
 def render_unrealized(snapshot: dict[str, Any]) -> None:
-    """Live, throughout-the-day mark-to-market P/L on any currently open position(s) -- MNQ from status.
-    unrealized_pnl_usd, 6J/LE (if that leg is running) from dashboard_extras.{t1_6j_leg,le_leg}.
-    unrealized_pnl_usd. All are None (shown as nothing) when flat, and always None for a real-money LIVE
-    deployment regardless of position -- unlike DEMO/SHADOW, LIVE never discloses position-level detail in
-    real time (see the schema's own note on status.unrealized_pnl_usd). LE's unrealized figure was missing
-    entirely until 2026-10-02 -- the exporter never computed it, so LE could sit IN_POSITION with nothing shown
-    here even though T1/MNQ and 6J both already had this. Same gap found and fixed for MES/MGC/MNQCONT on
-    2026-10-15 (dashboard_extras.{mes,mgc,mnqcont}_leg.unrealized_pnl_usd)."""
+    """Live, throughout-the-day mark-to-market P/L on any currently open position(s) -- MNQ from
+    status.unrealized_pnl_usd, every other live leg from dashboard_extras.{leg}_leg.unrealized_pnl_usd.
+    All are None (shown as nothing) when flat, and always None for a real-money LIVE deployment
+    regardless of position -- unlike DEMO/SHADOW, LIVE never discloses position-level detail in real
+    time (see the schema's own note on status.unrealized_pnl_usd).
+
+    6J/LE/PA were disabled 2026-10-15 (see market_structure_ml-live/CLAUDE.md) and are deliberately not
+    shown here anymore -- removed, not hidden, since those legs are no longer trading at all."""
     rows = []
     mnq_u = snapshot["status"].get("unrealized_pnl_usd")
     if mnq_u is not None:
         rows.append(("T1 / MNQ", mnq_u))
-    leg = (snapshot.get("dashboard_extras") or {}).get("t1_6j_leg")
-    if leg and leg.get("unrealized_pnl_usd") is not None:
-        rows.append(("6J London", leg["unrealized_pnl_usd"]))
-    le_leg = (snapshot.get("dashboard_extras") or {}).get("le_leg")
-    if le_leg and le_leg.get("unrealized_pnl_usd") is not None:
-        rows.append(("LE Cattle", le_leg["unrealized_pnl_usd"]))
-    pa_leg = (snapshot.get("dashboard_extras") or {}).get("pa_leg")
-    if pa_leg and pa_leg.get("unrealized_pnl_usd") is not None:
-        rows.append(("PA Palladium", pa_leg["unrealized_pnl_usd"]))
     for prod, p in (((snapshot.get("dashboard_extras") or {}).get("eia_sleeve") or {}).get("products") or {}).items():
         if p.get("unrealized_pnl_usd") is not None:
             rows.append((f"EIA {prod}", p["unrealized_pnl_usd"]))
-    for key, label in (("mes", "MES H60"), ("mgc", "MGC H60"), ("mnqcont", "MNQ Continuation")):
+    for key, label in (("mes", "MES H60"), ("mgc", "MGC H60"), ("mnqcont", "MNQ Continuation"),
+                        ("mgc10", "MGC Tail (10R)"), ("mes2r", "MES Tail (2R)")):
         g_leg = (snapshot.get("dashboard_extras") or {}).get(f"{key}_leg")
         if g_leg and g_leg.get("unrealized_pnl_usd") is not None:
             rows.append((label, g_leg["unrealized_pnl_usd"]))
@@ -130,44 +137,6 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     for col, (label, val) in zip(cols, rows):
         col.metric(f"{label} — unrealized", money(val))
     st.caption("Mark-to-market off the last received bar, not a fill -- no commission or slippage included, and it moves every minute the market does.")
-    if leg and leg.get("unrealized_pnl_adjusted"):
-        st.info(
-            f"6J's unrealized figure above is a documented correction, not the raw broker number: the actual "
-            f"Tradovate fill would show **{money(leg['raw_unrealized_pnl_usd'])}**. {leg['unrealized_adjustment_reason']}"
-        )
-    if pa_leg and pa_leg.get("unrealized_pnl_adjusted"):
-        st.info(
-            f"PA's unrealized figure above is a documented correction, not the raw broker number: the actual "
-            f"Tradovate fill would show **{money(pa_leg['raw_unrealized_pnl_usd'])}**. {pa_leg['unrealized_adjustment_reason']}"
-        )
-    render_fill_slippage_check(leg)
-
-
-def render_fill_slippage_check(leg: dict[str, Any] | None) -> None:
-    """Surfaces the 6J leg's most recent fill-vs-market-reference check (dashboard_extras.t1_6j_leg.
-    last_fill_slippage_check). First found 2026-09-22 (~59 ticks) and root-caused 2026-10-05 (confirmed via
-    direct Databento symbology.resolve): this is the Oct/Dec contract mismatch -- Tradovate's symbol search
-    resolves the front (expiring, e.g. 6JV6) month while the data feed (6J.v.0) has already rolled to the next
-    liquid month (e.g. 6JZ6); comparing a fill on one against a market reference on the other produces a large
-    fake slippage reading that's really just the calendar-spread basis between the two contracts, not execution
-    quality. live/src/mnq_rt1_live/contract_match.py exists specifically to prevent this by re-pointing the
-    broker at the data contract before every entry; this alert fires when that protection was bypassed (as it
-    was for the manual 2026-10-05 outage-backfill order) or failed. Absent entirely once no fill has happened
-    yet."""
-    check = (leg or {}).get("last_fill_slippage_check")
-    if not check:
-        return
-    label = "entry" if check["event"] == "entry_slippage_check" else "exit"
-    msg = (f"6J {label} fill vs. market reference: filled {check['fill_price']} against a reference of "
-          f"{check['market_reference']} ({check['slippage_ticks']:+.1f} ticks, {money(check['slippage_usd'])}).")
-    if check["anomalous"]:
-        st.warning(
-            f"⚠️ {msg} This is well outside normal execution noise and is consistent with the known Oct/Dec "
-            "contract-mismatch pattern (front-month fill vs. next-month data reference), not real market "
-            "slippage -- displayed P&L on this leg may be distorted by it."
-        )
-    else:
-        st.caption(msg + " Within normal range.")
 
 
 def render_metrics(snapshot: dict[str, Any]) -> None:
@@ -370,14 +339,21 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
     """Current live order_qty per leg (dashboard_extras.contract_distribution) -- what size each strategy is
     running right now, separate from the closed-trade ledger. A leg running in SHADOW (OBSERVE, no real orders
     -- e.g. ON-001/ES as of 2026-09-24) is labeled explicitly rather than looking like a live position. Absent
-    entirely on an older snapshot or if this leg's status file isn't present."""
+    entirely on an older snapshot or if this leg's status file isn't present.
+
+    6J/LE/PA were disabled 2026-10-15 and are intentionally excluded from `labels` -- if the underlying
+    snapshot still carries a stale entry for one of them, it falls through to the generic `key` fallback
+    below rather than being actively displayed with a maintained label."""
     dist = (snapshot.get("dashboard_extras") or {}).get("contract_distribution")
     if not dist or not dist.get("legs"):
         return
     st.subheader("Current contract distribution")
-    labels = {"t1": "T1 / MNQ", "6j": "6J London", "le": "LE Cattle", "on001": "ON-001 / ES", "eia_ho": "EIA sleeve: HO", "eia_rb": "EIA sleeve: RB",
-              "mes": "MES H60", "mgc": "MGC H60", "mnqcont": "MNQ Continuation", "pa": "PA Palladium"}
-    legs = dist["legs"]
+    labels = {"t1": "T1 / MNQ", "on001": "ON-001 / ES", "eia_ho": "EIA sleeve: HO", "eia_rb": "EIA sleeve: RB",
+              "mes": "MES H60", "mgc": "MGC H60", "mnqcont": "MNQ Continuation",
+              "mgc10": "MGC Tail (10R)", "mes2r": "MES Tail (2R)"}
+    legs = {k: v for k, v in dist["legs"].items() if k not in ("6j", "le", "pa")}
+    if not legs:
+        return
     cols = st.columns(len(legs))
     for col, (key, leg) in zip(cols, legs.items()):
         label = labels.get(key, key)
@@ -404,7 +380,9 @@ def render_projection(snapshot: dict[str, Any]) -> None:
     c = proj.get("contracts", {})
     funded = proj.get("funded")
     if funded:
-        st.caption(f"Funded wheel (real live capital): {c.get('t1_mnq')} MNQ / {c.get('sixj')} 6J" + (f" / {c.get('le')} LE cattle" if c.get('le') else "") + (f" / EIA sleeve {c.get('eia_ho', 0)} HO + {c.get('eia_rb', 0)} RB" if (c.get('eia_ho') or c.get('eia_rb')) else ""))
+        # 6J/LE disabled 2026-10-15 -- deliberately not surfaced even if a stale snapshot still carries them.
+        st.caption(f"Funded wheel (real live capital): {c.get('t1_mnq')} MNQ" +
+                   (f" / EIA sleeve {c.get('eia_ho', 0)} HO + {c.get('eia_rb', 0)} RB" if (c.get('eia_ho') or c.get('eia_rb')) else ""))
         col1, col2 = st.columns(2)
         col1.metric("Projected annualized P&L", money(funded["projected_annualized_pnl_usd"]))
         col2.metric("Historical-window max drawdown", money(funded["window_max_drawdown_usd"]))
