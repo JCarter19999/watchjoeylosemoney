@@ -139,6 +139,67 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     st.caption("Mark-to-market off the last received bar, not a fill -- no commission or slippage included, and it moves every minute the market does.")
 
 
+_CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Continuation"),
+                     ("mgc10_leg", "MGC Tail (10R)"), ("mes2r_leg", "MES Tail (2R)")]
+
+
+def _candlestick_chart(bars: pd.DataFrame, entry_fill: float | None, direction: int | None) -> alt.Chart:
+    """Classic OHLC candlestick: mark_rule for the high-low wick, mark_bar for the open-close
+    body, colored by direction (blue = closed up, red = closed down -- matches the diverging
+    pair already used elsewhere on this dashboard, e.g. the daily P&L calendar). An entry-price
+    rule + label overlay when a position is open, color-coded long/short."""
+    up_color, down_color = "#4f8fd6", "#e34948"
+    base = alt.Chart(bars).encode(
+        x=alt.X("ts:T", title=None, axis=alt.Axis(grid=False, format="%H:%M")),
+    )
+    color = alt.condition("datum.close >= datum.open", alt.value(up_color), alt.value(down_color))
+    wick = base.mark_rule(strokeWidth=1).encode(
+        y=alt.Y("low:Q", title="Price", scale=alt.Scale(zero=False)), y2="high:Q", color=color,
+    )
+    body = base.mark_bar(size=3).encode(
+        y="open:Q", y2="close:Q", color=color,
+        tooltip=[alt.Tooltip("ts:T", title="Time"), alt.Tooltip("open:Q", title="Open", format=",.2f"),
+                 alt.Tooltip("high:Q", title="High", format=",.2f"), alt.Tooltip("low:Q", title="Low", format=",.2f"),
+                 alt.Tooltip("close:Q", title="Close", format=",.2f")],
+    )
+    layers = [wick, body]
+    if entry_fill is not None:
+        entry_df = pd.DataFrame({"y": [entry_fill]})
+        entry_color = up_color if direction == 1 else (down_color if direction == -1 else "#9aa4b2")
+        entry_line = alt.Chart(entry_df).mark_rule(strokeDash=[4, 3], strokeWidth=1.5, color=entry_color).encode(y="y:Q")
+        layers.append(entry_line)
+    return alt.layer(*layers).properties(height=220).configure_view(strokeWidth=0)
+
+
+def render_candlesticks(snapshot: dict[str, Any]) -> None:
+    """Current-session candlestick view per leg (dashboard_extras.{key}.ohlc_bars), with the
+    open position's entry price overlaid as a dashed rule when one exists. Legs with no bars
+    yet (not live, or no data this session) are skipped entirely rather than shown empty."""
+    extras = snapshot.get("dashboard_extras") or {}
+    panels = []
+    for key, label in _CANDLESTICK_LEGS:
+        leg = extras.get(key)
+        bars = (leg or {}).get("ohlc_bars") or []
+        if len(bars) < 2:
+            continue
+        panels.append((key, label, leg, bars))
+    if not panels:
+        return
+    st.subheader("Live session")
+    cols = st.columns(2)
+    for i, (key, label, leg, bars) in enumerate(panels):
+        with cols[i % 2]:
+            df = pd.DataFrame(bars)
+            df["ts"] = pd.to_datetime(df["ts"], utc=True, format="ISO8601")
+            unrealized = leg.get("unrealized_pnl_usd") if key != "t1_leg" else snapshot["status"].get("unrealized_pnl_usd")
+            title = label
+            if unrealized is not None:
+                title += f" — unrealized {money(unrealized)}"
+            st.caption(title)
+            st.altair_chart(_candlestick_chart(df, leg.get("overlay_entry_fill"), leg.get("overlay_direction")), width="stretch")
+    st.caption("Current trading session only, 1-minute bars. Dashed line marks the open position's entry price, when one exists.")
+
+
 def render_metrics(snapshot: dict[str, Any]) -> None:
     s = snapshot["stats"]
     cols = st.columns(6)
@@ -194,14 +255,34 @@ def render_charts(snapshot: dict[str, Any]) -> None:
 
     st.subheader("Hourly P&L")
     hourly = _resampled_cum_pnl("1h", "hour")
-    st.line_chart(hourly, x="hour", y="cumulative_pnl_usd", x_label="Hour (your local timezone)", y_label="Cumulative P&L ($)", height=280)
+    st.altair_chart(_area_chart(hourly, "hour", "cumulative_pnl_usd", "Hour", "Cumulative P&L ($)"), width="stretch")
 
     st.subheader("Daily P&L")
     daily = _resampled_cum_pnl("1D", "date")
-    st.line_chart(daily, x="date", y="cumulative_pnl_usd", x_label="Date (your local timezone)", y_label="Cumulative P&L ($)", height=280)
+    st.altair_chart(_area_chart(daily, "date", "cumulative_pnl_usd", "Date", "Cumulative P&L ($)"), width="stretch")
 
     st.subheader("Drawdown")
-    st.line_chart(curve, x="ts_utc", y="drawdown_usd", x_label="Your local timezone", y_label="Drawdown ($)", height=240)
+    dd = curve[["ts_utc", "drawdown_usd"]].copy()
+    st.altair_chart(_area_chart(dd, "ts_utc", "drawdown_usd", "Time", "Drawdown ($)", fill_color="#e3494833", line_color="#e34948"), width="stretch")
+
+
+def _area_chart(df: pd.DataFrame, x_col: str, y_col: str, x_label: str, y_label: str,
+                 fill_color: str = "#4f8fd633", line_color: str = "#4f8fd6") -> alt.Chart:
+    """Gradient-filled line chart matching the dashboard's dark theme -- smoother and more
+    polished than st.line_chart's bare default, same data, no new dependency (Altair is
+    already used by the P&L calendar heatmap below)."""
+    base = alt.Chart(df).encode(
+        x=alt.X(f"{x_col}:T", title=x_label, axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
+        y=alt.Y(f"{y_col}:Q", title=y_label, axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
+        tooltip=[alt.Tooltip(f"{x_col}:T", title=x_label), alt.Tooltip(f"{y_col}:Q", title=y_label, format="$,.2f")],
+    )
+    area = base.mark_area(interpolate="monotone", line=False,
+                           color=alt.Gradient(gradient="linear",
+                                               stops=[alt.GradientStop(color=fill_color, offset=0),
+                                                      alt.GradientStop(color="#ffffff00", offset=1)],
+                                               x1=1, x2=1, y1=1, y2=0))
+    line = base.mark_line(interpolate="monotone", color=line_color, strokeWidth=2)
+    return (area + line).properties(height=260).configure_view(strokeWidth=0)
 
 
 _WEEKDAY_ORDER = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -442,6 +523,7 @@ def live_dashboard() -> None:
 
     status_badge(snapshot)
     st.caption(f"Last updated: {format_pst(snapshot['generated_at_utc'])}")
+    render_candlesticks(snapshot)
     render_metrics(snapshot)
     render_contract_distribution(snapshot)
     render_projection(snapshot)

@@ -79,6 +79,8 @@ PA_RUNTIME="$LIVE_REPO/runtime_pa_demo"
 MES_RUNTIME="$LIVE_REPO/runtime_mes_paper"
 MGC_RUNTIME="$LIVE_REPO/runtime_mgc_paper"
 MNQCONT_RUNTIME="$LIVE_REPO/runtime_mnqcont_paper"
+MGC10_RUNTIME="$LIVE_REPO/runtime_mgc10_paper"
+MES2R_RUNTIME="$LIVE_REPO/runtime_mes2r_paper"
 PRIVATE_SNAPSHOT="$LIVE_REPO/runtime_t1_demo/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
@@ -150,6 +152,15 @@ EXTRA_MNQCONT_ARGS=()
 if [ -f "$MNQCONT_RUNTIME/live_status.json" ]; then
   EXTRA_MNQCONT_ARGS=(--mnqcont-status "$MNQCONT_RUNTIME/live_status.json" --mnqcont-trades "$MNQCONT_RUNTIME/mnqcont_trades.jsonl")
 fi
+# Tail sleeves -- added 2026-10-15, same additive convention.
+EXTRA_MGC10_ARGS=()
+if [ -f "$MGC10_RUNTIME/live_status.json" ]; then
+  EXTRA_MGC10_ARGS=(--mgc10-status "$MGC10_RUNTIME/live_status.json" --mgc10-trades "$MGC10_RUNTIME/mgc10_trades.jsonl")
+fi
+EXTRA_MES2R_ARGS=()
+if [ -f "$MES2R_RUNTIME/live_status.json" ]; then
+  EXTRA_MES2R_ARGS=(--mes2r-status "$MES2R_RUNTIME/live_status.json" --mes2r-trades "$MES2R_RUNTIME/mes2r_trades.jsonl")
+fi
 EIA_HO_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_ho.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 EIA_RB_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_rb.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 LE_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$LE_RUNTIME/live_status.json')).get('order_qty',0))" 2>/dev/null || echo 0)
@@ -179,6 +190,8 @@ PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.expor
   "${EXTRA_MES_ARGS[@]}" \
   "${EXTRA_MGC_ARGS[@]}" \
   "${EXTRA_MNQCONT_ARGS[@]}" \
+  "${EXTRA_MGC10_ARGS[@]}" \
+  "${EXTRA_MES2R_ARGS[@]}" \
   "${EXTRA_PROJECTION_ARGS[@]}"
 
 cd "$WEB_REPO"
