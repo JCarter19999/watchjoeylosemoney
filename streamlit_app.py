@@ -449,29 +449,6 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
     st.caption(f"As of {format_pst(dist['as_of_utc'])}. Reflects live order size right now, not the size any past trade in the ledger below was taken at. SHADOW = tracked for research, no real orders placed.{sleeve_note}")
 
 
-_RISK_COLORS = {"Typical (P50)": "#4f8fd6", "Very bad (P95)": "#e34948"}
-
-
-def _horizon_line_chart(df: pd.DataFrame, y_col: str, y_title: str, y_format: str) -> alt.Chart:
-    """Quantitative-x line chart (months, not a date) for two fixed-order series -- same dark-theme
-    grid/tooltip conventions as _area_chart, but that helper is keyed to a temporal x-axis."""
-    return (
-        alt.Chart(df)
-        .mark_line(point=True, strokeWidth=2)
-        .encode(
-            x=alt.X("months:Q", title="Months from today", axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
-            y=alt.Y(f"{y_col}:Q", title=y_title, axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
-            color=alt.Color("series:N", title=None, sort=list(_RISK_COLORS),
-                            scale=alt.Scale(domain=list(_RISK_COLORS), range=list(_RISK_COLORS.values()))),
-            tooltip=[alt.Tooltip("months:Q", title="Months"), alt.Tooltip("series:N", title="Scenario"),
-                     alt.Tooltip(f"{y_col}:Q", title=y_title, format=y_format),
-                     alt.Tooltip("pnl:Q", title="Median profit", format="$,.0f")],
-        )
-        .properties(height=280)
-        .configure_view(strokeWidth=0)
-    )
-
-
 def render_projection(snapshot: dict[str, Any]) -> None:
     """Horizon-matched risk curve for the full current 6-leg wheel (T1, MNQCONT, MES 1R, MGC 1R,
     MGC10, MES2R), written by scripts/project_wheel_horizon_risk.py. Replaced the single "projected
@@ -490,34 +467,35 @@ def render_projection(snapshot: dict[str, Any]) -> None:
     st.caption(f"Block-bootstrap simulation ({hr.get('n_paths', '—')} paths) of the real P2-governed ladder, "
                f"starting from ${hr.get('start_equity_usd', 0):,.0f}. Not a live realized track record.")
 
-    pct_rows = []
-    for h in horizons:
-        pct_rows.append({"months": h["months"], "series": "Typical (P50)", "pct": h["mdd_p50_pct_of_equity"], "pnl": h["median_pnl_usd"]})
-        pct_rows.append({"months": h["months"], "series": "Very bad (P95)", "pct": h["mdd_p95_pct_of_equity"], "pnl": h["median_pnl_usd"]})
-    pct_df = pd.DataFrame(pct_rows)
-    pnl_df = pd.DataFrame([{"months": h["months"], "pnl": h["median_pnl_usd"]} for h in horizons])
-
-    col1, col2 = st.columns(2)
-    with col1:
-        st.altair_chart(_horizon_line_chart(pct_df, "pct", "Max drawdown so far, as % of equity", ".1f"), width="stretch")
-    with col2:
-        pnl_chart = (
-            alt.Chart(pnl_df)
-            .mark_line(point=True, strokeWidth=2, color="#4f8fd6")
-            .encode(
-                x=alt.X("months:Q", title="Months from today", axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
-                y=alt.Y("pnl:Q", title="Median projected profit ($)", axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
-                tooltip=[alt.Tooltip("months:Q", title="Months"), alt.Tooltip("pnl:Q", title="Median profit", format="$,.0f")],
-            )
-            .properties(height=280)
-            .configure_view(strokeWidth=0)
-        )
-        st.altair_chart(pnl_chart, width="stretch")
-
+    table = pd.DataFrame([{
+        "Months": h["months"],
+        "Median profit ($)": h["median_pnl_usd"],
+        "Median equity ($)": h["median_equity_usd"],
+        "MDD typical, P50 ($)": h["mdd_p50_usd"],
+        "MDD typical, P50 (% equity)": h["mdd_p50_pct_of_equity"],
+        "MDD bad, P90 ($)": h["mdd_p90_usd"],
+        "MDD very bad, P95 ($)": h["mdd_p95_usd"],
+        "MDD very bad, P95 (% equity)": h["mdd_p95_pct_of_equity"],
+    } for h in horizons])
+    st.dataframe(
+        table,
+        hide_index=True,
+        width="stretch",
+        column_config={
+            "Months": st.column_config.NumberColumn(format="%d"),
+            "Median profit ($)": st.column_config.NumberColumn(format="$%,.0f"),
+            "Median equity ($)": st.column_config.NumberColumn(format="$%,.0f"),
+            "MDD typical, P50 ($)": st.column_config.NumberColumn(format="$%,.0f"),
+            "MDD typical, P50 (% equity)": st.column_config.NumberColumn(format="%.1f%%"),
+            "MDD bad, P90 ($)": st.column_config.NumberColumn(format="$%,.0f"),
+            "MDD very bad, P95 ($)": st.column_config.NumberColumn(format="$%,.0f"),
+            "MDD very bad, P95 (% equity)": st.column_config.NumberColumn(format="%.1f%%"),
+        },
+    )
     st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
-               "equity, but shrink as a SHARE of the account once it's grown enough to absorb them (left). Profit "
-               "(right) is the other side of the same simulated paths -- same horizon, same P2 sizing. Where the "
-               "left curve stops improving is worth watching, not assuming.")
+               "equity, but shrink as a SHARE of the account once it's grown enough to absorb them. Profit is the "
+               "other side of the same simulated paths -- same horizon, same P2 sizing. Where the % column stops "
+               "improving is worth watching, not assuming.")
     st.caption(hr.get("caveat", ""))
 
 
