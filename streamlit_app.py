@@ -449,30 +449,71 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
     st.caption(f"As of {format_pst(dist['as_of_utc'])}. Reflects live order size right now, not the size any past trade in the ledger below was taken at. SHADOW = tracked for research, no real orders placed.{sleeve_note}")
 
 
+_RISK_COLORS = {"Typical (P50)": "#4f8fd6", "Very bad (P95)": "#e34948"}
+
+
+def _horizon_line_chart(df: pd.DataFrame, y_col: str, y_title: str, y_format: str) -> alt.Chart:
+    """Quantitative-x line chart (months, not a date) for two fixed-order series -- same dark-theme
+    grid/tooltip conventions as _area_chart, but that helper is keyed to a temporal x-axis."""
+    return (
+        alt.Chart(df)
+        .mark_line(point=True, strokeWidth=2)
+        .encode(
+            x=alt.X("months:Q", title="Months from today", axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
+            y=alt.Y(f"{y_col}:Q", title=y_title, axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
+            color=alt.Color("series:N", title=None, sort=list(_RISK_COLORS),
+                            scale=alt.Scale(domain=list(_RISK_COLORS), range=list(_RISK_COLORS.values()))),
+            tooltip=[alt.Tooltip("months:Q", title="Months"), alt.Tooltip("series:N", title="Scenario"),
+                     alt.Tooltip(f"{y_col}:Q", title=y_title, format=y_format)],
+        )
+        .properties(height=280)
+        .configure_view(strokeWidth=0)
+    )
+
+
 def render_projection(snapshot: dict[str, Any]) -> None:
-    """Projected annualized P&L + historical-window MDD for the full current 6-leg wheel
-    (T1, MNQCONT, MES 1R, MGC 1R, MGC10, MES2R), written by scripts/project_wheel_current.py.
-    Rewritten 2026-10-15 for that script's flat output shape (no more funded/es_shadow split --
-    EIA and 6J/LE are gone, ES is not part of this wheel). A BACKTEST projection at today's live
-    contract sizing, not the account's own realized rate -- explicitly labeled as such."""
-    proj = (snapshot.get("dashboard_extras") or {}).get("projection")
-    if not proj:
+    """Horizon-matched risk curve for the full current 6-leg wheel (T1, MNQCONT, MES 1R, MGC 1R,
+    MGC10, MES2R), written by scripts/project_wheel_horizon_risk.py. Replaced the single "projected
+    annualized P&L vs one historical MDD" panel 2026-10-15 -- that shape doesn't horizon-match a
+    SCALING account (feedback_mdd_evaluation_framework.md): the real question is how drawdown risk,
+    as a SHARE of the (also-growing) account, changes as the P2 ladder scales position size up with
+    equity. Simulates the actual dynamic equity path (ladder qty recomputed from current equity every
+    day, same compute_sizing() the live watchdogs call) via block-bootstrap, not a static multiple."""
+    hr = (snapshot.get("dashboard_extras") or {}).get("horizon_risk")
+    if not hr:
         return
-    st.subheader("Projected annualized P&L + max drawdown (all 6 legs combined)")
-    c = proj.get("contracts", {})
-    st.caption(f"At current live sizing: T1/CONT {c.get('t1_cont_qty')} / MES 1R {c.get('mes_qty')} / "
-               f"MGC 1R {c.get('mgc_qty')} / MGC10 {c.get('mgc10_qty')} / MES2R {c.get('mes2r_qty')}")
-    col1, col2 = st.columns(2)
-    col1.metric("Projected annualized P&L", money(proj.get("projected_annualized_pnl_usd", 0)))
-    col2.metric("Historical-window max drawdown", money(proj.get("window_max_drawdown_usd", 0)))
-    if proj.get("reordered_mdd_p50_usd") is not None:
-        st.caption("The historical drawdown is the ONE ordering that happened, and it was on the lucky end. "
-                   "Re-shuffling the same days gives the drawdowns to actually plan around:")
-        r1, r2, r3 = st.columns(3)
-        r1.metric("Typical (P50)", money(proj["reordered_mdd_p50_usd"]))
-        r2.metric("Bad (1 in 10)", money(proj["reordered_mdd_p90_usd"]))
-        r3.metric("Very bad (1 in 20)", money(proj["reordered_mdd_p95_usd"]))
-    st.caption(proj.get("caveat", ""))
+    horizons = hr.get("horizons", [])
+    if not horizons:
+        return
+    st.subheader("Drawdown risk vs. account growth, by horizon (all 6 legs combined)")
+    st.caption(f"Block-bootstrap simulation ({hr.get('n_paths', '—')} paths) of the real P2-governed ladder, "
+               f"starting from ${hr.get('start_equity_usd', 0):,.0f}. Not a live realized track record.")
+
+    pct_rows = []
+    for h in horizons:
+        pct_rows.append({"months": h["months"], "series": "Typical (P50)", "pct": h["mdd_p50_pct_of_equity"]})
+        pct_rows.append({"months": h["months"], "series": "Very bad (P95)", "pct": h["mdd_p95_pct_of_equity"]})
+    pct_df = pd.DataFrame(pct_rows)
+    st.altair_chart(_horizon_line_chart(pct_df, "pct", "Max drawdown so far, as % of equity", ".1f"), width="stretch")
+    st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
+               "equity, but shrink as a SHARE of the account once it's grown enough to absorb them. Where this "
+               "curve stops improving is worth watching, not assuming.")
+
+    eq_df = pd.DataFrame([{"months": h["months"], "equity": h["median_equity_usd"]} for h in horizons])
+    eq_chart = (
+        alt.Chart(eq_df)
+        .mark_line(point=True, strokeWidth=2, color="#4f8fd6")
+        .encode(
+            x=alt.X("months:Q", title="Months from today", axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
+            y=alt.Y("equity:Q", title="Median projected equity ($)", axis=alt.Axis(grid=True, gridOpacity=0.08, gridColor="#ffffff")),
+            tooltip=[alt.Tooltip("months:Q", title="Months"), alt.Tooltip("equity:Q", title="Equity", format="$,.0f")],
+        )
+        .properties(height=240)
+        .configure_view(strokeWidth=0)
+    )
+    st.altair_chart(eq_chart, width="stretch")
+
+    st.caption(hr.get("caveat", ""))
 
 
 def render_reliability(snapshot: dict[str, Any]) -> None:

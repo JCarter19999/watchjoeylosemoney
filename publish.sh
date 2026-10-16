@@ -185,6 +185,21 @@ if [ -f "$PROJECTION_JSON" ]; then
   EXTRA_PROJECTION_ARGS=(--projection "$PROJECTION_JSON")
 fi
 
+# Horizon-matched risk curve (scripts/project_wheel_horizon_risk.py) -- a ~2000-path block-bootstrap
+# Monte Carlo, ~30s of CPU on this single-core box. Only recomputed once/day (cache older than 20h,
+# matched to this script's 15-min cron cadence but far enough apart not to compete with the live bots
+# every tick) -- the live sizing it reads barely moves day to day, unlike the cheap fixed-size
+# projection above which is recomputed every run.
+HORIZON_RISK_JSON="$T1_RUNTIME/horizon_risk.json"
+if [ ! -f "$HORIZON_RISK_JSON" ] || [ "$(find "$HORIZON_RISK_JSON" -mmin +1200 2>/dev/null)" ]; then
+  PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/project_wheel_horizon_risk.py" \
+    "$HORIZON_RISK_JSON" >/dev/null 2>&1 || echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) horizon risk calc failed (non-fatal)"
+fi
+EXTRA_HORIZON_RISK_ARGS=()
+if [ -f "$HORIZON_RISK_JSON" ]; then
+  EXTRA_HORIZON_RISK_ARGS=(--horizon-risk "$HORIZON_RISK_JSON")
+fi
+
 PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_t1_private_snapshot \
   --trades "$T1_RUNTIME/t1_trades.jsonl" \
   --status "$T1_RUNTIME/live_status.json" \
@@ -200,7 +215,8 @@ PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.expor
   "${EXTRA_MNQCONT_ARGS[@]}" \
   "${EXTRA_MGC10_ARGS[@]}" \
   "${EXTRA_MES2R_ARGS[@]}" \
-  "${EXTRA_PROJECTION_ARGS[@]}"
+  "${EXTRA_PROJECTION_ARGS[@]}" \
+  "${EXTRA_HORIZON_RISK_ARGS[@]}"
 
 cd "$WEB_REPO"
 "$WEB_REPO/.venv/bin/python3" sanitizer.py \
