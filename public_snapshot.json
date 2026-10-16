@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-16T21:00:47.711725Z",
+      "as_of_utc": "2026-10-16T21:06:37.436296Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -125,100 +125,223 @@
     },
     "horizon_risk": {
       "block_days": 5,
-      "caveat": "Block-bootstrap simulation of the real P2-governed 6-leg ladder (same compute_sizing() the live watchdogs call), NOT a live-account realized track record. mdd_*_pct_of_equity is the key read: the dollar MDD generally grows as the ladder scales up, but it shrinks as a SHARE of the (also-growing) account -- that's the 'getting safer as we scale' effect, and where it stops improving is worth watching, not assuming.",
+      "caveat": "Block-bootstrap simulation of the real P2-governed 6-leg ladder (same compute_sizing() the live watchdogs call), NOT a live-account realized track record. mdd_*_pct_of_equity is the key read: the dollar MDD generally grows as the ladder scales up, but it shrinks as a SHARE of the (also-growing) account -- that's the 'getting safer as we scale' effect, and where it stops improving is worth watching, not assuming. The _k05 columns are the frozen surplus-aggression overlay candidate (P0=$50k, B=$20k, k=0.5 -- same policy scripts/compute_p2_sizing.py actually deploys live), run on the SAME sampled paths as the plain-P2 columns so they're directly comparable. The real underlying data pool is ~3.25 years (818 trading days); horizons beyond that (48/60 months) are block-bootstrap resampling of that same pool, not additional real history -- treat them as a longer extrapolation under the same statistical assumptions, with correspondingly less confidence than the shorter horizons. Where level_capped is true, the median path's ladder qty has hit MAX_LEVEL (a sanity ceiling against a misparsed equity read, not a real policy cap) -- that row understates the formula's own growth AND implies a contract count far past any real broker/market capacity question, so treat it as 'the model ran out of room,' not a real projection.",
       "horizons": [
         {
-          "mdd_p50_pct_of_equity": 17.18,
-          "mdd_p50_usd": 9907.08,
-          "mdd_p90_usd": 17929.68,
-          "mdd_p95_pct_of_equity": 36.35,
-          "mdd_p95_usd": 20969.23,
-          "median_equity_usd": 57679.51,
-          "median_pnl_usd": 7679.51,
+          "level_capped": false,
+          "level_capped_k05": false,
+          "mdd_p50_pct_of_equity": 17.47,
+          "mdd_p50_pct_of_equity_k05": 17.65,
+          "mdd_p50_usd": 10137.33,
+          "mdd_p50_usd_k05": 10233.95,
+          "mdd_p90_usd": 18150.94,
+          "mdd_p90_usd_k05": 18255.2,
+          "mdd_p95_pct_of_equity": 35.59,
+          "mdd_p95_pct_of_equity_k05": 36.07,
+          "mdd_p95_usd": 20653.96,
+          "mdd_p95_usd_k05": 20921.5,
+          "median_equity_usd": 58040.43,
+          "median_equity_usd_k05": 57995.23,
+          "median_pnl_usd": 8040.43,
+          "median_pnl_usd_k05": 7995.23,
           "months": 1
         },
         {
-          "mdd_p50_pct_of_equity": 23.88,
-          "mdd_p50_usd": 16013.4,
-          "mdd_p90_usd": 26878.64,
-          "mdd_p95_pct_of_equity": 46.03,
-          "mdd_p95_usd": 30864.18,
-          "median_equity_usd": 67055.15,
-          "median_pnl_usd": 17055.15,
+          "level_capped": false,
+          "level_capped_k05": false,
+          "mdd_p50_pct_of_equity": 23.93,
+          "mdd_p50_pct_of_equity_k05": 24.68,
+          "mdd_p50_usd": 15987.19,
+          "mdd_p50_usd_k05": 16422.27,
+          "mdd_p90_usd": 26694.73,
+          "mdd_p90_usd_k05": 27716.39,
+          "mdd_p95_pct_of_equity": 46.26,
+          "mdd_p95_pct_of_equity_k05": 49.16,
+          "mdd_p95_usd": 30902.76,
+          "mdd_p95_usd_k05": 32714.73,
+          "median_equity_usd": 66796.96,
+          "median_equity_usd_k05": 66542.94,
+          "median_pnl_usd": 16796.96,
+          "median_pnl_usd_k05": 16542.94,
           "months": 2
         },
         {
-          "mdd_p50_pct_of_equity": 26.28,
-          "mdd_p50_usd": 20544.92,
-          "mdd_p90_usd": 35480.31,
-          "mdd_p95_pct_of_equity": 53.51,
-          "mdd_p95_usd": 41824.09,
-          "median_equity_usd": 78168.53,
-          "median_pnl_usd": 28168.53,
+          "level_capped": false,
+          "level_capped_k05": false,
+          "mdd_p50_pct_of_equity": 25.92,
+          "mdd_p50_pct_of_equity_k05": 27.28,
+          "mdd_p50_usd": 20586.57,
+          "mdd_p50_usd_k05": 21401.99,
+          "mdd_p90_usd": 35179.73,
+          "mdd_p90_usd_k05": 37851.61,
+          "mdd_p95_pct_of_equity": 53.67,
+          "mdd_p95_pct_of_equity_k05": 58.57,
+          "mdd_p95_usd": 42616.4,
+          "mdd_p95_usd_k05": 45957.27,
+          "median_equity_usd": 79411.43,
+          "median_equity_usd_k05": 78462.34,
+          "median_pnl_usd": 29411.43,
+          "median_pnl_usd_k05": 28462.34,
           "months": 3
         },
         {
-          "mdd_p50_pct_of_equity": 26.65,
-          "mdd_p50_usd": 33617.38,
-          "mdd_p90_usd": 58553.28,
-          "mdd_p95_pct_of_equity": 53.94,
-          "mdd_p95_usd": 68049.04,
-          "median_equity_usd": 126161.14,
-          "median_pnl_usd": 76161.14,
+          "level_capped": false,
+          "level_capped_k05": false,
+          "mdd_p50_pct_of_equity": 26.2,
+          "mdd_p50_pct_of_equity_k05": 28.07,
+          "mdd_p50_usd": 33670.56,
+          "mdd_p50_usd_k05": 36561.05,
+          "mdd_p90_usd": 60984.39,
+          "mdd_p90_usd_k05": 69759.39,
+          "mdd_p95_pct_of_equity": 55.32,
+          "mdd_p95_pct_of_equity_k05": 64.45,
+          "mdd_p95_usd": 71087.73,
+          "mdd_p95_usd_k05": 83951.21,
+          "median_equity_usd": 128509.25,
+          "median_equity_usd_k05": 130257.51,
+          "median_pnl_usd": 78509.25,
+          "median_pnl_usd_k05": 80257.51,
           "months": 6
         },
         {
-          "mdd_p50_pct_of_equity": 23.47,
-          "mdd_p50_usd": 46595.17,
-          "mdd_p90_usd": 81070.0,
-          "mdd_p95_pct_of_equity": 48.28,
-          "mdd_p95_usd": 95851.03,
-          "median_equity_usd": 198543.36,
-          "median_pnl_usd": 148543.36,
+          "level_capped": false,
+          "level_capped_k05": false,
+          "mdd_p50_pct_of_equity": 23.64,
+          "mdd_p50_pct_of_equity_k05": 25.11,
+          "mdd_p50_usd": 47435.8,
+          "mdd_p50_usd_k05": 54956.38,
+          "mdd_p90_usd": 82905.8,
+          "mdd_p90_usd_k05": 104164.63,
+          "mdd_p95_pct_of_equity": 49.62,
+          "mdd_p95_pct_of_equity_k05": 57.38,
+          "mdd_p95_usd": 99576.45,
+          "mdd_p95_usd_k05": 125576.9,
+          "median_equity_usd": 200674.34,
+          "median_equity_usd_k05": 218843.18,
+          "median_pnl_usd": 150674.34,
+          "median_pnl_usd_k05": 168843.18,
           "months": 9
         },
         {
-          "mdd_p50_pct_of_equity": 20.69,
-          "mdd_p50_usd": 61948.26,
-          "mdd_p90_usd": 107170.03,
-          "mdd_p95_pct_of_equity": 42.01,
-          "mdd_p95_usd": 125775.31,
-          "median_equity_usd": 299383.92,
-          "median_pnl_usd": 249383.92,
+          "level_capped": false,
+          "level_capped_k05": false,
+          "mdd_p50_pct_of_equity": 21.21,
+          "mdd_p50_pct_of_equity_k05": 22.75,
+          "mdd_p50_usd": 62460.0,
+          "mdd_p50_usd_k05": 76811.49,
+          "mdd_p90_usd": 106873.47,
+          "mdd_p90_usd_k05": 146732.93,
+          "mdd_p95_pct_of_equity": 42.2,
+          "mdd_p95_pct_of_equity_k05": 51.48,
+          "mdd_p95_usd": 124234.91,
+          "mdd_p95_usd_k05": 173793.93,
+          "median_equity_usd": 294422.98,
+          "median_equity_usd_k05": 337611.41,
+          "median_pnl_usd": 244422.98,
+          "median_pnl_usd_k05": 287611.41,
           "months": 12
         },
         {
-          "mdd_p50_pct_of_equity": 16.57,
-          "mdd_p50_usd": 93662.98,
-          "mdd_p90_usd": 165561.75,
-          "mdd_p95_pct_of_equity": 34.36,
-          "mdd_p95_usd": 194268.76,
-          "median_equity_usd": 565411.69,
-          "median_pnl_usd": 515411.69,
+          "level_capped": false,
+          "level_capped_k05": false,
+          "mdd_p50_pct_of_equity": 16.64,
+          "mdd_p50_pct_of_equity_k05": 18.29,
+          "mdd_p50_usd": 94430.89,
+          "mdd_p50_usd_k05": 132917.85,
+          "mdd_p90_usd": 166945.02,
+          "mdd_p90_usd_k05": 292864.09,
+          "mdd_p95_pct_of_equity": 35.13,
+          "mdd_p95_pct_of_equity_k05": 52.61,
+          "mdd_p95_usd": 199331.61,
+          "mdd_p95_usd_k05": 382436.95,
+          "median_equity_usd": 567331.27,
+          "median_equity_usd_k05": 726880.67,
+          "median_pnl_usd": 517331.27,
+          "median_pnl_usd_k05": 676880.67,
           "months": 18
         },
         {
-          "mdd_p50_pct_of_equity": 14.17,
-          "mdd_p50_usd": 136807.03,
-          "mdd_p90_usd": 267795.73,
-          "mdd_p95_pct_of_equity": 32.76,
-          "mdd_p95_usd": 316295.7,
-          "median_equity_usd": 965476.02,
-          "median_pnl_usd": 915476.02,
+          "level_capped": false,
+          "level_capped_k05": false,
+          "mdd_p50_pct_of_equity": 13.96,
+          "mdd_p50_pct_of_equity_k05": 16.17,
+          "mdd_p50_usd": 137027.26,
+          "mdd_p50_usd_k05": 233069.11,
+          "mdd_p90_usd": 260208.95,
+          "mdd_p90_usd_k05": 593112.72,
+          "mdd_p95_pct_of_equity": 31.73,
+          "mdd_p95_pct_of_equity_k05": 51.23,
+          "mdd_p95_usd": 311511.25,
+          "mdd_p95_usd_k05": 738463.91,
+          "median_equity_usd": 981826.63,
+          "median_equity_usd_k05": 1441352.94,
+          "median_pnl_usd": 931826.63,
+          "median_pnl_usd_k05": 1391352.94,
           "months": 24
         },
         {
-          "mdd_p50_pct_of_equity": 11.51,
-          "mdd_p50_usd": 301041.84,
-          "mdd_p90_usd": 687034.7,
-          "mdd_p95_pct_of_equity": 33.0,
-          "mdd_p95_usd": 862745.63,
-          "median_equity_usd": 2614560.65,
-          "median_pnl_usd": 2564560.65,
+          "level_capped": false,
+          "level_capped_k05": false,
+          "mdd_p50_pct_of_equity": 11.18,
+          "mdd_p50_pct_of_equity_k05": 14.12,
+          "mdd_p50_usd": 291812.01,
+          "mdd_p50_usd_k05": 757997.46,
+          "mdd_p90_usd": 696623.78,
+          "mdd_p90_usd_k05": 2566068.07,
+          "mdd_p95_pct_of_equity": 33.91,
+          "mdd_p95_pct_of_equity_k05": 66.13,
+          "mdd_p95_usd": 884979.27,
+          "mdd_p95_usd_k05": 3550725.55,
+          "median_equity_usd": 2609664.57,
+          "median_equity_usd_k05": 5369231.52,
+          "median_pnl_usd": 2559664.57,
+          "median_pnl_usd_k05": 5319231.52,
           "months": 36
+        },
+        {
+          "level_capped": false,
+          "level_capped_k05": false,
+          "mdd_p50_pct_of_equity": 10.62,
+          "mdd_p50_pct_of_equity_k05": 13.81,
+          "mdd_p50_usd": 685088.37,
+          "mdd_p50_usd_k05": 2624168.03,
+          "mdd_p90_usd": 1745644.06,
+          "mdd_p90_usd_k05": 6717345.26,
+          "mdd_p95_pct_of_equity": 35.59,
+          "mdd_p95_pct_of_equity_k05": 41.74,
+          "mdd_p95_usd": 2296260.22,
+          "mdd_p95_usd_k05": 7932380.25,
+          "median_equity_usd": 6451244.03,
+          "median_equity_usd_k05": 19002561.52,
+          "median_pnl_usd": 6401244.03,
+          "median_pnl_usd_k05": 18952561.52,
+          "months": 48
+        },
+        {
+          "level_capped": false,
+          "level_capped_k05": true,
+          "mdd_p50_pct_of_equity": 10.71,
+          "mdd_p50_pct_of_equity_k05": 10.15,
+          "mdd_p50_usd": 1612399.29,
+          "mdd_p50_usd_k05": 5783580.25,
+          "mdd_p90_usd": 4346549.33,
+          "mdd_p90_usd_k05": 9666252.0,
+          "mdd_p95_pct_of_equity": 38.59,
+          "mdd_p95_pct_of_equity_k05": 19.41,
+          "mdd_p95_usd": 5807259.86,
+          "mdd_p95_usd_k05": 11056640.5,
+          "median_equity_usd": 15048806.71,
+          "median_equity_usd_k05": 56978096.86,
+          "median_pnl_usd": 14998806.71,
+          "median_pnl_usd_k05": 56928096.86,
+          "months": 60
         }
       ],
+      "level_capped_any_horizon": true,
       "n_paths": 2000,
+      "overlay_b_usd": 20000.0,
+      "overlay_k": 0.5,
+      "overlay_p0_usd": 50000.0,
       "start_equity_usd": 50000.0
     },
     "le_leg": {
@@ -245,48 +368,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 7686.25,
-          "high": 7687.75,
-          "low": 7684.5,
-          "open": 7687.0,
-          "ts": "2026-10-16T19:01:00+00:00"
-        },
-        {
-          "close": 7689.25,
-          "high": 7690.0,
-          "low": 7685.75,
-          "open": 7686.25,
-          "ts": "2026-10-16T19:02:00+00:00"
-        },
-        {
-          "close": 7683.75,
-          "high": 7689.5,
-          "low": 7683.25,
-          "open": 7689.5,
-          "ts": "2026-10-16T19:03:00+00:00"
-        },
-        {
-          "close": 7683.5,
-          "high": 7684.25,
-          "low": 7682.0,
-          "open": 7683.5,
-          "ts": "2026-10-16T19:04:00+00:00"
-        },
-        {
-          "close": 7685.25,
-          "high": 7685.5,
-          "low": 7682.25,
-          "open": 7683.75,
-          "ts": "2026-10-16T19:05:00+00:00"
-        },
-        {
-          "close": 7678.25,
-          "high": 7687.75,
-          "low": 7677.75,
-          "open": 7685.25,
-          "ts": "2026-10-16T19:06:00+00:00"
-        },
         {
           "close": 7677.5,
           "high": 7679.0,
@@ -1492,7 +1573,7 @@
       "overlay_target_price": null,
       "phase": "EXITED",
       "session": "2026-10-16",
-      "stream_health": "HEALTHY",
+      "stream_health": "STALE",
       "total_pnl_usd": 686.34,
       "unrealized_pnl_usd": null
     },
@@ -1505,48 +1586,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 7686.25,
-          "high": 7687.75,
-          "low": 7684.5,
-          "open": 7687.0,
-          "ts": "2026-10-16T19:01:00+00:00"
-        },
-        {
-          "close": 7689.25,
-          "high": 7690.0,
-          "low": 7685.75,
-          "open": 7686.25,
-          "ts": "2026-10-16T19:02:00+00:00"
-        },
-        {
-          "close": 7683.75,
-          "high": 7689.5,
-          "low": 7683.25,
-          "open": 7689.5,
-          "ts": "2026-10-16T19:03:00+00:00"
-        },
-        {
-          "close": 7683.5,
-          "high": 7684.25,
-          "low": 7682.0,
-          "open": 7683.5,
-          "ts": "2026-10-16T19:04:00+00:00"
-        },
-        {
-          "close": 7685.25,
-          "high": 7685.5,
-          "low": 7682.25,
-          "open": 7683.75,
-          "ts": "2026-10-16T19:05:00+00:00"
-        },
-        {
-          "close": 7678.25,
-          "high": 7687.75,
-          "low": 7677.75,
-          "open": 7685.25,
-          "ts": "2026-10-16T19:06:00+00:00"
-        },
         {
           "close": 7677.5,
           "high": 7679.0,
@@ -2346,7 +2385,7 @@
       "overlay_target_price": null,
       "phase": "SKIPPED",
       "session": "2026-10-16",
-      "stream_health": "HEALTHY",
+      "stream_health": "STALE",
       "total_pnl_usd": 0,
       "unrealized_pnl_usd": null
     },
@@ -2359,48 +2398,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 4179.3,
-          "high": 4180.5,
-          "low": 4179.3,
-          "open": 4180.2,
-          "ts": "2026-10-16T19:01:00+00:00"
-        },
-        {
-          "close": 4181.3,
-          "high": 4181.4,
-          "low": 4179.5,
-          "open": 4179.6,
-          "ts": "2026-10-16T19:02:00+00:00"
-        },
-        {
-          "close": 4180.1,
-          "high": 4181.4,
-          "low": 4179.4,
-          "open": 4181.2,
-          "ts": "2026-10-16T19:03:00+00:00"
-        },
-        {
-          "close": 4179.7,
-          "high": 4180.3,
-          "low": 4179.1,
-          "open": 4180.2,
-          "ts": "2026-10-16T19:04:00+00:00"
-        },
-        {
-          "close": 4180.6,
-          "high": 4180.7,
-          "low": 4179.6,
-          "open": 4179.7,
-          "ts": "2026-10-16T19:05:00+00:00"
-        },
-        {
-          "close": 4181.9,
-          "high": 4182.3,
-          "low": 4180.4,
-          "open": 4180.5,
-          "ts": "2026-10-16T19:06:00+00:00"
-        },
         {
           "close": 4182.1,
           "high": 4183.2,
@@ -3606,7 +3603,7 @@
       "overlay_target_price": null,
       "phase": "EXITED",
       "session": "2026-10-16",
-      "stream_health": "HEALTHY",
+      "stream_health": "STALE",
       "total_pnl_usd": -282.0,
       "unrealized_pnl_usd": null
     },
@@ -3619,48 +3616,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 4179.3,
-          "high": 4180.5,
-          "low": 4179.3,
-          "open": 4180.2,
-          "ts": "2026-10-16T19:01:00+00:00"
-        },
-        {
-          "close": 4181.3,
-          "high": 4181.4,
-          "low": 4179.5,
-          "open": 4179.6,
-          "ts": "2026-10-16T19:02:00+00:00"
-        },
-        {
-          "close": 4180.1,
-          "high": 4181.4,
-          "low": 4179.4,
-          "open": 4181.2,
-          "ts": "2026-10-16T19:03:00+00:00"
-        },
-        {
-          "close": 4179.7,
-          "high": 4180.3,
-          "low": 4179.1,
-          "open": 4180.2,
-          "ts": "2026-10-16T19:04:00+00:00"
-        },
-        {
-          "close": 4180.6,
-          "high": 4180.7,
-          "low": 4179.6,
-          "open": 4179.7,
-          "ts": "2026-10-16T19:05:00+00:00"
-        },
-        {
-          "close": 4181.9,
-          "high": 4182.3,
-          "low": 4180.4,
-          "open": 4180.5,
-          "ts": "2026-10-16T19:06:00+00:00"
-        },
         {
           "close": 4182.1,
           "high": 4183.2,
@@ -4460,7 +4415,7 @@
       "overlay_target_price": null,
       "phase": "SKIPPED",
       "session": "2026-10-16",
-      "stream_health": "HEALTHY",
+      "stream_health": "STALE",
       "total_pnl_usd": 123.0,
       "unrealized_pnl_usd": null
     },
@@ -4473,48 +4428,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 29336.0,
-          "high": 29349.75,
-          "low": 29328.0,
-          "open": 29347.0,
-          "ts": "2026-10-16T19:01:00+00:00"
-        },
-        {
-          "close": 29355.75,
-          "high": 29357.5,
-          "low": 29333.75,
-          "open": 29336.25,
-          "ts": "2026-10-16T19:02:00+00:00"
-        },
-        {
-          "close": 29326.5,
-          "high": 29356.75,
-          "low": 29322.75,
-          "open": 29356.5,
-          "ts": "2026-10-16T19:03:00+00:00"
-        },
-        {
-          "close": 29321.0,
-          "high": 29328.75,
-          "low": 29313.5,
-          "open": 29326.25,
-          "ts": "2026-10-16T19:04:00+00:00"
-        },
-        {
-          "close": 29328.75,
-          "high": 29329.0,
-          "low": 29312.25,
-          "open": 29321.0,
-          "ts": "2026-10-16T19:05:00+00:00"
-        },
-        {
-          "close": 29287.25,
-          "high": 29341.5,
-          "low": 29279.0,
-          "open": 29328.75,
-          "ts": "2026-10-16T19:06:00+00:00"
-        },
         {
           "close": 29275.25,
           "high": 29288.75,
@@ -5720,7 +5633,7 @@
       "overlay_target_price": 29628.59375,
       "phase": "EXITED",
       "session": "2026-10-16",
-      "stream_health": "HEALTHY",
+      "stream_health": "STALE",
       "total_pnl_usd": 3340.0,
       "unrealized_pnl_usd": null
     },
@@ -5735,7 +5648,7 @@
       "order_qty": 1,
       "phase": "NO_TRADE",
       "session": "2026-10-16",
-      "stream_health": "HEALTHY",
+      "stream_health": "STALE",
       "total_pnl_usd": 1824.42
     },
     "outage_retro_sessions": [
@@ -5819,48 +5732,6 @@
     },
     "t1_leg": {
       "ohlc_bars": [
-        {
-          "close": 29336.0,
-          "high": 29349.75,
-          "low": 29328.0,
-          "open": 29347.0,
-          "ts": "2026-10-16T19:01:00+00:00"
-        },
-        {
-          "close": 29355.75,
-          "high": 29357.5,
-          "low": 29333.75,
-          "open": 29336.25,
-          "ts": "2026-10-16T19:02:00+00:00"
-        },
-        {
-          "close": 29326.5,
-          "high": 29356.75,
-          "low": 29322.75,
-          "open": 29356.5,
-          "ts": "2026-10-16T19:03:00+00:00"
-        },
-        {
-          "close": 29321.0,
-          "high": 29328.75,
-          "low": 29313.5,
-          "open": 29326.25,
-          "ts": "2026-10-16T19:04:00+00:00"
-        },
-        {
-          "close": 29328.75,
-          "high": 29329.0,
-          "low": 29312.25,
-          "open": 29321.0,
-          "ts": "2026-10-16T19:05:00+00:00"
-        },
-        {
-          "close": 29287.25,
-          "high": 29341.5,
-          "low": 29279.0,
-          "open": 29328.75,
-          "ts": "2026-10-16T19:06:00+00:00"
-        },
         {
           "close": 29275.25,
           "high": 29288.75,
@@ -6722,7 +6593,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-16T21:00:47.836775Z",
+  "data_as_of_utc": "2026-10-16T21:06:37.551143Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -6872,7 +6743,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-16T21:00:47.836775Z",
+  "generated_at_utc": "2026-10-16T21:06:37.551143Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -7390,7 +7261,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "in_position": false,
-    "market_data_state": "LIVE",
+    "market_data_state": "STALE",
     "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
