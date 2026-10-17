@@ -508,6 +508,14 @@ def render_projection(snapshot: dict[str, Any]) -> None:
                f"equity, same as plain P2 above)")
     st.dataframe(_build_table("_k05"), hide_index=True, width="stretch", column_config=column_config)
 
+    if "ladder_scale_6e" in hr:
+        s6e = hr["ladder_scale_6e"]
+        st.caption(f"**+6E (Euro FX), risk-matched, ladder scaled x{s6e}** -- PROMOTED RESEARCH CANDIDATE, "
+                   f"NOT LIVE (parity + margin confirmed, contract-matcher wiring and shadow run still pending). "
+                   f"Signal on 6E.v.0, sized in full-size 6E-equivalent units = the same shared ladder level; "
+                   f"ladder scaled down to redirect that risk into 6E, same paths as the two tables above.")
+        st.dataframe(_build_table("_6e"), hide_index=True, width="stretch", column_config=column_config)
+
     st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
                "equity, but shrink as a SHARE of the account once it's grown enough to absorb them. Profit is the "
                "other side of the same simulated paths -- same horizon, same sizing policy within each table. "
