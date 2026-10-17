@@ -516,6 +516,13 @@ def render_projection(snapshot: dict[str, Any]) -> None:
                    f"ladder scaled down to redirect that risk into 6E, same paths as the two tables above.")
         st.dataframe(_build_table("_6e"), hide_index=True, width="stretch", column_config=column_config)
 
+    if "median_equity_usd_6e_k05" in horizons[0]:
+        st.caption(f"**+6E + k={k} overlay, combined** -- stacking both mechanisms, same ladder_scale_6e=x{s6e} "
+                   f"(NOT re-optimized for this joint case -- the overlay inflates the ladder's effective equity "
+                   f"input too, so a true jointly risk-matched scale would likely differ; treat this as two "
+                   f"already-examined mechanisms stacked, not a freshly risk-matched 4th policy). Also NOT LIVE.")
+        st.dataframe(_build_table("_6e_k05"), hide_index=True, width="stretch", column_config=column_config)
+
     st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
                "equity, but shrink as a SHARE of the account once it's grown enough to absorb them. Profit is the "
                "other side of the same simulated paths -- same horizon, same sizing policy within each table. "
