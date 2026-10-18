@@ -516,18 +516,21 @@ def render_projection(snapshot: dict[str, Any]) -> None:
                    f"ladder scaled down to redirect that risk into 6E, same paths as the two tables above.")
         st.dataframe(_build_table("_6e"), hide_index=True, width="stretch", column_config=column_config)
 
-    if "median_equity_usd_6e_k05" in horizons[0]:
-        s_joint = hr.get("ladder_scale_6e_k05")
-        st.caption(f"**+6E + k={k} overlay, JOINTLY risk-matched (ladder x{s_joint})** -- NOT LIVE. An earlier "
-                   f"version of this panel reused 6E-alone's scale (x{s6e}) for this combined case and looked "
-                   f"like a new champion (~$40M median at 60mo); that was an artifact of comparing an "
-                   f"under-risk-matched combination against a properly-matched baseline. Once the ladder is cut "
-                   f"enough to hold total risk constant for BOTH mechanisms stacked, the result FLIPS: this "
-                   f"combined policy is actually WORSE than 6E alone on both terminal wealth and MDD% at every "
-                   f"horizon shown below -- giving up that much ladder sizing costs more than either lever adds "
-                   f"back. At fair, equal-risk comparison, stacking these two levers is dominated by using 6E "
-                   f"alone, not a 'better' policy.")
-        st.dataframe(_build_table("_6e_k05"), hide_index=True, width="stretch", column_config=column_config)
+    if "median_equity_usd_staged" in horizons[0]:
+        thresh = hr.get("e6_activation_threshold")
+        st.caption(f"**LEADING combined-policy candidate: Wheel + k={k} (unscaled, from the start) + 6E "
+                   f"gated at ${thresh:,.0f}** -- NOT LIVE. k=0.5 overlay runs exactly as already approved "
+                   f"(ladder never shrunk); 6E stays off until equity first reaches ${thresh:,.0f} (= 2x the "
+                   f"original $50k protected principal -- a pre-defensible capital milestone, not a fitted "
+                   f"parameter), then activates PERMANENTLY (sticky -- stays on even if equity later dips back "
+                   f"below), sized from REAL equity, never the overlay's inflated E_eff. A paired comparison "
+                   f"(same bootstrap draws, not shown in this table) found this captures ~84% of always-on 6E's "
+                   f"incremental median terminal wealth while cutting the rate of a NEW sub-$50k breach "
+                   f"Wheel+k=0.5 alone wouldn't have hit from 5.3% to 0.1%. An always-on combination of both "
+                   f"mechanisms sharing one risk budget (tested, not shown here) was actively WORSE than 6E "
+                   f"alone on both terminal wealth and MDD -- gating WHEN 6E turns on, rather than shrinking "
+                   f"everything to share a risk budget, is what makes this combination actually work.")
+        st.dataframe(_build_table("_staged"), hide_index=True, width="stretch", column_config=column_config)
 
     st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
                "equity, but shrink as a SHARE of the account once it's grown enough to absorb them. Profit is the "
