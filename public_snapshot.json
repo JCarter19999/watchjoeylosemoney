@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-18T01:15:47.718113Z",
+      "as_of_utc": "2026-10-18T01:30:47.398104Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -553,7 +553,7 @@
       "overlay_target_price": null,
       "phase": "EXITED",
       "session": "2026-10-16",
-      "stream_health": "STALE",
+      "stream_health": "BOOT",
       "total_pnl_usd": 686.34,
       "unrealized_pnl_usd": null
     },
@@ -593,7 +593,7 @@
       "overlay_target_price": null,
       "phase": "EXITED",
       "session": "2026-10-16",
-      "stream_health": "STALE",
+      "stream_health": "BOOT",
       "total_pnl_usd": -282.0,
       "unrealized_pnl_usd": null
     },
@@ -633,7 +633,7 @@
       "overlay_target_price": 29628.59375,
       "phase": "EXITED",
       "session": "2026-10-16",
-      "stream_health": "STALE",
+      "stream_health": "BOOT",
       "total_pnl_usd": 3340.0,
       "unrealized_pnl_usd": null
     },
@@ -801,7 +801,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-18T01:15:47.824238Z",
+  "data_as_of_utc": "2026-10-18T01:30:47.562993Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -951,7 +951,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-18T01:15:47.824238Z",
+  "generated_at_utc": "2026-10-18T01:30:47.562993Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
