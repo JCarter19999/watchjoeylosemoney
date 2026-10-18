@@ -480,10 +480,10 @@ def render_projection(snapshot: dict[str, Any]) -> None:
             "Median profit ($)": f(h, "median_pnl_usd"),
             "Median equity ($)": f(h, "median_equity_usd"),
             "MDD typical, P50 ($)": f(h, "mdd_p50_usd"),
-            "MDD typical, P50 (% equity)": f(h, "mdd_p50_pct_of_equity"),
+            "MDD typical, P50 (% of terminal equity)": f(h, "mdd_p50_pct_of_terminal_equity"),
             "MDD bad, P90 ($)": f(h, "mdd_p90_usd"),
             "MDD very bad, P95 ($)": f(h, "mdd_p95_usd"),
-            "MDD very bad, P95 (% equity)": f(h, "mdd_p95_pct_of_equity"),
+            "MDD very bad, P95 (% of terminal equity)": f(h, "mdd_p95_pct_of_terminal_equity"),
             "Note": "ladder hit sanity cap" if f(h, "level_capped") else "",
         } for h in horizons])
 
@@ -492,10 +492,10 @@ def render_projection(snapshot: dict[str, Any]) -> None:
         "Median profit ($)": st.column_config.NumberColumn(format="$%,.0f"),
         "Median equity ($)": st.column_config.NumberColumn(format="$%,.0f"),
         "MDD typical, P50 ($)": st.column_config.NumberColumn(format="$%,.0f"),
-        "MDD typical, P50 (% equity)": st.column_config.NumberColumn(format="%.1f%%"),
+        "MDD typical, P50 (% of terminal equity)": st.column_config.NumberColumn(format="%.1f%%"),
         "MDD bad, P90 ($)": st.column_config.NumberColumn(format="$%,.0f"),
         "MDD very bad, P95 ($)": st.column_config.NumberColumn(format="$%,.0f"),
-        "MDD very bad, P95 (% equity)": st.column_config.NumberColumn(format="%.1f%%"),
+        "MDD very bad, P95 (% of terminal equity)": st.column_config.NumberColumn(format="%.1f%%"),
     }
 
     st.caption("**Plain P2** (no overlay)")
@@ -517,10 +517,16 @@ def render_projection(snapshot: dict[str, Any]) -> None:
         st.dataframe(_build_table("_6e"), hide_index=True, width="stretch", column_config=column_config)
 
     if "median_equity_usd_6e_k05" in horizons[0]:
-        st.caption(f"**+6E + k={k} overlay, combined** -- stacking both mechanisms, same ladder_scale_6e=x{s6e} "
-                   f"(NOT re-optimized for this joint case -- the overlay inflates the ladder's effective equity "
-                   f"input too, so a true jointly risk-matched scale would likely differ; treat this as two "
-                   f"already-examined mechanisms stacked, not a freshly risk-matched 4th policy). Also NOT LIVE.")
+        s_joint = hr.get("ladder_scale_6e_k05")
+        st.caption(f"**+6E + k={k} overlay, JOINTLY risk-matched (ladder x{s_joint})** -- NOT LIVE. An earlier "
+                   f"version of this panel reused 6E-alone's scale (x{s6e}) for this combined case and looked "
+                   f"like a new champion (~$40M median at 60mo); that was an artifact of comparing an "
+                   f"under-risk-matched combination against a properly-matched baseline. Once the ladder is cut "
+                   f"enough to hold total risk constant for BOTH mechanisms stacked, the result FLIPS: this "
+                   f"combined policy is actually WORSE than 6E alone on both terminal wealth and MDD% at every "
+                   f"horizon shown below -- giving up that much ladder sizing costs more than either lever adds "
+                   f"back. At fair, equal-risk comparison, stacking these two levers is dominated by using 6E "
+                   f"alone, not a 'better' policy.")
         st.dataframe(_build_table("_6e_k05"), hide_index=True, width="stretch", column_config=column_config)
 
     st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
