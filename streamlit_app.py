@@ -126,7 +126,7 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     if mnq_u is not None:
         rows.append(("T1 / MNQ", mnq_u))
     for key, label in (("mes", "MES H60"), ("mgc", "MGC H60"), ("mnqcont", "MNQ Continuation"),
-                        ("mgc10", "MGC Tail (10R)"), ("mes2r", "MES Tail (2R)")):
+                        ("mgc10", "MGC Tail (10R)"), ("mes2r", "MES Tail (2R)"), ("m6e", "M6E H60")):
         g_leg = (snapshot.get("dashboard_extras") or {}).get(f"{key}_leg")
         if g_leg and g_leg.get("unrealized_pnl_usd") is not None:
             rows.append((label, g_leg["unrealized_pnl_usd"]))
@@ -139,7 +139,7 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
 
 
 _CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Continuation"),
-                     ("mes_leg", "MES 1R"), ("mgc_leg", "MGC 1R")]
+                     ("mes_leg", "MES 1R"), ("mgc_leg", "MGC 1R"), ("m6e_leg", "M6E 1R")]
 _ENTRY_COLOR, _TARGET_COLOR, _STOP_COLOR = "#9aa4b2", "#3ecf8e", "#e34948"
 
 

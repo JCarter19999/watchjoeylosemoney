@@ -81,6 +81,7 @@ MGC_RUNTIME="$LIVE_REPO/runtime_mgc_paper"
 MNQCONT_RUNTIME="$LIVE_REPO/runtime_mnqcont_paper"
 MGC10_RUNTIME="$LIVE_REPO/runtime_mgc10_paper"
 MES2R_RUNTIME="$LIVE_REPO/runtime_mes2r_paper"
+M6E_RUNTIME="$LIVE_REPO/runtime_m6e_paper"
 # Ops health control plane (scripts/ops_health_check.py, 2026-10-19) -- read-only pass-through
 # of its own fleet_status.json, same additive convention as projection/horizon_risk below.
 OPS_HEALTH_JSON="$LIVE_REPO/runtime_ops/fleet_status.json"
@@ -164,6 +165,13 @@ EXTRA_MES2R_ARGS=()
 if [ -f "$MES2R_RUNTIME/live_status.json" ]; then
   EXTRA_MES2R_ARGS=(--mes2r-status "$MES2R_RUNTIME/live_status.json" --mes2r-trades "$MES2R_RUNTIME/mes2r_trades.jsonl")
 fi
+# M6E leg -- same additive convention, added 2026-10-19. No m6e_trades.jsonl exists yet (no
+# closed trade has happened), same already-handled "optional, defaults to /nonexistent" case
+# every other leg's exporter arg already covers.
+EXTRA_M6E_ARGS=()
+if [ -f "$M6E_RUNTIME/live_status.json" ]; then
+  EXTRA_M6E_ARGS=(--m6e-status "$M6E_RUNTIME/live_status.json" --m6e-trades "$M6E_RUNTIME/m6e_trades.jsonl")
+fi
 EIA_HO_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_ho.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 EIA_RB_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_rb.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 LE_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$LE_RUNTIME/live_status.json')).get('order_qty',0))" 2>/dev/null || echo 0)
@@ -222,6 +230,7 @@ PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.expor
   "${EXTRA_MNQCONT_ARGS[@]}" \
   "${EXTRA_MGC10_ARGS[@]}" \
   "${EXTRA_MES2R_ARGS[@]}" \
+  "${EXTRA_M6E_ARGS[@]}" \
   "${EXTRA_PROJECTION_ARGS[@]}" \
   "${EXTRA_HORIZON_RISK_ARGS[@]}" \
   "${EXTRA_OPS_HEALTH_ARGS[@]}"
