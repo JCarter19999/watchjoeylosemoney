@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-19T21:30:47.014078Z",
+      "as_of_utc": "2026-10-19T21:45:46.021660Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -554,111 +554,6 @@
       "ohlc_bars": [
         {
           "close": 1.1237,
-          "high": 1.12375,
-          "low": 1.1237,
-          "open": 1.12375,
-          "ts": "2026-10-19T19:31:00+00:00"
-        },
-        {
-          "close": 1.1237,
-          "high": 1.1237,
-          "low": 1.1237,
-          "open": 1.1237,
-          "ts": "2026-10-19T19:32:00+00:00"
-        },
-        {
-          "close": 1.12375,
-          "high": 1.1238,
-          "low": 1.1237,
-          "open": 1.1237,
-          "ts": "2026-10-19T19:33:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.1238,
-          "low": 1.12375,
-          "open": 1.12375,
-          "ts": "2026-10-19T19:34:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.1238,
-          "low": 1.12375,
-          "open": 1.12375,
-          "ts": "2026-10-19T19:35:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.12385,
-          "low": 1.1238,
-          "open": 1.12385,
-          "ts": "2026-10-19T19:36:00+00:00"
-        },
-        {
-          "close": 1.12385,
-          "high": 1.12385,
-          "low": 1.1238,
-          "open": 1.1238,
-          "ts": "2026-10-19T19:37:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.1238,
-          "low": 1.12365,
-          "open": 1.12375,
-          "ts": "2026-10-19T19:38:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.1237,
-          "low": 1.12365,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:39:00+00:00"
-        },
-        {
-          "close": 1.1237,
-          "high": 1.1237,
-          "low": 1.12365,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:40:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.1237,
-          "low": 1.12365,
-          "open": 1.1237,
-          "ts": "2026-10-19T19:41:00+00:00"
-        },
-        {
-          "close": 1.1236,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:42:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:43:00+00:00"
-        },
-        {
-          "close": 1.1236,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:44:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.1236,
-          "ts": "2026-10-19T19:45:00+00:00"
-        },
-        {
-          "close": 1.1237,
           "high": 1.1237,
           "low": 1.12365,
           "open": 1.12365,
@@ -964,104 +859,6 @@
           "low": 1.12375,
           "open": 1.12375,
           "ts": "2026-10-19T20:30:00+00:00"
-        },
-        {
-          "close": 1.1237,
-          "high": 1.1237,
-          "low": 1.1237,
-          "open": 1.1237,
-          "ts": "2026-10-19T19:32:00+00:00"
-        },
-        {
-          "close": 1.12375,
-          "high": 1.1238,
-          "low": 1.1237,
-          "open": 1.1237,
-          "ts": "2026-10-19T19:33:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.1238,
-          "low": 1.12375,
-          "open": 1.12375,
-          "ts": "2026-10-19T19:34:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.1238,
-          "low": 1.12375,
-          "open": 1.12375,
-          "ts": "2026-10-19T19:35:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.12385,
-          "low": 1.1238,
-          "open": 1.12385,
-          "ts": "2026-10-19T19:36:00+00:00"
-        },
-        {
-          "close": 1.12385,
-          "high": 1.12385,
-          "low": 1.1238,
-          "open": 1.1238,
-          "ts": "2026-10-19T19:37:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.1238,
-          "low": 1.12365,
-          "open": 1.12375,
-          "ts": "2026-10-19T19:38:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.1237,
-          "low": 1.12365,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:39:00+00:00"
-        },
-        {
-          "close": 1.1237,
-          "high": 1.1237,
-          "low": 1.12365,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:40:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.1237,
-          "low": 1.12365,
-          "open": 1.1237,
-          "ts": "2026-10-19T19:41:00+00:00"
-        },
-        {
-          "close": 1.1236,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:42:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:43:00+00:00"
-        },
-        {
-          "close": 1.1236,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:44:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.1236,
-          "ts": "2026-10-19T19:45:00+00:00"
         },
         {
           "close": 1.1237,
@@ -1377,90 +1174,6 @@
           "low": 1.12375,
           "open": 1.12375,
           "ts": "2026-10-19T20:31:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.1238,
-          "low": 1.12375,
-          "open": 1.12375,
-          "ts": "2026-10-19T19:34:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.1238,
-          "low": 1.12375,
-          "open": 1.12375,
-          "ts": "2026-10-19T19:35:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.12385,
-          "low": 1.1238,
-          "open": 1.12385,
-          "ts": "2026-10-19T19:36:00+00:00"
-        },
-        {
-          "close": 1.12385,
-          "high": 1.12385,
-          "low": 1.1238,
-          "open": 1.1238,
-          "ts": "2026-10-19T19:37:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.1238,
-          "low": 1.12365,
-          "open": 1.12375,
-          "ts": "2026-10-19T19:38:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.1237,
-          "low": 1.12365,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:39:00+00:00"
-        },
-        {
-          "close": 1.1237,
-          "high": 1.1237,
-          "low": 1.12365,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:40:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.1237,
-          "low": 1.12365,
-          "open": 1.1237,
-          "ts": "2026-10-19T19:41:00+00:00"
-        },
-        {
-          "close": 1.1236,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:42:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:43:00+00:00"
-        },
-        {
-          "close": 1.1236,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.12365,
-          "ts": "2026-10-19T19:44:00+00:00"
-        },
-        {
-          "close": 1.12365,
-          "high": 1.12365,
-          "low": 1.1236,
-          "open": 1.1236,
-          "ts": "2026-10-19T19:45:00+00:00"
         },
         {
           "close": 1.1237,
@@ -2072,7 +1785,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-19T21:30:01.922902+00:00",
+      "generated_at": "2026-10-19T21:45:01.660399+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -2080,7 +1793,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
+          "bar_age_sec": 0.4,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -2096,8 +1809,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 1801.9,
-          "heartbeat_age_sec": 1436.0,
+          "bar_age_sec": 2701.6,
+          "heartbeat_age_sec": 2335.8,
           "last_alert": "2026-10-19T20:33:29.533135+00:00 restart reconciliation: local state says IN_POSITION but the broker is flat on the managed contract -- treating as exited (a fill may have completed while the process was down)",
           "managed": false,
           "position_state": "FLAT",
@@ -2116,8 +1829,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 16201.9,
-          "heartbeat_age_sec": 16191.4,
+          "bar_age_sec": 17101.6,
+          "heartbeat_age_sec": 17091.1,
           "last_alert": "2026-10-19T14:12:01Z watchdog[mes] killed hung pid 3097465 (heartbeat 212s)",
           "managed": true,
           "position_state": "LONG 10",
@@ -2135,8 +1848,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 16201.9,
-          "heartbeat_age_sec": 16195.6,
+          "bar_age_sec": 17101.6,
+          "heartbeat_age_sec": 17095.3,
           "last_alert": "2026-10-16T22:12:02Z watchdog[mes2r] killed pid 2902061: no bar received for 4322s",
           "managed": true,
           "position_state": "LONG 1",
@@ -2154,8 +1867,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 16201.9,
-          "heartbeat_age_sec": 16194.8,
+          "bar_age_sec": 17101.6,
+          "heartbeat_age_sec": 17094.5,
           "last_alert": "2026-10-19T14:34:07.485053+00:00 ANOMALOUS ENTRY_SLIPPAGE_CHECK 2026-10-19: filled 4165.9 vs market reference 4166.9 (+10 ticks, $+100.00)",
           "managed": true,
           "position_state": "SHORT 10",
@@ -2173,8 +1886,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 16201.9,
-          "heartbeat_age_sec": 16194.0,
+          "bar_age_sec": 17101.6,
+          "heartbeat_age_sec": 17093.7,
           "last_alert": "2026-10-16T22:22:01Z watchdog[mgc10]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "SHORT 2",
@@ -2192,8 +1905,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 15241.9,
-          "heartbeat_age_sec": 15203.5,
+          "bar_age_sec": 16141.6,
+          "heartbeat_age_sec": 16103.3,
           "last_alert": "2026-10-16T22:22:01Z watchdog[mnqcont]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
@@ -2211,8 +1924,8 @@
             "expires": "2026-10-21",
             "state": "EXPIRING_SOON"
           },
-          "bar_age_sec": 15241.9,
-          "heartbeat_age_sec": 15204.5,
+          "bar_age_sec": 16141.6,
+          "heartbeat_age_sec": 16104.2,
           "last_alert": "2026-10-19T17:06:01Z watchdog: PA feed quiet for 341761s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -2378,7 +2091,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-19T21:30:47.168108Z",
+  "data_as_of_utc": "2026-10-19T21:45:46.127774Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -2528,7 +2241,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-19T21:30:47.168108Z",
+  "generated_at_utc": "2026-10-19T21:45:46.127774Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
