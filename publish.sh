@@ -81,6 +81,9 @@ MGC_RUNTIME="$LIVE_REPO/runtime_mgc_paper"
 MNQCONT_RUNTIME="$LIVE_REPO/runtime_mnqcont_paper"
 MGC10_RUNTIME="$LIVE_REPO/runtime_mgc10_paper"
 MES2R_RUNTIME="$LIVE_REPO/runtime_mes2r_paper"
+# Ops health control plane (scripts/ops_health_check.py, 2026-10-19) -- read-only pass-through
+# of its own fleet_status.json, same additive convention as projection/horizon_risk below.
+OPS_HEALTH_JSON="$LIVE_REPO/runtime_ops/fleet_status.json"
 PRIVATE_SNAPSHOT="$LIVE_REPO/runtime_t1_demo/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
@@ -199,6 +202,10 @@ EXTRA_HORIZON_RISK_ARGS=()
 if [ -f "$HORIZON_RISK_JSON" ]; then
   EXTRA_HORIZON_RISK_ARGS=(--horizon-risk "$HORIZON_RISK_JSON")
 fi
+EXTRA_OPS_HEALTH_ARGS=()
+if [ -f "$OPS_HEALTH_JSON" ]; then
+  EXTRA_OPS_HEALTH_ARGS=(--ops-health "$OPS_HEALTH_JSON")
+fi
 
 PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_t1_private_snapshot \
   --trades "$T1_RUNTIME/t1_trades.jsonl" \
@@ -216,7 +223,8 @@ PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.expor
   "${EXTRA_MGC10_ARGS[@]}" \
   "${EXTRA_MES2R_ARGS[@]}" \
   "${EXTRA_PROJECTION_ARGS[@]}" \
-  "${EXTRA_HORIZON_RISK_ARGS[@]}"
+  "${EXTRA_HORIZON_RISK_ARGS[@]}" \
+  "${EXTRA_OPS_HEALTH_ARGS[@]}"
 
 cd "$WEB_REPO"
 "$WEB_REPO/.venv/bin/python3" sanitizer.py \

@@ -454,6 +454,38 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
     st.caption(f"As of {format_pst(dist['as_of_utc'])}. Reflects live order size right now, not the size any past trade in the ledger below was taken at. SHADOW = tracked for research, no real orders placed.")
 
 
+def render_ops_health(snapshot: dict[str, Any]) -> None:
+    """Deterministic ops health for the 7 watchdog-managed legs (dashboard_extras.ops_health,
+    written by live/scripts/ops_health_check.py). This is operational health only -- process
+    alive, stream/heartbeat freshness, broker-reconciliation flags, authorization expiry -- not
+    a read on whether any strategy is still statistically working (that's edge health, tracked
+    separately and not published here). Absent entirely on an older snapshot."""
+    ops = (snapshot.get("dashboard_extras") or {}).get("ops_health")
+    if not ops or not ops.get("legs"):
+        return
+    st.subheader("Process health")
+    icons = {"HEALTHY": "\U0001F7E2", "WARNING": "\U0001F7E1", "DEGRADED": "\U0001F7E0",
+             "HALTED": "\U0001F534", "UNKNOWN": "⚫"}
+    overall = ops.get("overall_state", "UNKNOWN")
+    st.markdown(f"**Fleet: {icons.get(overall, '')} {overall}**")
+    labels = {"t1": "T1 / MNQ", "mnqcont": "MNQ Continuation", "mes": "MES H60", "mgc": "MGC H60",
+              "mgc10": "MGC Tail (10R)", "mes2r": "MES Tail (2R)", "m6e": "M6E"}
+    rows = []
+    for key, leg in ops["legs"].items():
+        auth = leg.get("auth") or {}
+        days_left = auth.get("days_remaining")
+        rows.append({
+            "Leg": labels.get(key, key),
+            "State": f"{icons.get(leg.get('state'), '')} {leg.get('state')}",
+            "Stream": leg.get("stream_health") or "—",
+            "Position": leg.get("position_state") or "—",
+            "Auth": f"{days_left}d left" if days_left is not None else "—",
+            "Notes": ", ".join(leg.get("reasons") or []) or "—",
+        })
+    st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
+    st.caption(f"Operational health only, not strategy performance. As of {format_pst(ops['generated_at'])}.")
+
+
 def render_projection(snapshot: dict[str, Any]) -> None:
     """Horizon-matched risk curve for the full current 6-leg wheel (T1, MNQCONT, MES 1R, MGC 1R,
     MGC10, MES2R), written by scripts/project_wheel_horizon_risk.py. Replaced the single "projected
@@ -573,6 +605,7 @@ def live_dashboard() -> None:
     render_candlesticks(snapshot)
     render_metrics(snapshot)
     render_contract_distribution(snapshot)
+    render_ops_health(snapshot)
     render_projection(snapshot)
 
     if snapshot["mode"] == "LIVE":
