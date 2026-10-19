@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-19T20:46:12.739778Z",
+      "as_of_utc": "2026-10-19T21:01:12.131004Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -552,146 +552,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 2,
       "ohlc_bars": [
-        {
-          "close": 1.12385,
-          "high": 1.12385,
-          "low": 1.1238,
-          "open": 1.1238,
-          "ts": "2026-10-19T18:47:00+00:00"
-        },
-        {
-          "close": 1.1239,
-          "high": 1.1239,
-          "low": 1.12385,
-          "open": 1.12385,
-          "ts": "2026-10-19T18:48:00+00:00"
-        },
-        {
-          "close": 1.12395,
-          "high": 1.124,
-          "low": 1.12395,
-          "open": 1.12395,
-          "ts": "2026-10-19T18:49:00+00:00"
-        },
-        {
-          "close": 1.12395,
-          "high": 1.12395,
-          "low": 1.12395,
-          "open": 1.12395,
-          "ts": "2026-10-19T18:50:00+00:00"
-        },
-        {
-          "close": 1.12395,
-          "high": 1.12395,
-          "low": 1.12395,
-          "open": 1.12395,
-          "ts": "2026-10-19T18:51:00+00:00"
-        },
-        {
-          "close": 1.12385,
-          "high": 1.12385,
-          "low": 1.1238,
-          "open": 1.1238,
-          "ts": "2026-10-19T18:47:00+00:00"
-        },
-        {
-          "close": 1.1239,
-          "high": 1.1239,
-          "low": 1.12385,
-          "open": 1.12385,
-          "ts": "2026-10-19T18:48:00+00:00"
-        },
-        {
-          "close": 1.12395,
-          "high": 1.124,
-          "low": 1.12395,
-          "open": 1.12395,
-          "ts": "2026-10-19T18:49:00+00:00"
-        },
-        {
-          "close": 1.12395,
-          "high": 1.12395,
-          "low": 1.12395,
-          "open": 1.12395,
-          "ts": "2026-10-19T18:50:00+00:00"
-        },
-        {
-          "close": 1.12395,
-          "high": 1.12395,
-          "low": 1.12395,
-          "open": 1.12395,
-          "ts": "2026-10-19T18:51:00+00:00"
-        },
-        {
-          "close": 1.1239,
-          "high": 1.12395,
-          "low": 1.1239,
-          "open": 1.12395,
-          "ts": "2026-10-19T18:52:00+00:00"
-        },
-        {
-          "close": 1.12395,
-          "high": 1.12395,
-          "low": 1.1239,
-          "open": 1.1239,
-          "ts": "2026-10-19T18:53:00+00:00"
-        },
-        {
-          "close": 1.12385,
-          "high": 1.124,
-          "low": 1.12385,
-          "open": 1.124,
-          "ts": "2026-10-19T18:54:00+00:00"
-        },
-        {
-          "close": 1.1239,
-          "high": 1.1239,
-          "low": 1.1239,
-          "open": 1.1239,
-          "ts": "2026-10-19T18:55:00+00:00"
-        },
-        {
-          "close": 1.12395,
-          "high": 1.12395,
-          "low": 1.1239,
-          "open": 1.1239,
-          "ts": "2026-10-19T18:56:00+00:00"
-        },
-        {
-          "close": 1.12395,
-          "high": 1.124,
-          "low": 1.1239,
-          "open": 1.1239,
-          "ts": "2026-10-19T18:57:00+00:00"
-        },
-        {
-          "close": 1.12395,
-          "high": 1.124,
-          "low": 1.1239,
-          "open": 1.12395,
-          "ts": "2026-10-19T18:58:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.12395,
-          "low": 1.1238,
-          "open": 1.1239,
-          "ts": "2026-10-19T18:59:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.12385,
-          "low": 1.12375,
-          "open": 1.1238,
-          "ts": "2026-10-19T19:00:00+00:00"
-        },
-        {
-          "close": 1.1238,
-          "high": 1.1238,
-          "low": 1.1238,
-          "open": 1.1238,
-          "ts": "2026-10-19T19:01:00+00:00"
-        },
         {
           "close": 1.1238,
           "high": 1.12385,
@@ -2203,6 +2063,90 @@
           "low": 1.12355,
           "open": 1.1236,
           "ts": "2026-10-19T20:45:00+00:00"
+        },
+        {
+          "close": 1.12365,
+          "high": 1.12365,
+          "low": 1.12365,
+          "open": 1.12365,
+          "ts": "2026-10-19T20:46:00+00:00"
+        },
+        {
+          "close": 1.1236,
+          "high": 1.1237,
+          "low": 1.1236,
+          "open": 1.1237,
+          "ts": "2026-10-19T20:47:00+00:00"
+        },
+        {
+          "close": 1.1236,
+          "high": 1.1236,
+          "low": 1.1236,
+          "open": 1.1236,
+          "ts": "2026-10-19T20:49:00+00:00"
+        },
+        {
+          "close": 1.1236,
+          "high": 1.12365,
+          "low": 1.1236,
+          "open": 1.12365,
+          "ts": "2026-10-19T20:50:00+00:00"
+        },
+        {
+          "close": 1.1236,
+          "high": 1.1236,
+          "low": 1.1236,
+          "open": 1.1236,
+          "ts": "2026-10-19T20:51:00+00:00"
+        },
+        {
+          "close": 1.1236,
+          "high": 1.12365,
+          "low": 1.1236,
+          "open": 1.12365,
+          "ts": "2026-10-19T20:52:00+00:00"
+        },
+        {
+          "close": 1.1236,
+          "high": 1.1236,
+          "low": 1.1236,
+          "open": 1.1236,
+          "ts": "2026-10-19T20:53:00+00:00"
+        },
+        {
+          "close": 1.1236,
+          "high": 1.12365,
+          "low": 1.1236,
+          "open": 1.12365,
+          "ts": "2026-10-19T20:55:00+00:00"
+        },
+        {
+          "close": 1.1237,
+          "high": 1.1237,
+          "low": 1.1237,
+          "open": 1.1237,
+          "ts": "2026-10-19T20:56:00+00:00"
+        },
+        {
+          "close": 1.1238,
+          "high": 1.1238,
+          "low": 1.1237,
+          "open": 1.1237,
+          "ts": "2026-10-19T20:57:00+00:00"
+        },
+        {
+          "close": 1.12375,
+          "high": 1.12385,
+          "low": 1.12375,
+          "open": 1.1238,
+          "ts": "2026-10-19T20:58:00+00:00"
+        },
+        {
+          "close": 1.12385,
+          "high": 1.12385,
+          "low": 1.1237,
+          "open": 1.1238,
+          "ts": "2026-10-19T20:59:00+00:00"
         }
       ],
       "order_qty": 1,
@@ -2331,7 +2275,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-19T20:46:01.796029+00:00",
+      "generated_at": "2026-10-19T21:01:02.021749+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -2339,7 +2283,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.9,
+          "bar_age_sec": 2.1,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -2355,8 +2299,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 1.7,
-          "heartbeat_age_sec": 1.5,
+          "bar_age_sec": 62.0,
+          "heartbeat_age_sec": 1.3,
           "last_alert": "2026-10-19T20:33:29.533135+00:00 restart reconciliation: local state says IN_POSITION but the broker is flat on the managed contract -- treating as exited (a fill may have completed while the process was down)",
           "managed": false,
           "position_state": "FLAT",
@@ -2373,16 +2317,15 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 13561.7,
-          "heartbeat_age_sec": 13551.3,
+          "bar_age_sec": 14462.0,
+          "heartbeat_age_sec": 14451.5,
           "last_alert": "2026-10-19T14:12:01Z watchdog[mes] killed hung pid 3097465 (heartbeat 212s)",
           "managed": true,
           "position_state": "LONG 10",
           "process": "DEAD",
           "reasons": [
             "HEARTBEAT_STALE",
-            "PROCESS_DEAD",
-            "RAW_BAR_STALE"
+            "PROCESS_DEAD"
           ],
           "state": "HALTED",
           "stream_health": "HEALTHY"
@@ -2393,16 +2336,15 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 13561.7,
-          "heartbeat_age_sec": 13555.4,
+          "bar_age_sec": 14462.0,
+          "heartbeat_age_sec": 14455.7,
           "last_alert": "2026-10-16T22:12:02Z watchdog[mes2r] killed pid 2902061: no bar received for 4322s",
           "managed": true,
           "position_state": "LONG 1",
           "process": "DEAD",
           "reasons": [
             "HEARTBEAT_STALE",
-            "PROCESS_DEAD",
-            "RAW_BAR_STALE"
+            "PROCESS_DEAD"
           ],
           "state": "HALTED",
           "stream_health": "HEALTHY"
@@ -2413,16 +2355,15 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 13561.7,
-          "heartbeat_age_sec": 13554.6,
+          "bar_age_sec": 14462.0,
+          "heartbeat_age_sec": 14454.9,
           "last_alert": "2026-10-19T14:34:07.485053+00:00 ANOMALOUS ENTRY_SLIPPAGE_CHECK 2026-10-19: filled 4165.9 vs market reference 4166.9 (+10 ticks, $+100.00)",
           "managed": true,
           "position_state": "SHORT 10",
           "process": "DEAD",
           "reasons": [
             "HEARTBEAT_STALE",
-            "PROCESS_DEAD",
-            "RAW_BAR_STALE"
+            "PROCESS_DEAD"
           ],
           "state": "HALTED",
           "stream_health": "HEALTHY"
@@ -2433,16 +2374,15 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 13561.7,
-          "heartbeat_age_sec": 13553.9,
+          "bar_age_sec": 14462.0,
+          "heartbeat_age_sec": 14454.1,
           "last_alert": "2026-10-16T22:22:01Z watchdog[mgc10]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "SHORT 2",
           "process": "DEAD",
           "reasons": [
             "HEARTBEAT_STALE",
-            "PROCESS_DEAD",
-            "RAW_BAR_STALE"
+            "PROCESS_DEAD"
           ],
           "state": "HALTED",
           "stream_health": "HEALTHY"
@@ -2453,16 +2393,15 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 12601.7,
-          "heartbeat_age_sec": 12563.4,
+          "bar_age_sec": 13502.0,
+          "heartbeat_age_sec": 13463.6,
           "last_alert": "2026-10-16T22:22:01Z watchdog[mnqcont]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
           "process": "DEAD",
           "reasons": [
             "HEARTBEAT_STALE",
-            "PROCESS_DEAD",
-            "RAW_BAR_STALE"
+            "PROCESS_DEAD"
           ],
           "state": "HALTED",
           "stream_health": "HEALTHY"
@@ -2473,8 +2412,8 @@
             "expires": "2026-10-21",
             "state": "EXPIRING_SOON"
           },
-          "bar_age_sec": 12601.7,
-          "heartbeat_age_sec": 12564.3,
+          "bar_age_sec": 13502.0,
+          "heartbeat_age_sec": 13464.6,
           "last_alert": "2026-10-19T17:06:01Z watchdog: PA feed quiet for 341761s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -2482,8 +2421,7 @@
           "reasons": [
             "AUTH_EXPIRING",
             "HEARTBEAT_STALE",
-            "PROCESS_DEAD",
-            "RAW_BAR_STALE"
+            "PROCESS_DEAD"
           ],
           "state": "HALTED",
           "stream_health": "HEALTHY"
@@ -2641,7 +2579,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-19T20:46:13.029300Z",
+  "data_as_of_utc": "2026-10-19T21:01:12.375994Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -2791,7 +2729,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-19T20:46:13.029300Z",
+  "generated_at_utc": "2026-10-19T21:01:12.375994Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
