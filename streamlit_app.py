@@ -202,6 +202,12 @@ def render_candlesticks(snapshot: dict[str, Any]) -> None:
             title = label
             if unrealized is not None:
                 title += f" — unrealized {money(unrealized)}"
+            elif leg.get("phase") == "EXITED" and leg.get("total_pnl_usd") is not None:
+                # Real gap, 2026-10-20: a leg's realized session P&L (dashboard_extras.{key}.total_pnl_usd)
+                # was computed and published but never actually shown anywhere on the site once the
+                # position closed -- unrealized goes back to None on exit, so the caption just went
+                # blank right at the moment there was finally a closed trade worth showing.
+                title += f" — closed {money(leg['total_pnl_usd'])}"
             st.caption(title)
             st.altair_chart(_candlestick_chart(df, leg.get("overlay_entry_fill"), leg.get("overlay_direction"),
                                                leg.get("overlay_stop_price"), leg.get("overlay_target_price")),
