@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-20T02:01:09.823520Z",
+      "as_of_utc": "2026-10-20T02:16:10.308556Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -591,22 +591,7 @@
       "instrument": "MES",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
-      "ohlc_bars": [
-        {
-          "close": 7743.75,
-          "high": 7744.75,
-          "low": 7743.25,
-          "open": 7744.25,
-          "ts": "2026-10-20T00:02:00+00:00"
-        },
-        {
-          "close": 7744.75,
-          "high": 7745.0,
-          "low": 7742.75,
-          "open": 7743.75,
-          "ts": "2026-10-20T00:03:00+00:00"
-        }
-      ],
+      "ohlc_bars": [],
       "order_qty": 1,
       "overlay_direction": 1,
       "overlay_entry_fill": 7727.0,
@@ -693,7 +678,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-20T02:01:01.526521+00:00",
+      "generated_at": "2026-10-20T02:16:02.066528+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -701,7 +686,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.6,
+          "bar_age_sec": 1.8,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -717,8 +702,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 18061.5,
-          "heartbeat_age_sec": 17695.6,
+          "bar_age_sec": 18962.0,
+          "heartbeat_age_sec": 18596.2,
           "last_alert": "2026-10-19T20:33:29.533135+00:00 restart reconciliation: local state says IN_POSITION but the broker is flat on the managed contract -- treating as exited (a fill may have completed while the process was down)",
           "managed": false,
           "position_state": "FLAT",
@@ -738,8 +723,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 7021.5,
-          "heartbeat_age_sec": 4298.1,
+          "bar_age_sec": 7922.0,
+          "heartbeat_age_sec": 5198.6,
           "last_alert": "2026-10-20T00:22:19.850931+00:00 restart reconciliation: broker shows exposure on a root this leg shares with sibling services (positions=[('MESZ6', 1.0)], working_orders=['654413036034', '654413036035']) while local state is flat -- NOT touching it (could be a sibling's legitimate position); verify by hand before assuming anything is wrong.",
           "managed": true,
           "position_state": "FLAT",
@@ -758,8 +743,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 9121.5,
-          "heartbeat_age_sec": 4232.1,
+          "bar_age_sec": 10022.0,
+          "heartbeat_age_sec": 5132.7,
           "last_alert": "2026-10-20T00:32:25.491954+00:00 restart reconciliation: broker shows exposure on a root this leg shares with sibling services (positions=[('MESZ6', 1.0)], working_orders=['654413036034', '654413036035']) while local state is flat -- NOT touching it (could be a sibling's legitimate position); verify by hand before assuming anything is wrong.",
           "managed": true,
           "position_state": "FLAT",
@@ -778,8 +763,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 9121.5,
-          "heartbeat_age_sec": 3239.9,
+          "bar_age_sec": 10022.0,
+          "heartbeat_age_sec": 4140.5,
           "last_alert": "2026-10-19T23:28:36.339868+00:00 restart reconciliation: local state says IN_POSITION but the broker shows no position on the managed contract -- treating as exited (a fill may have completed while the process was down; note this leg shares its root with sibling services, so this check cannot tell a real exit apart from a sibling's own position changing shape)",
           "managed": true,
           "position_state": "FLAT",
@@ -798,8 +783,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 9121.5,
-          "heartbeat_age_sec": 3211.6,
+          "bar_age_sec": 10022.0,
+          "heartbeat_age_sec": 4112.1,
           "last_alert": "2026-10-20T01:06:14.967510+00:00 restart reconciliation: broker shows exposure on a root this leg shares with sibling services (positions=[('MGCZ6', 1.0)], working_orders=['654413036098', '654413036099']) while local state is flat -- NOT touching it (could be a sibling's legitimate position); verify by hand before assuming anything is wrong.",
           "managed": true,
           "position_state": "FLAT",
@@ -818,8 +803,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 31501.5,
-          "heartbeat_age_sec": 753.0,
+          "bar_age_sec": 32402.0,
+          "heartbeat_age_sec": 1653.5,
           "last_alert": "2026-10-20T01:47:08.130883+00:00 restart reconciliation: broker shows exposure on a root this leg shares with sibling services (positions=[('MNQZ6', 1.0)], working_orders=['654413036169']) while local state is flat -- NOT touching it (could be a sibling's legitimate position); verify by hand before assuming anything is wrong.",
           "managed": true,
           "position_state": "FLAT",
@@ -838,8 +823,8 @@
             "expires": "2026-10-21",
             "state": "EXPIRING_SOON"
           },
-          "bar_age_sec": 31501.5,
-          "heartbeat_age_sec": 776.5,
+          "bar_age_sec": 32402.0,
+          "heartbeat_age_sec": 1677.1,
           "last_alert": "2026-10-19T17:06:01Z watchdog: PA feed quiet for 341761s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -1006,7 +991,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-20T02:01:10.114592Z",
+  "data_as_of_utc": "2026-10-20T02:16:10.601146Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -1180,7 +1165,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-20T02:01:10.114592Z",
+  "generated_at_utc": "2026-10-20T02:16:10.601146Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
