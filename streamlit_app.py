@@ -536,24 +536,13 @@ def render_projection(snapshot: dict[str, Any]) -> None:
         "MDD very bad, P95 (% of terminal equity)": st.column_config.NumberColumn(format="%.1f%%"),
     }
 
-    st.caption("**Plain P2** (no overlay)")
-    st.dataframe(_build_table(""), hide_index=True, width="stretch", column_config=column_config)
-
+    # Historically this showed up to four stacked tables, one per research-evolution step (plain
+    # P2 -> k=0.5 overlay -> +6E -> staged combined policy) -- all variants the horizon-risk script
+    # happens to have computed, not just the current recommendation. Cluttered and redundant once
+    # there were several; now shows only the single most-evolved variant actually present (user
+    # request, 2026-10-20: "get rid of all those repeating tables and just keep the last one").
     k = hr.get("overlay_k")
     p0, b = hr.get("overlay_p0_usd"), hr.get("overlay_b_usd")
-    st.caption(f"**Surplus-aggression overlay, k={k}** (protected principal ${p0:,.0f}, buffer ${b:,.0f} -- "
-               f"same policy scripts/compute_p2_sizing.py deploys live; dormant below ${(p0 or 0) + (b or 0):,.0f} "
-               f"equity, same as plain P2 above)")
-    st.dataframe(_build_table("_k05"), hide_index=True, width="stretch", column_config=column_config)
-
-    if "ladder_scale_6e" in hr:
-        s6e = hr["ladder_scale_6e"]
-        st.caption(f"**+6E (Euro FX), risk-matched, ladder scaled x{s6e}** -- PROMOTED RESEARCH CANDIDATE, "
-                   f"NOT LIVE (parity + margin confirmed, contract-matcher wiring and shadow run still pending). "
-                   f"Signal on 6E.v.0, sized in full-size 6E-equivalent units = the same shared ladder level; "
-                   f"ladder scaled down to redirect that risk into 6E, same paths as the two tables above.")
-        st.dataframe(_build_table("_6e"), hide_index=True, width="stretch", column_config=column_config)
-
     if "median_equity_usd_staged" in horizons[0]:
         thresh = hr.get("e6_activation_threshold")
         st.caption(f"**LEADING combined-policy candidate: Wheel + k={k} (unscaled, from the start) + 6E "
@@ -569,10 +558,25 @@ def render_projection(snapshot: dict[str, Any]) -> None:
                    f"alone on both terminal wealth and MDD -- gating WHEN 6E turns on, rather than shrinking "
                    f"everything to share a risk budget, is what makes this combination actually work.")
         st.dataframe(_build_table("_staged"), hide_index=True, width="stretch", column_config=column_config)
+    elif "ladder_scale_6e" in hr:
+        s6e = hr["ladder_scale_6e"]
+        st.caption(f"**+6E (Euro FX), risk-matched, ladder scaled x{s6e}** -- PROMOTED RESEARCH CANDIDATE, "
+                   f"NOT LIVE (parity + margin confirmed, contract-matcher wiring and shadow run still pending). "
+                   f"Signal on 6E.v.0, sized in full-size 6E-equivalent units = the same shared ladder level; "
+                   f"ladder scaled down to redirect that risk into 6E.")
+        st.dataframe(_build_table("_6e"), hide_index=True, width="stretch", column_config=column_config)
+    elif k is not None:
+        st.caption(f"**Surplus-aggression overlay, k={k}** (protected principal ${p0:,.0f}, buffer ${b:,.0f} -- "
+                   f"same policy scripts/compute_p2_sizing.py deploys live; dormant below ${(p0 or 0) + (b or 0):,.0f} "
+                   f"equity)")
+        st.dataframe(_build_table("_k05"), hide_index=True, width="stretch", column_config=column_config)
+    else:
+        st.caption("**Plain P2** (no overlay)")
+        st.dataframe(_build_table(""), hide_index=True, width="stretch", column_config=column_config)
 
     st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
                "equity, but shrink as a SHARE of the account once it's grown enough to absorb them. Profit is the "
-               "other side of the same simulated paths -- same horizon, same sizing policy within each table. "
+               "other side of the same simulated paths. "
                "Where the % column stops improving is worth watching, not assuming. 'Ladder hit sanity cap' means "
                "the median path's qty hit the MAX_LEVEL ceiling at that horizon -- treat that row as the model "
                "running out of room, not a real projection.")
