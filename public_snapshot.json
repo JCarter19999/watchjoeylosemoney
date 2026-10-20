@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-20T01:15:47.519676Z",
+      "as_of_utc": "2026-10-20T01:31:10.923372Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -571,99 +571,7 @@
       "instrument": "MES",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
-      "ohlc_bars": [
-        {
-          "close": 7742.25,
-          "high": 7743.0,
-          "low": 7742.25,
-          "open": 7742.75,
-          "ts": "2026-10-19T23:16:00+00:00"
-        },
-        {
-          "close": 7742.5,
-          "high": 7742.5,
-          "low": 7741.75,
-          "open": 7742.5,
-          "ts": "2026-10-19T23:17:00+00:00"
-        },
-        {
-          "close": 7742.0,
-          "high": 7742.25,
-          "low": 7741.75,
-          "open": 7742.25,
-          "ts": "2026-10-19T23:18:00+00:00"
-        },
-        {
-          "close": 7741.25,
-          "high": 7742.0,
-          "low": 7740.5,
-          "open": 7742.0,
-          "ts": "2026-10-19T23:19:00+00:00"
-        },
-        {
-          "close": 7741.25,
-          "high": 7741.5,
-          "low": 7740.5,
-          "open": 7741.25,
-          "ts": "2026-10-19T23:20:00+00:00"
-        },
-        {
-          "close": 7740.75,
-          "high": 7741.75,
-          "low": 7740.75,
-          "open": 7741.5,
-          "ts": "2026-10-19T23:21:00+00:00"
-        },
-        {
-          "close": 7741.0,
-          "high": 7741.0,
-          "low": 7740.75,
-          "open": 7740.75,
-          "ts": "2026-10-19T23:22:00+00:00"
-        },
-        {
-          "close": 7741.5,
-          "high": 7741.5,
-          "low": 7740.5,
-          "open": 7741.0,
-          "ts": "2026-10-19T23:23:00+00:00"
-        },
-        {
-          "close": 7740.75,
-          "high": 7741.5,
-          "low": 7740.75,
-          "open": 7741.5,
-          "ts": "2026-10-19T23:24:00+00:00"
-        },
-        {
-          "close": 7741.5,
-          "high": 7741.5,
-          "low": 7740.25,
-          "open": 7740.5,
-          "ts": "2026-10-19T23:25:00+00:00"
-        },
-        {
-          "close": 7741.25,
-          "high": 7741.75,
-          "low": 7741.0,
-          "open": 7741.5,
-          "ts": "2026-10-19T23:26:00+00:00"
-        },
-        {
-          "close": 7741.5,
-          "high": 7741.75,
-          "low": 7741.0,
-          "open": 7741.0,
-          "ts": "2026-10-19T23:27:00+00:00"
-        },
-        {
-          "close": 7741.25,
-          "high": 7741.5,
-          "low": 7741.0,
-          "open": 7741.5,
-          "ts": "2026-10-19T23:28:00+00:00"
-        }
-      ],
+      "ohlc_bars": [],
       "order_qty": 1,
       "overlay_direction": 1,
       "overlay_entry_fill": 7750.75,
@@ -684,118 +592,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 7742.25,
-          "high": 7743.0,
-          "low": 7742.25,
-          "open": 7742.75,
-          "ts": "2026-10-19T23:16:00+00:00"
-        },
-        {
-          "close": 7742.5,
-          "high": 7742.5,
-          "low": 7741.75,
-          "open": 7742.5,
-          "ts": "2026-10-19T23:17:00+00:00"
-        },
-        {
-          "close": 7742.0,
-          "high": 7742.25,
-          "low": 7741.75,
-          "open": 7742.25,
-          "ts": "2026-10-19T23:18:00+00:00"
-        },
-        {
-          "close": 7741.25,
-          "high": 7742.0,
-          "low": 7740.5,
-          "open": 7742.0,
-          "ts": "2026-10-19T23:19:00+00:00"
-        },
-        {
-          "close": 7741.25,
-          "high": 7741.5,
-          "low": 7740.5,
-          "open": 7741.25,
-          "ts": "2026-10-19T23:20:00+00:00"
-        },
-        {
-          "close": 7740.75,
-          "high": 7741.75,
-          "low": 7740.75,
-          "open": 7741.5,
-          "ts": "2026-10-19T23:21:00+00:00"
-        },
-        {
-          "close": 7741.0,
-          "high": 7741.0,
-          "low": 7740.75,
-          "open": 7740.75,
-          "ts": "2026-10-19T23:22:00+00:00"
-        },
-        {
-          "close": 7741.5,
-          "high": 7741.5,
-          "low": 7740.5,
-          "open": 7741.0,
-          "ts": "2026-10-19T23:23:00+00:00"
-        },
-        {
-          "close": 7740.75,
-          "high": 7741.5,
-          "low": 7740.75,
-          "open": 7741.5,
-          "ts": "2026-10-19T23:24:00+00:00"
-        },
-        {
-          "close": 7741.5,
-          "high": 7741.5,
-          "low": 7740.25,
-          "open": 7740.5,
-          "ts": "2026-10-19T23:25:00+00:00"
-        },
-        {
-          "close": 7741.25,
-          "high": 7741.75,
-          "low": 7741.0,
-          "open": 7741.5,
-          "ts": "2026-10-19T23:26:00+00:00"
-        },
-        {
-          "close": 7741.5,
-          "high": 7741.75,
-          "low": 7741.0,
-          "open": 7741.0,
-          "ts": "2026-10-19T23:27:00+00:00"
-        },
-        {
-          "close": 7741.25,
-          "high": 7741.5,
-          "low": 7741.0,
-          "open": 7741.5,
-          "ts": "2026-10-19T23:28:00+00:00"
-        },
-        {
-          "close": 7741.5,
-          "high": 7741.5,
-          "low": 7739.5,
-          "open": 7741.25,
-          "ts": "2026-10-19T23:29:00+00:00"
-        },
-        {
-          "close": 7741.5,
-          "high": 7741.75,
-          "low": 7741.25,
-          "open": 7741.5,
-          "ts": "2026-10-19T23:30:00+00:00"
-        },
-        {
-          "close": 7741.5,
-          "high": 7741.75,
-          "low": 7741.25,
-          "open": 7741.5,
-          "ts": "2026-10-19T23:31:00+00:00"
-        },
         {
           "close": 7741.25,
           "high": 7741.5,
@@ -1040,99 +836,7 @@
       "instrument": "MGC",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
-      "ohlc_bars": [
-        {
-          "close": 4152.7,
-          "high": 4152.8,
-          "low": 4152.3,
-          "open": 4152.4,
-          "ts": "2026-10-19T23:16:00+00:00"
-        },
-        {
-          "close": 4152.4,
-          "high": 4152.5,
-          "low": 4152.1,
-          "open": 4152.5,
-          "ts": "2026-10-19T23:17:00+00:00"
-        },
-        {
-          "close": 4153.0,
-          "high": 4153.0,
-          "low": 4152.7,
-          "open": 4152.7,
-          "ts": "2026-10-19T23:18:00+00:00"
-        },
-        {
-          "close": 4153.3,
-          "high": 4153.3,
-          "low": 4152.9,
-          "open": 4153.0,
-          "ts": "2026-10-19T23:19:00+00:00"
-        },
-        {
-          "close": 4153.0,
-          "high": 4153.5,
-          "low": 4152.8,
-          "open": 4152.9,
-          "ts": "2026-10-19T23:20:00+00:00"
-        },
-        {
-          "close": 4153.7,
-          "high": 4154.0,
-          "low": 4153.6,
-          "open": 4153.6,
-          "ts": "2026-10-19T23:21:00+00:00"
-        },
-        {
-          "close": 4153.8,
-          "high": 4154.4,
-          "low": 4153.3,
-          "open": 4153.3,
-          "ts": "2026-10-19T23:22:00+00:00"
-        },
-        {
-          "close": 4155.3,
-          "high": 4155.5,
-          "low": 4153.5,
-          "open": 4153.6,
-          "ts": "2026-10-19T23:23:00+00:00"
-        },
-        {
-          "close": 4155.7,
-          "high": 4155.7,
-          "low": 4155.2,
-          "open": 4155.2,
-          "ts": "2026-10-19T23:24:00+00:00"
-        },
-        {
-          "close": 4155.2,
-          "high": 4155.7,
-          "low": 4155.0,
-          "open": 4155.7,
-          "ts": "2026-10-19T23:25:00+00:00"
-        },
-        {
-          "close": 4155.2,
-          "high": 4155.2,
-          "low": 4155.0,
-          "open": 4155.0,
-          "ts": "2026-10-19T23:26:00+00:00"
-        },
-        {
-          "close": 4155.1,
-          "high": 4155.1,
-          "low": 4154.5,
-          "open": 4155.1,
-          "ts": "2026-10-19T23:27:00+00:00"
-        },
-        {
-          "close": 4153.9,
-          "high": 4155.0,
-          "low": 4153.5,
-          "open": 4154.7,
-          "ts": "2026-10-19T23:28:00+00:00"
-        }
-      ],
+      "ohlc_bars": [],
       "order_qty": 1,
       "overlay_direction": 1,
       "overlay_entry_fill": 4146.9,
@@ -1152,99 +856,7 @@
       "instrument": "MGC",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
-      "ohlc_bars": [
-        {
-          "close": 4152.7,
-          "high": 4152.8,
-          "low": 4152.3,
-          "open": 4152.4,
-          "ts": "2026-10-19T23:16:00+00:00"
-        },
-        {
-          "close": 4152.4,
-          "high": 4152.5,
-          "low": 4152.1,
-          "open": 4152.5,
-          "ts": "2026-10-19T23:17:00+00:00"
-        },
-        {
-          "close": 4153.0,
-          "high": 4153.0,
-          "low": 4152.7,
-          "open": 4152.7,
-          "ts": "2026-10-19T23:18:00+00:00"
-        },
-        {
-          "close": 4153.3,
-          "high": 4153.3,
-          "low": 4152.9,
-          "open": 4153.0,
-          "ts": "2026-10-19T23:19:00+00:00"
-        },
-        {
-          "close": 4153.0,
-          "high": 4153.5,
-          "low": 4152.8,
-          "open": 4152.9,
-          "ts": "2026-10-19T23:20:00+00:00"
-        },
-        {
-          "close": 4153.7,
-          "high": 4154.0,
-          "low": 4153.6,
-          "open": 4153.6,
-          "ts": "2026-10-19T23:21:00+00:00"
-        },
-        {
-          "close": 4153.8,
-          "high": 4154.4,
-          "low": 4153.3,
-          "open": 4153.3,
-          "ts": "2026-10-19T23:22:00+00:00"
-        },
-        {
-          "close": 4155.3,
-          "high": 4155.5,
-          "low": 4153.5,
-          "open": 4153.6,
-          "ts": "2026-10-19T23:23:00+00:00"
-        },
-        {
-          "close": 4155.7,
-          "high": 4155.7,
-          "low": 4155.2,
-          "open": 4155.2,
-          "ts": "2026-10-19T23:24:00+00:00"
-        },
-        {
-          "close": 4155.2,
-          "high": 4155.7,
-          "low": 4155.0,
-          "open": 4155.7,
-          "ts": "2026-10-19T23:25:00+00:00"
-        },
-        {
-          "close": 4155.2,
-          "high": 4155.2,
-          "low": 4155.0,
-          "open": 4155.0,
-          "ts": "2026-10-19T23:26:00+00:00"
-        },
-        {
-          "close": 4155.1,
-          "high": 4155.1,
-          "low": 4154.5,
-          "open": 4155.1,
-          "ts": "2026-10-19T23:27:00+00:00"
-        },
-        {
-          "close": 4153.9,
-          "high": 4155.0,
-          "low": 4153.5,
-          "open": 4154.7,
-          "ts": "2026-10-19T23:28:00+00:00"
-        }
-      ],
+      "ohlc_bars": [],
       "order_qty": 1,
       "overlay_direction": 1,
       "overlay_entry_fill": 4144.2,
@@ -1291,7 +903,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-20T01:15:01.356722+00:00",
+      "generated_at": "2026-10-20T01:31:01.569334+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -1299,7 +911,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.4,
+          "bar_age_sec": 0.5,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -1315,8 +927,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 15301.3,
-          "heartbeat_age_sec": 14935.4,
+          "bar_age_sec": 16261.5,
+          "heartbeat_age_sec": 15895.7,
           "last_alert": "2026-10-19T20:33:29.533135+00:00 restart reconciliation: local state says IN_POSITION but the broker is flat on the managed contract -- treating as exited (a fill may have completed while the process was down)",
           "managed": false,
           "position_state": "FLAT",
@@ -1336,8 +948,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 4261.3,
-          "heartbeat_age_sec": 1537.9,
+          "bar_age_sec": 5221.5,
+          "heartbeat_age_sec": 2498.1,
           "last_alert": "2026-10-20T00:22:19.850931+00:00 restart reconciliation: broker shows exposure on a root this leg shares with sibling services (positions=[('MESZ6', 1.0)], working_orders=['654413036034', '654413036035']) while local state is flat -- NOT touching it (could be a sibling's legitimate position); verify by hand before assuming anything is wrong.",
           "managed": true,
           "position_state": "FLAT",
@@ -1356,8 +968,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 6361.3,
-          "heartbeat_age_sec": 1472.0,
+          "bar_age_sec": 7321.5,
+          "heartbeat_age_sec": 2432.2,
           "last_alert": "2026-10-20T00:32:25.491954+00:00 restart reconciliation: broker shows exposure on a root this leg shares with sibling services (positions=[('MESZ6', 1.0)], working_orders=['654413036034', '654413036035']) while local state is flat -- NOT touching it (could be a sibling's legitimate position); verify by hand before assuming anything is wrong.",
           "managed": true,
           "position_state": "FLAT",
@@ -1376,8 +988,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 6361.3,
-          "heartbeat_age_sec": 479.8,
+          "bar_age_sec": 7321.5,
+          "heartbeat_age_sec": 1440.0,
           "last_alert": "2026-10-19T23:28:36.339868+00:00 restart reconciliation: local state says IN_POSITION but the broker shows no position on the managed contract -- treating as exited (a fill may have completed while the process was down; note this leg shares its root with sibling services, so this check cannot tell a real exit apart from a sibling's own position changing shape)",
           "managed": true,
           "position_state": "FLAT",
@@ -1396,8 +1008,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 6361.3,
-          "heartbeat_age_sec": 451.4,
+          "bar_age_sec": 7321.5,
+          "heartbeat_age_sec": 1411.6,
           "last_alert": "2026-10-20T01:06:14.967510+00:00 restart reconciliation: broker shows exposure on a root this leg shares with sibling services (positions=[('MGCZ6', 1.0)], working_orders=['654413036098', '654413036099']) while local state is flat -- NOT touching it (could be a sibling's legitimate position); verify by hand before assuming anything is wrong.",
           "managed": true,
           "position_state": "FLAT",
@@ -1416,8 +1028,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 28741.3,
-          "heartbeat_age_sec": 28703.0,
+          "bar_age_sec": 29701.5,
+          "heartbeat_age_sec": 29663.2,
           "last_alert": "2026-10-16T22:22:01Z watchdog[mnqcont]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
@@ -1436,8 +1048,8 @@
             "expires": "2026-10-21",
             "state": "EXPIRING_SOON"
           },
-          "bar_age_sec": 28741.3,
-          "heartbeat_age_sec": 28703.9,
+          "bar_age_sec": 29701.5,
+          "heartbeat_age_sec": 29664.1,
           "last_alert": "2026-10-19T17:06:01Z watchdog: PA feed quiet for 341761s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -1604,7 +1216,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-20T01:15:47.634185Z",
+  "data_as_of_utc": "2026-10-20T01:31:11.240641Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -1772,7 +1384,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-20T01:15:47.634185Z",
+  "generated_at_utc": "2026-10-20T01:31:11.240641Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
