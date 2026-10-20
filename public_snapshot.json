@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-20T21:30:48.025473Z",
+      "as_of_utc": "2026-10-20T21:34:16.948855Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -552,34 +552,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 1,
       "ohlc_bars": [
-        {
-          "close": 1.1261,
-          "high": 1.1262,
-          "low": 1.1261,
-          "open": 1.1262,
-          "ts": "2026-10-20T19:31:00+00:00"
-        },
-        {
-          "close": 1.1261,
-          "high": 1.12615,
-          "low": 1.1261,
-          "open": 1.12615,
-          "ts": "2026-10-20T19:32:00+00:00"
-        },
-        {
-          "close": 1.1261,
-          "high": 1.12615,
-          "low": 1.1261,
-          "open": 1.12615,
-          "ts": "2026-10-20T19:33:00+00:00"
-        },
-        {
-          "close": 1.126,
-          "high": 1.1261,
-          "low": 1.126,
-          "open": 1.1261,
-          "ts": "2026-10-20T19:34:00+00:00"
-        },
         {
           "close": 1.1259,
           "high": 1.126,
@@ -1161,34 +1133,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 7753.5,
-          "high": 7753.5,
-          "low": 7749.5,
-          "open": 7749.5,
-          "ts": "2026-10-20T19:31:00+00:00"
-        },
-        {
-          "close": 7752.0,
-          "high": 7754.0,
-          "low": 7751.25,
-          "open": 7753.5,
-          "ts": "2026-10-20T19:32:00+00:00"
-        },
-        {
-          "close": 7752.75,
-          "high": 7753.5,
-          "low": 7751.5,
-          "open": 7751.75,
-          "ts": "2026-10-20T19:33:00+00:00"
-        },
-        {
-          "close": 7753.0,
-          "high": 7754.0,
-          "low": 7752.25,
-          "open": 7752.75,
-          "ts": "2026-10-20T19:34:00+00:00"
-        },
         {
           "close": 7752.5,
           "high": 7753.5,
@@ -1806,34 +1750,6 @@
       "n_alerts": 0,
       "ohlc_bars": [
         {
-          "close": 7753.5,
-          "high": 7753.5,
-          "low": 7749.5,
-          "open": 7749.5,
-          "ts": "2026-10-20T19:31:00+00:00"
-        },
-        {
-          "close": 7752.0,
-          "high": 7754.0,
-          "low": 7751.25,
-          "open": 7753.5,
-          "ts": "2026-10-20T19:32:00+00:00"
-        },
-        {
-          "close": 7752.75,
-          "high": 7753.5,
-          "low": 7751.5,
-          "open": 7751.75,
-          "ts": "2026-10-20T19:33:00+00:00"
-        },
-        {
-          "close": 7753.0,
-          "high": 7754.0,
-          "low": 7752.25,
-          "open": 7752.75,
-          "ts": "2026-10-20T19:34:00+00:00"
-        },
-        {
           "close": 7752.5,
           "high": 7753.5,
           "low": 7751.75,
@@ -2407,34 +2323,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 4140.9,
-          "high": 4141.5,
-          "low": 4140.9,
-          "open": 4141.2,
-          "ts": "2026-10-20T19:31:00+00:00"
-        },
-        {
-          "close": 4140.6,
-          "high": 4141.1,
-          "low": 4140.5,
-          "open": 4140.9,
-          "ts": "2026-10-20T19:32:00+00:00"
-        },
-        {
-          "close": 4140.8,
-          "high": 4141.1,
-          "low": 4140.5,
-          "open": 4140.6,
-          "ts": "2026-10-20T19:33:00+00:00"
-        },
-        {
-          "close": 4139.5,
-          "high": 4140.9,
-          "low": 4139.5,
-          "open": 4140.9,
-          "ts": "2026-10-20T19:34:00+00:00"
-        },
         {
           "close": 4139.3,
           "high": 4139.7,
@@ -3052,34 +2940,6 @@
       "n_alerts": 0,
       "ohlc_bars": [
         {
-          "close": 4140.9,
-          "high": 4141.5,
-          "low": 4140.9,
-          "open": 4141.2,
-          "ts": "2026-10-20T19:31:00+00:00"
-        },
-        {
-          "close": 4140.6,
-          "high": 4141.1,
-          "low": 4140.5,
-          "open": 4140.9,
-          "ts": "2026-10-20T19:32:00+00:00"
-        },
-        {
-          "close": 4140.8,
-          "high": 4141.1,
-          "low": 4140.5,
-          "open": 4140.6,
-          "ts": "2026-10-20T19:33:00+00:00"
-        },
-        {
-          "close": 4139.5,
-          "high": 4140.9,
-          "low": 4139.5,
-          "open": 4140.9,
-          "ts": "2026-10-20T19:34:00+00:00"
-        },
-        {
           "close": 4139.3,
           "high": 4139.7,
           "low": 4138.9,
@@ -3653,34 +3513,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 1,
       "ohlc_bars": [
-        {
-          "close": 29705.0,
-          "high": 29706.75,
-          "low": 29676.0,
-          "open": 29676.75,
-          "ts": "2026-10-20T19:31:00+00:00"
-        },
-        {
-          "close": 29692.0,
-          "high": 29706.5,
-          "low": 29686.75,
-          "open": 29704.75,
-          "ts": "2026-10-20T19:32:00+00:00"
-        },
-        {
-          "close": 29701.0,
-          "high": 29704.5,
-          "low": 29691.0,
-          "open": 29691.25,
-          "ts": "2026-10-20T19:33:00+00:00"
-        },
-        {
-          "close": 29697.25,
-          "high": 29703.0,
-          "low": 29693.75,
-          "open": 29700.25,
-          "ts": "2026-10-20T19:34:00+00:00"
-        },
         {
           "close": 29694.5,
           "high": 29698.75,
@@ -4303,7 +4135,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-20T21:30:01.883792+00:00",
+      "generated_at": "2026-10-20T21:34:02.510634+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -4327,8 +4159,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 1801.8,
-          "heartbeat_age_sec": 1.3,
+          "bar_age_sec": 2042.5,
+          "heartbeat_age_sec": 1.8,
           "last_alert": "2026-10-20T18:24:09.399834+00:00 restart reconciliation: local state says IN_POSITION but the broker is flat on the managed contract -- treating as exited (a fill may have completed while the process was down)",
           "managed": true,
           "position_state": "FLAT",
@@ -4343,8 +4175,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 2161.8,
-          "heartbeat_age_sec": 2151.7,
+          "bar_age_sec": 2402.5,
+          "heartbeat_age_sec": 2392.4,
           "last_alert": "2026-10-20T20:56:02Z watchdog[mes]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
@@ -4363,8 +4195,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 1801.8,
-          "heartbeat_age_sec": 4.2,
+          "bar_age_sec": 2042.5,
+          "heartbeat_age_sec": 4.7,
           "last_alert": "2026-10-20T14:32:38.314879+00:00 UNMANAGED/HALTED: flatten_refused_shared_root: FLATTEN (entry_failed_unflat) would close every sibling's exposure on this root, not just this leg's own share -- MANUAL INTERVENTION REQUIRED (use an explicit root-wide emergency liquidation if that is genuinely intended) -- entries blocked, MANUAL INTERVENTION REQUIRED",
           "managed": true,
           "position_state": "FLAT",
@@ -4379,8 +4211,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 2161.8,
-          "heartbeat_age_sec": 2151.3,
+          "bar_age_sec": 2402.5,
+          "heartbeat_age_sec": 2391.9,
           "last_alert": "2026-10-20T20:56:02Z watchdog[mgc]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
@@ -4399,8 +4231,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 1801.8,
-          "heartbeat_age_sec": 0.9,
+          "bar_age_sec": 2042.5,
+          "heartbeat_age_sec": 1.5,
           "last_alert": "2026-10-20T14:32:40.094639+00:00 UNMANAGED/HALTED: flatten_refused_shared_root: FLATTEN (entry_failed_unflat) would close every sibling's exposure on this root, not just this leg's own share -- MANUAL INTERVENTION REQUIRED (use an explicit root-wide emergency liquidation if that is genuinely intended) -- entries blocked, MANUAL INTERVENTION REQUIRED",
           "managed": true,
           "position_state": "FLAT",
@@ -4415,8 +4247,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 1801.8,
-          "heartbeat_age_sec": 4.4,
+          "bar_age_sec": 2042.4,
+          "heartbeat_age_sec": 4.9,
           "last_alert": "2026-10-20T19:12:17.263763+00:00 restart reconciliation: broker shows exposure on a root this leg shares with sibling services (positions=[('MNQZ6', -10.0)], working_orders=[]) while local state is flat -- NOT touching it (could be a sibling's legitimate position); verify by hand before assuming anything is wrong.",
           "managed": true,
           "position_state": "FLAT",
@@ -4431,8 +4263,8 @@
             "expires": "2026-11-10",
             "state": "VALID"
           },
-          "bar_age_sec": 3421.8,
-          "heartbeat_age_sec": 3418.1,
+          "bar_age_sec": 3662.5,
+          "heartbeat_age_sec": 3658.7,
           "last_alert": "2026-10-20T19:14:02Z watchdog: PA feed quiet for 435842s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -4529,34 +4361,6 @@
     },
     "t1_leg": {
       "ohlc_bars": [
-        {
-          "close": 29705.0,
-          "high": 29706.75,
-          "low": 29676.0,
-          "open": 29676.75,
-          "ts": "2026-10-20T19:31:00+00:00"
-        },
-        {
-          "close": 29692.0,
-          "high": 29706.5,
-          "low": 29686.75,
-          "open": 29704.75,
-          "ts": "2026-10-20T19:32:00+00:00"
-        },
-        {
-          "close": 29701.0,
-          "high": 29704.5,
-          "low": 29691.0,
-          "open": 29691.25,
-          "ts": "2026-10-20T19:33:00+00:00"
-        },
-        {
-          "close": 29697.25,
-          "high": 29703.0,
-          "low": 29693.75,
-          "open": 29700.25,
-          "ts": "2026-10-20T19:34:00+00:00"
-        },
         {
           "close": 29694.5,
           "high": 29698.75,
@@ -4920,34 +4724,6 @@
           "low": 29715.75,
           "open": 29716.5,
           "ts": "2026-10-20T20:26:00+00:00"
-        },
-        {
-          "close": 29705.0,
-          "high": 29706.75,
-          "low": 29676.0,
-          "open": 29676.75,
-          "ts": "2026-10-20T19:31:00+00:00"
-        },
-        {
-          "close": 29692.0,
-          "high": 29706.5,
-          "low": 29686.75,
-          "open": 29704.75,
-          "ts": "2026-10-20T19:32:00+00:00"
-        },
-        {
-          "close": 29701.0,
-          "high": 29704.5,
-          "low": 29691.0,
-          "open": 29691.25,
-          "ts": "2026-10-20T19:33:00+00:00"
-        },
-        {
-          "close": 29697.25,
-          "high": 29703.0,
-          "low": 29693.75,
-          "open": 29700.25,
-          "ts": "2026-10-20T19:34:00+00:00"
         },
         {
           "close": 29694.5,
@@ -5428,7 +5204,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-20T21:30:48.184084Z",
+  "data_as_of_utc": "2026-10-20T21:34:17.103809Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -5579,6 +5355,12 @@
       "drawdown_usd": 17.5,
       "equity_usd": 15308.83,
       "ts_utc": "2026-10-20T01:48:26.904000Z"
+    },
+    {
+      "cum_pnl_usd": 13039.29,
+      "drawdown_usd": 2287.04,
+      "equity_usd": 13039.29,
+      "ts_utc": "2026-10-20T19:54:58.427000Z"
     }
   ],
   "execution_health": {
@@ -5602,7 +5384,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-20T21:30:48.184084Z",
+  "generated_at_utc": "2026-10-20T21:34:17.103809Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -5657,6 +5439,25 @@
     "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-10-20T19:54:58.427000Z",
+      "duration_seconds": 22885.102096,
+      "exit_reason": "RTH_CLOSE",
+      "expected_net_pnl_model_usd": null,
+      "information_available_ts": "2026-10-20T09:33:00-04:00",
+      "intended_exit_ts": "2026-10-20T16:00:00-04:00",
+      "mae_atr": null,
+      "mfe_atr": null,
+      "mode": "DEMO",
+      "pnl_adjusted": true,
+      "pnl_usd": -2269.54,
+      "raw_pnl_usd": -3242.2,
+      "session_date": "2026-10-20",
+      "side": "SHORT",
+      "sized_qty": 7,
+      "v_cohort_label": "T1_CANONICAL"
+    },
     {
       "c_same_at_entry": null,
       "closed_at_utc": "2026-10-20T01:48:26.904000Z",
@@ -6112,25 +5913,6 @@
       "side": "SHORT",
       "sized_qty": 7,
       "v_cohort_label": "T1_CANONICAL"
-    },
-    {
-      "c_same_at_entry": null,
-      "closed_at_utc": "2026-09-22T19:59:59.695994Z",
-      "duration_seconds": 23218.231637,
-      "exit_reason": "RTH_CLOSE",
-      "expected_net_pnl_model_usd": null,
-      "information_available_ts": "2026-09-22T09:33:00-04:00",
-      "intended_exit_ts": "2026-09-22T16:00:00-04:00",
-      "mae_atr": null,
-      "mfe_atr": null,
-      "mode": "DEMO",
-      "pnl_adjusted": true,
-      "pnl_usd": 2371.46,
-      "raw_pnl_usd": 1693.9,
-      "session_date": "2026-09-22",
-      "side": "LONG",
-      "sized_qty": 7,
-      "v_cohort_label": "T1_CANONICAL"
     }
   ],
   "mode": "DEMO",
@@ -6157,19 +5939,19 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 25,
-    "closed_trades_today": 4,
-    "current_drawdown_usd": 17.5,
-    "display_equity_usd": 15308.83,
+    "closed_trades_all_time": 26,
+    "closed_trades_today": 5,
+    "current_drawdown_usd": 2287.04,
+    "display_equity_usd": 13039.29,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 612.3532,
+    "expectancy_usd": 501.5112,
     "ledger_adjustment_usd": 0.0,
-    "losses": 7,
-    "max_drawdown_usd": 1260.22,
-    "profit_factor": 5.6452,
-    "realized_pnl_all_time_usd": 15308.83,
-    "realized_pnl_today_usd": 575.33,
-    "win_rate": 0.72,
+    "losses": 8,
+    "max_drawdown_usd": 2287.04,
+    "profit_factor": 3.343,
+    "realized_pnl_all_time_usd": 13039.29,
+    "realized_pnl_today_usd": -1694.21,
+    "win_rate": 0.6923,
     "wins": 18
   },
   "status": {
