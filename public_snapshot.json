@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-19T23:45:48.702615Z",
+      "as_of_utc": "2026-10-20T00:00:47.869720Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -1941,7 +1941,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-19T23:45:02.197401+00:00",
+      "generated_at": "2026-10-20T00:00:01.109479+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -1949,7 +1949,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.8,
+          "bar_age_sec": 1.9,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -1965,8 +1965,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 9902.1,
-          "heartbeat_age_sec": 9536.3,
+          "bar_age_sec": 10801.1,
+          "heartbeat_age_sec": 10435.2,
           "last_alert": "2026-10-19T20:33:29.533135+00:00 restart reconciliation: local state says IN_POSITION but the broker is flat on the managed contract -- treating as exited (a fill may have completed while the process was down)",
           "managed": false,
           "position_state": "FLAT",
@@ -1986,8 +1986,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 24302.1,
-          "heartbeat_age_sec": 24291.7,
+          "bar_age_sec": 25201.0,
+          "heartbeat_age_sec": 25190.6,
           "last_alert": "2026-10-19T14:12:01Z watchdog[mes] killed hung pid 3097465 (heartbeat 212s)",
           "managed": true,
           "position_state": "LONG 10",
@@ -2006,8 +2006,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 962.1,
-          "heartbeat_age_sec": 958.8,
+          "bar_age_sec": 1861.1,
+          "heartbeat_age_sec": 1857.7,
           "last_alert": "2026-10-19T23:28:37.972622+00:00 restart reconciliation: local state says IN_POSITION but the broker shows no position on the managed contract -- treating as exited (a fill may have completed while the process was down; note this leg shares its root with sibling services, so this check cannot tell a real exit apart from a sibling's own position changing shape)",
           "managed": true,
           "position_state": "FLAT",
@@ -2026,8 +2026,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 962.1,
-          "heartbeat_age_sec": 955.5,
+          "bar_age_sec": 1861.1,
+          "heartbeat_age_sec": 1854.4,
           "last_alert": "2026-10-19T23:28:36.339868+00:00 restart reconciliation: local state says IN_POSITION but the broker shows no position on the managed contract -- treating as exited (a fill may have completed while the process was down; note this leg shares its root with sibling services, so this check cannot tell a real exit apart from a sibling's own position changing shape)",
           "managed": true,
           "position_state": "FLAT",
@@ -2046,8 +2046,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 962.1,
-          "heartbeat_age_sec": 958.7,
+          "bar_age_sec": 1861.1,
+          "heartbeat_age_sec": 1857.6,
           "last_alert": "2026-10-19T23:28:38.098758+00:00 restart reconciliation: local state says IN_POSITION but the broker shows no position on the managed contract -- treating as exited (a fill may have completed while the process was down; note this leg shares its root with sibling services, so this check cannot tell a real exit apart from a sibling's own position changing shape)",
           "managed": true,
           "position_state": "FLAT",
@@ -2066,8 +2066,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 23342.1,
-          "heartbeat_age_sec": 23303.8,
+          "bar_age_sec": 24241.1,
+          "heartbeat_age_sec": 24202.7,
           "last_alert": "2026-10-16T22:22:01Z watchdog[mnqcont]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
@@ -2086,8 +2086,8 @@
             "expires": "2026-10-21",
             "state": "EXPIRING_SOON"
           },
-          "bar_age_sec": 23342.1,
-          "heartbeat_age_sec": 23304.7,
+          "bar_age_sec": 24241.1,
+          "heartbeat_age_sec": 24203.6,
           "last_alert": "2026-10-19T17:06:01Z watchdog: PA feed quiet for 341761s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -2254,7 +2254,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-19T23:45:48.861482Z",
+  "data_as_of_utc": "2026-10-20T00:00:48.037344Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -2404,7 +2404,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-19T23:45:48.861482Z",
+  "generated_at_utc": "2026-10-20T00:00:48.037344Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
