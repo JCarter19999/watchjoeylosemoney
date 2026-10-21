@@ -9,12 +9,23 @@ from zoneinfo import ZoneInfo
 
 import altair as alt
 import pandas as pd
+import requests
 import streamlit as st
 from jsonschema import Draft202012Validator, FormatChecker
 
 SNAPSHOT_PATH = Path(__file__).with_name("public_snapshot.json")
 SCHEMA_PATH = Path(__file__).with_name("public_snapshot.schema.json")
 LOGGER = logging.getLogger("watchjoeylosemoney")
+
+# 2026-10-21: the deployed app was showing stale data for hours after real trades -- root cause
+# was NOT the publish.sh cron (confirmed running and pushing to GitHub reliably every 15min) but
+# this hosted (Streamlit Community Cloud) deployment only seeing a new commit whenever ITS OWN
+# redeploy-on-push webhook happens to fire, which is not guaranteed to track every single push from
+# an every-15-minutes cron. Fetching the raw file straight from GitHub on every 30s fragment rerun
+# removes that dependency entirely -- every refresh gets whatever is actually on `main` right now,
+# regardless of whether this deployment's own checkout has been redeployed. Local file is the
+# fallback only (offline dev, or GitHub transiently unreachable), not the primary source anymore.
+_SNAPSHOT_RAW_URL = "https://raw.githubusercontent.com/JCarter19999/watchjoeylosemoney/main/public_snapshot.json"
 
 st.set_page_config(
     page_title="Watch Joey Lose Money",
@@ -55,8 +66,21 @@ st.markdown(
 )
 
 
+def _fetch_live_snapshot_text() -> str:
+    """Always-fresh source of truth: GitHub's raw content, cache-busted per call so neither
+    GitHub's own CDN nor anything in between serves a stale cached copy. Falls back to the local
+    on-disk file (this deployment's last-redeployed copy) only if the live fetch itself fails."""
+    try:
+        resp = requests.get(_SNAPSHOT_RAW_URL, params={"_": str(datetime.now(timezone.utc).timestamp())}, timeout=5)
+        resp.raise_for_status()
+        return resp.text
+    except Exception:
+        LOGGER.warning("Live snapshot fetch failed, falling back to local on-disk copy", exc_info=True)
+        return SNAPSHOT_PATH.read_text(encoding="utf-8")
+
+
 def load_and_validate_snapshot() -> dict[str, Any]:
-    snapshot = json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+    snapshot = json.loads(_fetch_live_snapshot_text())
     schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
     validator = Draft202012Validator(schema, format_checker=FormatChecker())
     errors = sorted(validator.iter_errors(snapshot), key=lambda e: list(e.path))
