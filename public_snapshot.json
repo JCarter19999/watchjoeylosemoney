@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-23T22:49:24.079240Z",
+      "as_of_utc": "2026-10-23T23:01:05.300808Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -958,78 +958,7 @@
       "instrument": "M6E",
       "mode": "DEMO_EXEC",
       "n_alerts": 1,
-      "ohlc_bars": [
-        {
-          "close": 1.1218,
-          "high": 1.1218,
-          "low": 1.12175,
-          "open": 1.12175,
-          "ts": "2026-10-23T20:50:00+00:00"
-        },
-        {
-          "close": 1.12205,
-          "high": 1.1221,
-          "low": 1.12185,
-          "open": 1.12185,
-          "ts": "2026-10-23T20:51:00+00:00"
-        },
-        {
-          "close": 1.1223,
-          "high": 1.1223,
-          "low": 1.122,
-          "open": 1.122,
-          "ts": "2026-10-23T20:52:00+00:00"
-        },
-        {
-          "close": 1.1223,
-          "high": 1.1226,
-          "low": 1.1222,
-          "open": 1.1223,
-          "ts": "2026-10-23T20:53:00+00:00"
-        },
-        {
-          "close": 1.12245,
-          "high": 1.12245,
-          "low": 1.1222,
-          "open": 1.1223,
-          "ts": "2026-10-23T20:54:00+00:00"
-        },
-        {
-          "close": 1.1225,
-          "high": 1.1225,
-          "low": 1.12225,
-          "open": 1.1224,
-          "ts": "2026-10-23T20:55:00+00:00"
-        },
-        {
-          "close": 1.12255,
-          "high": 1.12255,
-          "low": 1.12245,
-          "open": 1.1225,
-          "ts": "2026-10-23T20:56:00+00:00"
-        },
-        {
-          "close": 1.1227,
-          "high": 1.1227,
-          "low": 1.1225,
-          "open": 1.1225,
-          "ts": "2026-10-23T20:57:00+00:00"
-        },
-        {
-          "close": 1.1226,
-          "high": 1.12275,
-          "low": 1.1226,
-          "open": 1.12265,
-          "ts": "2026-10-23T20:58:00+00:00"
-        },
-        {
-          "close": 1.12255,
-          "high": 1.1227,
-          "low": 1.1224,
-          "open": 1.1226,
-          "ts": "2026-10-23T20:59:00+00:00"
-        }
-      ],
+      "ohlc_bars": [],
       "order_qty": 1,
       "overlay_direction": -1,
       "overlay_entry_fill": 1.1214,
@@ -1049,78 +978,7 @@
       "instrument": "MES",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
-      "ohlc_bars": [
-        {
-          "close": 7672.75,
-          "high": 7673.0,
-          "low": 7672.5,
-          "open": 7672.5,
-          "ts": "2026-10-23T20:50:00+00:00"
-        },
-        {
-          "close": 7672.5,
-          "high": 7673.0,
-          "low": 7672.5,
-          "open": 7672.75,
-          "ts": "2026-10-23T20:51:00+00:00"
-        },
-        {
-          "close": 7672.5,
-          "high": 7673.0,
-          "low": 7672.5,
-          "open": 7672.5,
-          "ts": "2026-10-23T20:52:00+00:00"
-        },
-        {
-          "close": 7672.75,
-          "high": 7673.25,
-          "low": 7672.25,
-          "open": 7672.5,
-          "ts": "2026-10-23T20:53:00+00:00"
-        },
-        {
-          "close": 7673.0,
-          "high": 7673.0,
-          "low": 7672.25,
-          "open": 7672.5,
-          "ts": "2026-10-23T20:54:00+00:00"
-        },
-        {
-          "close": 7673.0,
-          "high": 7673.0,
-          "low": 7672.0,
-          "open": 7673.0,
-          "ts": "2026-10-23T20:55:00+00:00"
-        },
-        {
-          "close": 7673.0,
-          "high": 7673.5,
-          "low": 7672.75,
-          "open": 7673.25,
-          "ts": "2026-10-23T20:56:00+00:00"
-        },
-        {
-          "close": 7673.0,
-          "high": 7673.0,
-          "low": 7671.75,
-          "open": 7672.75,
-          "ts": "2026-10-23T20:57:00+00:00"
-        },
-        {
-          "close": 7671.5,
-          "high": 7673.25,
-          "low": 7671.25,
-          "open": 7673.0,
-          "ts": "2026-10-23T20:58:00+00:00"
-        },
-        {
-          "close": 7672.5,
-          "high": 7672.75,
-          "low": 7671.25,
-          "open": 7671.25,
-          "ts": "2026-10-23T20:59:00+00:00"
-        }
-      ],
+      "ohlc_bars": [],
       "order_qty": 1,
       "overlay_direction": 1,
       "overlay_entry_fill": 7692.75,
@@ -1140,78 +998,7 @@
       "instrument": "MES",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
-      "ohlc_bars": [
-        {
-          "close": 7672.75,
-          "high": 7673.0,
-          "low": 7672.5,
-          "open": 7672.5,
-          "ts": "2026-10-23T20:50:00+00:00"
-        },
-        {
-          "close": 7672.5,
-          "high": 7673.0,
-          "low": 7672.5,
-          "open": 7672.75,
-          "ts": "2026-10-23T20:51:00+00:00"
-        },
-        {
-          "close": 7672.5,
-          "high": 7673.0,
-          "low": 7672.5,
-          "open": 7672.5,
-          "ts": "2026-10-23T20:52:00+00:00"
-        },
-        {
-          "close": 7672.75,
-          "high": 7673.25,
-          "low": 7672.25,
-          "open": 7672.5,
-          "ts": "2026-10-23T20:53:00+00:00"
-        },
-        {
-          "close": 7673.0,
-          "high": 7673.0,
-          "low": 7672.25,
-          "open": 7672.5,
-          "ts": "2026-10-23T20:54:00+00:00"
-        },
-        {
-          "close": 7673.0,
-          "high": 7673.0,
-          "low": 7672.0,
-          "open": 7673.0,
-          "ts": "2026-10-23T20:55:00+00:00"
-        },
-        {
-          "close": 7673.0,
-          "high": 7673.5,
-          "low": 7672.75,
-          "open": 7673.25,
-          "ts": "2026-10-23T20:56:00+00:00"
-        },
-        {
-          "close": 7673.0,
-          "high": 7673.0,
-          "low": 7671.75,
-          "open": 7672.75,
-          "ts": "2026-10-23T20:57:00+00:00"
-        },
-        {
-          "close": 7671.5,
-          "high": 7673.25,
-          "low": 7671.25,
-          "open": 7673.0,
-          "ts": "2026-10-23T20:58:00+00:00"
-        },
-        {
-          "close": 7672.5,
-          "high": 7672.75,
-          "low": 7671.25,
-          "open": 7671.25,
-          "ts": "2026-10-23T20:59:00+00:00"
-        }
-      ],
+      "ohlc_bars": [],
       "order_qty": 10,
       "overlay_direction": 1,
       "overlay_entry_fill": 7692.75,
@@ -1231,78 +1018,7 @@
       "instrument": "MGC",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
-      "ohlc_bars": [
-        {
-          "close": 4007.8,
-          "high": 4008.4,
-          "low": 4006.9,
-          "open": 4007.0,
-          "ts": "2026-10-23T20:50:00+00:00"
-        },
-        {
-          "close": 4007.7,
-          "high": 4008.3,
-          "low": 4007.6,
-          "open": 4008.1,
-          "ts": "2026-10-23T20:51:00+00:00"
-        },
-        {
-          "close": 4008.5,
-          "high": 4008.5,
-          "low": 4007.5,
-          "open": 4007.6,
-          "ts": "2026-10-23T20:52:00+00:00"
-        },
-        {
-          "close": 4010.4,
-          "high": 4011.6,
-          "low": 4008.0,
-          "open": 4008.4,
-          "ts": "2026-10-23T20:53:00+00:00"
-        },
-        {
-          "close": 4011.3,
-          "high": 4011.6,
-          "low": 4010.1,
-          "open": 4010.2,
-          "ts": "2026-10-23T20:54:00+00:00"
-        },
-        {
-          "close": 4011.2,
-          "high": 4012.1,
-          "low": 4010.8,
-          "open": 4011.4,
-          "ts": "2026-10-23T20:55:00+00:00"
-        },
-        {
-          "close": 4010.7,
-          "high": 4011.6,
-          "low": 4010.5,
-          "open": 4011.3,
-          "ts": "2026-10-23T20:56:00+00:00"
-        },
-        {
-          "close": 4009.3,
-          "high": 4010.8,
-          "low": 4009.2,
-          "open": 4010.7,
-          "ts": "2026-10-23T20:57:00+00:00"
-        },
-        {
-          "close": 4009.4,
-          "high": 4010.1,
-          "low": 4009.1,
-          "open": 4009.4,
-          "ts": "2026-10-23T20:58:00+00:00"
-        },
-        {
-          "close": 4010.0,
-          "high": 4010.1,
-          "low": 4009.0,
-          "open": 4009.2,
-          "ts": "2026-10-23T20:59:00+00:00"
-        }
-      ],
+      "ohlc_bars": [],
       "order_qty": 2,
       "overlay_direction": -1,
       "overlay_entry_fill": 4066.8,
@@ -1322,78 +1038,7 @@
       "instrument": "MGC",
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
-      "ohlc_bars": [
-        {
-          "close": 4007.8,
-          "high": 4008.4,
-          "low": 4006.9,
-          "open": 4007.0,
-          "ts": "2026-10-23T20:50:00+00:00"
-        },
-        {
-          "close": 4007.7,
-          "high": 4008.3,
-          "low": 4007.6,
-          "open": 4008.1,
-          "ts": "2026-10-23T20:51:00+00:00"
-        },
-        {
-          "close": 4008.5,
-          "high": 4008.5,
-          "low": 4007.5,
-          "open": 4007.6,
-          "ts": "2026-10-23T20:52:00+00:00"
-        },
-        {
-          "close": 4010.4,
-          "high": 4011.6,
-          "low": 4008.0,
-          "open": 4008.4,
-          "ts": "2026-10-23T20:53:00+00:00"
-        },
-        {
-          "close": 4011.3,
-          "high": 4011.6,
-          "low": 4010.1,
-          "open": 4010.2,
-          "ts": "2026-10-23T20:54:00+00:00"
-        },
-        {
-          "close": 4011.2,
-          "high": 4012.1,
-          "low": 4010.8,
-          "open": 4011.4,
-          "ts": "2026-10-23T20:55:00+00:00"
-        },
-        {
-          "close": 4010.7,
-          "high": 4011.6,
-          "low": 4010.5,
-          "open": 4011.3,
-          "ts": "2026-10-23T20:56:00+00:00"
-        },
-        {
-          "close": 4009.3,
-          "high": 4010.8,
-          "low": 4009.2,
-          "open": 4010.7,
-          "ts": "2026-10-23T20:57:00+00:00"
-        },
-        {
-          "close": 4009.4,
-          "high": 4010.1,
-          "low": 4009.1,
-          "open": 4009.4,
-          "ts": "2026-10-23T20:58:00+00:00"
-        },
-        {
-          "close": 4010.0,
-          "high": 4010.1,
-          "low": 4009.0,
-          "open": 4009.2,
-          "ts": "2026-10-23T20:59:00+00:00"
-        }
-      ],
+      "ohlc_bars": [],
       "order_qty": 10,
       "overlay_direction": -1,
       "overlay_entry_fill": 4000.0,
@@ -1413,78 +1058,7 @@
       "instrument": "MNQ",
       "mode": "DEMO_EXEC",
       "n_alerts": 2,
-      "ohlc_bars": [
-        {
-          "close": 29167.25,
-          "high": 29170.75,
-          "low": 29166.5,
-          "open": 29166.5,
-          "ts": "2026-10-23T20:50:00+00:00"
-        },
-        {
-          "close": 29167.0,
-          "high": 29167.75,
-          "low": 29163.5,
-          "open": 29167.0,
-          "ts": "2026-10-23T20:51:00+00:00"
-        },
-        {
-          "close": 29164.25,
-          "high": 29166.75,
-          "low": 29164.25,
-          "open": 29166.75,
-          "ts": "2026-10-23T20:52:00+00:00"
-        },
-        {
-          "close": 29163.75,
-          "high": 29168.5,
-          "low": 29163.75,
-          "open": 29164.75,
-          "ts": "2026-10-23T20:53:00+00:00"
-        },
-        {
-          "close": 29167.75,
-          "high": 29169.75,
-          "low": 29162.75,
-          "open": 29164.5,
-          "ts": "2026-10-23T20:54:00+00:00"
-        },
-        {
-          "close": 29166.5,
-          "high": 29168.75,
-          "low": 29164.0,
-          "open": 29168.0,
-          "ts": "2026-10-23T20:55:00+00:00"
-        },
-        {
-          "close": 29165.75,
-          "high": 29167.75,
-          "low": 29164.25,
-          "open": 29167.75,
-          "ts": "2026-10-23T20:56:00+00:00"
-        },
-        {
-          "close": 29168.5,
-          "high": 29168.75,
-          "low": 29159.5,
-          "open": 29165.5,
-          "ts": "2026-10-23T20:57:00+00:00"
-        },
-        {
-          "close": 29163.25,
-          "high": 29169.0,
-          "low": 29161.5,
-          "open": 29168.0,
-          "ts": "2026-10-23T20:58:00+00:00"
-        },
-        {
-          "close": 29175.0,
-          "high": 29178.75,
-          "low": 29161.75,
-          "open": 29164.5,
-          "ts": "2026-10-23T20:59:00+00:00"
-        }
-      ],
+      "ohlc_bars": [],
       "order_qty": 10,
       "overlay_direction": null,
       "overlay_entry_fill": null,
@@ -1511,7 +1085,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-23T22:49:01.459227+00:00",
+      "generated_at": "2026-10-23T23:01:01.593140+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -1535,8 +1109,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 6541.4,
-          "heartbeat_age_sec": 1.5,
+          "bar_age_sec": 7261.5,
+          "heartbeat_age_sec": 1.3,
           "last_alert": "2026-10-20T18:24:09.399834+00:00 restart reconciliation: local state says IN_POSITION but the broker is flat on the managed contract -- treating as exited (a fill may have completed while the process was down)",
           "managed": true,
           "position_state": "FLAT",
@@ -1551,8 +1125,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 6541.4,
-          "heartbeat_age_sec": 1.8,
+          "bar_age_sec": 7261.5,
+          "heartbeat_age_sec": 1.7,
           "last_alert": "2026-10-20T22:08:01Z watchdog[mes] killed hung pid 3326972 (heartbeat 4431s)",
           "managed": true,
           "position_state": "FLAT",
@@ -1567,8 +1141,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 6541.4,
-          "heartbeat_age_sec": 0.3,
+          "bar_age_sec": 7261.5,
+          "heartbeat_age_sec": 0.1,
           "last_alert": "2026-10-20T14:32:38.314879+00:00 UNMANAGED/HALTED: flatten_refused_shared_root: FLATTEN (entry_failed_unflat) would close every sibling's exposure on this root, not just this leg's own share -- MANUAL INTERVENTION REQUIRED (use an explicit root-wide emergency liquidation if that is genuinely intended) -- entries blocked, MANUAL INTERVENTION REQUIRED",
           "managed": true,
           "position_state": "FLAT",
@@ -1583,8 +1157,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 6541.4,
-          "heartbeat_age_sec": 1.0,
+          "bar_age_sec": 7261.5,
+          "heartbeat_age_sec": 0.9,
           "last_alert": "2026-10-20T22:10:01Z watchdog[mgc] killed hung pid 3327001 (heartbeat 4551s)",
           "managed": true,
           "position_state": "FLAT",
@@ -1599,8 +1173,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 6541.4,
-          "heartbeat_age_sec": 11.7,
+          "bar_age_sec": 7261.5,
+          "heartbeat_age_sec": 10.3,
           "last_alert": "2026-10-20T14:32:40.094639+00:00 UNMANAGED/HALTED: flatten_refused_shared_root: FLATTEN (entry_failed_unflat) would close every sibling's exposure on this root, not just this leg's own share -- MANUAL INTERVENTION REQUIRED (use an explicit root-wide emergency liquidation if that is genuinely intended) -- entries blocked, MANUAL INTERVENTION REQUIRED",
           "managed": true,
           "position_state": "SHORT 2",
@@ -1615,8 +1189,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 6541.4,
-          "heartbeat_age_sec": 1.1,
+          "bar_age_sec": 7261.5,
+          "heartbeat_age_sec": 1.0,
           "last_alert": "2026-10-21T19:54:15.105864+00:00 ANOMALOUS DEADLINE_EXIT_SLIPPAGE_CHECK 2026-10-21: filled 30034.75 vs market reference 30038.0 (+13 ticks, $+65.00)",
           "managed": true,
           "position_state": "FLAT",
@@ -1631,8 +1205,8 @@
             "expires": "2026-11-10",
             "state": "VALID"
           },
-          "bar_age_sec": 6541.4,
-          "heartbeat_age_sec": 4.3,
+          "bar_age_sec": 7261.5,
+          "heartbeat_age_sec": 3.4,
           "last_alert": "2026-10-23T19:12:02Z watchdog: PA feed quiet for 694922s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -1724,78 +1298,7 @@
       "unrealized_pnl_usd": null
     },
     "t1_leg": {
-      "ohlc_bars": [
-        {
-          "close": 29167.25,
-          "high": 29170.75,
-          "low": 29166.5,
-          "open": 29166.5,
-          "ts": "2026-10-23T20:50:00+00:00"
-        },
-        {
-          "close": 29167.0,
-          "high": 29167.75,
-          "low": 29163.5,
-          "open": 29167.0,
-          "ts": "2026-10-23T20:51:00+00:00"
-        },
-        {
-          "close": 29164.25,
-          "high": 29166.75,
-          "low": 29164.25,
-          "open": 29166.75,
-          "ts": "2026-10-23T20:52:00+00:00"
-        },
-        {
-          "close": 29163.75,
-          "high": 29168.5,
-          "low": 29163.75,
-          "open": 29164.75,
-          "ts": "2026-10-23T20:53:00+00:00"
-        },
-        {
-          "close": 29167.75,
-          "high": 29169.75,
-          "low": 29162.75,
-          "open": 29164.5,
-          "ts": "2026-10-23T20:54:00+00:00"
-        },
-        {
-          "close": 29166.5,
-          "high": 29168.75,
-          "low": 29164.0,
-          "open": 29168.0,
-          "ts": "2026-10-23T20:55:00+00:00"
-        },
-        {
-          "close": 29165.75,
-          "high": 29167.75,
-          "low": 29164.25,
-          "open": 29167.75,
-          "ts": "2026-10-23T20:56:00+00:00"
-        },
-        {
-          "close": 29168.5,
-          "high": 29168.75,
-          "low": 29159.5,
-          "open": 29165.5,
-          "ts": "2026-10-23T20:57:00+00:00"
-        },
-        {
-          "close": 29163.25,
-          "high": 29169.0,
-          "low": 29161.5,
-          "open": 29168.0,
-          "ts": "2026-10-23T20:58:00+00:00"
-        },
-        {
-          "close": 29175.0,
-          "high": 29178.75,
-          "low": 29161.75,
-          "open": 29164.5,
-          "ts": "2026-10-23T20:59:00+00:00"
-        }
-      ],
+      "ohlc_bars": [],
       "overlay_direction": 1,
       "overlay_entry_fill": 29073.25
     },
@@ -1874,7 +1377,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-23T22:49:24.305965Z",
+  "data_as_of_utc": "2026-10-23T23:01:05.538945Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -2144,7 +1647,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-23T22:49:24.305965Z",
+  "generated_at_utc": "2026-10-23T23:01:05.538945Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
