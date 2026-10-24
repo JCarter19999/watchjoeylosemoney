@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-24T07:46:05.857773Z",
+      "as_of_utc": "2026-10-24T08:01:04.849985Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -1085,7 +1085,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-24T07:46:02.319551+00:00",
+      "generated_at": "2026-10-24T08:01:01.946114+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -1093,7 +1093,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.7,
+          "bar_age_sec": 2.3,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -1109,8 +1109,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 38762.3,
-          "heartbeat_age_sec": 4.0,
+          "bar_age_sec": 39661.9,
+          "heartbeat_age_sec": 3.2,
           "last_alert": "2026-10-20T18:24:09.399834+00:00 restart reconciliation: local state says IN_POSITION but the broker is flat on the managed contract -- treating as exited (a fill may have completed while the process was down)",
           "managed": true,
           "position_state": "FLAT",
@@ -1125,8 +1125,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 38762.3,
-          "heartbeat_age_sec": 0.6,
+          "bar_age_sec": 39661.9,
+          "heartbeat_age_sec": 4.9,
           "last_alert": "2026-10-20T22:08:01Z watchdog[mes] killed hung pid 3326972 (heartbeat 4431s)",
           "managed": true,
           "position_state": "FLAT",
@@ -1141,8 +1141,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 38762.3,
-          "heartbeat_age_sec": 0.2,
+          "bar_age_sec": 39661.9,
+          "heartbeat_age_sec": 4.4,
           "last_alert": "2026-10-20T14:32:38.314879+00:00 UNMANAGED/HALTED: flatten_refused_shared_root: FLATTEN (entry_failed_unflat) would close every sibling's exposure on this root, not just this leg's own share -- MANUAL INTERVENTION REQUIRED (use an explicit root-wide emergency liquidation if that is genuinely intended) -- entries blocked, MANUAL INTERVENTION REQUIRED",
           "managed": true,
           "position_state": "FLAT",
@@ -1157,8 +1157,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 38762.3,
-          "heartbeat_age_sec": 4.6,
+          "bar_age_sec": 39661.9,
+          "heartbeat_age_sec": 3.9,
           "last_alert": "2026-10-20T22:10:01Z watchdog[mgc] killed hung pid 3327001 (heartbeat 4551s)",
           "managed": true,
           "position_state": "FLAT",
@@ -1173,8 +1173,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 38762.3,
-          "heartbeat_age_sec": 24.4,
+          "bar_age_sec": 39661.9,
+          "heartbeat_age_sec": 24.5,
           "last_alert": "2026-10-20T14:32:40.094639+00:00 UNMANAGED/HALTED: flatten_refused_shared_root: FLATTEN (entry_failed_unflat) would close every sibling's exposure on this root, not just this leg's own share -- MANUAL INTERVENTION REQUIRED (use an explicit root-wide emergency liquidation if that is genuinely intended) -- entries blocked, MANUAL INTERVENTION REQUIRED",
           "managed": true,
           "position_state": "SHORT 2",
@@ -1189,8 +1189,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 38762.3,
-          "heartbeat_age_sec": 4.2,
+          "bar_age_sec": 39661.9,
+          "heartbeat_age_sec": 3.5,
           "last_alert": "2026-10-21T19:54:15.105864+00:00 ANOMALOUS DEADLINE_EXIT_SLIPPAGE_CHECK 2026-10-21: filled 30034.75 vs market reference 30038.0 (+13 ticks, $+65.00)",
           "managed": true,
           "position_state": "FLAT",
@@ -1205,8 +1205,8 @@
             "expires": "2026-11-10",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 38762.3,
-          "heartbeat_age_sec": 0.2,
+          "bar_age_sec": 39661.9,
+          "heartbeat_age_sec": 3.6,
           "last_alert": "2026-10-23T19:12:02Z watchdog: PA feed quiet for 694922s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -1379,7 +1379,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-24T07:46:06.145255Z",
+  "data_as_of_utc": "2026-10-24T08:01:04.985761Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -1649,7 +1649,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-24T07:46:06.145255Z",
+  "generated_at_utc": "2026-10-24T08:01:04.985761Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
