@@ -230,6 +230,14 @@ fi
 if [ -f "$WHEEL_V1_SHADOW_RUNTIME/wheel_v1_shadow_status.json" ]; then
   EXTRA_WHEEL_V1_ARGS+=(--wheel-v1-shadow-status "$WHEEL_V1_SHADOW_RUNTIME/wheel_v1_shadow_status.json")
 fi
+# Unrealized P&L marks -- reuses the ALREADY-streaming MNQCONT/MGC bar logs (no new Databento
+# connection), same data source wheel_v1_shadow_engine.load_full_calendar() reads.
+if [ -f "$MNQCONT_RUNTIME/mnqcont_bars.jsonl" ]; then
+  EXTRA_WHEEL_V1_ARGS+=(--wheel-v1-mnq-bars "$MNQCONT_RUNTIME/mnqcont_bars.jsonl")
+fi
+if [ -f "$MGC_RUNTIME/mgc_bars.jsonl" ]; then
+  EXTRA_WHEEL_V1_ARGS+=(--wheel-v1-mgc-bars "$MGC_RUNTIME/mgc_bars.jsonl")
+fi
 
 PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_t1_private_snapshot \
   --trades "$T1_RUNTIME/t1_trades.jsonl" \

@@ -165,6 +165,40 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     st.caption("Mark-to-market off the last received bar, not a fill -- no commission or slippage included, and it moves every minute the market does.")
 
 
+def render_wheel_v1_unrealized(snapshot: dict[str, Any]) -> None:
+    """Wheel v1.0's own MNQ+MGC buy-and-hold legs -- added 2026-10-27 (user: "can i see MGC and
+    MNQ unrealized P:L?" / "add a streamlit tab to show it"). Reads
+    dashboard_extras.wheel_v1_unrealized (export_t1_private_snapshot.py's
+    _build_wheel_v1_unrealized), mark-to-market off the LAST BAR CLOSE against each leg's own
+    running VWAP cost basis (avg_fill_price, tracked by wheel_v1_leg_live_service.py's _resize)
+    -- not a fill-based or commission-adjusted P&L, same convention as render_unrealized above,
+    just a dedicated per-leg cost basis instead of a single entry_fill (these are periodically-
+    RESIZED positions, not single-entry bracket trades)."""
+    wu = (snapshot.get("dashboard_extras") or {}).get("wheel_v1_unrealized")
+    if not wu:
+        st.info("No Wheel v1.0 position data published yet.")
+        return
+    labels = {"mnq": "Wheel v1.0 — MNQ", "mgc": "Wheel v1.0 — MGC"}
+    cols = st.columns(2)
+    for col, key in zip(cols, ("mnq", "mgc")):
+        leg = wu.get(key)
+        if not leg:
+            col.metric(labels[key], "—")
+            continue
+        qty = leg.get("held_qty") or 0
+        if not qty:
+            col.metric(labels[key], "flat")
+            continue
+        u = leg.get("unrealized_pnl_usd")
+        col.metric(f"{labels[key]} ({leg.get('held_contract') or '?'}, {qty} ct)",
+                   money(u) if u is not None else "—",
+                   delta=f"avg {leg.get('avg_fill_price'):,.2f} → last {leg.get('current_price'):,.2f}"
+                   if leg.get("avg_fill_price") is not None and leg.get("current_price") is not None else None,
+                   delta_color="off")
+    st.caption("Mark-to-market off the last received bar against each leg's own running average fill price "
+               "(a periodically-resized position, not a single entry) -- no commission or slippage included.")
+
+
 _CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Continuation"),
                      ("mes_leg", "MES 1R"), ("mgc_leg", "MGC 1R")]
 _ENTRY_COLOR, _TARGET_COLOR, _STOP_COLOR = "#9aa4b2", "#3ecf8e", "#e34948"
@@ -612,26 +646,33 @@ def live_dashboard() -> None:
 
     status_badge(snapshot)
     st.caption(f"Last updated: {format_pst(snapshot['generated_at_utc'])}")
-    render_candlesticks(snapshot)
-    render_metrics(snapshot)
-    render_contract_distribution(snapshot)
-    render_ops_health(snapshot)
-    render_projection(snapshot)
 
-    if snapshot["mode"] == "LIVE":
-        st.info(
-            "LIVE results are deliberately delayed and closed-trade-only. Current positions, "
-            "exact entries, stops, targets, order IDs, and account details are never published."
-        )
+    tab_fleet, tab_wheel = st.tabs(["Fleet", "Wheel v1.0"])
 
-    st.divider()
-    st.subheader("Risk")
-    render_charts(snapshot)
+    with tab_fleet:
+        render_candlesticks(snapshot)
+        render_metrics(snapshot)
+        render_contract_distribution(snapshot)
+        render_ops_health(snapshot)
+        render_projection(snapshot)
 
-    st.divider()
-    render_daily_pnl_heatmap(snapshot)
-    render_trade_table(snapshot)
-    render_reliability(snapshot)
+        if snapshot["mode"] == "LIVE":
+            st.info(
+                "LIVE results are deliberately delayed and closed-trade-only. Current positions, "
+                "exact entries, stops, targets, order IDs, and account details are never published."
+            )
+
+        st.divider()
+        st.subheader("Risk")
+        render_charts(snapshot)
+
+        st.divider()
+        render_daily_pnl_heatmap(snapshot)
+        render_trade_table(snapshot)
+        render_reliability(snapshot)
+
+    with tab_wheel:
+        render_wheel_v1_unrealized(snapshot)
 
 
 st.title("watch joey lose money")
