@@ -199,8 +199,7 @@ def render_wheel_v1_unrealized(snapshot: dict[str, Any]) -> None:
                "(a periodically-resized position, not a single entry) -- no commission or slippage included.")
 
 
-_CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Continuation"),
-                     ("mes_leg", "MES 1R"), ("mgc_leg", "MGC 1R")]
+_CANDLESTICK_LEGS = [("t1_leg", "MNQ"), ("mgc_leg", "MGC")]
 _ENTRY_COLOR, _TARGET_COLOR, _STOP_COLOR = "#9aa4b2", "#3ecf8e", "#e34948"
 
 
@@ -645,34 +644,29 @@ def live_dashboard() -> None:
         return
 
     status_badge(snapshot)
+    render_wheel_v1_unrealized(snapshot)
     st.caption(f"Last updated: {format_pst(snapshot['generated_at_utc'])}")
 
-    tab_fleet, tab_wheel = st.tabs(["Fleet", "Wheel v1.0"])
+    render_candlesticks(snapshot)
+    render_metrics(snapshot)
+    render_contract_distribution(snapshot)
+    render_ops_health(snapshot)
+    render_projection(snapshot)
 
-    with tab_fleet:
-        render_candlesticks(snapshot)
-        render_metrics(snapshot)
-        render_contract_distribution(snapshot)
-        render_ops_health(snapshot)
-        render_projection(snapshot)
+    if snapshot["mode"] == "LIVE":
+        st.info(
+            "LIVE results are deliberately delayed and closed-trade-only. Current positions, "
+            "exact entries, stops, targets, order IDs, and account details are never published."
+        )
 
-        if snapshot["mode"] == "LIVE":
-            st.info(
-                "LIVE results are deliberately delayed and closed-trade-only. Current positions, "
-                "exact entries, stops, targets, order IDs, and account details are never published."
-            )
+    st.divider()
+    st.subheader("Risk")
+    render_charts(snapshot)
 
-        st.divider()
-        st.subheader("Risk")
-        render_charts(snapshot)
-
-        st.divider()
-        render_daily_pnl_heatmap(snapshot)
-        render_trade_table(snapshot)
-        render_reliability(snapshot)
-
-    with tab_wheel:
-        render_wheel_v1_unrealized(snapshot)
+    st.divider()
+    render_daily_pnl_heatmap(snapshot)
+    render_trade_table(snapshot)
+    render_reliability(snapshot)
 
 
 st.title("watch joey lose money")
