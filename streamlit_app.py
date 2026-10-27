@@ -551,10 +551,10 @@ def render_projection(snapshot: dict[str, Any]) -> None:
         "Median profit ($)": h["median_pnl_usd"],
         "Median equity ($)": h["median_equity_usd"],
         "MDD typical, P50 ($)": h["mdd_p50_usd"],
-        "MDD typical, P50 (% of terminal equity)": h["mdd_p50_pct_of_terminal_equity"],
+        "MDD typical, P50 (% of own peak)": h.get("mdd_p50_pct_of_own_peak", h.get("mdd_p50_pct_of_terminal_equity")),
         "MDD bad, P90 ($)": h["mdd_p90_usd"],
         "MDD very bad, P95 ($)": h["mdd_p95_usd"],
-        "MDD very bad, P95 (% of terminal equity)": h["mdd_p95_pct_of_terminal_equity"],
+        "MDD very bad, P95 (% of own peak)": h.get("mdd_p95_pct_of_own_peak", h.get("mdd_p95_pct_of_terminal_equity")),
         "Derisked by this horizon (%)": h.get("pct_paths_derisked", 0.0),
     } for h in horizons])
     column_config = {
@@ -562,19 +562,24 @@ def render_projection(snapshot: dict[str, Any]) -> None:
         "Median profit ($)": st.column_config.NumberColumn(format="$%,.0f"),
         "Median equity ($)": st.column_config.NumberColumn(format="$%,.0f"),
         "MDD typical, P50 ($)": st.column_config.NumberColumn(format="$%,.0f"),
-        "MDD typical, P50 (% of terminal equity)": st.column_config.NumberColumn(format="%.1f%%"),
+        "MDD typical, P50 (% of own peak)": st.column_config.NumberColumn(format="%.1f%%"),
         "MDD bad, P90 ($)": st.column_config.NumberColumn(format="$%,.0f"),
         "MDD very bad, P95 ($)": st.column_config.NumberColumn(format="$%,.0f"),
-        "MDD very bad, P95 (% of terminal equity)": st.column_config.NumberColumn(format="%.1f%%"),
+        "MDD very bad, P95 (% of own peak)": st.column_config.NumberColumn(format="%.1f%%"),
         "Derisked by this horizon (%)": st.column_config.NumberColumn(format="%.1f%%"),
     }
     st.dataframe(table, hide_index=True, width="stretch", column_config=column_config)
 
     st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
                "equity, but shrink as a SHARE of the account once it's grown enough to absorb them. Profit is the "
-               "other side of the same simulated paths. 'Derisked by this horizon' is the share of simulated paths "
-               "that had already hit the permanent $500k switch to C30-B by that point -- expect it to climb from "
-               "0% toward a majority over the first few years, never back down (the switch is one-way).")
+               "other side of the same simulated paths. The '% of own peak' columns are each simulated path's OWN "
+               "worst drawdown relative to its OWN running high-water mark -- always 0-100%, directly answering "
+               "'how much could this account give back from its own high point.' (An earlier version of this panel "
+               "divided an extreme path's dollar loss by a DIFFERENT, typically much smaller number -- the median "
+               "path's ending balance -- which produced figures over 100% and was genuinely misleading; fixed "
+               "2026-10-27.) 'Derisked by this horizon' is the share of simulated paths that had already hit the "
+               "permanent $500k switch to C30-B by that point -- expect it to climb from 0% toward a majority over "
+               "the first few years, never back down (the switch is one-way).")
     st.caption(hr.get("caveat", ""))
 
 
