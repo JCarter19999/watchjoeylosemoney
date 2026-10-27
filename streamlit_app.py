@@ -199,6 +199,41 @@ def render_wheel_v1_unrealized(snapshot: dict[str, Any]) -> None:
                "(a periodically-resized position, not a single entry) -- no commission or slippage included.")
 
 
+def render_wheel_v1_equity_ladder(snapshot: dict[str, Any]) -> None:
+    """Equity -> sizing ladder for Wheel v1.0 -- added 2026-10-27 (user: "update the equity ladder
+    to reflect T1 70% with the other proponents of the wheel", "in streamlit"). Reads
+    dashboard_extras.wheel_v1_equity_ladder (scripts/wheel_v1_equity_ladder.py), a deterministic
+    table (not a Monte Carlo -- see render_projection for that) of D2-ladder equity breakpoints,
+    showing ACTIVE (T1=70%, live since 2026-10-27) vs. LEGACY (T1=30%, retained as the comparison
+    benchmark) MNQ/MGC qty and T1 scalar side by side at each."""
+    el = (snapshot.get("dashboard_extras") or {}).get("wheel_v1_equity_ladder")
+    if not el:
+        return
+    st.subheader("Equity ladder: ACTIVE (T1=70%) vs. LEGACY (T1=30%)")
+    st.caption(f"Snapshot as of {el.get('snapshot_date', '—')} — MNQ ${el.get('snapshot_mnq_close', 0):,.2f}, "
+               f"MGC ${el.get('snapshot_mgc_close', 0):,.2f}. Current: ${el.get('current_equity_usd', 0):,.0f} "
+               f"equity, level {el.get('current_level_idx', 0)}"
+               f"{' (derisked -> C30-B)' if el.get('current_derisked') else ''}.")
+    rows = el.get("rows", [])
+    table = pd.DataFrame([{
+        "Equity >=": r["equity_floor_usd"],
+        "Event": r["label"],
+        "Lev": r["leverage"],
+        "ACTIVE MNQ": r["active"]["mnq_qty"], "ACTIVE MGC": r["active"]["mgc_qty"],
+        "ACTIVE T1 scalar": r["active"]["t1_scalar"],
+        "LEGACY MNQ": r["legacy"]["mnq_qty"], "LEGACY MGC": r["legacy"]["mgc_qty"],
+        "LEGACY T1 scalar": r["legacy"]["t1_scalar"],
+    } for r in rows])
+    column_config = {
+        "Equity >=": st.column_config.NumberColumn(format="$%,.0f"),
+        "Lev": st.column_config.NumberColumn(format="%.0fx"),
+        "ACTIVE T1 scalar": st.column_config.NumberColumn(format="%.2f"),
+        "LEGACY T1 scalar": st.column_config.NumberColumn(format="%.2f"),
+    }
+    st.dataframe(table, hide_index=True, width="stretch", column_config=column_config)
+    st.caption(el.get("caveat", ""))
+
+
 _CANDLESTICK_LEGS = [("t1_leg", "MNQ"), ("mgc_leg", "MGC")]
 _ENTRY_COLOR, _TARGET_COLOR, _STOP_COLOR = "#9aa4b2", "#3ecf8e", "#e34948"
 
@@ -645,6 +680,7 @@ def live_dashboard() -> None:
 
     status_badge(snapshot)
     render_wheel_v1_unrealized(snapshot)
+    render_wheel_v1_equity_ladder(snapshot)
     st.caption(f"Last updated: {format_pst(snapshot['generated_at_utc'])}")
 
     render_candlesticks(snapshot)

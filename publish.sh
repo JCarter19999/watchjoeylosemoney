@@ -238,6 +238,16 @@ fi
 if [ -f "$MGC_RUNTIME/mgc_bars.jsonl" ]; then
   EXTRA_WHEEL_V1_ARGS+=(--wheel-v1-mgc-bars "$MGC_RUNTIME/mgc_bars.jsonl")
 fi
+# Equity -> sizing ladder (ACTIVE T1=70% vs. LEGACY T1=30%) -- a single pickle read, cheap enough
+# to recompute every cycle, no mtime cache needed (unlike the horizon-risk Monte Carlo above).
+EQUITY_LADDER_JSON="$WHEEL_V1_SHADOW_RUNTIME/equity_ladder.json"
+if [ -f "$WHEEL_V1_SHADOW_RUNTIME/wheel_v1_shadow_state.pkl" ]; then
+  PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/wheel_v1_equity_ladder.py" \
+    "$EQUITY_LADDER_JSON" >/dev/null 2>&1 || echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) equity ladder calc failed (non-fatal)"
+fi
+if [ -f "$EQUITY_LADDER_JSON" ]; then
+  EXTRA_WHEEL_V1_ARGS+=(--wheel-v1-equity-ladder "$EQUITY_LADDER_JSON")
+fi
 
 PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_t1_private_snapshot \
   --trades "$T1_RUNTIME/t1_trades.jsonl" \
