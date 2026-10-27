@@ -144,13 +144,16 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     6J/LE/PA were disabled 2026-10-15 (see market_structure_ml-live/CLAUDE.md) and are deliberately not
     shown here anymore -- removed, not hidden, since those legs are no longer trading at all. EIA and
     ON-001/ES dropped 2026-10-16 for the same reason: not robust enough to keep running alongside the
-    stronger legs."""
+    stronger legs. MGC10 and M6E both retired 2026-10-27 (user: "we are not running MGC10 anymore" /
+    "get rid of M6E too, we are no longer using it") -- their real demo positions were closed (MGC10
+    manually; M6E's own bracket had already resolved naturally before it could be confirmed) and
+    both processes stopped; see wheel_v1_mgc/wheel_v1_mnq below for MGC10's replacement."""
     rows = []
     mnq_u = snapshot["status"].get("unrealized_pnl_usd")
     if mnq_u is not None:
         rows.append(("T1 / MNQ", mnq_u))
     for key, label in (("mes", "MES H60"), ("mgc", "MGC H60"), ("mnqcont", "MNQ Continuation"),
-                        ("mgc10", "MGC Tail (10R)"), ("mes2r", "MES Tail (2R)"), ("m6e", "M6E H60")):
+                        ("mes2r", "MES Tail (2R)")):
         g_leg = (snapshot.get("dashboard_extras") or {}).get(f"{key}_leg")
         if g_leg and g_leg.get("unrealized_pnl_usd") is not None:
             rows.append((label, g_leg["unrealized_pnl_usd"]))
@@ -163,7 +166,7 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
 
 
 _CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Continuation"),
-                     ("mes_leg", "MES 1R"), ("mgc_leg", "MGC 1R"), ("m6e_leg", "M6E 1R")]
+                     ("mes_leg", "MES 1R"), ("mgc_leg", "MGC 1R")]
 _ENTRY_COLOR, _TARGET_COLOR, _STOP_COLOR = "#9aa4b2", "#3ecf8e", "#e34948"
 
 
@@ -459,16 +462,21 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
     this leg's status file isn't present.
 
     6J/LE/PA were disabled 2026-10-15, and EIA/ON-001/ES dropped 2026-10-16 (not robust enough to keep
-    running alongside the stronger legs) -- all intentionally excluded from `labels`. If the underlying
+    running alongside the stronger legs) -- all intentionally excluded from `labels`. MGC10 and M6E
+    both retired 2026-10-27 -- same treatment. If the underlying
     snapshot still carries a stale entry for one of them, it falls through to the generic `key` fallback
-    below rather than being actively displayed with a maintained label."""
+    below rather than being actively displayed with a maintained label.
+
+    wheel_v1_mnq/wheel_v1_mgc (added 2026-10-27): Wheel v1.0's own real execution legs -- `order_qty`
+    here is actually the HELD qty (these legs resize an existing position rather than enter fresh each
+    trigger; see export_t1_private_snapshot.py's own _build_contract_distribution comment)."""
     dist = (snapshot.get("dashboard_extras") or {}).get("contract_distribution")
     if not dist or not dist.get("legs"):
         return
     st.subheader("Current contract distribution")
     labels = {"t1": "T1 / MNQ", "mes": "MES H60", "mgc": "MGC H60", "mnqcont": "MNQ Continuation",
-              "mgc10": "MGC Tail (10R)", "mes2r": "MES Tail (2R)"}
-    legs = {k: v for k, v in dist["legs"].items() if k not in ("6j", "le", "pa", "on001", "eia_ho", "eia_rb")}
+              "mes2r": "MES Tail (2R)", "wheel_v1_mnq": "Wheel v1.0 MNQ", "wheel_v1_mgc": "Wheel v1.0 MGC"}
+    legs = {k: v for k, v in dist["legs"].items() if k not in ("6j", "le", "pa", "on001", "eia_ho", "eia_rb", "mgc10", "m6e")}
     if not legs:
         return
     cols = st.columns(len(legs))
@@ -499,7 +507,7 @@ def render_ops_health(snapshot: dict[str, Any]) -> None:
     overall = ops.get("overall_state", "UNKNOWN")
     st.markdown(f"**Fleet: {icons.get(overall, '')} {overall}**")
     labels = {"t1": "T1 / MNQ", "mnqcont": "MNQ Continuation", "mes": "MES H60", "mgc": "MGC H60",
-              "mgc10": "MGC Tail (10R)", "mes2r": "MES Tail (2R)", "m6e": "M6E"}
+              "mes2r": "MES Tail (2R)"}
     rows = []
     for key, leg in ops["legs"].items():
         auth = leg.get("auth") or {}
@@ -517,38 +525,38 @@ def render_ops_health(snapshot: dict[str, Any]) -> None:
 
 
 def render_projection(snapshot: dict[str, Any]) -> None:
-    """Horizon-matched risk curve for the full current 6-leg wheel (T1, MNQCONT, MES 1R, MGC 1R,
-    MGC10, MES2R), written by scripts/project_wheel_horizon_risk.py. Replaced the single "projected
-    annualized P&L vs one historical MDD" panel 2026-10-15 -- that shape doesn't horizon-match a
-    SCALING account (feedback_mdd_evaluation_framework.md): the real question is how drawdown risk,
-    as a SHARE of the (also-growing) account, changes as the P2 ladder scales position size up with
-    equity. Simulates the actual dynamic equity path (ladder qty recomputed from current equity every
-    day, same compute_sizing() the live watchdogs call) via block-bootstrap, not a static multiple."""
+    """Horizon-matched risk curve for Wheel v1.0 (4 sleeves: T1, MNQCONT, MNQ, MGC; D2 reversible
+    leverage ladder -> permanent switch to C30-B's rule the first time equity reaches $500,000,
+    never reverts), written by scripts/project_wheel_v1_horizon_risk.py. Replaces the retired
+    6-leg, P2-ladder-governed panel (MES/MGC10/MES2R dropped from "the wheel" grouping -- those
+    legs keep running independently, just no longer part of this projection; see
+    ~/.claude/plans/groovy-watching-dewdrop.md). Simulates the actual dynamic equity path (ladder
+    level/derisk state recomputed from the simulated equity every day, the same formula the live
+    wheel_v1_mnq/wheel_v1_mgc legs and shadow tracker use) via block-bootstrap, not a static
+    multiple."""
     hr = (snapshot.get("dashboard_extras") or {}).get("horizon_risk")
     if not hr:
         return
     horizons = hr.get("horizons", [])
     if not horizons:
         return
-    st.subheader("Drawdown risk vs. account growth, by horizon (all 6 legs combined)")
-    st.caption(f"Block-bootstrap simulation ({hr.get('n_paths', '—')} paths) of the real P2-governed ladder, "
-               f"starting from ${hr.get('start_equity_usd', 0):,.0f}. Not a live realized track record.")
+    st.subheader("Drawdown risk vs. account growth, by horizon (Wheel v1.0, 4 sleeves)")
+    st.caption(f"Block-bootstrap simulation ({hr.get('n_paths', '—')} paths) of the real Wheel v1.0 "
+               f"D2 ladder -> C30-B derisk policy, starting from ${hr.get('start_equity_usd', 0):,.0f}. "
+               f"Not a live realized track record.")
+    st.caption(f"**{hr.get('policy', '')}**")
 
-    def _build_table(suffix: str) -> pd.DataFrame:
-        def f(h: dict, field: str) -> Any:
-            return h[f"{field}{suffix}"]
-        return pd.DataFrame([{
-            "Months": h["months"],
-            "Median profit ($)": f(h, "median_pnl_usd"),
-            "Median equity ($)": f(h, "median_equity_usd"),
-            "MDD typical, P50 ($)": f(h, "mdd_p50_usd"),
-            "MDD typical, P50 (% of terminal equity)": f(h, "mdd_p50_pct_of_terminal_equity"),
-            "MDD bad, P90 ($)": f(h, "mdd_p90_usd"),
-            "MDD very bad, P95 ($)": f(h, "mdd_p95_usd"),
-            "MDD very bad, P95 (% of terminal equity)": f(h, "mdd_p95_pct_of_terminal_equity"),
-            "Note": "ladder hit sanity cap" if f(h, "level_capped") else "",
-        } for h in horizons])
-
+    table = pd.DataFrame([{
+        "Months": h["months"],
+        "Median profit ($)": h["median_pnl_usd"],
+        "Median equity ($)": h["median_equity_usd"],
+        "MDD typical, P50 ($)": h["mdd_p50_usd"],
+        "MDD typical, P50 (% of terminal equity)": h["mdd_p50_pct_of_terminal_equity"],
+        "MDD bad, P90 ($)": h["mdd_p90_usd"],
+        "MDD very bad, P95 ($)": h["mdd_p95_usd"],
+        "MDD very bad, P95 (% of terminal equity)": h["mdd_p95_pct_of_terminal_equity"],
+        "Derisked by this horizon (%)": h.get("pct_paths_derisked", 0.0),
+    } for h in horizons])
     column_config = {
         "Months": st.column_config.NumberColumn(format="%d"),
         "Median profit ($)": st.column_config.NumberColumn(format="$%,.0f"),
@@ -558,52 +566,15 @@ def render_projection(snapshot: dict[str, Any]) -> None:
         "MDD bad, P90 ($)": st.column_config.NumberColumn(format="$%,.0f"),
         "MDD very bad, P95 ($)": st.column_config.NumberColumn(format="$%,.0f"),
         "MDD very bad, P95 (% of terminal equity)": st.column_config.NumberColumn(format="%.1f%%"),
+        "Derisked by this horizon (%)": st.column_config.NumberColumn(format="%.1f%%"),
     }
-
-    # Historically this showed up to four stacked tables, one per research-evolution step (plain
-    # P2 -> k=0.5 overlay -> +6E -> staged combined policy) -- all variants the horizon-risk script
-    # happens to have computed, not just the current recommendation. Cluttered and redundant once
-    # there were several; now shows only the single most-evolved variant actually present (user
-    # request, 2026-10-20: "get rid of all those repeating tables and just keep the last one").
-    k = hr.get("overlay_k")
-    p0, b = hr.get("overlay_p0_usd"), hr.get("overlay_b_usd")
-    if "median_equity_usd_staged" in horizons[0]:
-        thresh = hr.get("e6_activation_threshold")
-        st.caption(f"**LEADING combined-policy candidate: Wheel + k={k} (unscaled, from the start) + 6E "
-                   f"gated at ${thresh:,.0f}** -- NOT LIVE. k=0.5 overlay runs exactly as already approved "
-                   f"(ladder never shrunk); 6E stays off until equity first reaches ${thresh:,.0f} (= 2x the "
-                   f"original $50k protected principal -- a pre-defensible capital milestone, not a fitted "
-                   f"parameter), then activates PERMANENTLY (sticky -- stays on even if equity later dips back "
-                   f"below), sized from REAL equity, never the overlay's inflated E_eff. A paired comparison "
-                   f"(same bootstrap draws, not shown in this table) found this captures ~84% of always-on 6E's "
-                   f"incremental median terminal wealth while cutting the rate of a NEW sub-$50k breach "
-                   f"Wheel+k=0.5 alone wouldn't have hit from 5.3% to 0.1%. An always-on combination of both "
-                   f"mechanisms sharing one risk budget (tested, not shown here) was actively WORSE than 6E "
-                   f"alone on both terminal wealth and MDD -- gating WHEN 6E turns on, rather than shrinking "
-                   f"everything to share a risk budget, is what makes this combination actually work.")
-        st.dataframe(_build_table("_staged"), hide_index=True, width="stretch", column_config=column_config)
-    elif "ladder_scale_6e" in hr:
-        s6e = hr["ladder_scale_6e"]
-        st.caption(f"**+6E (Euro FX), risk-matched, ladder scaled x{s6e}** -- PROMOTED RESEARCH CANDIDATE, "
-                   f"NOT LIVE (parity + margin confirmed, contract-matcher wiring and shadow run still pending). "
-                   f"Signal on 6E.v.0, sized in full-size 6E-equivalent units = the same shared ladder level; "
-                   f"ladder scaled down to redirect that risk into 6E.")
-        st.dataframe(_build_table("_6e"), hide_index=True, width="stretch", column_config=column_config)
-    elif k is not None:
-        st.caption(f"**Surplus-aggression overlay, k={k}** (protected principal ${p0:,.0f}, buffer ${b:,.0f} -- "
-                   f"same policy scripts/compute_p2_sizing.py deploys live; dormant below ${(p0 or 0) + (b or 0):,.0f} "
-                   f"equity)")
-        st.dataframe(_build_table("_k05"), hide_index=True, width="stretch", column_config=column_config)
-    else:
-        st.caption("**Plain P2** (no overlay)")
-        st.dataframe(_build_table(""), hide_index=True, width="stretch", column_config=column_config)
+    st.dataframe(table, hide_index=True, width="stretch", column_config=column_config)
 
     st.caption("This is the 'getting safer as we scale' read: dollar drawdowns grow as the ladder scales up with "
                "equity, but shrink as a SHARE of the account once it's grown enough to absorb them. Profit is the "
-               "other side of the same simulated paths. "
-               "Where the % column stops improving is worth watching, not assuming. 'Ladder hit sanity cap' means "
-               "the median path's qty hit the MAX_LEVEL ceiling at that horizon -- treat that row as the model "
-               "running out of room, not a real projection.")
+               "other side of the same simulated paths. 'Derisked by this horizon' is the share of simulated paths "
+               "that had already hit the permanent $500k switch to C30-B by that point -- expect it to climb from "
+               "0% toward a majority over the first few years, never back down (the switch is one-way).")
     st.caption(hr.get("caveat", ""))
 
 

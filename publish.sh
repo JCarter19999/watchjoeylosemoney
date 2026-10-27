@@ -82,6 +82,13 @@ MNQCONT_RUNTIME="$LIVE_REPO/runtime_mnqcont_paper"
 MGC10_RUNTIME="$LIVE_REPO/runtime_mgc10_paper"
 MES2R_RUNTIME="$LIVE_REPO/runtime_mes2r_paper"
 M6E_RUNTIME="$LIVE_REPO/runtime_m6e_paper"
+# Wheel v1.0's own real execution legs (MNQ+MGC buy-and-hold, D2 ladder -> permanent C30-B
+# derisk at $500k), added 2026-10-27. Separate from MES/MGC/MNQCONT/MGC10/MES2R above -- those
+# are the OLDER, retired-from-"the wheel" P2-governed legs. See
+# ~/.claude/plans/groovy-watching-dewdrop.md.
+WHEEL_V1_MNQ_RUNTIME="$LIVE_REPO/runtime_wheel_v1_mnq"
+WHEEL_V1_MGC_RUNTIME="$LIVE_REPO/runtime_wheel_v1_mgc"
+WHEEL_V1_SHADOW_RUNTIME="$LIVE_REPO/runtime_wheel_v1_shadow"
 # Ops health control plane (scripts/ops_health_check.py, 2026-10-19) -- read-only pass-through
 # of its own fleet_status.json, same additive convention as projection/horizon_risk below.
 OPS_HEALTH_JSON="$LIVE_REPO/runtime_ops/fleet_status.json"
@@ -165,13 +172,11 @@ EXTRA_MES2R_ARGS=()
 if [ -f "$MES2R_RUNTIME/live_status.json" ]; then
   EXTRA_MES2R_ARGS=(--mes2r-status "$MES2R_RUNTIME/live_status.json" --mes2r-trades "$MES2R_RUNTIME/mes2r_trades.jsonl")
 fi
-# M6E leg -- same additive convention, added 2026-10-19. No m6e_trades.jsonl exists yet (no
-# closed trade has happened), same already-handled "optional, defaults to /nonexistent" case
-# every other leg's exporter arg already covers.
+# M6E leg -- RETIRED 2026-10-27 (user: "get rid of M6E too, we are no longer using it"). Its
+# process is stopped and its real demo position closed; intentionally left unconditionally empty
+# (not wired to $M6E_RUNTIME/live_status.json anymore) so it never resurfaces in the export even
+# though that status file still exists on disk, now marked RETIRED.
 EXTRA_M6E_ARGS=()
-if [ -f "$M6E_RUNTIME/live_status.json" ]; then
-  EXTRA_M6E_ARGS=(--m6e-status "$M6E_RUNTIME/live_status.json" --m6e-trades "$M6E_RUNTIME/m6e_trades.jsonl")
-fi
 EIA_HO_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_ho.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 EIA_RB_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$EIA_RUNTIME/live_status_rb.json')).get('order_qty',0))" 2>/dev/null || echo 0)
 LE_QTY=$("$LIVE_REPO/.venv/bin/python3" -c "import json; print(json.load(open('$LE_RUNTIME/live_status.json')).get('order_qty',0))" 2>/dev/null || echo 0)
@@ -196,14 +201,15 @@ if [ -f "$PROJECTION_JSON" ]; then
   EXTRA_PROJECTION_ARGS=(--projection "$PROJECTION_JSON")
 fi
 
-# Horizon-matched risk curve (scripts/project_wheel_horizon_risk.py) -- a ~2000-path block-bootstrap
-# Monte Carlo, ~30s of CPU on this single-core box. Only recomputed once/day (cache older than 20h,
-# matched to this script's 15-min cron cadence but far enough apart not to compete with the live bots
-# every tick) -- the live sizing it reads barely moves day to day, unlike the cheap fixed-size
-# projection above which is recomputed every run.
+# Horizon-matched risk curve -- Wheel v1.0 native (scripts/project_wheel_v1_horizon_risk.py),
+# ~200-path block-bootstrap, ~25s of CPU on this single-core box. Replaces the retired 6-leg
+# P2-governed project_wheel_horizon_risk.py for THIS panel only (that script is not deleted,
+# just no longer invoked here -- see ~/.claude/plans/groovy-watching-dewdrop.md). Only
+# recomputed once/day (cache older than 20h, matched to this script's 15-min cron cadence but far
+# enough apart not to compete with the live bots every tick).
 HORIZON_RISK_JSON="$T1_RUNTIME/horizon_risk.json"
 if [ ! -f "$HORIZON_RISK_JSON" ] || [ "$(find "$HORIZON_RISK_JSON" -mmin +1200 2>/dev/null)" ]; then
-  PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/project_wheel_horizon_risk.py" \
+  PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/project_wheel_v1_horizon_risk.py" \
     "$HORIZON_RISK_JSON" >/dev/null 2>&1 || echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) horizon risk calc failed (non-fatal)"
 fi
 EXTRA_HORIZON_RISK_ARGS=()
@@ -213,6 +219,16 @@ fi
 EXTRA_OPS_HEALTH_ARGS=()
 if [ -f "$OPS_HEALTH_JSON" ]; then
   EXTRA_OPS_HEALTH_ARGS=(--ops-health "$OPS_HEALTH_JSON")
+fi
+EXTRA_WHEEL_V1_ARGS=()
+if [ -f "$WHEEL_V1_MNQ_RUNTIME/live_status.json" ]; then
+  EXTRA_WHEEL_V1_ARGS+=(--wheel-v1-mnq-status "$WHEEL_V1_MNQ_RUNTIME/live_status.json")
+fi
+if [ -f "$WHEEL_V1_MGC_RUNTIME/live_status.json" ]; then
+  EXTRA_WHEEL_V1_ARGS+=(--wheel-v1-mgc-status "$WHEEL_V1_MGC_RUNTIME/live_status.json")
+fi
+if [ -f "$WHEEL_V1_SHADOW_RUNTIME/wheel_v1_shadow_status.json" ]; then
+  EXTRA_WHEEL_V1_ARGS+=(--wheel-v1-shadow-status "$WHEEL_V1_SHADOW_RUNTIME/wheel_v1_shadow_status.json")
 fi
 
 PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_t1_private_snapshot \
@@ -233,7 +249,8 @@ PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.expor
   "${EXTRA_M6E_ARGS[@]}" \
   "${EXTRA_PROJECTION_ARGS[@]}" \
   "${EXTRA_HORIZON_RISK_ARGS[@]}" \
-  "${EXTRA_OPS_HEALTH_ARGS[@]}"
+  "${EXTRA_OPS_HEALTH_ARGS[@]}" \
+  "${EXTRA_WHEEL_V1_ARGS[@]}"
 
 cd "$WEB_REPO"
 "$WEB_REPO/.venv/bin/python3" sanitizer.py \
