@@ -201,15 +201,17 @@ def render_wheel_v1_unrealized(snapshot: dict[str, Any]) -> None:
 
 def render_wheel_v1_equity_ladder(snapshot: dict[str, Any]) -> None:
     """Equity -> sizing ladder for Wheel v1.0 -- added 2026-10-27 (user: "update the equity ladder
-    to reflect T1 70% with the other proponents of the wheel", "in streamlit"). Reads
+    to reflect T1 70% with the other proponents of the wheel", "in streamlit"), updated the same
+    day for "Wheel Policy B" (permanent $500k derisk switch removed). Reads
     dashboard_extras.wheel_v1_equity_ladder (scripts/wheel_v1_equity_ladder.py), a deterministic
     table (not a Monte Carlo -- see render_projection for that) of D2-ladder equity breakpoints,
-    showing ACTIVE (T1=70%, live since 2026-10-27) vs. LEGACY (T1=30%, retained as the comparison
-    benchmark) MNQ/MGC qty and T1 scalar side by side at each."""
+    showing ACTIVE (T1=70%, Policy B, never derisks) vs. LEGACY (T1=30%, original permanent-
+    derisk policy, retained as the comparison benchmark) leverage/MNQ/MGC qty/T1 scalar side by
+    side at each -- the two leverage columns now genuinely diverge at $500k+, not just weights."""
     el = (snapshot.get("dashboard_extras") or {}).get("wheel_v1_equity_ladder")
     if not el:
         return
-    st.subheader("Equity ladder: ACTIVE (T1=70%) vs. LEGACY (T1=30%)")
+    st.subheader("Equity ladder: ACTIVE (Policy B, never derisks) vs. LEGACY (permanent $500k derisk)")
     st.caption(f"Snapshot as of {el.get('snapshot_date', '—')} — MNQ ${el.get('snapshot_mnq_close', 0):,.2f}, "
                f"MGC ${el.get('snapshot_mgc_close', 0):,.2f}. Current: ${el.get('current_equity_usd', 0):,.0f} "
                f"equity, level {el.get('current_level_idx', 0)}"
@@ -218,7 +220,7 @@ def render_wheel_v1_equity_ladder(snapshot: dict[str, Any]) -> None:
     table = pd.DataFrame([{
         "Equity >=": r["equity_floor_usd"],
         "Event": r["label"],
-        "Lev": r["leverage"],
+        "ACTIVE Lev": r["active_leverage"], "LEGACY Lev": r["legacy_leverage"],
         "ACTIVE MNQ": r["active"]["mnq_qty"], "ACTIVE MGC": r["active"]["mgc_qty"],
         "ACTIVE T1 scalar": r["active"]["t1_scalar"],
         "LEGACY MNQ": r["legacy"]["mnq_qty"], "LEGACY MGC": r["legacy"]["mgc_qty"],
@@ -226,7 +228,8 @@ def render_wheel_v1_equity_ladder(snapshot: dict[str, Any]) -> None:
     } for r in rows])
     column_config = {
         "Equity >=": st.column_config.NumberColumn(format="$%,.0f"),
-        "Lev": st.column_config.NumberColumn(format="%.0fx"),
+        "ACTIVE Lev": st.column_config.NumberColumn(format="%.0fx"),
+        "LEGACY Lev": st.column_config.NumberColumn(format="%.0fx"),
         "ACTIVE T1 scalar": st.column_config.NumberColumn(format="%.2f"),
         "LEGACY T1 scalar": st.column_config.NumberColumn(format="%.2f"),
     }
@@ -593,9 +596,9 @@ def render_ops_health(snapshot: dict[str, Any]) -> None:
 
 
 def render_projection(snapshot: dict[str, Any]) -> None:
-    """Horizon-matched risk curve for Wheel v1.0 (4 sleeves: T1, MNQCONT, MNQ, MGC; D2 reversible
-    leverage ladder -> permanent switch to C30-B's rule the first time equity reaches $500,000,
-    never reverts), written by scripts/project_wheel_v1_horizon_risk.py. Replaces the retired
+    """Horizon-matched risk curve for Wheel v1.0 (4 sleeves: T1, MNQCONT, MNQ, MGC; "Wheel Policy
+    B" since 2026-10-27 -- graduated D2 ladder 3x->6x, the permanent $500k->C30-B derisk switch
+    has been REMOVED), written by scripts/project_wheel_v1_horizon_risk.py. Replaces the retired
     6-leg, P2-ladder-governed panel (MES/MGC10/MES2R dropped from "the wheel" grouping -- those
     legs keep running independently, just no longer part of this projection; see
     ~/.claude/plans/groovy-watching-dewdrop.md). Simulates the actual dynamic equity path (ladder
@@ -610,8 +613,8 @@ def render_projection(snapshot: dict[str, Any]) -> None:
         return
     st.subheader("Drawdown risk vs. account growth, by horizon (Wheel v1.0, 4 sleeves)")
     st.caption(f"Block-bootstrap simulation ({hr.get('n_paths', '—')} paths) of the real Wheel v1.0 "
-               f"D2 ladder -> C30-B derisk policy, starting from ${hr.get('start_equity_usd', 0):,.0f}. "
-               f"Not a live realized track record.")
+               f"Policy B (graduated D2 ladder, no permanent derisk switch), starting from "
+               f"${hr.get('start_equity_usd', 0):,.0f}. Not a live realized track record.")
     st.caption(f"**{hr.get('policy', '')}**")
 
     table = pd.DataFrame([{
@@ -645,9 +648,9 @@ def render_projection(snapshot: dict[str, Any]) -> None:
                "'how much could this account give back from its own high point.' (An earlier version of this panel "
                "divided an extreme path's dollar loss by a DIFFERENT, typically much smaller number -- the median "
                "path's ending balance -- which produced figures over 100% and was genuinely misleading; fixed "
-               "2026-10-27.) 'Derisked by this horizon' is the share of simulated paths that had already hit the "
-               "permanent $500k switch to C30-B by that point -- expect it to climb from 0% toward a majority over "
-               "the first few years, never back down (the switch is one-way).")
+               "2026-10-27.) 'Derisked by this horizon' will always read 0% under the ACTIVE Policy B -- the "
+               "permanent $500k switch to C30-B it used to track has been removed entirely (see the equity "
+               "ladder panel above for the retained LEGACY comparison, which still has this switch).")
     st.caption(hr.get("caveat", ""))
 
 
