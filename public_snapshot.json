@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-28T22:27:54.772560Z",
+      "as_of_utc": "2026-10-28T22:31:08.009164Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -320,34 +320,6 @@
       "n_alerts": 2,
       "ohlc_bars": [
         {
-          "close": 7763.0,
-          "high": 7769.25,
-          "low": 7762.5,
-          "open": 7768.75,
-          "ts": "2026-10-28T20:28:00+00:00"
-        },
-        {
-          "close": 7764.5,
-          "high": 7764.75,
-          "low": 7762.0,
-          "open": 7763.0,
-          "ts": "2026-10-28T20:29:00+00:00"
-        },
-        {
-          "close": 7763.5,
-          "high": 7765.25,
-          "low": 7762.0,
-          "open": 7764.5,
-          "ts": "2026-10-28T20:30:00+00:00"
-        },
-        {
-          "close": 7765.5,
-          "high": 7765.75,
-          "low": 7762.75,
-          "open": 7763.5,
-          "ts": "2026-10-28T20:31:00+00:00"
-        },
-        {
           "close": 7765.0,
           "high": 7766.5,
           "low": 7764.25,
@@ -731,6 +703,34 @@
           "low": 7743.25,
           "open": 7744.25,
           "ts": "2026-10-28T22:26:00+00:00"
+        },
+        {
+          "close": 7749.25,
+          "high": 7749.25,
+          "low": 7745.25,
+          "open": 7745.5,
+          "ts": "2026-10-28T22:27:00+00:00"
+        },
+        {
+          "close": 7752.5,
+          "high": 7753.5,
+          "low": 7749.25,
+          "open": 7749.25,
+          "ts": "2026-10-28T22:28:00+00:00"
+        },
+        {
+          "close": 7750.5,
+          "high": 7752.75,
+          "low": 7750.5,
+          "open": 7752.5,
+          "ts": "2026-10-28T22:29:00+00:00"
+        },
+        {
+          "close": 7750.25,
+          "high": 7751.25,
+          "low": 7748.75,
+          "open": 7750.75,
+          "ts": "2026-10-28T22:30:00+00:00"
         }
       ],
       "order_qty": 1,
@@ -754,34 +754,6 @@
       "n_alerts": 5,
       "ohlc_bars": [
         {
-          "close": 7763.0,
-          "high": 7769.25,
-          "low": 7762.5,
-          "open": 7768.75,
-          "ts": "2026-10-28T20:28:00+00:00"
-        },
-        {
-          "close": 7764.5,
-          "high": 7764.75,
-          "low": 7762.0,
-          "open": 7763.0,
-          "ts": "2026-10-28T20:29:00+00:00"
-        },
-        {
-          "close": 7763.5,
-          "high": 7765.25,
-          "low": 7762.0,
-          "open": 7764.5,
-          "ts": "2026-10-28T20:30:00+00:00"
-        },
-        {
-          "close": 7765.5,
-          "high": 7765.75,
-          "low": 7762.75,
-          "open": 7763.5,
-          "ts": "2026-10-28T20:31:00+00:00"
-        },
-        {
           "close": 7765.0,
           "high": 7766.5,
           "low": 7764.25,
@@ -1165,6 +1137,34 @@
           "low": 7743.25,
           "open": 7744.25,
           "ts": "2026-10-28T22:26:00+00:00"
+        },
+        {
+          "close": 7749.25,
+          "high": 7749.25,
+          "low": 7745.25,
+          "open": 7745.5,
+          "ts": "2026-10-28T22:27:00+00:00"
+        },
+        {
+          "close": 7752.5,
+          "high": 7753.5,
+          "low": 7749.25,
+          "open": 7749.25,
+          "ts": "2026-10-28T22:28:00+00:00"
+        },
+        {
+          "close": 7750.5,
+          "high": 7752.75,
+          "low": 7750.5,
+          "open": 7752.5,
+          "ts": "2026-10-28T22:29:00+00:00"
+        },
+        {
+          "close": 7750.25,
+          "high": 7751.25,
+          "low": 7748.75,
+          "open": 7750.75,
+          "ts": "2026-10-28T22:30:00+00:00"
         }
       ],
       "order_qty": 10,
@@ -1188,34 +1188,6 @@
       "n_alerts": 2,
       "ohlc_bars": [
         {
-          "close": 4072.6,
-          "high": 4074.2,
-          "low": 4072.3,
-          "open": 4073.2,
-          "ts": "2026-10-28T20:28:00+00:00"
-        },
-        {
-          "close": 4071.8,
-          "high": 4072.3,
-          "low": 4071.1,
-          "open": 4072.3,
-          "ts": "2026-10-28T20:29:00+00:00"
-        },
-        {
-          "close": 4070.3,
-          "high": 4072.3,
-          "low": 4069.8,
-          "open": 4071.8,
-          "ts": "2026-10-28T20:30:00+00:00"
-        },
-        {
-          "close": 4071.2,
-          "high": 4071.6,
-          "low": 4070.2,
-          "open": 4071.1,
-          "ts": "2026-10-28T20:31:00+00:00"
-        },
-        {
           "close": 4072.8,
           "high": 4073.7,
           "low": 4071.1,
@@ -1599,6 +1571,34 @@
           "low": 4066.4,
           "open": 4069.0,
           "ts": "2026-10-28T22:26:00+00:00"
+        },
+        {
+          "close": 4067.3,
+          "high": 4067.6,
+          "low": 4066.1,
+          "open": 4066.6,
+          "ts": "2026-10-28T22:27:00+00:00"
+        },
+        {
+          "close": 4068.7,
+          "high": 4068.7,
+          "low": 4066.9,
+          "open": 4067.0,
+          "ts": "2026-10-28T22:28:00+00:00"
+        },
+        {
+          "close": 4067.3,
+          "high": 4068.1,
+          "low": 4066.6,
+          "open": 4068.1,
+          "ts": "2026-10-28T22:29:00+00:00"
+        },
+        {
+          "close": 4067.0,
+          "high": 4068.1,
+          "low": 4066.7,
+          "open": 4067.4,
+          "ts": "2026-10-28T22:30:00+00:00"
         }
       ],
       "order_qty": 2,
@@ -1622,34 +1622,6 @@
       "n_alerts": 4,
       "ohlc_bars": [
         {
-          "close": 4072.6,
-          "high": 4074.2,
-          "low": 4072.3,
-          "open": 4073.2,
-          "ts": "2026-10-28T20:28:00+00:00"
-        },
-        {
-          "close": 4071.8,
-          "high": 4072.3,
-          "low": 4071.1,
-          "open": 4072.3,
-          "ts": "2026-10-28T20:29:00+00:00"
-        },
-        {
-          "close": 4070.3,
-          "high": 4072.3,
-          "low": 4069.8,
-          "open": 4071.8,
-          "ts": "2026-10-28T20:30:00+00:00"
-        },
-        {
-          "close": 4071.2,
-          "high": 4071.6,
-          "low": 4070.2,
-          "open": 4071.1,
-          "ts": "2026-10-28T20:31:00+00:00"
-        },
-        {
           "close": 4072.8,
           "high": 4073.7,
           "low": 4071.1,
@@ -2033,6 +2005,34 @@
           "low": 4066.4,
           "open": 4069.0,
           "ts": "2026-10-28T22:26:00+00:00"
+        },
+        {
+          "close": 4067.3,
+          "high": 4067.6,
+          "low": 4066.1,
+          "open": 4066.6,
+          "ts": "2026-10-28T22:27:00+00:00"
+        },
+        {
+          "close": 4068.7,
+          "high": 4068.7,
+          "low": 4066.9,
+          "open": 4067.0,
+          "ts": "2026-10-28T22:28:00+00:00"
+        },
+        {
+          "close": 4067.3,
+          "high": 4068.1,
+          "low": 4066.6,
+          "open": 4068.1,
+          "ts": "2026-10-28T22:29:00+00:00"
+        },
+        {
+          "close": 4067.0,
+          "high": 4068.1,
+          "low": 4066.7,
+          "open": 4067.4,
+          "ts": "2026-10-28T22:30:00+00:00"
         }
       ],
       "order_qty": 10,
@@ -2055,34 +2055,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 29781.0,
-          "high": 29821.25,
-          "low": 29775.25,
-          "open": 29815.25,
-          "ts": "2026-10-28T20:28:00+00:00"
-        },
-        {
-          "close": 29785.25,
-          "high": 29794.75,
-          "low": 29775.5,
-          "open": 29781.75,
-          "ts": "2026-10-28T20:29:00+00:00"
-        },
-        {
-          "close": 29785.0,
-          "high": 29794.75,
-          "low": 29775.5,
-          "open": 29785.5,
-          "ts": "2026-10-28T20:30:00+00:00"
-        },
-        {
-          "close": 29798.0,
-          "high": 29799.75,
-          "low": 29781.25,
-          "open": 29786.0,
-          "ts": "2026-10-28T20:31:00+00:00"
-        },
         {
           "close": 29788.75,
           "high": 29803.25,
@@ -2467,6 +2439,34 @@
           "low": 29636.0,
           "open": 29641.75,
           "ts": "2026-10-28T22:26:00+00:00"
+        },
+        {
+          "close": 29669.5,
+          "high": 29669.5,
+          "low": 29641.75,
+          "open": 29650.25,
+          "ts": "2026-10-28T22:27:00+00:00"
+        },
+        {
+          "close": 29683.0,
+          "high": 29688.5,
+          "low": 29670.0,
+          "open": 29670.0,
+          "ts": "2026-10-28T22:28:00+00:00"
+        },
+        {
+          "close": 29673.0,
+          "high": 29687.0,
+          "low": 29673.0,
+          "open": 29681.25,
+          "ts": "2026-10-28T22:29:00+00:00"
+        },
+        {
+          "close": 29664.5,
+          "high": 29675.5,
+          "low": 29653.75,
+          "open": 29673.75,
+          "ts": "2026-10-28T22:30:00+00:00"
         }
       ],
       "order_qty": 10,
@@ -2495,7 +2495,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-28T22:27:02.015546+00:00",
+      "generated_at": "2026-10-28T22:31:01.880396+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -2503,7 +2503,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.5,
+          "bar_age_sec": 2.4,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -2519,8 +2519,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 1.9,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 1.7,
           "last_alert": "2026-10-28T16:56:11.166216+00:00 ENTRY ABANDONED 2026-10-28: shared_root_unsafe:broker reports -30 on MESZ6, only +0 is claimed by a trustworthy owner -- -30 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -2535,8 +2535,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 3.2,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 2.9,
           "last_alert": "2026-10-28T16:56:01.002423+00:00 ENTRY ABANDONED 2026-10-28: shared_root_unsafe:broker reports -30 on MESZ6, only +0 is claimed by a trustworthy owner -- -30 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -2551,8 +2551,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 2.8,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 2.6,
           "last_alert": "2026-10-28T18:10:52.190727+00:00 ENTRY ABANDONED 2026-10-28: shared_root_unsafe:broker reports +1 on MGCZ6, only +0 is claimed by a trustworthy owner -- +1 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -2567,8 +2567,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 0.6,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 0.4,
           "last_alert": "2026-10-25T22:12:02Z watchdog[mnqcont] killed pid 3302969: no bar received for 177121s",
           "managed": true,
           "position_state": "FLAT",
@@ -2583,8 +2583,8 @@
             "expires": "2026-11-10",
             "state": "VALID"
           },
-          "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 0.5,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 0.1,
           "last_alert": "2026-10-28T19:12:02Z watchdog: PA feed quiet for 1126922s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -2678,34 +2678,6 @@
     "t1_leg": {
       "ohlc_bars": [
         {
-          "close": 29781.0,
-          "high": 29821.25,
-          "low": 29775.25,
-          "open": 29815.25,
-          "ts": "2026-10-28T20:28:00+00:00"
-        },
-        {
-          "close": 29785.25,
-          "high": 29794.75,
-          "low": 29775.5,
-          "open": 29781.75,
-          "ts": "2026-10-28T20:29:00+00:00"
-        },
-        {
-          "close": 29785.0,
-          "high": 29794.75,
-          "low": 29775.5,
-          "open": 29785.5,
-          "ts": "2026-10-28T20:30:00+00:00"
-        },
-        {
-          "close": 29798.0,
-          "high": 29799.75,
-          "low": 29781.25,
-          "open": 29786.0,
-          "ts": "2026-10-28T20:31:00+00:00"
-        },
-        {
           "close": 29788.75,
           "high": 29803.25,
           "low": 29783.75,
@@ -3089,6 +3061,34 @@
           "low": 29636.0,
           "open": 29641.75,
           "ts": "2026-10-28T22:26:00+00:00"
+        },
+        {
+          "close": 29669.5,
+          "high": 29669.5,
+          "low": 29641.75,
+          "open": 29650.25,
+          "ts": "2026-10-28T22:27:00+00:00"
+        },
+        {
+          "close": 29683.0,
+          "high": 29688.5,
+          "low": 29670.0,
+          "open": 29670.0,
+          "ts": "2026-10-28T22:28:00+00:00"
+        },
+        {
+          "close": 29673.0,
+          "high": 29687.0,
+          "low": 29673.0,
+          "open": 29681.25,
+          "ts": "2026-10-28T22:29:00+00:00"
+        },
+        {
+          "close": 29664.5,
+          "high": 29675.5,
+          "low": 29653.75,
+          "open": 29673.75,
+          "ts": "2026-10-28T22:30:00+00:00"
         }
       ],
       "overlay_direction": null,
@@ -3315,25 +3315,25 @@
     "wheel_v1_unrealized": {
       "mgc": {
         "avg_fill_price": 4064.8,
-        "current_price": 4066.4,
+        "current_price": 4067.0,
         "held_contract": "MGCZ6",
         "held_qty": 1,
         "instrument": "MGC",
         "live": true,
-        "unrealized_pnl_usd": 16.0
+        "unrealized_pnl_usd": 22.0
       },
       "mnq": {
         "avg_fill_price": 29868.75,
-        "current_price": 29649.25,
+        "current_price": 29664.5,
         "held_contract": "MNQZ6",
         "held_qty": 1,
         "instrument": "MNQ",
         "live": true,
-        "unrealized_pnl_usd": -439.0
+        "unrealized_pnl_usd": -408.5
       }
     }
   },
-  "data_as_of_utc": "2026-10-28T22:27:54.975768Z",
+  "data_as_of_utc": "2026-10-28T22:31:08.422282Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -3597,7 +3597,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-28T22:27:54.975768Z",
+  "generated_at_utc": "2026-10-28T22:31:08.422282Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
