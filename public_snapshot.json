@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-28T18:24:55.236161Z",
+      "as_of_utc": "2026-10-28T18:29:12.045796Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -137,8 +137,8 @@
     },
     "horizon_risk": {
       "block_days": 5,
-      "caveat": "Reduced to 200 Monte Carlo paths (vs. the retired 6-leg script's 2000) for runtime reasons -- disclosed, not hidden; see project_wheel_v1_horizon_risk.py's own module docstring. This is the FIRST run of this exact Monte Carlo methodology at Primary sizing -- it has not been iterated/cross-checked across multiple runs the way the old script was over time. Read alongside, not instead of, the reconciled REAL backtest numbers: $23,068,549.17 final / 363.46% CAGR / -47.5% MDD over the real 4-year window, $46,849,145.26 / 212.90% CAGR / -60.6% MDD over the real 6-year window (Policy B + Primary sizing, never derisks). Pre-Primary (2026-10-27, T1=70%, W_MNQ/W_MGC unscaled) real numbers ($4,015,457.63/199.36%/-41.1%/4yr, $14,013,277.60/155.87%/-54.6%/6yr) and the original permanent-derisk policy's own real numbers ($939,296.63/108.19%/-28.2%/4yr T1=30%, $2,372,248.48/162.45%/-30.0%/4yr T1=70%; $1,479,308.37/75.89%/-27.3%/6yr T1=30%, $6,354,608.73/124.27%/-36.8%/6yr T1=70%) remain retained comparison benchmarks. Primary sizing was adopted after a corrected 1,000-path margin-enforced, execution-cost-inclusive Monte Carlo study (see memory wheel_t1_priority_margin_allocation_2026_10_28.md) found 3.0x/2.0x MNQ/MGC weight scaling raises 6yr median terminal wealth from $2.36M to $4.26M (with T1-priority margin allocation, not yet live -- see that memory's own open items) while raising observed severe-loss frequency (>=70% of original capital) only to 0.1-0.2% -- an observed bootstrap frequency, not a calibrated forward probability. Note the much larger MDD figures here vs. the retained permanent-derisk benchmarks are the direct, expected cost of removing that switch -- not a new finding, the known tradeoff that was explicitly accepted when adopting Policy B.",
-      "generated_at": "2026-10-28T18:23:57.620255+00:00",
+      "caveat": "Reduced to 200 Monte Carlo paths (vs. the retired 6-leg script's 2000) for runtime reasons -- disclosed, not hidden; see project_wheel_v1_horizon_risk.py's own module docstring. This is the FIRST run of this exact Monte Carlo methodology at Primary sizing -- it has not been iterated/cross-checked across multiple runs the way the old script was over time. Read alongside, not instead of, the reconciled REAL backtest numbers: $23,068,549.17 final / 363.46% CAGR / -47.5% MDD over the real 4-year window, $46,849,145.26 / 212.90% CAGR / -60.6% MDD over the real 6-year window (Policy B + Primary sizing, never derisks). Pre-Primary (2026-10-27, T1=70%, W_MNQ/W_MGC unscaled) real numbers ($4,015,457.63/199.36%/-41.1%/4yr, $14,013,277.60/155.87%/-54.6%/6yr) and the original permanent-derisk policy's own real numbers ($939,296.63/108.19%/-28.2%/4yr T1=30%, $2,372,248.48/162.45%/-30.0%/4yr T1=70%; $1,479,308.37/75.89%/-27.3%/6yr T1=30%, $6,354,608.73/124.27%/-36.8%/6yr T1=70%) remain retained comparison benchmarks. Primary sizing was adopted after a corrected 1,000-path margin-enforced, execution-cost-inclusive Monte Carlo study (see memory wheel_t1_priority_margin_allocation_2026_10_28.md) found 3.0x/2.0x MNQ/MGC weight scaling raises 6yr median terminal wealth from $2.36M to $4.26M (with T1-priority margin allocation, not yet live -- see that memory's own open items) while raising observed severe-loss frequency (>=70% of original capital) only to 0.1-0.2% -- an observed bootstrap frequency, not a calibrated forward probability. Note the much larger MDD figures here vs. the retained permanent-derisk benchmarks are the direct, expected cost of removing that switch -- not a new finding, the known tradeoff that was explicitly accepted when adopting Policy B. T1-priority margin allocation itself (above) went live 2026-10-28 as a static, conservative margin reserve ($18,000, T1's fixed real order_qty x MNQ maintenance margin) subtracted from the equity basis MNQ/MGC size off in the LIVE engine (wheel_v1_shadow_engine.advance_one_session) -- deliberately NOT applied to this script's own simulate_ladder_path benchmark (shared by several closed research scripts whose own hard-gates this change did not touch), so these horizon figures run slightly LARGER than true live sizing by a small, shrinking-over-time amount (the $18,000 reserve is a meaningful fraction of today's equity, negligible once equity reaches the millions).",
+      "generated_at": "2026-10-28T18:28:27.833723+00:00",
       "horizons": [
         {
           "mdd_p50_pct_of_own_peak": 8.7,
@@ -320,41 +320,6 @@
       "n_alerts": 2,
       "ohlc_bars": [
         {
-          "close": 7770.5,
-          "high": 7770.75,
-          "low": 7769.25,
-          "open": 7769.25,
-          "ts": "2026-10-28T16:25:00+00:00"
-        },
-        {
-          "close": 7772.0,
-          "high": 7772.0,
-          "low": 7770.25,
-          "open": 7770.5,
-          "ts": "2026-10-28T16:26:00+00:00"
-        },
-        {
-          "close": 7771.75,
-          "high": 7772.0,
-          "low": 7771.25,
-          "open": 7772.0,
-          "ts": "2026-10-28T16:27:00+00:00"
-        },
-        {
-          "close": 7772.0,
-          "high": 7772.75,
-          "low": 7771.5,
-          "open": 7771.75,
-          "ts": "2026-10-28T16:28:00+00:00"
-        },
-        {
-          "close": 7772.75,
-          "high": 7773.25,
-          "low": 7771.25,
-          "open": 7771.75,
-          "ts": "2026-10-28T16:29:00+00:00"
-        },
-        {
           "close": 7773.0,
           "high": 7774.25,
           "low": 7772.25,
@@ -1151,6 +1116,41 @@
           "low": 7761.5,
           "open": 7762.5,
           "ts": "2026-10-28T18:23:00+00:00"
+        },
+        {
+          "close": 7761.5,
+          "high": 7762.25,
+          "low": 7759.5,
+          "open": 7762.25,
+          "ts": "2026-10-28T18:24:00+00:00"
+        },
+        {
+          "close": 7764.25,
+          "high": 7764.5,
+          "low": 7761.5,
+          "open": 7761.75,
+          "ts": "2026-10-28T18:25:00+00:00"
+        },
+        {
+          "close": 7765.5,
+          "high": 7766.0,
+          "low": 7763.25,
+          "open": 7764.25,
+          "ts": "2026-10-28T18:26:00+00:00"
+        },
+        {
+          "close": 7767.5,
+          "high": 7768.75,
+          "low": 7764.25,
+          "open": 7765.25,
+          "ts": "2026-10-28T18:27:00+00:00"
+        },
+        {
+          "close": 7768.5,
+          "high": 7770.0,
+          "low": 7766.75,
+          "open": 7767.75,
+          "ts": "2026-10-28T18:28:00+00:00"
         }
       ],
       "order_qty": 1,
@@ -1174,41 +1174,6 @@
       "n_alerts": 5,
       "ohlc_bars": [
         {
-          "close": 7770.5,
-          "high": 7770.75,
-          "low": 7769.25,
-          "open": 7769.25,
-          "ts": "2026-10-28T16:25:00+00:00"
-        },
-        {
-          "close": 7772.0,
-          "high": 7772.0,
-          "low": 7770.25,
-          "open": 7770.5,
-          "ts": "2026-10-28T16:26:00+00:00"
-        },
-        {
-          "close": 7771.75,
-          "high": 7772.0,
-          "low": 7771.25,
-          "open": 7772.0,
-          "ts": "2026-10-28T16:27:00+00:00"
-        },
-        {
-          "close": 7772.0,
-          "high": 7772.75,
-          "low": 7771.5,
-          "open": 7771.75,
-          "ts": "2026-10-28T16:28:00+00:00"
-        },
-        {
-          "close": 7772.75,
-          "high": 7773.25,
-          "low": 7771.25,
-          "open": 7771.75,
-          "ts": "2026-10-28T16:29:00+00:00"
-        },
-        {
           "close": 7773.0,
           "high": 7774.25,
           "low": 7772.25,
@@ -2005,6 +1970,41 @@
           "low": 7761.5,
           "open": 7762.5,
           "ts": "2026-10-28T18:23:00+00:00"
+        },
+        {
+          "close": 7761.5,
+          "high": 7762.25,
+          "low": 7759.5,
+          "open": 7762.25,
+          "ts": "2026-10-28T18:24:00+00:00"
+        },
+        {
+          "close": 7764.25,
+          "high": 7764.5,
+          "low": 7761.5,
+          "open": 7761.75,
+          "ts": "2026-10-28T18:25:00+00:00"
+        },
+        {
+          "close": 7765.5,
+          "high": 7766.0,
+          "low": 7763.25,
+          "open": 7764.25,
+          "ts": "2026-10-28T18:26:00+00:00"
+        },
+        {
+          "close": 7767.5,
+          "high": 7768.75,
+          "low": 7764.25,
+          "open": 7765.25,
+          "ts": "2026-10-28T18:27:00+00:00"
+        },
+        {
+          "close": 7768.5,
+          "high": 7770.0,
+          "low": 7766.75,
+          "open": 7767.75,
+          "ts": "2026-10-28T18:28:00+00:00"
         }
       ],
       "order_qty": 10,
@@ -2028,41 +2028,6 @@
       "n_alerts": 2,
       "ohlc_bars": [
         {
-          "close": 4052.1,
-          "high": 4053.3,
-          "low": 4051.4,
-          "open": 4053.1,
-          "ts": "2026-10-28T16:25:00+00:00"
-        },
-        {
-          "close": 4053.3,
-          "high": 4053.4,
-          "low": 4052.0,
-          "open": 4052.3,
-          "ts": "2026-10-28T16:26:00+00:00"
-        },
-        {
-          "close": 4053.0,
-          "high": 4054.1,
-          "low": 4053.0,
-          "open": 4053.4,
-          "ts": "2026-10-28T16:27:00+00:00"
-        },
-        {
-          "close": 4053.1,
-          "high": 4053.5,
-          "low": 4052.8,
-          "open": 4053.1,
-          "ts": "2026-10-28T16:28:00+00:00"
-        },
-        {
-          "close": 4053.0,
-          "high": 4053.6,
-          "low": 4052.7,
-          "open": 4053.2,
-          "ts": "2026-10-28T16:29:00+00:00"
-        },
-        {
           "close": 4052.8,
           "high": 4053.3,
           "low": 4052.6,
@@ -2859,6 +2824,41 @@
           "low": 4045.1,
           "open": 4046.3,
           "ts": "2026-10-28T18:23:00+00:00"
+        },
+        {
+          "close": 4045.0,
+          "high": 4045.5,
+          "low": 4043.5,
+          "open": 4045.2,
+          "ts": "2026-10-28T18:24:00+00:00"
+        },
+        {
+          "close": 4046.6,
+          "high": 4047.1,
+          "low": 4044.9,
+          "open": 4044.9,
+          "ts": "2026-10-28T18:25:00+00:00"
+        },
+        {
+          "close": 4047.4,
+          "high": 4047.8,
+          "low": 4046.3,
+          "open": 4046.7,
+          "ts": "2026-10-28T18:26:00+00:00"
+        },
+        {
+          "close": 4049.2,
+          "high": 4049.3,
+          "low": 4047.1,
+          "open": 4047.3,
+          "ts": "2026-10-28T18:27:00+00:00"
+        },
+        {
+          "close": 4049.6,
+          "high": 4050.3,
+          "low": 4048.7,
+          "open": 4049.1,
+          "ts": "2026-10-28T18:28:00+00:00"
         }
       ],
       "order_qty": 2,
@@ -2882,41 +2882,6 @@
       "n_alerts": 4,
       "ohlc_bars": [
         {
-          "close": 4052.1,
-          "high": 4053.3,
-          "low": 4051.4,
-          "open": 4053.1,
-          "ts": "2026-10-28T16:25:00+00:00"
-        },
-        {
-          "close": 4053.3,
-          "high": 4053.4,
-          "low": 4052.0,
-          "open": 4052.3,
-          "ts": "2026-10-28T16:26:00+00:00"
-        },
-        {
-          "close": 4053.0,
-          "high": 4054.1,
-          "low": 4053.0,
-          "open": 4053.4,
-          "ts": "2026-10-28T16:27:00+00:00"
-        },
-        {
-          "close": 4053.1,
-          "high": 4053.5,
-          "low": 4052.8,
-          "open": 4053.1,
-          "ts": "2026-10-28T16:28:00+00:00"
-        },
-        {
-          "close": 4053.0,
-          "high": 4053.6,
-          "low": 4052.7,
-          "open": 4053.2,
-          "ts": "2026-10-28T16:29:00+00:00"
-        },
-        {
           "close": 4052.8,
           "high": 4053.3,
           "low": 4052.6,
@@ -3713,6 +3678,41 @@
           "low": 4045.1,
           "open": 4046.3,
           "ts": "2026-10-28T18:23:00+00:00"
+        },
+        {
+          "close": 4045.0,
+          "high": 4045.5,
+          "low": 4043.5,
+          "open": 4045.2,
+          "ts": "2026-10-28T18:24:00+00:00"
+        },
+        {
+          "close": 4046.6,
+          "high": 4047.1,
+          "low": 4044.9,
+          "open": 4044.9,
+          "ts": "2026-10-28T18:25:00+00:00"
+        },
+        {
+          "close": 4047.4,
+          "high": 4047.8,
+          "low": 4046.3,
+          "open": 4046.7,
+          "ts": "2026-10-28T18:26:00+00:00"
+        },
+        {
+          "close": 4049.2,
+          "high": 4049.3,
+          "low": 4047.1,
+          "open": 4047.3,
+          "ts": "2026-10-28T18:27:00+00:00"
+        },
+        {
+          "close": 4049.6,
+          "high": 4050.3,
+          "low": 4048.7,
+          "open": 4049.1,
+          "ts": "2026-10-28T18:28:00+00:00"
         }
       ],
       "order_qty": 10,
@@ -3735,41 +3735,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 29833.5,
-          "high": 29836.0,
-          "low": 29830.0,
-          "open": 29830.0,
-          "ts": "2026-10-28T16:25:00+00:00"
-        },
-        {
-          "close": 29844.5,
-          "high": 29845.5,
-          "low": 29832.75,
-          "open": 29832.75,
-          "ts": "2026-10-28T16:26:00+00:00"
-        },
-        {
-          "close": 29845.0,
-          "high": 29848.25,
-          "low": 29842.0,
-          "open": 29845.0,
-          "ts": "2026-10-28T16:27:00+00:00"
-        },
-        {
-          "close": 29846.0,
-          "high": 29849.5,
-          "low": 29844.5,
-          "open": 29845.0,
-          "ts": "2026-10-28T16:28:00+00:00"
-        },
-        {
-          "close": 29846.25,
-          "high": 29847.75,
-          "low": 29843.25,
-          "open": 29845.5,
-          "ts": "2026-10-28T16:29:00+00:00"
-        },
         {
           "close": 29849.5,
           "high": 29854.5,
@@ -4567,6 +4532,41 @@
           "low": 29811.75,
           "open": 29820.25,
           "ts": "2026-10-28T18:23:00+00:00"
+        },
+        {
+          "close": 29815.5,
+          "high": 29818.0,
+          "low": 29804.0,
+          "open": 29816.25,
+          "ts": "2026-10-28T18:24:00+00:00"
+        },
+        {
+          "close": 29825.25,
+          "high": 29827.0,
+          "low": 29815.75,
+          "open": 29816.75,
+          "ts": "2026-10-28T18:25:00+00:00"
+        },
+        {
+          "close": 29828.25,
+          "high": 29832.0,
+          "low": 29818.25,
+          "open": 29825.25,
+          "ts": "2026-10-28T18:26:00+00:00"
+        },
+        {
+          "close": 29842.0,
+          "high": 29846.5,
+          "low": 29823.5,
+          "open": 29827.75,
+          "ts": "2026-10-28T18:27:00+00:00"
+        },
+        {
+          "close": 29855.75,
+          "high": 29859.25,
+          "low": 29838.5,
+          "open": 29841.5,
+          "ts": "2026-10-28T18:28:00+00:00"
         }
       ],
       "order_qty": 10,
@@ -4595,7 +4595,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-28T18:24:02.073556+00:00",
+      "generated_at": "2026-10-28T18:29:01.808332+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -4619,8 +4619,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 2.9,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 2.5,
           "last_alert": "2026-10-28T16:56:11.166216+00:00 ENTRY ABANDONED 2026-10-28: shared_root_unsafe:broker reports -30 on MESZ6, only +0 is claimed by a trustworthy owner -- -30 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -4635,8 +4635,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 4.0,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 3.6,
           "last_alert": "2026-10-28T16:56:01.002423+00:00 ENTRY ABANDONED 2026-10-28: shared_root_unsafe:broker reports -30 on MESZ6, only +0 is claimed by a trustworthy owner -- -30 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -4651,8 +4651,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 3.6,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 3.2,
           "last_alert": "2026-10-28T18:10:52.190727+00:00 ENTRY ABANDONED 2026-10-28: shared_root_unsafe:broker reports +1 on MGCZ6, only +0 is claimed by a trustworthy owner -- +1 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -4667,8 +4667,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 1.6,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 1.2,
           "last_alert": "2026-10-25T22:12:02Z watchdog[mnqcont] killed pid 3302969: no bar received for 177121s",
           "managed": true,
           "position_state": "FLAT",
@@ -4683,8 +4683,8 @@
             "expires": "2026-11-10",
             "state": "VALID"
           },
-          "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 1.1,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 0.5,
           "last_alert": "2026-10-28T18:10:02Z watchdog: PA feed quiet for 1123202s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -4778,41 +4778,6 @@
     "t1_leg": {
       "ohlc_bars": [
         {
-          "close": 29833.5,
-          "high": 29836.0,
-          "low": 29830.0,
-          "open": 29830.0,
-          "ts": "2026-10-28T16:25:00+00:00"
-        },
-        {
-          "close": 29844.5,
-          "high": 29845.5,
-          "low": 29832.75,
-          "open": 29832.75,
-          "ts": "2026-10-28T16:26:00+00:00"
-        },
-        {
-          "close": 29845.0,
-          "high": 29848.25,
-          "low": 29842.0,
-          "open": 29845.0,
-          "ts": "2026-10-28T16:27:00+00:00"
-        },
-        {
-          "close": 29846.0,
-          "high": 29849.5,
-          "low": 29844.5,
-          "open": 29845.0,
-          "ts": "2026-10-28T16:28:00+00:00"
-        },
-        {
-          "close": 29846.25,
-          "high": 29847.75,
-          "low": 29843.25,
-          "open": 29845.5,
-          "ts": "2026-10-28T16:29:00+00:00"
-        },
-        {
           "close": 29849.5,
           "high": 29854.5,
           "low": 29844.0,
@@ -5609,6 +5574,41 @@
           "low": 29811.75,
           "open": 29820.25,
           "ts": "2026-10-28T18:23:00+00:00"
+        },
+        {
+          "close": 29815.5,
+          "high": 29818.0,
+          "low": 29804.0,
+          "open": 29816.25,
+          "ts": "2026-10-28T18:24:00+00:00"
+        },
+        {
+          "close": 29825.25,
+          "high": 29827.0,
+          "low": 29815.75,
+          "open": 29816.75,
+          "ts": "2026-10-28T18:25:00+00:00"
+        },
+        {
+          "close": 29828.25,
+          "high": 29832.0,
+          "low": 29818.25,
+          "open": 29825.25,
+          "ts": "2026-10-28T18:26:00+00:00"
+        },
+        {
+          "close": 29842.0,
+          "high": 29846.5,
+          "low": 29823.5,
+          "open": 29827.75,
+          "ts": "2026-10-28T18:27:00+00:00"
+        },
+        {
+          "close": 29855.75,
+          "high": 29859.25,
+          "low": 29838.5,
+          "open": 29841.5,
+          "ts": "2026-10-28T18:28:00+00:00"
         }
       ],
       "overlay_direction": null,
@@ -5835,7 +5835,7 @@
     "wheel_v1_unrealized": {
       "mgc": {
         "avg_fill_price": null,
-        "current_price": 4045.3,
+        "current_price": 4049.6,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "MGC",
@@ -5844,7 +5844,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 29815.25,
+        "current_price": 29855.75,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "MNQ",
@@ -5853,7 +5853,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-28T18:24:55.471874Z",
+  "data_as_of_utc": "2026-10-28T18:29:12.290563Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -6117,7 +6117,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-28T18:24:55.471874Z",
+  "generated_at_utc": "2026-10-28T18:29:12.290563Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
