@@ -166,29 +166,24 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
 
 
 def render_portfolio_a_plus_equity_ladder(snapshot: dict[str, Any]) -> None:
-    """Equity -> sizing ladder for Portfolio A+ (T1+MNQCont+MES2R+MGC10@130%) -- added 2026-10-29,
-    replacing the retired Wheel v1.0 ladder (buy-and-hold MNQ/MGC decommissioned same day; see
-    memory portfolio_a_mgc10_130_deployed_2026_10_29.md). Reads
+    """Equity -> sizing ladder for Portfolio A (T1+MNQCont+MES2R). Reads
     dashboard_extras.portfolio_a_plus_equity_ladder (scripts/portfolio_a_plus_equity_ladder.py).
-    Simpler than the old table: P2's compute_sizing(equity) is a pure function of equity (no
-    hysteresis/state), so this is a direct evaluation at each breakpoint, not a simulated ladder
-    walk. Shows the live MGC10@130% qty alongside what it would have been at the pre-promotion
-    100% sizing, for direct comparison."""
+    MGC10 column dropped 2026-10-29 when that script was rewritten to exclude MGC10 (see memory
+    mgc10_disabled_2026_10_29.md) -- this renderer was missed in that pass, causing a KeyError;
+    fixed here. P2's compute_sizing(equity) is a pure function of equity (no hysteresis/state),
+    so this is a direct evaluation at each breakpoint, not a simulated ladder walk."""
     el = (snapshot.get("dashboard_extras") or {}).get("portfolio_a_plus_equity_ladder")
     if not el:
         return
-    mult = el.get("mgc10_size_multiplier", 1.0)
-    st.subheader(f"Equity ladder: Portfolio A+ (T1+MNQCont+MES2R+MGC10@{mult:.0%})")
+    st.subheader("Equity ladder: Portfolio A (T1+MNQCont+MES2R)")
     excluded = ", ".join(el.get("excluded_legs") or []) or "none"
-    st.caption(f"MES1R/MGC1R excluded from the adopted portfolio ({excluded}).")
+    st.caption(f"Excluded from the adopted portfolio: {excluded}.")
     rows = el.get("rows", [])
     table = pd.DataFrame([{
         "Equity >=": r["equity_floor_usd"],
         "P2 level": r["p2_level"],
         "T1 qty": r["t1_qty"], "MNQCont qty": r["mnqcont_qty"],
         "MES2R qty": r["mes2r_qty"],
-        "MGC10 qty (live, 130%)": r["mgc10_qty"],
-        "MGC10 qty (legacy, 100%)": r["mgc10_qty_at_legacy_100pct"],
     } for r in rows])
     column_config = {
         "Equity >=": st.column_config.NumberColumn(format="$%,.0f"),
