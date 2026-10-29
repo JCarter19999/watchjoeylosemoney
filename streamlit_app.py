@@ -165,40 +165,6 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     st.caption("Mark-to-market off the last received bar, not a fill -- no commission or slippage included, and it moves every minute the market does.")
 
 
-def render_wheel_v1_unrealized(snapshot: dict[str, Any]) -> None:
-    """Wheel v1.0's own MNQ+MGC buy-and-hold legs -- added 2026-10-27 (user: "can i see MGC and
-    MNQ unrealized P:L?" / "add a streamlit tab to show it"). Reads
-    dashboard_extras.wheel_v1_unrealized (export_t1_private_snapshot.py's
-    _build_wheel_v1_unrealized), mark-to-market off the LAST BAR CLOSE against each leg's own
-    running VWAP cost basis (avg_fill_price, tracked by wheel_v1_leg_live_service.py's _resize)
-    -- not a fill-based or commission-adjusted P&L, same convention as render_unrealized above,
-    just a dedicated per-leg cost basis instead of a single entry_fill (these are periodically-
-    RESIZED positions, not single-entry bracket trades)."""
-    wu = (snapshot.get("dashboard_extras") or {}).get("wheel_v1_unrealized")
-    if not wu:
-        st.info("No Wheel v1.0 position data published yet.")
-        return
-    labels = {"mnq": "Wheel v1.0 — MNQ", "mgc": "Wheel v1.0 — MGC"}
-    cols = st.columns(2)
-    for col, key in zip(cols, ("mnq", "mgc")):
-        leg = wu.get(key)
-        if not leg:
-            col.metric(labels[key], "—")
-            continue
-        qty = leg.get("held_qty") or 0
-        if not qty:
-            col.metric(labels[key], "flat")
-            continue
-        u = leg.get("unrealized_pnl_usd")
-        col.metric(f"{labels[key]} ({leg.get('held_contract') or '?'}, {qty} ct)",
-                   money(u) if u is not None else "—",
-                   delta=f"avg {leg.get('avg_fill_price'):,.2f} → last {leg.get('current_price'):,.2f}"
-                   if leg.get("avg_fill_price") is not None and leg.get("current_price") is not None else None,
-                   delta_color="off")
-    st.caption("Mark-to-market off the last received bar against each leg's own running average fill price "
-               "(a periodically-resized position, not a single entry) -- no commission or slippage included.")
-
-
 def render_portfolio_a_plus_equity_ladder(snapshot: dict[str, Any]) -> None:
     """Equity -> sizing ladder for Portfolio A+ (T1+MNQCont+MES2R+MGC10@130%) -- added 2026-10-29,
     replacing the retired Wheel v1.0 ladder (buy-and-hold MNQ/MGC decommissioned same day; see
@@ -671,7 +637,6 @@ def live_dashboard() -> None:
         return
 
     status_badge(snapshot)
-    render_wheel_v1_unrealized(snapshot)
     render_portfolio_a_plus_equity_ladder(snapshot)
     st.caption(f"Last updated: {format_pst(snapshot['generated_at_utc'])}")
 
