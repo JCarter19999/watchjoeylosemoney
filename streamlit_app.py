@@ -199,45 +199,40 @@ def render_wheel_v1_unrealized(snapshot: dict[str, Any]) -> None:
                "(a periodically-resized position, not a single entry) -- no commission or slippage included.")
 
 
-def render_wheel_v1_equity_ladder(snapshot: dict[str, Any]) -> None:
-    """Equity -> sizing ladder for Wheel v1.0 -- added 2026-10-27 (user: "update the equity ladder
-    to reflect T1 70% with the other proponents of the wheel", "in streamlit"), updated the same
-    day for "Wheel Policy B" (permanent $500k derisk switch removed). Reads
-    dashboard_extras.wheel_v1_equity_ladder (scripts/wheel_v1_equity_ladder.py), a deterministic
-    table (not a Monte Carlo -- see render_projection for that) of D2-ladder equity breakpoints,
-    showing ACTIVE (T1=70%, Policy B, never derisks) vs. LEGACY (T1=30%, original permanent-
-    derisk policy, retained as the comparison benchmark) leverage/MNQ/MGC qty/T1 scalar side by
-    side at each -- the two leverage columns now genuinely diverge at $500k+, not just weights."""
-    el = (snapshot.get("dashboard_extras") or {}).get("wheel_v1_equity_ladder")
+def render_portfolio_a_plus_equity_ladder(snapshot: dict[str, Any]) -> None:
+    """Equity -> sizing ladder for Portfolio A+ (T1+MNQCont+MES2R+MGC10@130%) -- added 2026-10-29,
+    replacing the retired Wheel v1.0 ladder (buy-and-hold MNQ/MGC decommissioned same day; see
+    memory portfolio_a_mgc10_130_deployed_2026_10_29.md). Reads
+    dashboard_extras.portfolio_a_plus_equity_ladder (scripts/portfolio_a_plus_equity_ladder.py).
+    Simpler than the old table: P2's compute_sizing(equity) is a pure function of equity (no
+    hysteresis/state), so this is a direct evaluation at each breakpoint, not a simulated ladder
+    walk. Shows the live MGC10@130% qty alongside what it would have been at the pre-promotion
+    100% sizing, for direct comparison."""
+    el = (snapshot.get("dashboard_extras") or {}).get("portfolio_a_plus_equity_ladder")
     if not el:
         return
-    st.subheader("Equity ladder: ACTIVE (Policy B, never derisks) vs. LEGACY (permanent $500k derisk)")
-    st.caption(f"Snapshot as of {el.get('snapshot_date', '—')} — MNQ ${el.get('snapshot_mnq_close', 0):,.2f}, "
-               f"MGC ${el.get('snapshot_mgc_close', 0):,.2f}. Current: ${el.get('current_equity_usd', 0):,.0f} "
-               f"equity, level {el.get('current_level_idx', 0)}"
-               f"{' (derisked -> C30-B)' if el.get('current_derisked') else ''}.")
+    mult = el.get("mgc10_size_multiplier", 1.0)
+    st.subheader(f"Equity ladder: Portfolio A+ (T1+MNQCont+MES2R+MGC10@{mult:.0%})")
+    excluded = ", ".join(el.get("excluded_legs") or []) or "none"
+    st.caption(f"MES1R/MGC1R excluded from the adopted portfolio ({excluded}).")
     rows = el.get("rows", [])
     table = pd.DataFrame([{
         "Equity >=": r["equity_floor_usd"],
-        "Event": r["label"],
-        "ACTIVE Lev": r["active_leverage"], "LEGACY Lev": r["legacy_leverage"],
-        "ACTIVE MNQ": r["active"]["mnq_qty"], "ACTIVE MGC": r["active"]["mgc_qty"],
-        "ACTIVE T1 scalar": r["active"]["t1_scalar"],
-        "LEGACY MNQ": r["legacy"]["mnq_qty"], "LEGACY MGC": r["legacy"]["mgc_qty"],
-        "LEGACY T1 scalar": r["legacy"]["t1_scalar"],
+        "P2 level": r["p2_level"],
+        "T1 qty": r["t1_qty"], "MNQCont qty": r["mnqcont_qty"],
+        "MES2R qty": r["mes2r_qty"],
+        "MGC10 qty (live, 130%)": r["mgc10_qty"],
+        "MGC10 qty (legacy, 100%)": r["mgc10_qty_at_legacy_100pct"],
     } for r in rows])
     column_config = {
         "Equity >=": st.column_config.NumberColumn(format="$%,.0f"),
-        "ACTIVE Lev": st.column_config.NumberColumn(format="%.0fx"),
-        "LEGACY Lev": st.column_config.NumberColumn(format="%.0fx"),
-        "ACTIVE T1 scalar": st.column_config.NumberColumn(format="%.2f"),
-        "LEGACY T1 scalar": st.column_config.NumberColumn(format="%.2f"),
     }
     st.dataframe(table, hide_index=True, width="stretch", column_config=column_config)
     st.caption(el.get("caveat", ""))
 
 
-_CANDLESTICK_LEGS = [("t1_leg", "MNQ"), ("mgc_leg", "MGC")]
+_CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Cont"),
+                      ("mes2r_leg", "MES Tail (2R)"), ("mgc10_leg", "MGC Tail (10R)")]
 _ENTRY_COLOR, _TARGET_COLOR, _STOP_COLOR = "#9aa4b2", "#3ecf8e", "#e34948"
 
 
@@ -577,8 +572,8 @@ def render_ops_health(snapshot: dict[str, Any]) -> None:
              "HALTED": "\U0001F534", "UNKNOWN": "⚫"}
     overall = ops.get("overall_state", "UNKNOWN")
     st.markdown(f"**Fleet: {icons.get(overall, '')} {overall}**")
-    labels = {"t1": "T1 / MNQ", "mnqcont": "MNQ Continuation", "mes": "MES H60", "mgc": "MGC H60",
-              "mes2r": "MES Tail (2R)"}
+    labels = {"t1": "T1 / MNQ", "mnqcont": "MNQ Continuation", "mes": "MES H60 (paused)",
+              "mgc": "MGC H60 (paused)", "mes2r": "MES Tail (2R)", "mgc10": "MGC Tail (10R)"}
     rows = []
     for key, leg in ops["legs"].items():
         auth = leg.get("auth") or {}
@@ -596,25 +591,23 @@ def render_ops_health(snapshot: dict[str, Any]) -> None:
 
 
 def render_projection(snapshot: dict[str, Any]) -> None:
-    """Horizon-matched risk curve for Wheel v1.0 (4 sleeves: T1, MNQCONT, MNQ, MGC; "Wheel Policy
-    B" since 2026-10-27 -- graduated D2 ladder 3x->6x, the permanent $500k->C30-B derisk switch
-    has been REMOVED), written by scripts/project_wheel_v1_horizon_risk.py. Replaces the retired
-    6-leg, P2-ladder-governed panel (MES/MGC10/MES2R dropped from "the wheel" grouping -- those
-    legs keep running independently, just no longer part of this projection; see
-    ~/.claude/plans/groovy-watching-dewdrop.md). Simulates the actual dynamic equity path (ladder
-    level/derisk state recomputed from the simulated equity every day, the same formula the live
-    wheel_v1_mnq/wheel_v1_mgc legs and shadow tracker use) via block-bootstrap, not a static
-    multiple."""
+    """Horizon-matched risk curve for Portfolio A+ (T1+MNQCont+MES2R+MGC10@130%) -- repointed
+    2026-10-29 from the retired Wheel v1.0 buy-and-hold panel (MNQ/MGC decommissioned same day;
+    see memory portfolio_a_mgc10_130_deployed_2026_10_29.md) to the ADOPTED live portfolio,
+    written by scripts/project_portfolio_a_plus_horizon_risk.py (real P2 band-step ladder,
+    MES1R/MGC1R excluded via leg_scale_overrides). Same output shape as the retired panel (this
+    stayed a same-key swap in publish.sh, not a schema change) -- block-bootstrap on real
+    historical daily $ series, not a static multiple."""
     hr = (snapshot.get("dashboard_extras") or {}).get("horizon_risk")
     if not hr:
         return
     horizons = hr.get("horizons", [])
     if not horizons:
         return
-    st.subheader("Drawdown risk vs. account growth, by horizon (Wheel v1.0, 4 sleeves)")
-    st.caption(f"Block-bootstrap simulation ({hr.get('n_paths', '—')} paths) of the real Wheel v1.0 "
-               f"Policy B (graduated D2 ladder, no permanent derisk switch), starting from "
-               f"${hr.get('start_equity_usd', 0):,.0f}. Not a live realized track record.")
+    st.subheader("Drawdown risk vs. account growth, by horizon (Portfolio A+)")
+    st.caption(f"Block-bootstrap simulation ({hr.get('n_paths', '—')} paths) of the real adopted "
+               f"portfolio, starting from ${hr.get('start_equity_usd', 0):,.0f}. Not a live "
+               f"realized track record.")
     st.caption(f"**{hr.get('policy', '')}**")
 
     table = pd.DataFrame([{
@@ -626,7 +619,6 @@ def render_projection(snapshot: dict[str, Any]) -> None:
         "MDD bad, P90 ($)": h["mdd_p90_usd"],
         "MDD very bad, P95 ($)": h["mdd_p95_usd"],
         "MDD very bad, P95 (% of own peak)": h.get("mdd_p95_pct_of_own_peak", h.get("mdd_p95_pct_of_terminal_equity")),
-        "Derisked by this horizon (%)": h.get("pct_paths_derisked", 0.0),
     } for h in horizons])
     column_config = {
         "Months": st.column_config.NumberColumn(format="%d"),
@@ -637,7 +629,6 @@ def render_projection(snapshot: dict[str, Any]) -> None:
         "MDD bad, P90 ($)": st.column_config.NumberColumn(format="$%,.0f"),
         "MDD very bad, P95 ($)": st.column_config.NumberColumn(format="$%,.0f"),
         "MDD very bad, P95 (% of own peak)": st.column_config.NumberColumn(format="%.1f%%"),
-        "Derisked by this horizon (%)": st.column_config.NumberColumn(format="%.1f%%"),
     }
     st.dataframe(table, hide_index=True, width="stretch", column_config=column_config)
 
@@ -645,12 +636,10 @@ def render_projection(snapshot: dict[str, Any]) -> None:
                "equity, but shrink as a SHARE of the account once it's grown enough to absorb them. Profit is the "
                "other side of the same simulated paths. The '% of own peak' columns are each simulated path's OWN "
                "worst drawdown relative to its OWN running high-water mark -- always 0-100%, directly answering "
-               "'how much could this account give back from its own high point.' (An earlier version of this panel "
-               "divided an extreme path's dollar loss by a DIFFERENT, typically much smaller number -- the median "
-               "path's ending balance -- which produced figures over 100% and was genuinely misleading; fixed "
-               "2026-10-27.) 'Derisked by this horizon' will always read 0% under the ACTIVE Policy B -- the "
-               "permanent $500k switch to C30-B it used to track has been removed entirely (see the equity "
-               "ladder panel above for the retained LEGACY comparison, which still has this switch).")
+               "'how much could this account give back from its own high point.' Portfolio A+'s P2 ladder has no "
+               "derisk-switch concept (that was specific to the retired Wheel v1.0 D2 ladder) -- sizing scales "
+               "continuously with equity via compute_sizing(), see the equity ladder panel above for the exact "
+               "qty at each breakpoint.")
     st.caption(hr.get("caveat", ""))
 
 
@@ -683,7 +672,7 @@ def live_dashboard() -> None:
 
     status_badge(snapshot)
     render_wheel_v1_unrealized(snapshot)
-    render_wheel_v1_equity_ladder(snapshot)
+    render_portfolio_a_plus_equity_ladder(snapshot)
     st.caption(f"Last updated: {format_pst(snapshot['generated_at_utc'])}")
 
     render_candlesticks(snapshot)

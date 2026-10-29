@@ -202,14 +202,17 @@ if [ -f "$PROJECTION_JSON" ]; then
 fi
 
 # Horizon-matched risk curve -- Wheel v1.0 native (scripts/project_wheel_v1_horizon_risk.py),
-# ~200-path block-bootstrap, ~25s of CPU on this single-core box. Replaces the retired 6-leg
-# P2-governed project_wheel_horizon_risk.py for THIS panel only (that script is not deleted,
-# just no longer invoked here -- see ~/.claude/plans/groovy-watching-dewdrop.md). Only
-# recomputed once/day (cache older than 20h, matched to this script's 15-min cron cadence but far
-# enough apart not to compete with the live bots every tick).
+# ~200-path block-bootstrap. Repointed 2026-10-29 from the retired Wheel v1.0 buy-and-hold panel
+# (MNQ/MGC decommissioned same day) to Portfolio A+ -- the ADOPTED live portfolio (T1+MNQCont+
+# MES2R+MGC10@130%, P2 band-step ladder, MES1R/MGC1R excluded). Script:
+# scripts/project_portfolio_a_plus_horizon_risk.py (reuses project_wheel_horizon_risk.py's own
+# _build_date_grid/_sample_block_idx/_run_path/_mdd_to_date unchanged -- same output shape, so
+# this stays a same-key swap, not a schema change). Only recomputed once/day (cache older than
+# 20h, matched to this script's 15-min cron cadence but far enough apart not to compete with the
+# live bots every tick).
 HORIZON_RISK_JSON="$T1_RUNTIME/horizon_risk.json"
 if [ ! -f "$HORIZON_RISK_JSON" ] || [ "$(find "$HORIZON_RISK_JSON" -mmin +1200 2>/dev/null)" ]; then
-  PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/project_wheel_v1_horizon_risk.py" \
+  PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/project_portfolio_a_plus_horizon_risk.py" \
     "$HORIZON_RISK_JSON" >/dev/null 2>&1 || echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) horizon risk calc failed (non-fatal)"
 fi
 EXTRA_HORIZON_RISK_ARGS=()
@@ -248,6 +251,16 @@ fi
 if [ -f "$EQUITY_LADDER_JSON" ]; then
   EXTRA_WHEEL_V1_ARGS+=(--wheel-v1-equity-ladder "$EQUITY_LADDER_JSON")
 fi
+# Portfolio A+ equity ladder (T1+MNQCont+MES2R+MGC10@130%), added 2026-10-29. compute_sizing() is
+# a pure function of equity (no state/hysteresis) -- cheap enough to recompute every cycle, no
+# mtime cache needed, same as the Wheel v1 ladder above.
+PORTFOLIO_A_PLUS_EQUITY_LADDER_JSON="$LIVE_REPO/runtime_wheel_governor/portfolio_a_plus_equity_ladder.json"
+PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/portfolio_a_plus_equity_ladder.py" \
+  "$PORTFOLIO_A_PLUS_EQUITY_LADDER_JSON" >/dev/null 2>&1 || echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) portfolio A+ equity ladder calc failed (non-fatal)"
+EXTRA_A_PLUS_LADDER_ARGS=()
+if [ -f "$PORTFOLIO_A_PLUS_EQUITY_LADDER_JSON" ]; then
+  EXTRA_A_PLUS_LADDER_ARGS=(--portfolio-a-plus-equity-ladder "$PORTFOLIO_A_PLUS_EQUITY_LADDER_JSON")
+fi
 
 PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_t1_private_snapshot \
   --trades "$T1_RUNTIME/t1_trades.jsonl" \
@@ -268,7 +281,8 @@ PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.expor
   "${EXTRA_PROJECTION_ARGS[@]}" \
   "${EXTRA_HORIZON_RISK_ARGS[@]}" \
   "${EXTRA_OPS_HEALTH_ARGS[@]}" \
-  "${EXTRA_WHEEL_V1_ARGS[@]}"
+  "${EXTRA_WHEEL_V1_ARGS[@]}" \
+  "${EXTRA_A_PLUS_LADDER_ARGS[@]}"
 
 cd "$WEB_REPO"
 "$WEB_REPO/.venv/bin/python3" sanitizer.py \
