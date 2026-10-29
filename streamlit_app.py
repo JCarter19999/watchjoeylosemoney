@@ -197,8 +197,10 @@ def render_portfolio_a_plus_equity_ladder(snapshot: dict[str, Any]) -> None:
     st.caption(el.get("caveat", ""))
 
 
-_CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Cont"),
-                      ("mes2r_leg", "MES Tail (2R)"), ("mgc10_leg", "MGC Tail (10R)")]
+_CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Cont"), ("mes2r_leg", "MES Tail (2R)")]
+# MGC10 disabled 2026-10-29 (user's own call -- see mgc10_disabled_2026_10_29.md in project
+# memory): its real return was only 1.21x simple buy-and-hold over its own window, and its edge
+# is defined-risk convexity on gold's trending regime rather than a predictive signal.
 _ENTRY_COLOR, _TARGET_COLOR, _STOP_COLOR = "#9aa4b2", "#3ecf8e", "#e34948"
 
 
@@ -539,7 +541,7 @@ def render_ops_health(snapshot: dict[str, Any]) -> None:
     overall = ops.get("overall_state", "UNKNOWN")
     st.markdown(f"**Fleet: {icons.get(overall, '')} {overall}**")
     labels = {"t1": "T1 / MNQ", "mnqcont": "MNQ Continuation", "mes": "MES H60 (paused)",
-              "mgc": "MGC H60 (paused)", "mes2r": "MES Tail (2R)", "mgc10": "MGC Tail (10R)"}
+              "mgc": "MGC H60 (paused)", "mes2r": "MES Tail (2R)", "mgc10": "MGC Tail (10R, disabled)"}
     rows = []
     for key, leg in ops["legs"].items():
         auth = leg.get("auth") or {}
