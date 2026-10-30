@@ -621,6 +621,26 @@ def render_reliability(snapshot: dict[str, Any]) -> None:
         st.caption(f"First started {r['first_started_at_utc']}. A restart count that keeps climbing without a matching crash report usually means a deliberate config change, not instability.")
 
 
+def render_outage_retro(snapshot: dict[str, Any]) -> None:
+    """Sessions where a real trade was missed (process outage, or -- 2026-10-29 -- a false
+    safety-guard halt) and a conservative, clearly-labeled hypothetical backfill was recorded
+    instead. Never summed into live performance stats; shown here purely as a documented record
+    of what happened and roughly what it would have been worth. Reads
+    dashboard_extras.outage_retro_sessions (export_t1_private_snapshot.py's _outage_retro_report)."""
+    rows = (snapshot.get("dashboard_extras") or {}).get("outage_retro_sessions") or []
+    if not rows:
+        return
+    st.subheader("Missed/backfilled sessions")
+    st.caption("A real signal fired but no real trade resulted (outage or a false safety halt). "
+               "Shown for the record only -- never counted in live performance.")
+    for r in rows:
+        with st.expander(f"{r['leg']} — {r['session']}"):
+            cols = st.columns(2)
+            cols[0].metric("Actual fill P&L", money(r.get("actual_fill_pnl_usd")))
+            cols[1].metric("Hypothetical backfill P&L", money(r.get("shadow_backfill_pnl_usd")))
+            st.caption(r.get("reason", ""))
+
+
 @st.fragment(run_every="30s")
 def live_dashboard() -> None:
     try:
@@ -656,6 +676,7 @@ def live_dashboard() -> None:
     st.divider()
     render_daily_pnl_heatmap(snapshot)
     render_trade_table(snapshot)
+    render_outage_retro(snapshot)
     render_reliability(snapshot)
 
 
