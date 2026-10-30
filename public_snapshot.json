@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-30T13:45:46.595793Z",
+      "as_of_utc": "2026-10-30T13:48:42.497125Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -278,27 +278,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 7667.0,
-          "high": 7668.25,
-          "low": 7666.25,
-          "open": 7666.25,
-          "ts": "2026-10-30T11:46:00+00:00"
-        },
-        {
-          "close": 7667.5,
-          "high": 7668.25,
-          "low": 7667.25,
-          "open": 7667.5,
-          "ts": "2026-10-30T11:47:00+00:00"
-        },
-        {
-          "close": 7666.25,
-          "high": 7667.5,
-          "low": 7666.0,
-          "open": 7667.5,
-          "ts": "2026-10-30T11:48:00+00:00"
-        },
         {
           "close": 7666.75,
           "high": 7667.5,
@@ -1110,6 +1089,27 @@
           "low": 7655.5,
           "open": 7657.0,
           "ts": "2026-10-30T13:44:00+00:00"
+        },
+        {
+          "close": 7658.0,
+          "high": 7660.25,
+          "low": 7656.0,
+          "open": 7656.5,
+          "ts": "2026-10-30T13:45:00+00:00"
+        },
+        {
+          "close": 7659.75,
+          "high": 7660.75,
+          "low": 7657.0,
+          "open": 7658.0,
+          "ts": "2026-10-30T13:46:00+00:00"
+        },
+        {
+          "close": 7656.5,
+          "high": 7660.75,
+          "low": 7655.75,
+          "open": 7660.0,
+          "ts": "2026-10-30T13:47:00+00:00"
         }
       ],
       "order_qty": 1,
@@ -1192,27 +1192,6 @@
       "mode": "DEMO_EXEC",
       "n_alerts": 0,
       "ohlc_bars": [
-        {
-          "close": 28774.0,
-          "high": 28783.75,
-          "low": 28767.5,
-          "open": 28774.0,
-          "ts": "2026-10-30T11:46:00+00:00"
-        },
-        {
-          "close": 28776.0,
-          "high": 28778.5,
-          "low": 28769.5,
-          "open": 28774.5,
-          "ts": "2026-10-30T11:47:00+00:00"
-        },
-        {
-          "close": 28773.25,
-          "high": 28779.5,
-          "low": 28771.0,
-          "open": 28777.0,
-          "ts": "2026-10-30T11:48:00+00:00"
-        },
         {
           "close": 28772.0,
           "high": 28780.5,
@@ -2024,6 +2003,27 @@
           "low": 28735.0,
           "open": 28740.5,
           "ts": "2026-10-30T13:44:00+00:00"
+        },
+        {
+          "close": 28740.5,
+          "high": 28770.5,
+          "low": 28732.75,
+          "open": 28745.75,
+          "ts": "2026-10-30T13:45:00+00:00"
+        },
+        {
+          "close": 28768.25,
+          "high": 28773.25,
+          "low": 28734.25,
+          "open": 28740.75,
+          "ts": "2026-10-30T13:46:00+00:00"
+        },
+        {
+          "close": 28746.5,
+          "high": 28776.5,
+          "low": 28741.75,
+          "open": 28769.25,
+          "ts": "2026-10-30T13:47:00+00:00"
         }
       ],
       "order_qty": 10,
@@ -2052,7 +2052,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-30T13:45:01.373601+00:00",
+      "generated_at": "2026-10-30T13:48:01.406051+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -2076,8 +2076,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 74401.3,
-          "heartbeat_age_sec": 74365.0,
+          "bar_age_sec": 74581.4,
+          "heartbeat_age_sec": 74545.1,
           "last_alert": "2026-10-29T14:36:01.657435+00:00 ENTRY ABANDONED 2026-10-29: shared_root_unsafe:broker reports -30 on MESZ6, only +0 is claimed by a trustworthy owner -- -30 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -2097,7 +2097,7 @@
             "state": "VALID"
           },
           "bar_age_sec": 1.3,
-          "heartbeat_age_sec": 1.9,
+          "heartbeat_age_sec": 1.8,
           "last_alert": "2026-10-29T14:36:04.239793+00:00 ENTRY ABANDONED 2026-10-29: shared_root_unsafe:broker reports -30 on MESZ6, only +0 is claimed by a trustworthy owner -- -30 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -2112,8 +2112,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 74401.3,
-          "heartbeat_age_sec": 74366.1,
+          "bar_age_sec": 74581.3,
+          "heartbeat_age_sec": 74546.1,
           "last_alert": "2026-10-29T14:46:00.934060+00:00 ENTRY ABANDONED 2026-10-29: shared_root_unsafe:broker reports +1 on MGCZ6, only +0 is claimed by a trustworthy owner -- +1 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -2132,8 +2132,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 64381.3,
-          "heartbeat_age_sec": 64371.2,
+          "bar_age_sec": 64561.3,
+          "heartbeat_age_sec": 64551.2,
           "last_alert": "2026-10-29T14:46:00.071770+00:00 ENTRY ABANDONED 2026-10-29: kill_file_present",
           "managed": true,
           "position_state": "FLAT",
@@ -2169,7 +2169,7 @@
             "state": "VALID"
           },
           "bar_age_sec": 1.3,
-          "heartbeat_age_sec": 1.2,
+          "heartbeat_age_sec": 1.0,
           "last_alert": "2026-10-30T13:36:01Z watchdog: LE feed quiet for 1279861s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "SHORT 10",
@@ -2188,6 +2188,14 @@
         "reason": "Outage retro: bot down through the 09:33 ET anchor; position opened by a manual retroactive order ~14:27 UTC. Actual fill P&L stays in the ledger as OUTAGE_RETRO (not a frozen-spec execution, excluded from clean-live statistics); the hypothetical backfill lead-in is shown separately, never summed.",
         "session": "2026-10-05",
         "shadow_backfill_pnl_usd": 1214.5,
+        "treatment": "actual fill = OUTAGE_RETRO row; backfill = BACKTEST row (missed entry -> retro entry); consecutive segments of one position, both in the ledger"
+      },
+      {
+        "actual_fill_pnl_usd": null,
+        "leg": "T1",
+        "reason": "Entry blocked by a false shared_root_unsafe halt (gateway cache stale-push bug, found+fixed same day 2026-10-29) -- not an outage, the bot was up and the real strict_t1 SHORT signal fired on schedule, but the entry guard incorrectly refused it. No real position was ever opened. Actual fill P&L stays None (nothing was ever filled); the hypothetical backfill estimate is shown separately, never summed into live performance stats.",
+        "session": "2026-10-29",
+        "shadow_backfill_pnl_usd": 6950.0,
         "treatment": "actual fill = OUTAGE_RETRO row; backfill = BACKTEST row (missed entry -> retro entry); consecutive segments of one position, both in the ledger"
       },
       {
@@ -2329,27 +2337,6 @@
     "t1_leg": {
       "ohlc_bars": [
         {
-          "close": 28774.0,
-          "high": 28783.75,
-          "low": 28767.5,
-          "open": 28774.0,
-          "ts": "2026-10-30T11:46:00+00:00"
-        },
-        {
-          "close": 28776.0,
-          "high": 28778.5,
-          "low": 28769.5,
-          "open": 28774.5,
-          "ts": "2026-10-30T11:47:00+00:00"
-        },
-        {
-          "close": 28773.25,
-          "high": 28779.5,
-          "low": 28771.0,
-          "open": 28777.0,
-          "ts": "2026-10-30T11:48:00+00:00"
-        },
-        {
           "close": 28772.0,
           "high": 28780.5,
           "low": 28770.75,
@@ -3160,6 +3147,27 @@
           "low": 28735.0,
           "open": 28740.5,
           "ts": "2026-10-30T13:44:00+00:00"
+        },
+        {
+          "close": 28740.5,
+          "high": 28770.5,
+          "low": 28732.75,
+          "open": 28745.75,
+          "ts": "2026-10-30T13:45:00+00:00"
+        },
+        {
+          "close": 28768.25,
+          "high": 28773.25,
+          "low": 28734.25,
+          "open": 28740.75,
+          "ts": "2026-10-30T13:46:00+00:00"
+        },
+        {
+          "close": 28746.5,
+          "high": 28776.5,
+          "low": 28741.75,
+          "open": 28769.25,
+          "ts": "2026-10-30T13:47:00+00:00"
         }
       ],
       "overlay_direction": -1,
@@ -3398,7 +3406,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 28746.0,
+        "current_price": 28746.5,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "MNQ",
@@ -3407,7 +3415,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-30T13:45:46.704717Z",
+  "data_as_of_utc": "2026-10-30T13:48:42.672778Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -3671,7 +3679,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-30T13:45:46.704717Z",
+  "generated_at_utc": "2026-10-30T13:48:42.672778Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -4249,7 +4257,7 @@
     "market_data_state": "LIVE",
     "message": "In a T1 short position (10 MNQ demo); holding to the RTH close, no stop by design.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": -630.0
+    "unrealized_pnl_usd": -640.0
   },
   "warmup_replay": {
     "bars_replayed": 0,
