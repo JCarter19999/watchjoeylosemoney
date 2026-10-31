@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-30T23:45:47.278741Z",
+      "as_of_utc": "2026-10-31T00:00:46.674974Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -384,7 +384,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-30T23:45:02.009686+00:00",
+      "generated_at": "2026-10-31T00:00:01.657247+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -392,7 +392,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.8,
+          "bar_age_sec": 0.9,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -408,8 +408,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 110402.0,
-          "heartbeat_age_sec": 110365.7,
+          "bar_age_sec": 111301.6,
+          "heartbeat_age_sec": 111265.3,
           "last_alert": "2026-10-29T14:36:01.657435+00:00 ENTRY ABANDONED 2026-10-29: shared_root_unsafe:broker reports -30 on MESZ6, only +0 is claimed by a trustworthy owner -- -30 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -427,8 +427,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 9902.0,
-          "heartbeat_age_sec": 4.3,
+          "bar_age_sec": 10801.6,
+          "heartbeat_age_sec": 3.5,
           "last_alert": "2026-10-30T14:32:03.014545+00:00 ENTRY ABANDONED 2026-10-30: shared_root_unsafe:runtime_mes_paper's claim is stale -- cannot be trusted to be off MESZ6",
           "managed": true,
           "position_state": "FLAT",
@@ -443,8 +443,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 110402.0,
-          "heartbeat_age_sec": 110366.7,
+          "bar_age_sec": 111301.6,
+          "heartbeat_age_sec": 111266.4,
           "last_alert": "2026-10-29T14:46:00.934060+00:00 ENTRY ABANDONED 2026-10-29: shared_root_unsafe:broker reports +1 on MGCZ6, only +0 is claimed by a trustworthy owner -- +1 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -462,8 +462,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 100382.0,
-          "heartbeat_age_sec": 100371.8,
+          "bar_age_sec": 101281.6,
+          "heartbeat_age_sec": 101271.5,
           "last_alert": "2026-10-29T14:46:00.071770+00:00 ENTRY ABANDONED 2026-10-29: kill_file_present",
           "managed": true,
           "position_state": "FLAT",
@@ -481,8 +481,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 9901.9,
-          "heartbeat_age_sec": 0.3,
+          "bar_age_sec": 10801.6,
+          "heartbeat_age_sec": 4.5,
           "last_alert": "2026-10-25T22:12:02Z watchdog[mnqcont] killed pid 3302969: no bar received for 177121s",
           "managed": true,
           "position_state": "FLAT",
@@ -497,8 +497,8 @@
             "expires": "2026-11-10",
             "state": "VALID"
           },
-          "bar_age_sec": 9902.0,
-          "heartbeat_age_sec": 0.3,
+          "bar_age_sec": 10801.6,
+          "heartbeat_age_sec": 3.7,
           "last_alert": "2026-10-30T19:14:01Z watchdog: PA feed quiet for 1299841s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -913,7 +913,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-30T23:45:47.383232Z",
+  "data_as_of_utc": "2026-10-31T00:00:46.777594Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -1189,7 +1189,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-30T23:45:47.383232Z",
+  "generated_at_utc": "2026-10-31T00:00:46.777594Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -1745,7 +1745,7 @@
   "stats": {
     "breakeven": 0,
     "closed_trades_all_time": 42,
-    "closed_trades_today": 1,
+    "closed_trades_today": 0,
     "current_drawdown_usd": 0.0,
     "display_equity_usd": 27122.73,
     "display_starting_equity_usd": 0.0,
@@ -1755,7 +1755,7 @@
     "max_drawdown_usd": 5450.79,
     "profit_factor": 3.1472,
     "realized_pnl_all_time_usd": 27122.73,
-    "realized_pnl_today_usd": 3197.8,
+    "realized_pnl_today_usd": 0,
     "win_rate": 0.619,
     "wins": 26
   },
