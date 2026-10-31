@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-10-31T17:30:46.884560Z",
+      "as_of_utc": "2026-10-31T17:45:46.216980Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -384,7 +384,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-10-31T17:30:01.476626+00:00",
+      "generated_at": "2026-10-31T17:45:01.085545+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -392,7 +392,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.0,
+          "bar_age_sec": 1.1,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -408,8 +408,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 174301.4,
-          "heartbeat_age_sec": 174265.1,
+          "bar_age_sec": 175201.0,
+          "heartbeat_age_sec": 175164.7,
           "last_alert": "2026-10-29T14:36:01.657435+00:00 ENTRY ABANDONED 2026-10-29: shared_root_unsafe:broker reports -30 on MESZ6, only +0 is claimed by a trustworthy owner -- -30 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -427,8 +427,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 73801.4,
-          "heartbeat_age_sec": 0.3,
+          "bar_age_sec": 74701.0,
+          "heartbeat_age_sec": 4.5,
           "last_alert": "2026-10-30T14:32:03.014545+00:00 ENTRY ABANDONED 2026-10-30: shared_root_unsafe:runtime_mes_paper's claim is stale -- cannot be trusted to be off MESZ6",
           "managed": true,
           "position_state": "FLAT",
@@ -443,8 +443,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 174301.4,
-          "heartbeat_age_sec": 174266.2,
+          "bar_age_sec": 175201.0,
+          "heartbeat_age_sec": 175165.8,
           "last_alert": "2026-10-29T14:46:00.934060+00:00 ENTRY ABANDONED 2026-10-29: shared_root_unsafe:broker reports +1 on MGCZ6, only +0 is claimed by a trustworthy owner -- +1 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -462,8 +462,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 164281.4,
-          "heartbeat_age_sec": 164271.3,
+          "bar_age_sec": 165181.0,
+          "heartbeat_age_sec": 165170.9,
           "last_alert": "2026-10-29T14:46:00.071770+00:00 ENTRY ABANDONED 2026-10-29: kill_file_present",
           "managed": true,
           "position_state": "FLAT",
@@ -481,8 +481,8 @@
             "expires": "2026-11-06",
             "state": "VALID"
           },
-          "bar_age_sec": 73801.4,
-          "heartbeat_age_sec": 2.9,
+          "bar_age_sec": 74701.0,
+          "heartbeat_age_sec": 2.1,
           "last_alert": "2026-10-25T22:12:02Z watchdog[mnqcont] killed pid 3302969: no bar received for 177121s",
           "managed": true,
           "position_state": "FLAT",
@@ -497,8 +497,8 @@
             "expires": "2026-11-10",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 73801.4,
-          "heartbeat_age_sec": 0.7,
+          "bar_age_sec": 74701.0,
+          "heartbeat_age_sec": 4.1,
           "last_alert": "2026-10-30T19:14:01Z watchdog: PA feed quiet for 1299841s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -915,7 +915,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-10-31T17:30:46.989551Z",
+  "data_as_of_utc": "2026-10-31T17:45:46.320772Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -1191,7 +1191,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-10-31T17:30:46.989551Z",
+  "generated_at_utc": "2026-10-31T17:45:46.320772Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
