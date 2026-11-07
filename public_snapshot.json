@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-07T04:45:50.057868Z",
+      "as_of_utc": "2026-11-07T05:00:50.832800Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -384,7 +384,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-11-07T04:45:01.130275+00:00",
+      "generated_at": "2026-11-07T05:00:02.123586+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -392,7 +392,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.5,
+          "bar_age_sec": 0.4,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -404,18 +404,18 @@
         },
         "mes": {
           "auth": {
-            "days_remaining": 0,
+            "days_remaining": -1,
             "expires": "2026-11-06",
-            "state": "EXPIRING_SOON"
+            "state": "EXPIRED"
           },
-          "bar_age_sec": 733201.1,
-          "heartbeat_age_sec": 733164.8,
+          "bar_age_sec": 734102.1,
+          "heartbeat_age_sec": 734065.8,
           "last_alert": "2026-10-29T14:36:01.657435+00:00 ENTRY ABANDONED 2026-10-29: shared_root_unsafe:broker reports -30 on MESZ6, only +0 is claimed by a trustworthy owner -- -30 unexplained",
           "managed": true,
           "position_state": "FLAT",
           "process": "DEAD",
           "reasons": [
-            "AUTH_EXPIRING",
+            "AUTH_EXPIRED",
             "HEARTBEAT_STALE",
             "PROCESS_DEAD"
           ],
@@ -424,36 +424,36 @@
         },
         "mes2r": {
           "auth": {
-            "days_remaining": 0,
+            "days_remaining": -1,
             "expires": "2026-11-06",
-            "state": "EXPIRING_SOON"
+            "state": "EXPIRED"
           },
-          "bar_age_sec": 24301.1,
-          "heartbeat_age_sec": 7.6,
+          "bar_age_sec": 25202.1,
+          "heartbeat_age_sec": 5.7,
           "last_alert": "2026-11-05T15:32:45.939499+00:00 ANOMALOUS ENTRY_SLIPPAGE_CHECK 2026-11-05: filled 7532.0 vs market reference 7535.5 (+14 ticks, $+17.50)",
           "managed": true,
           "position_state": "LONG 1",
           "process": "RUNNING",
           "reasons": [
-            "AUTH_EXPIRING"
+            "AUTH_EXPIRED"
           ],
-          "state": "WARNING",
+          "state": "HALTED",
           "stream_health": "STALE"
         },
         "mgc": {
           "auth": {
-            "days_remaining": 0,
+            "days_remaining": -1,
             "expires": "2026-11-06",
-            "state": "EXPIRING_SOON"
+            "state": "EXPIRED"
           },
-          "bar_age_sec": 733201.1,
-          "heartbeat_age_sec": 733165.8,
+          "bar_age_sec": 734102.1,
+          "heartbeat_age_sec": 734066.8,
           "last_alert": "2026-10-29T14:46:00.934060+00:00 ENTRY ABANDONED 2026-10-29: shared_root_unsafe:broker reports +1 on MGCZ6, only +0 is claimed by a trustworthy owner -- +1 unexplained",
           "managed": true,
           "position_state": "FLAT",
           "process": "DEAD",
           "reasons": [
-            "AUTH_EXPIRING",
+            "AUTH_EXPIRED",
             "HEARTBEAT_STALE",
             "PROCESS_DEAD"
           ],
@@ -462,18 +462,18 @@
         },
         "mgc10": {
           "auth": {
-            "days_remaining": 0,
+            "days_remaining": -1,
             "expires": "2026-11-06",
-            "state": "EXPIRING_SOON"
+            "state": "EXPIRED"
           },
-          "bar_age_sec": 723181.1,
-          "heartbeat_age_sec": 723170.9,
+          "bar_age_sec": 724082.1,
+          "heartbeat_age_sec": 724071.9,
           "last_alert": "2026-10-29T14:46:00.071770+00:00 ENTRY ABANDONED 2026-10-29: kill_file_present",
           "managed": true,
           "position_state": "FLAT",
           "process": "DEAD",
           "reasons": [
-            "AUTH_EXPIRING",
+            "AUTH_EXPIRED",
             "HEARTBEAT_STALE",
             "PROCESS_DEAD"
           ],
@@ -482,36 +482,38 @@
         },
         "mnqcont": {
           "auth": {
-            "days_remaining": 0,
+            "days_remaining": -1,
             "expires": "2026-11-06",
-            "state": "EXPIRING_SOON"
+            "state": "EXPIRED"
           },
-          "bar_age_sec": 24301.1,
-          "heartbeat_age_sec": 0.3,
+          "bar_age_sec": 25202.1,
+          "heartbeat_age_sec": 5.8,
           "last_alert": "2026-11-04T20:54:10.086383+00:00 ANOMALOUS DEADLINE_EXIT_SLIPPAGE_CHECK 2026-11-04: filled 28524.0 vs market reference 28530.0 (+24 ticks, $+120.00)",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
           "reasons": [
-            "AUTH_EXPIRING"
+            "AUTH_EXPIRED"
           ],
-          "state": "WARNING",
+          "state": "HALTED",
           "stream_health": "GAPPED"
         },
         "t1": {
           "auth": {
-            "days_remaining": 4,
+            "days_remaining": 3,
             "expires": "2026-11-10",
-            "state": "VALID"
+            "state": "EXPIRED"
           },
-          "bar_age_sec": 24301.1,
-          "heartbeat_age_sec": 2.3,
+          "bar_age_sec": 25202.1,
+          "heartbeat_age_sec": 2.1,
           "last_alert": "2026-11-06T20:10:02Z watchdog: HO feed quiet for 191282s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
-          "reasons": [],
-          "state": "HEALTHY",
+          "reasons": [
+            "AUTH_EXPIRED"
+          ],
+          "state": "HALTED",
           "stream_health": "STALE"
         }
       },
@@ -926,7 +928,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-07T04:45:50.171724Z",
+  "data_as_of_utc": "2026-11-07T05:00:50.939484Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -1238,7 +1240,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-07T04:45:50.171724Z",
+  "generated_at_utc": "2026-11-07T05:00:50.939484Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
