@@ -535,8 +535,9 @@ def render_ops_health(snapshot: dict[str, Any]) -> None:
              "HALTED": "\U0001F534", "UNKNOWN": "⚫"}
     overall = ops.get("overall_state", "UNKNOWN")
     st.markdown(f"**Fleet: {icons.get(overall, '')} {overall}**")
-    labels = {"t1": "T1 / MNQ", "mnqcont": "MNQ Continuation", "mes": "MES H60 (paused)",
-              "mgc": "MGC H60 (paused)", "mes2r": "MES Tail (2R)", "mgc10": "MGC Tail (10R, disabled)"}
+    labels = {"t1": "T1 / MNQ (demo)", "mnqcont": "MNQ Continuation (demo)", "mes": "MES H60 (paused)",
+              "mgc": "MGC H60 (paused)", "mes2r": "MES Tail (2R)", "mgc10": "MGC Tail (10R, disabled)",
+              "t1_live": "T1 \U0001F534 REAL CAPITAL", "mnqcont_live": "MNQ Continuation \U0001F534 REAL CAPITAL"}
     rows = []
     for key, leg in ops["legs"].items():
         auth = leg.get("auth") or {}
