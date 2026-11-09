@@ -147,13 +147,14 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     stronger legs. MGC10 and M6E both retired 2026-10-27 (user: "we are not running MGC10 anymore" /
     "get rid of M6E too, we are no longer using it") -- their real demo positions were closed (MGC10
     manually; M6E's own bracket had already resolved naturally before it could be confirmed) and
-    both processes stopped; see wheel_v1_mgc/wheel_v1_mnq below for MGC10's replacement."""
+    both processes stopped; see wheel_v1_mgc/wheel_v1_mnq below for MGC10's replacement. MES H60
+    and MGC H60 are paused (not actively trading) as of 2026-11-08 -- tiles dropped here, same
+    treatment as every other dead/paused leg; T1+MNQCont are the primary portfolio now."""
     rows = []
     mnq_u = snapshot["status"].get("unrealized_pnl_usd")
     if mnq_u is not None:
         rows.append(("T1 / MNQ", mnq_u))
-    for key, label in (("mes", "MES H60"), ("mgc", "MGC H60"), ("mnqcont", "MNQ Continuation"),
-                        ("mes2r", "MES Tail (2R)")):
+    for key, label in (("mnqcont", "MNQ Continuation"), ("mes2r", "MES Tail (2R)")):
         g_leg = (snapshot.get("dashboard_extras") or {}).get(f"{key}_leg")
         if g_leg and g_leg.get("unrealized_pnl_usd") is not None:
             rows.append((label, g_leg["unrealized_pnl_usd"]))
@@ -492,7 +493,8 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
 
     6J/LE/PA were disabled 2026-10-15, and EIA/ON-001/ES dropped 2026-10-16 (not robust enough to keep
     running alongside the stronger legs) -- all intentionally excluded from `labels`. MGC10 and M6E
-    both retired 2026-10-27 -- same treatment. If the underlying
+    both retired 2026-10-27 -- same treatment. MES H60/MGC H60 paused as of 2026-11-08 (T1+MNQCont are
+    the primary portfolio now) -- same treatment. If the underlying
     snapshot still carries a stale entry for one of them, it falls through to the generic `key` fallback
     below rather than being actively displayed with a maintained label.
 
@@ -503,9 +505,9 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
     if not dist or not dist.get("legs"):
         return
     st.subheader("Current contract distribution")
-    labels = {"t1": "T1 / MNQ", "mes": "MES H60", "mgc": "MGC H60", "mnqcont": "MNQ Continuation",
+    labels = {"t1": "T1 / MNQ", "mnqcont": "MNQ Continuation",
               "mes2r": "MES Tail (2R)", "wheel_v1_mnq": "Wheel v1.0 MNQ", "wheel_v1_mgc": "Wheel v1.0 MGC"}
-    legs = {k: v for k, v in dist["legs"].items() if k not in ("6j", "le", "pa", "on001", "eia_ho", "eia_rb", "mgc10", "m6e")}
+    legs = {k: v for k, v in dist["legs"].items() if k not in ("6j", "le", "pa", "on001", "eia_ho", "eia_rb", "mgc10", "m6e", "mes", "mgc")}
     if not legs:
         return
     cols = st.columns(len(legs))
@@ -535,11 +537,16 @@ def render_ops_health(snapshot: dict[str, Any]) -> None:
              "HALTED": "\U0001F534", "UNKNOWN": "⚫"}
     overall = ops.get("overall_state", "UNKNOWN")
     st.markdown(f"**Fleet: {icons.get(overall, '')} {overall}**")
-    labels = {"t1": "T1 / MNQ (demo)", "mnqcont": "MNQ Continuation (demo)", "mes": "MES H60 (paused)",
-              "mgc": "MGC H60 (paused)", "mes2r": "MES Tail (2R)", "mgc10": "MGC Tail (10R, disabled)",
+    labels = {"t1": "T1 / MNQ (demo)", "mnqcont": "MNQ Continuation (demo)", "mes2r": "MES Tail (2R)",
               "t1_live": "T1 \U0001F534 REAL CAPITAL", "mnqcont_live": "MNQ Continuation \U0001F534 REAL CAPITAL"}
+    # MES H60/MGC H60 (paused) and MGC Tail 10R (disabled) are long-dead legs, not actively
+    # monitored -- dropped from this table entirely as of 2026-11-08 (T1+MNQCont are the primary
+    # portfolio); `overall_state` above is still computed upstream over every leg including these,
+    # unchanged, so it can still read HALTED/DEGRADED off a leg that no longer has a row below.
     rows = []
     for key, leg in ops["legs"].items():
+        if key in ("mes", "mgc", "mgc10"):
+            continue
         auth = leg.get("auth") or {}
         days_left = auth.get("days_remaining")
         rows.append({
