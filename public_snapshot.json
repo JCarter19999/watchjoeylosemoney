@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-09T08:00:48.952023Z",
+      "as_of_utc": "2026-11-09T08:15:48.379455Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -158,111 +158,6 @@
       "n_alerts": 0,
       "ohlc_bars": [
         {
-          "close": 27111.25,
-          "high": 27115.75,
-          "low": 27094.75,
-          "open": 27106.25,
-          "ts": "2026-11-09T06:01:00+00:00"
-        },
-        {
-          "close": 27110.25,
-          "high": 27116.75,
-          "low": 27107.25,
-          "open": 27113.25,
-          "ts": "2026-11-09T06:02:00+00:00"
-        },
-        {
-          "close": 27103.25,
-          "high": 27108.75,
-          "low": 27089.5,
-          "open": 27108.5,
-          "ts": "2026-11-09T06:03:00+00:00"
-        },
-        {
-          "close": 27103.0,
-          "high": 27106.75,
-          "low": 27097.0,
-          "open": 27102.25,
-          "ts": "2026-11-09T06:04:00+00:00"
-        },
-        {
-          "close": 27123.0,
-          "high": 27124.75,
-          "low": 27096.5,
-          "open": 27100.5,
-          "ts": "2026-11-09T06:05:00+00:00"
-        },
-        {
-          "close": 27124.0,
-          "high": 27135.5,
-          "low": 27115.0,
-          "open": 27123.25,
-          "ts": "2026-11-09T06:06:00+00:00"
-        },
-        {
-          "close": 27126.5,
-          "high": 27133.75,
-          "low": 27121.5,
-          "open": 27124.75,
-          "ts": "2026-11-09T06:07:00+00:00"
-        },
-        {
-          "close": 27103.0,
-          "high": 27131.25,
-          "low": 27103.0,
-          "open": 27126.0,
-          "ts": "2026-11-09T06:08:00+00:00"
-        },
-        {
-          "close": 27098.5,
-          "high": 27107.75,
-          "low": 27094.0,
-          "open": 27105.25,
-          "ts": "2026-11-09T06:09:00+00:00"
-        },
-        {
-          "close": 27095.5,
-          "high": 27106.0,
-          "low": 27088.75,
-          "open": 27095.0,
-          "ts": "2026-11-09T06:10:00+00:00"
-        },
-        {
-          "close": 27097.0,
-          "high": 27109.5,
-          "low": 27094.75,
-          "open": 27096.5,
-          "ts": "2026-11-09T06:11:00+00:00"
-        },
-        {
-          "close": 27106.75,
-          "high": 27110.5,
-          "low": 27098.25,
-          "open": 27098.25,
-          "ts": "2026-11-09T06:12:00+00:00"
-        },
-        {
-          "close": 27117.5,
-          "high": 27126.0,
-          "low": 27097.25,
-          "open": 27104.5,
-          "ts": "2026-11-09T06:13:00+00:00"
-        },
-        {
-          "close": 27115.75,
-          "high": 27123.5,
-          "low": 27111.75,
-          "open": 27118.0,
-          "ts": "2026-11-09T06:14:00+00:00"
-        },
-        {
-          "close": 27111.25,
-          "high": 27113.25,
-          "low": 27098.75,
-          "open": 27113.25,
-          "ts": "2026-11-09T06:15:00+00:00"
-        },
-        {
           "close": 27107.75,
           "high": 27111.0,
           "low": 27101.75,
@@ -989,6 +884,111 @@
           "low": 26790.0,
           "open": 26791.0,
           "ts": "2026-11-09T07:59:00+00:00"
+        },
+        {
+          "close": 26851.0,
+          "high": 26859.5,
+          "low": 26812.0,
+          "open": 26818.25,
+          "ts": "2026-11-09T08:00:00+00:00"
+        },
+        {
+          "close": 26840.75,
+          "high": 26855.5,
+          "low": 26833.5,
+          "open": 26850.0,
+          "ts": "2026-11-09T08:01:00+00:00"
+        },
+        {
+          "close": 26830.75,
+          "high": 26851.5,
+          "low": 26827.25,
+          "open": 26837.5,
+          "ts": "2026-11-09T08:02:00+00:00"
+        },
+        {
+          "close": 26859.25,
+          "high": 26862.0,
+          "low": 26825.75,
+          "open": 26833.25,
+          "ts": "2026-11-09T08:03:00+00:00"
+        },
+        {
+          "close": 26884.5,
+          "high": 26893.25,
+          "low": 26848.25,
+          "open": 26855.75,
+          "ts": "2026-11-09T08:04:00+00:00"
+        },
+        {
+          "close": 26938.25,
+          "high": 26947.0,
+          "low": 26883.75,
+          "open": 26883.75,
+          "ts": "2026-11-09T08:05:00+00:00"
+        },
+        {
+          "close": 26903.5,
+          "high": 26941.75,
+          "low": 26903.5,
+          "open": 26938.25,
+          "ts": "2026-11-09T08:06:00+00:00"
+        },
+        {
+          "close": 26898.0,
+          "high": 26910.75,
+          "low": 26891.5,
+          "open": 26903.25,
+          "ts": "2026-11-09T08:07:00+00:00"
+        },
+        {
+          "close": 26924.25,
+          "high": 26924.25,
+          "low": 26896.75,
+          "open": 26897.75,
+          "ts": "2026-11-09T08:08:00+00:00"
+        },
+        {
+          "close": 26931.25,
+          "high": 26935.0,
+          "low": 26910.5,
+          "open": 26921.75,
+          "ts": "2026-11-09T08:09:00+00:00"
+        },
+        {
+          "close": 26958.0,
+          "high": 26973.75,
+          "low": 26931.75,
+          "open": 26931.75,
+          "ts": "2026-11-09T08:10:00+00:00"
+        },
+        {
+          "close": 26960.5,
+          "high": 26962.0,
+          "low": 26942.5,
+          "open": 26959.0,
+          "ts": "2026-11-09T08:11:00+00:00"
+        },
+        {
+          "close": 26950.25,
+          "high": 26962.25,
+          "low": 26941.5,
+          "open": 26962.0,
+          "ts": "2026-11-09T08:12:00+00:00"
+        },
+        {
+          "close": 26938.25,
+          "high": 26954.0,
+          "low": 26934.0,
+          "open": 26950.25,
+          "ts": "2026-11-09T08:13:00+00:00"
+        },
+        {
+          "close": 26939.25,
+          "high": 26944.25,
+          "low": 26931.0,
+          "open": 26940.25,
+          "ts": "2026-11-09T08:14:00+00:00"
         }
       ],
       "order_qty": 2,
@@ -1003,7 +1003,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-09T08:00:01.620865+00:00",
+      "generated_at": "2026-11-09T08:15:01.867782+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -1011,7 +1011,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.3,
+          "bar_age_sec": 0.9,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -1027,8 +1027,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.6,
-          "heartbeat_age_sec": 1.2,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 1.0,
           "last_alert": "2026-11-09T05:00:09.729719+00:00 restart reconciliation: local state says IN_POSITION but the broker shows no position on the managed contract -- treating as exited (a fill may have completed while the process was down; note this leg shares its root with sibling services, so this check cannot tell a real exit apart from a sibling's own position changing shape)",
           "managed": true,
           "position_state": "FLAT",
@@ -1043,8 +1043,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.6,
-          "heartbeat_age_sec": 3.2,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 3.0,
           "last_alert": "2026-11-08T23:12:09Z watchdog[mnqcont]: AUTH_EXPIRED -- 2026-11-08 not in runtime_mnqcont_paper/MNQCONT_LIVE_AUTHORIZATION.json's valid_dates -- DOWN, extend valid_dates to fix (not a restart-budget exhaustion, a stale authorization window)",
           "managed": true,
           "position_state": "FLAT",
@@ -1059,8 +1059,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.6,
-          "heartbeat_age_sec": 4.2,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 4.0,
           "last_alert": "2026-11-08T21:28:01Z watchdog[mnqcont]: AUTH_EXPIRED -- 2026-11-08 not in runtime_mnqcont_live/MNQCONT_LIVE_AUTHORIZATION.json's valid_dates -- DOWN, extend valid_dates to fix (not a restart-budget exhaustion, a stale authorization window)",
           "managed": true,
           "position_state": "FLAT",
@@ -1075,17 +1075,15 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 208801.6,
-          "heartbeat_age_sec": 1.6,
-          "last_alert": "2026-11-06T20:10:02Z watchdog: HO feed quiet for 191282s inside its expected hours (alert only; may be a thin market)",
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 3.2,
+          "last_alert": "2026-11-09T08:00:01Z watchdog killed fused pid 531195: no bar received for 208801s on runtime_t1_demo/raw_bar_log.jsonl (live_status.json heartbeat looked fine -- 2026-09-28 incident class)",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
-          "reasons": [
-            "RAW_BAR_STALE"
-          ],
-          "state": "DEGRADED",
-          "stream_health": "STALE"
+          "reasons": [],
+          "state": "HEALTHY",
+          "stream_health": "HEALTHY"
         },
         "t1_live": {
           "auth": {
@@ -1093,8 +1091,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.6,
-          "heartbeat_age_sec": 0.4,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 4.7,
           "last_alert": "2026-11-08T21:24:52Z watchdog[t1]: AUTH_EXPIRED -- 2026-11-08 not in runtime_t1_live/T1_LIVE_AUTHORIZATION.json's valid_dates -- DOWN, extend valid_dates to fix (not a restart-budget exhaustion, a stale authorization window)",
           "managed": true,
           "position_state": "FLAT",
@@ -1104,7 +1102,7 @@
           "stream_health": "HEALTHY"
         }
       },
-      "overall_state": "DEGRADED"
+      "overall_state": "HEALTHY"
     },
     "portfolio_a_plus_equity_ladder": {
       "caveat": "T1/MNQCont share one P2 ladder level (intraday-margin-eligible, uncapped except the MAX_LEVEL sanity ceiling). MES1R/MGC1R are excluded (rejected 2026-10-29, see memory mes1r_mgc1r_addition_rejected_2026_10_29.md). MGC10 is excluded (disabled 2026-10-29, see memory mgc10_disabled_2026_10_29.md). MES2R is excluded (closed 2026-11-08: net -$1,799/9yr and positively correlated with T1+MNQCont's bad days over the full 16yr real history, see memory mes2r_net_negative_closed_2026_11_08.md) -- all four excluded entirely, not just zero-weighted.",
@@ -1184,111 +1182,6 @@
     "t1_leg": {
       "ohlc_bars": [
         {
-          "close": 27111.25,
-          "high": 27115.75,
-          "low": 27094.75,
-          "open": 27106.25,
-          "ts": "2026-11-09T06:01:00+00:00"
-        },
-        {
-          "close": 27110.25,
-          "high": 27116.75,
-          "low": 27107.25,
-          "open": 27113.25,
-          "ts": "2026-11-09T06:02:00+00:00"
-        },
-        {
-          "close": 27103.25,
-          "high": 27108.75,
-          "low": 27089.5,
-          "open": 27108.5,
-          "ts": "2026-11-09T06:03:00+00:00"
-        },
-        {
-          "close": 27103.0,
-          "high": 27106.75,
-          "low": 27097.0,
-          "open": 27102.25,
-          "ts": "2026-11-09T06:04:00+00:00"
-        },
-        {
-          "close": 27123.0,
-          "high": 27124.75,
-          "low": 27096.5,
-          "open": 27100.5,
-          "ts": "2026-11-09T06:05:00+00:00"
-        },
-        {
-          "close": 27124.0,
-          "high": 27135.5,
-          "low": 27115.0,
-          "open": 27123.25,
-          "ts": "2026-11-09T06:06:00+00:00"
-        },
-        {
-          "close": 27126.5,
-          "high": 27133.75,
-          "low": 27121.5,
-          "open": 27124.75,
-          "ts": "2026-11-09T06:07:00+00:00"
-        },
-        {
-          "close": 27103.0,
-          "high": 27131.25,
-          "low": 27103.0,
-          "open": 27126.0,
-          "ts": "2026-11-09T06:08:00+00:00"
-        },
-        {
-          "close": 27098.5,
-          "high": 27107.75,
-          "low": 27094.0,
-          "open": 27105.25,
-          "ts": "2026-11-09T06:09:00+00:00"
-        },
-        {
-          "close": 27095.5,
-          "high": 27106.0,
-          "low": 27088.75,
-          "open": 27095.0,
-          "ts": "2026-11-09T06:10:00+00:00"
-        },
-        {
-          "close": 27097.0,
-          "high": 27109.5,
-          "low": 27094.75,
-          "open": 27096.5,
-          "ts": "2026-11-09T06:11:00+00:00"
-        },
-        {
-          "close": 27106.75,
-          "high": 27110.5,
-          "low": 27098.25,
-          "open": 27098.25,
-          "ts": "2026-11-09T06:12:00+00:00"
-        },
-        {
-          "close": 27117.5,
-          "high": 27126.0,
-          "low": 27097.25,
-          "open": 27104.5,
-          "ts": "2026-11-09T06:13:00+00:00"
-        },
-        {
-          "close": 27115.75,
-          "high": 27123.5,
-          "low": 27111.75,
-          "open": 27118.0,
-          "ts": "2026-11-09T06:14:00+00:00"
-        },
-        {
-          "close": 27111.25,
-          "high": 27113.25,
-          "low": 27098.75,
-          "open": 27113.25,
-          "ts": "2026-11-09T06:15:00+00:00"
-        },
-        {
           "close": 27107.75,
           "high": 27111.0,
           "low": 27101.75,
@@ -2015,6 +1908,111 @@
           "low": 26790.0,
           "open": 26791.0,
           "ts": "2026-11-09T07:59:00+00:00"
+        },
+        {
+          "close": 26851.0,
+          "high": 26859.5,
+          "low": 26812.0,
+          "open": 26818.25,
+          "ts": "2026-11-09T08:00:00+00:00"
+        },
+        {
+          "close": 26840.75,
+          "high": 26855.5,
+          "low": 26833.5,
+          "open": 26850.0,
+          "ts": "2026-11-09T08:01:00+00:00"
+        },
+        {
+          "close": 26830.75,
+          "high": 26851.5,
+          "low": 26827.25,
+          "open": 26837.5,
+          "ts": "2026-11-09T08:02:00+00:00"
+        },
+        {
+          "close": 26859.25,
+          "high": 26862.0,
+          "low": 26825.75,
+          "open": 26833.25,
+          "ts": "2026-11-09T08:03:00+00:00"
+        },
+        {
+          "close": 26884.5,
+          "high": 26893.25,
+          "low": 26848.25,
+          "open": 26855.75,
+          "ts": "2026-11-09T08:04:00+00:00"
+        },
+        {
+          "close": 26938.25,
+          "high": 26947.0,
+          "low": 26883.75,
+          "open": 26883.75,
+          "ts": "2026-11-09T08:05:00+00:00"
+        },
+        {
+          "close": 26903.5,
+          "high": 26941.75,
+          "low": 26903.5,
+          "open": 26938.25,
+          "ts": "2026-11-09T08:06:00+00:00"
+        },
+        {
+          "close": 26898.0,
+          "high": 26910.75,
+          "low": 26891.5,
+          "open": 26903.25,
+          "ts": "2026-11-09T08:07:00+00:00"
+        },
+        {
+          "close": 26924.25,
+          "high": 26924.25,
+          "low": 26896.75,
+          "open": 26897.75,
+          "ts": "2026-11-09T08:08:00+00:00"
+        },
+        {
+          "close": 26931.25,
+          "high": 26935.0,
+          "low": 26910.5,
+          "open": 26921.75,
+          "ts": "2026-11-09T08:09:00+00:00"
+        },
+        {
+          "close": 26958.0,
+          "high": 26973.75,
+          "low": 26931.75,
+          "open": 26931.75,
+          "ts": "2026-11-09T08:10:00+00:00"
+        },
+        {
+          "close": 26960.5,
+          "high": 26962.0,
+          "low": 26942.5,
+          "open": 26959.0,
+          "ts": "2026-11-09T08:11:00+00:00"
+        },
+        {
+          "close": 26950.25,
+          "high": 26962.25,
+          "low": 26941.5,
+          "open": 26962.0,
+          "ts": "2026-11-09T08:12:00+00:00"
+        },
+        {
+          "close": 26938.25,
+          "high": 26954.0,
+          "low": 26934.0,
+          "open": 26950.25,
+          "ts": "2026-11-09T08:13:00+00:00"
+        },
+        {
+          "close": 26939.25,
+          "high": 26944.25,
+          "low": 26931.0,
+          "open": 26940.25,
+          "ts": "2026-11-09T08:14:00+00:00"
         }
       ],
       "overlay_direction": null,
@@ -2220,7 +2218,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 26817.0,
+        "current_price": 26939.25,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "MNQ",
@@ -2229,7 +2227,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-09T07:45:49.071505Z",
+  "data_as_of_utc": "2026-11-09T08:00:48.484774Z",
   "equity_curve": [],
   "execution_health": {
     "current_cost_multiplier": null,
@@ -2252,7 +2250,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-09T08:00:49.071505Z",
+  "generated_at_utc": "2026-11-09T08:15:48.484774Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
