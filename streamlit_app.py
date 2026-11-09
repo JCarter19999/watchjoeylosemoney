@@ -149,12 +149,18 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     manually; M6E's own bracket had already resolved naturally before it could be confirmed) and
     both processes stopped; see wheel_v1_mgc/wheel_v1_mnq below for MGC10's replacement. MES H60
     and MGC H60 are paused (not actively trading) as of 2026-11-08 -- tiles dropped here, same
-    treatment as every other dead/paused leg; T1+MNQCont are the primary portfolio now."""
+    treatment as every other dead/paused leg; T1+MNQCont are the primary portfolio now.
+
+    2026-11-09: MES2R (demo) stopped -- user: "stop all demo trades so i dont get confused" --
+    tile dropped, same treatment. T1+MNQCont are both live (real capital) now; the schema's own
+    unrealized_pnl_usd note (see this function's own earlier docstring) already keeps that None
+    for LIVE regardless of position, so no separate gating needed here beyond what mode already
+    provides upstream."""
     rows = []
     mnq_u = snapshot["status"].get("unrealized_pnl_usd")
     if mnq_u is not None:
         rows.append(("T1 / MNQ", mnq_u))
-    for key, label in (("mnqcont", "MNQ Continuation"), ("mes2r", "MES Tail (2R)")):
+    for key, label in (("mnqcont", "MNQ Continuation"),):
         g_leg = (snapshot.get("dashboard_extras") or {}).get(f"{key}_leg")
         if g_leg and g_leg.get("unrealized_pnl_usd") is not None:
             rows.append((label, g_leg["unrealized_pnl_usd"]))
@@ -193,7 +199,10 @@ def render_portfolio_a_plus_equity_ladder(snapshot: dict[str, Any]) -> None:
     st.caption(el.get("caveat", ""))
 
 
-_CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Cont"), ("mes2r_leg", "MES Tail (2R)")]
+# MES2R (demo) stopped 2026-11-09 (user: "stop all demo trades so i dont get confused") --
+# dropped here, same treatment as every other dead leg. t1_leg/mnqcont_leg both reflect the
+# live (real-capital) instances now, repointed 2026-11-08.
+_CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Cont")]
 # MGC10 disabled 2026-10-29 (user's own call -- see mgc10_disabled_2026_10_29.md in project
 # memory): its real return was only 1.21x simple buy-and-hold over its own window, and its edge
 # is defined-risk convexity on gold's trending regime rather than a predictive signal.
@@ -506,7 +515,7 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
         return
     st.subheader("Current contract distribution")
     labels = {"t1": "T1 / MNQ", "mnqcont": "MNQ Continuation",
-              "mes2r": "MES Tail (2R)", "wheel_v1_mnq": "Wheel v1.0 MNQ", "wheel_v1_mgc": "Wheel v1.0 MGC"}
+              "wheel_v1_mnq": "Wheel v1.0 MNQ", "wheel_v1_mgc": "Wheel v1.0 MGC"}
     legs = {k: v for k, v in dist["legs"].items() if k not in ("6j", "le", "pa", "on001", "eia_ho", "eia_rb", "mgc10", "m6e", "mes", "mgc")}
     if not legs:
         return
@@ -524,8 +533,10 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
 
 
 def render_ops_health(snapshot: dict[str, Any]) -> None:
-    """Deterministic ops health for the 7 watchdog-managed legs (dashboard_extras.ops_health,
-    written by live/scripts/ops_health_check.py). This is operational health only -- process
+    """Deterministic ops health for the watchdog-managed legs (dashboard_extras.ops_health,
+    written by live/scripts/ops_health_check.py) -- as of 2026-11-09, just T1/MNQCont's live
+    (real-capital) instances plus the shared gateway; every demo leg was removed from
+    ops_health_check.py's own LEGS dict the same day. This is operational health only -- process
     alive, stream/heartbeat freshness, broker-reconciliation flags, authorization expiry -- not
     a read on whether any strategy is still statistically working (that's edge health, tracked
     separately and not published here). Absent entirely on an older snapshot."""
@@ -537,16 +548,13 @@ def render_ops_health(snapshot: dict[str, Any]) -> None:
              "HALTED": "\U0001F534", "UNKNOWN": "⚫"}
     overall = ops.get("overall_state", "UNKNOWN")
     st.markdown(f"**Fleet: {icons.get(overall, '')} {overall}**")
-    labels = {"t1": "T1 / MNQ (demo)", "mnqcont": "MNQ Continuation (demo)", "mes2r": "MES Tail (2R)",
-              "t1_live": "T1 \U0001F534 REAL CAPITAL", "mnqcont_live": "MNQ Continuation \U0001F534 REAL CAPITAL"}
-    # MES H60/MGC H60 (paused) and MGC Tail 10R (disabled) are long-dead legs, not actively
-    # monitored -- dropped from this table entirely as of 2026-11-08 (T1+MNQCont are the primary
-    # portfolio); `overall_state` above is still computed upstream over every leg including these,
-    # unchanged, so it can still read HALTED/DEGRADED off a leg that no longer has a row below.
+    labels = {"t1_live": "T1 \U0001F534 REAL CAPITAL", "mnqcont_live": "MNQ Continuation \U0001F534 REAL CAPITAL"}
+    # 2026-11-09: t1/mnqcont/mes2r (demo) removed from ops_health_check.py's own LEGS dict
+    # entirely (user: "stop all demo trades so i dont get confused" / "remove all irrelevant
+    # fleet besides live") -- they no longer appear in ops["legs"] at all, so no filter is
+    # needed here anymore. T1/MNQCont's LIVE instances are the only two strategy legs tracked.
     rows = []
     for key, leg in ops["legs"].items():
-        if key in ("mes", "mgc", "mgc10"):
-            continue
         auth = leg.get("auth") or {}
         days_left = auth.get("days_remaining")
         rows.append({
