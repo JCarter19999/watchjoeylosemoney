@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-09T02:11:04.760236Z",
+      "as_of_utc": "2026-11-09T02:15:47.631110Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -384,7 +384,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-11-09T02:11:01.961762+00:00",
+      "generated_at": "2026-11-09T02:15:01.737296+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -392,7 +392,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.5,
+          "bar_age_sec": 1.9,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -408,8 +408,8 @@
             "expires": "2026-11-06",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 896761.9,
-          "heartbeat_age_sec": 896725.6,
+          "bar_age_sec": 897001.7,
+          "heartbeat_age_sec": 896965.4,
           "last_alert": "2026-10-29T14:36:01.657435+00:00 ENTRY ABANDONED 2026-10-29: shared_root_unsafe:broker reports -30 on MESZ6, only +0 is claimed by a trustworthy owner -- -30 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -429,8 +429,8 @@
             "expires": "2026-11-06",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 187861.9,
-          "heartbeat_age_sec": 10743.9,
+          "bar_age_sec": 188101.7,
+          "heartbeat_age_sec": 10983.6,
           "last_alert": "2026-11-08T23:12:09Z watchdog[mes2r]: AUTH_EXPIRED -- 2026-11-08 not in runtime_mes2r_paper/MES2R_LIVE_AUTHORIZATION.json's valid_dates -- DOWN, extend valid_dates to fix (not a restart-budget exhaustion, a stale authorization window)",
           "managed": true,
           "position_state": "FLAT",
@@ -450,8 +450,8 @@
             "expires": "2026-11-06",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 896761.9,
-          "heartbeat_age_sec": 896726.7,
+          "bar_age_sec": 897001.7,
+          "heartbeat_age_sec": 896966.4,
           "last_alert": "2026-10-29T14:46:00.934060+00:00 ENTRY ABANDONED 2026-10-29: shared_root_unsafe:broker reports +1 on MGCZ6, only +0 is claimed by a trustworthy owner -- +1 unexplained",
           "managed": true,
           "position_state": "FLAT",
@@ -471,8 +471,8 @@
             "expires": "2026-11-06",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 886741.9,
-          "heartbeat_age_sec": 886731.8,
+          "bar_age_sec": 886981.7,
+          "heartbeat_age_sec": 886971.6,
           "last_alert": "2026-10-29T14:46:00.071770+00:00 ENTRY ABANDONED 2026-10-29: kill_file_present",
           "managed": true,
           "position_state": "FLAT",
@@ -492,8 +492,8 @@
             "expires": "2026-11-06",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 187861.9,
-          "heartbeat_age_sec": 10740.6,
+          "bar_age_sec": 188101.7,
+          "heartbeat_age_sec": 10980.4,
           "last_alert": "2026-11-08T23:12:09Z watchdog[mnqcont]: AUTH_EXPIRED -- 2026-11-08 not in runtime_mnqcont_paper/MNQCONT_LIVE_AUTHORIZATION.json's valid_dates -- DOWN, extend valid_dates to fix (not a restart-budget exhaustion, a stale authorization window)",
           "managed": true,
           "position_state": "FLAT",
@@ -513,8 +513,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.9,
-          "heartbeat_age_sec": 3.0,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 2.7,
           "last_alert": "2026-11-08T21:28:01Z watchdog[mnqcont]: AUTH_EXPIRED -- 2026-11-08 not in runtime_mnqcont_live/MNQCONT_LIVE_AUTHORIZATION.json's valid_dates -- DOWN, extend valid_dates to fix (not a restart-budget exhaustion, a stale authorization window)",
           "managed": true,
           "position_state": "FLAT",
@@ -529,8 +529,8 @@
             "expires": "2026-11-10",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 187861.9,
-          "heartbeat_age_sec": 2.6,
+          "bar_age_sec": 188101.7,
+          "heartbeat_age_sec": 2.1,
           "last_alert": "2026-11-06T20:10:02Z watchdog: HO feed quiet for 191282s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -548,8 +548,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.9,
-          "heartbeat_age_sec": 2.8,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 2.3,
           "last_alert": "2026-11-08T21:24:52Z watchdog[t1]: AUTH_EXPIRED -- 2026-11-08 not in runtime_t1_live/T1_LIVE_AUTHORIZATION.json's valid_dates -- DOWN, extend valid_dates to fix (not a restart-budget exhaustion, a stale authorization window)",
           "managed": true,
           "position_state": "FLAT",
@@ -963,7 +963,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-09T02:11:04.962492Z",
+  "data_as_of_utc": "2026-11-09T02:15:47.780087Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -1281,7 +1281,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-09T02:11:04.962492Z",
+  "generated_at_utc": "2026-11-09T02:15:47.780087Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
