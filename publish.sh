@@ -67,7 +67,21 @@ WEB_REPO=/home/joey/watchjoeylosemoney
 # dashboard_extras['t1_6j_leg'] panel (see export_t1_private_snapshot.py's --t1-6j-status/--t1-6j-trades and
 # streamlit_app.py's render_6j_leg) -- same additive, schema-safe convention as t1_shadow_controllers, so this
 # cannot regress the existing MNQ dashboard even if the 6J runtime dir is ever missing or stale.
-T1_RUNTIME="$LIVE_REPO/runtime_t1_demo"
+#
+# 2026-11-08: REPOINTED from runtime_t1_demo to runtime_t1_live (and MNQCONT_RUNTIME below from
+# runtime_mnqcont_paper to runtime_mnqcont_live) -- user: "I want only live numbers from now on".
+# T1+MNQCont went live (TRADOVATE_ENV=live, real capital) this same day; the core schema's
+# status/trade-ledger/equity/drawdown numbers now come from the REAL account, not the demo
+# track record. No real live trade has filled yet (t1_trades.jsonl/mnqcont_trades.jsonl don't
+# exist in the live runtime dirs yet -- _read_jsonl returns [] for a missing file, so this is a
+# genuine empty ledger, not a bug) -- the dashboard will correctly show $0/0 trades until the
+# first real fill. RUNTIME_MODE below no longer trusts live_status.json's internal {OBSERVE,
+# DEMO_EXEC} exec-mode field alone to decide DEMO vs LIVE (that field says DEMO_EXEC regardless
+# of broker env -- it means "submitting real orders", not "against which account"); it now reads
+# the authorization file's own "scope" field, the same source of truth the execution gates
+# themselves use, specifically to avoid repeating the exact 2026-08-19 incident documented above
+# (5 real-money trades published mislabeled DEMO because --mode was inferred wrong).
+T1_RUNTIME="$LIVE_REPO/runtime_t1_live"
 T1_6J_RUNTIME="$LIVE_REPO/runtime_t1_6j_demo"
 ON001_RUNTIME="$LIVE_REPO/runtime_on001_demo"
 LE_RUNTIME="$LIVE_REPO/runtime_le_demo"
@@ -78,7 +92,7 @@ PA_RUNTIME="$LIVE_REPO/runtime_pa_demo"
 # not "_demo" like the others, matching their own deploy scripts' naming.
 MES_RUNTIME="$LIVE_REPO/runtime_mes_paper"
 MGC_RUNTIME="$LIVE_REPO/runtime_mgc_paper"
-MNQCONT_RUNTIME="$LIVE_REPO/runtime_mnqcont_paper"
+MNQCONT_RUNTIME="$LIVE_REPO/runtime_mnqcont_live"  # repointed 2026-11-08, see T1_RUNTIME's note above
 MGC10_RUNTIME="$LIVE_REPO/runtime_mgc10_paper"
 MES2R_RUNTIME="$LIVE_REPO/runtime_mes2r_paper"
 M6E_RUNTIME="$LIVE_REPO/runtime_m6e_paper"
@@ -92,7 +106,7 @@ WHEEL_V1_SHADOW_RUNTIME="$LIVE_REPO/runtime_wheel_v1_shadow"
 # Ops health control plane (scripts/ops_health_check.py, 2026-10-19) -- read-only pass-through
 # of its own fleet_status.json, same additive convention as projection/horizon_risk below.
 OPS_HEALTH_JSON="$LIVE_REPO/runtime_ops/fleet_status.json"
-PRIVATE_SNAPSHOT="$LIVE_REPO/runtime_t1_demo/private_snapshot.json"
+PRIVATE_SNAPSHOT="$T1_RUNTIME/private_snapshot.json"
 LOCK=/tmp/watchjoeylosemoney-publish.lock
 
 exec 9>"$LOCK"
@@ -103,12 +117,23 @@ cd "$LIVE_REPO"
 RUNTIME_MODE=$("$LIVE_REPO/.venv/bin/python3" -c "
 import json
 # T1's live_status.json mode vocabulary is {OBSERVE, DEMO_EXEC}; this site's is {SHADOW, DEMO, LIVE}.
+# DEMO_EXEC means 'submitting real orders', not 'against which account' -- it reads the same
+# whether the broker env is demo or live, so the authorization file's own 'scope' field (the
+# actual source of truth the execution gates use) decides DEMO vs LIVE, not this field alone.
 mode = 'SHADOW'
 try:
     mode = json.load(open('$T1_RUNTIME/live_status.json')).get('mode', 'OBSERVE')
 except (FileNotFoundError, json.JSONDecodeError):
     pass
-print({'DEMO_EXEC': 'DEMO', 'OBSERVE': 'SHADOW'}.get(mode, 'SHADOW'))
+scope = None
+try:
+    scope = json.load(open('$T1_RUNTIME/T1_LIVE_AUTHORIZATION.json')).get('scope')
+except (FileNotFoundError, json.JSONDecodeError):
+    pass
+if mode == 'DEMO_EXEC' and scope == 'live':
+    print('LIVE')
+else:
+    print({'DEMO_EXEC': 'DEMO', 'OBSERVE': 'SHADOW'}.get(mode, 'SHADOW'))
 ")
 
 # 2026-09-21: refresh the offline SHADOW-controller tracker (C2/C3 vs HOLD; research telemetry only, read-only on the live
@@ -260,6 +285,21 @@ PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" "$LIVE_REPO/scripts/p
 EXTRA_A_PLUS_LADDER_ARGS=()
 if [ -f "$PORTFOLIO_A_PLUS_EQUITY_LADDER_JSON" ]; then
   EXTRA_A_PLUS_LADDER_ARGS=(--portfolio-a-plus-equity-ladder "$PORTFOLIO_A_PLUS_EQUITY_LADDER_JSON")
+fi
+
+# 2026-11-08: export_t1_private_snapshot.py merges every "extra" leg's trades into the SAME
+# top-level ledger, stamped with this single --mode for ALL of them -- correct back when T1 and
+# every other leg were always the same env together, but now that T1/MNQCont are genuinely LIVE
+# while 6J/ON-001/LE/EIA/PA/MES/MGC/MGC10/MES2R/M6E are still DEMO, merging those legs in here
+# would mislabel their demo trades as real-money LIVE trades on the public dashboard -- the exact
+# mislabeling incident documented at the top of this file (2026-08-19), just from the opposite
+# direction. User: "I want only live numbers from now on" -- so while RUNTIME_MODE=LIVE, none of
+# the still-demo legs are merged into the core ledger (their dashboard_extras panels are already
+# hidden in streamlit_app.py too). MNQCont is deliberately excluded from this list: it is also
+# genuinely LIVE now, so merging it in with mode=LIVE is correct, not a mislabel.
+if [ "$RUNTIME_MODE" = "LIVE" ]; then
+  EXTRA_6J_ARGS=(); EXTRA_ON001_ARGS=(); EXTRA_LE_ARGS=(); EXTRA_EIA_ARGS=(); EXTRA_PA_ARGS=()
+  EXTRA_MES_ARGS=(); EXTRA_MGC_ARGS=(); EXTRA_MGC10_ARGS=(); EXTRA_MES2R_ARGS=(); EXTRA_M6E_ARGS=()
 fi
 
 PYTHONPATH="$LIVE_REPO/src" "$LIVE_REPO/.venv/bin/python3" -m mnq_rt1_live.export_t1_private_snapshot \
