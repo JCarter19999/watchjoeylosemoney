@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-09T03:08:08.634865Z",
+      "as_of_utc": "2026-11-09T03:15:47.491248Z",
       "legs": {
         "6j": {
           "controller": null,
@@ -384,7 +384,7 @@
       "total_pnl_usd": 1824.42
     },
     "ops_health": {
-      "generated_at": "2026-11-09T03:08:02.166279+00:00",
+      "generated_at": "2026-11-09T03:15:01.549580+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -408,8 +408,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 191282.1,
-          "heartbeat_age_sec": 14164.1,
+          "bar_age_sec": 191701.5,
+          "heartbeat_age_sec": 14583.5,
           "last_alert": "2026-11-08T23:12:09Z watchdog[mes2r]: AUTH_EXPIRED -- 2026-11-08 not in runtime_mes2r_paper/MES2R_LIVE_AUTHORIZATION.json's valid_dates -- DOWN, extend valid_dates to fix (not a restart-budget exhaustion, a stale authorization window)",
           "managed": true,
           "position_state": "FLAT",
@@ -429,8 +429,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 191282.1,
-          "heartbeat_age_sec": 14160.8,
+          "bar_age_sec": 191701.5,
+          "heartbeat_age_sec": 14580.2,
           "last_alert": "2026-11-08T23:12:09Z watchdog[mnqcont]: AUTH_EXPIRED -- 2026-11-08 not in runtime_mnqcont_paper/MNQCONT_LIVE_AUTHORIZATION.json's valid_dates -- DOWN, extend valid_dates to fix (not a restart-budget exhaustion, a stale authorization window)",
           "managed": true,
           "position_state": "FLAT",
@@ -450,8 +450,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 2.1,
-          "heartbeat_age_sec": 1.6,
+          "bar_age_sec": 1.5,
+          "heartbeat_age_sec": 0.8,
           "last_alert": "2026-11-08T21:28:01Z watchdog[mnqcont]: AUTH_EXPIRED -- 2026-11-08 not in runtime_mnqcont_live/MNQCONT_LIVE_AUTHORIZATION.json's valid_dates -- DOWN, extend valid_dates to fix (not a restart-budget exhaustion, a stale authorization window)",
           "managed": true,
           "position_state": "FLAT",
@@ -466,8 +466,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 191282.1,
-          "heartbeat_age_sec": 3.2,
+          "bar_age_sec": 191701.5,
+          "heartbeat_age_sec": 2.0,
           "last_alert": "2026-11-06T20:10:02Z watchdog: HO feed quiet for 191282s inside its expected hours (alert only; may be a thin market)",
           "managed": true,
           "position_state": "FLAT",
@@ -485,8 +485,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 2.1,
-          "heartbeat_age_sec": 4.4,
+          "bar_age_sec": 1.5,
+          "heartbeat_age_sec": 3.3,
           "last_alert": "2026-11-08T21:24:52Z watchdog[t1]: AUTH_EXPIRED -- 2026-11-08 not in runtime_t1_live/T1_LIVE_AUTHORIZATION.json's valid_dates -- DOWN, extend valid_dates to fix (not a restart-budget exhaustion, a stale authorization window)",
           "managed": true,
           "position_state": "FLAT",
@@ -900,7 +900,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-09T03:08:08.744845Z",
+  "data_as_of_utc": "2026-11-09T03:15:47.599292Z",
   "equity_curve": [
     {
       "cum_pnl_usd": 450.0,
@@ -1218,7 +1218,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-09T03:08:08.744845Z",
+  "generated_at_utc": "2026-11-09T03:15:47.599292Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
