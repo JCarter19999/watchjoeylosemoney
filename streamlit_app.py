@@ -166,7 +166,8 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
 
 
 def render_portfolio_a_plus_equity_ladder(snapshot: dict[str, Any]) -> None:
-    """Equity -> sizing ladder for Portfolio A (T1+MNQCont+MES2R). Reads
+    """Equity -> sizing ladder for the primary portfolio (T1+MNQCont ONLY, as of 2026-11-08 --
+    MES2R closed, see memory mes2r_net_negative_closed_2026_11_08.md). Reads
     dashboard_extras.portfolio_a_plus_equity_ladder (scripts/portfolio_a_plus_equity_ladder.py).
     MGC10 column dropped 2026-10-29 when that script was rewritten to exclude MGC10 (see memory
     mgc10_disabled_2026_10_29.md) -- this renderer was missed in that pass, causing a KeyError;
@@ -175,7 +176,7 @@ def render_portfolio_a_plus_equity_ladder(snapshot: dict[str, Any]) -> None:
     el = (snapshot.get("dashboard_extras") or {}).get("portfolio_a_plus_equity_ladder")
     if not el:
         return
-    st.subheader("Equity ladder: Portfolio A (T1+MNQCont+MES2R)")
+    st.subheader("Equity ladder: primary portfolio (T1+MNQCont)")
     excluded = ", ".join(el.get("excluded_legs") or []) or "none"
     st.caption(f"Excluded from the adopted portfolio: {excluded}.")
     rows = el.get("rows", [])
@@ -183,7 +184,6 @@ def render_portfolio_a_plus_equity_ladder(snapshot: dict[str, Any]) -> None:
         "Equity >=": r["equity_floor_usd"],
         "P2 level": r["p2_level"],
         "T1 qty": r["t1_qty"], "MNQCont qty": r["mnqcont_qty"],
-        "MES2R qty": r["mes2r_qty"],
     } for r in rows])
     column_config = {
         "Equity >=": st.column_config.NumberColumn(format="$%,.0f"),
@@ -555,20 +555,21 @@ def render_ops_health(snapshot: dict[str, Any]) -> None:
 
 
 def render_projection(snapshot: dict[str, Any]) -> None:
-    """Horizon-matched risk curve for Portfolio A+ (T1+MNQCont+MES2R+MGC10@130%) -- repointed
-    2026-10-29 from the retired Wheel v1.0 buy-and-hold panel (MNQ/MGC decommissioned same day;
-    see memory portfolio_a_mgc10_130_deployed_2026_10_29.md) to the ADOPTED live portfolio,
-    written by scripts/project_portfolio_a_plus_horizon_risk.py (real P2 band-step ladder,
-    MES1R/MGC1R excluded via leg_scale_overrides). Same output shape as the retired panel (this
-    stayed a same-key swap in publish.sh, not a schema change) -- block-bootstrap on real
-    historical daily $ series, not a static multiple."""
+    """Horizon-matched risk curve for the primary portfolio (T1+MNQCont ONLY, as of 2026-11-08 --
+    MES2R/MGC10/MES1R/MGC1R all excluded, see memory mes2r_net_negative_closed_2026_11_08.md) --
+    repointed 2026-10-29 from the retired Wheel v1.0 buy-and-hold panel (MNQ/MGC decommissioned
+    same day; see memory portfolio_a_mgc10_130_deployed_2026_10_29.md) to the ADOPTED live
+    portfolio, written by scripts/project_portfolio_a_plus_horizon_risk.py (real P2 band-step
+    ladder). Same output shape as the retired panel (this stayed a same-key swap in publish.sh,
+    not a schema change) -- block-bootstrap on real historical daily $ series, not a static
+    multiple."""
     hr = (snapshot.get("dashboard_extras") or {}).get("horizon_risk")
     if not hr:
         return
     horizons = hr.get("horizons", [])
     if not horizons:
         return
-    st.subheader("Drawdown risk vs. account growth, by horizon (Portfolio A+)")
+    st.subheader("Drawdown risk vs. account growth, by horizon (primary portfolio: T1+MNQCont)")
     st.caption(f"Block-bootstrap simulation ({hr.get('n_paths', '—')} paths) of the real adopted "
                f"portfolio, starting from ${hr.get('start_equity_usd', 0):,.0f}. Not a live "
                f"realized track record.")
