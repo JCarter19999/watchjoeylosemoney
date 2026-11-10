@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-10T16:15:47.226382Z",
+      "as_of_utc": "2026-11-10T16:22:42.479655Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -34,119 +34,119 @@
       "caveat": "Block-bootstrap Monte Carlo on real historical daily $ series, not a live realized track record.",
       "horizons": [
         {
-          "mdd_p50_pct_of_own_peak": 9.84,
-          "mdd_p50_usd": 5435.25,
-          "mdd_p90_usd": 11228.75,
-          "mdd_p95_pct_of_own_peak": 24.48,
-          "mdd_p95_usd": 13141.78,
-          "median_equity_usd": 53878.62,
-          "median_pnl_usd": 3878.62,
+          "mdd_p50_pct_of_own_peak": 3.98,
+          "mdd_p50_usd": 1029.0,
+          "mdd_p90_usd": 2008.56,
+          "mdd_p95_pct_of_own_peak": 8.9,
+          "mdd_p95_usd": 2366.24,
+          "median_equity_usd": 25679.75,
+          "median_pnl_usd": 679.75,
           "months": 1
         },
         {
-          "mdd_p50_pct_of_own_peak": 14.87,
-          "mdd_p50_usd": 8986.53,
-          "mdd_p90_usd": 16337.98,
-          "mdd_p95_pct_of_own_peak": 31.68,
-          "mdd_p95_usd": 18452.74,
-          "median_equity_usd": 58341.06,
-          "median_pnl_usd": 8341.06,
+          "mdd_p50_pct_of_own_peak": 6.28,
+          "mdd_p50_usd": 1693.5,
+          "mdd_p90_usd": 3086.27,
+          "mdd_p95_pct_of_own_peak": 12.7,
+          "mdd_p95_usd": 3632.2,
+          "median_equity_usd": 26379.41,
+          "median_pnl_usd": 1379.41,
           "months": 2
         },
         {
-          "mdd_p50_pct_of_own_peak": 17.96,
-          "mdd_p50_usd": 11412.44,
-          "mdd_p90_usd": 20431.18,
-          "mdd_p95_pct_of_own_peak": 36.22,
-          "mdd_p95_usd": 24015.46,
-          "median_equity_usd": 62850.22,
-          "median_pnl_usd": 12850.22,
+          "mdd_p50_pct_of_own_peak": 8.03,
+          "mdd_p50_usd": 2237.31,
+          "mdd_p90_usd": 4347.96,
+          "mdd_p95_pct_of_own_peak": 16.67,
+          "mdd_p95_usd": 5596.51,
+          "median_equity_usd": 27022.19,
+          "median_pnl_usd": 2022.19,
           "months": 3
         },
         {
-          "mdd_p50_pct_of_own_peak": 23.98,
-          "mdd_p50_usd": 18067.91,
-          "mdd_p90_usd": 31277.05,
-          "mdd_p95_pct_of_own_peak": 43.18,
-          "mdd_p95_usd": 37288.53,
-          "median_equity_usd": 81892.59,
-          "median_pnl_usd": 31892.59,
+          "mdd_p50_pct_of_own_peak": 12.97,
+          "mdd_p50_usd": 4065.5,
+          "mdd_p90_usd": 9588.75,
+          "mdd_p95_pct_of_own_peak": 25.94,
+          "mdd_p95_usd": 12559.21,
+          "median_equity_usd": 30452.41,
+          "median_pnl_usd": 5452.41,
           "months": 6
         },
         {
-          "mdd_p50_pct_of_own_peak": 27.77,
-          "mdd_p50_usd": 24216.22,
-          "mdd_p90_usd": 43421.24,
-          "mdd_p95_pct_of_own_peak": 48.17,
-          "mdd_p95_usd": 51731.89,
-          "median_equity_usd": 107670.12,
-          "median_pnl_usd": 57670.12,
+          "mdd_p50_pct_of_own_peak": 17.09,
+          "mdd_p50_usd": 6379.62,
+          "mdd_p90_usd": 17627.28,
+          "mdd_p95_pct_of_own_peak": 33.87,
+          "mdd_p95_usd": 22771.11,
+          "median_equity_usd": 35666.41,
+          "median_pnl_usd": 10666.41,
           "months": 9
         },
         {
-          "mdd_p50_pct_of_own_peak": 29.47,
-          "mdd_p50_usd": 29948.44,
-          "mdd_p90_usd": 52863.11,
-          "mdd_p95_pct_of_own_peak": 50.84,
-          "mdd_p95_usd": 60869.31,
-          "median_equity_usd": 141963.81,
-          "median_pnl_usd": 91963.81,
+          "mdd_p50_pct_of_own_peak": 20.69,
+          "mdd_p50_usd": 9902.19,
+          "mdd_p90_usd": 25201.79,
+          "mdd_p95_pct_of_own_peak": 38.56,
+          "mdd_p95_usd": 32107.57,
+          "median_equity_usd": 44657.22,
+          "median_pnl_usd": 19657.22,
           "months": 12
         },
         {
-          "mdd_p50_pct_of_own_peak": 31.47,
-          "mdd_p50_usd": 41824.84,
-          "mdd_p90_usd": 73741.63,
-          "mdd_p95_pct_of_own_peak": 54.88,
-          "mdd_p95_usd": 85551.46,
-          "median_equity_usd": 219207.22,
-          "median_pnl_usd": 169207.22,
+          "mdd_p50_pct_of_own_peak": 26.1,
+          "mdd_p50_usd": 18221.41,
+          "mdd_p90_usd": 43889.69,
+          "mdd_p95_pct_of_own_peak": 45.63,
+          "mdd_p95_usd": 52874.31,
+          "median_equity_usd": 76998.72,
+          "median_pnl_usd": 51998.72,
           "months": 18
         },
         {
-          "mdd_p50_pct_of_own_peak": 32.41,
-          "mdd_p50_usd": 54026.62,
-          "mdd_p90_usd": 94375.47,
-          "mdd_p95_pct_of_own_peak": 56.61,
-          "mdd_p95_usd": 107096.54,
-          "median_equity_usd": 308634.94,
-          "median_pnl_usd": 258634.94,
+          "mdd_p50_pct_of_own_peak": 30.03,
+          "mdd_p50_usd": 29164.53,
+          "mdd_p90_usd": 62091.09,
+          "mdd_p95_pct_of_own_peak": 51.26,
+          "mdd_p95_usd": 73379.93,
+          "median_equity_usd": 130051.0,
+          "median_pnl_usd": 105051.0,
           "months": 24
         },
         {
-          "mdd_p50_pct_of_own_peak": 33.14,
-          "mdd_p50_usd": 78476.81,
-          "mdd_p90_usd": 134101.49,
-          "mdd_p95_pct_of_own_peak": 57.44,
-          "mdd_p95_usd": 152179.29,
-          "median_equity_usd": 536472.06,
-          "median_pnl_usd": 486472.06,
+          "mdd_p50_pct_of_own_peak": 33.33,
+          "mdd_p50_usd": 51843.34,
+          "mdd_p90_usd": 97526.84,
+          "mdd_p95_pct_of_own_peak": 55.25,
+          "mdd_p95_usd": 115103.19,
+          "median_equity_usd": 285338.22,
+          "median_pnl_usd": 260338.22,
           "months": 36
         },
         {
-          "mdd_p50_pct_of_own_peak": 33.37,
-          "mdd_p50_usd": 107006.06,
-          "mdd_p90_usd": 182492.83,
-          "mdd_p95_pct_of_own_peak": 57.87,
-          "mdd_p95_usd": 213130.79,
-          "median_equity_usd": 833096.28,
-          "median_pnl_usd": 783096.28,
+          "mdd_p50_pct_of_own_peak": 34.35,
+          "mdd_p50_usd": 76624.44,
+          "mdd_p90_usd": 137712.09,
+          "mdd_p95_pct_of_own_peak": 57.02,
+          "mdd_p95_usd": 161143.63,
+          "median_equity_usd": 515917.06,
+          "median_pnl_usd": 490917.06,
           "months": 48
         },
         {
-          "mdd_p50_pct_of_own_peak": 33.49,
-          "mdd_p50_usd": 142142.66,
-          "mdd_p90_usd": 241266.16,
-          "mdd_p95_pct_of_own_peak": 57.87,
-          "mdd_p95_usd": 283684.92,
-          "median_equity_usd": 1228586.0,
-          "median_pnl_usd": 1178586.0,
+          "mdd_p50_pct_of_own_peak": 34.6,
+          "mdd_p50_usd": 105677.69,
+          "mdd_p90_usd": 182359.46,
+          "mdd_p95_pct_of_own_peak": 57.42,
+          "mdd_p95_usd": 213570.89,
+          "median_equity_usd": 809847.97,
+          "median_pnl_usd": 784847.97,
           "months": 60
         }
       ],
       "n_paths": 2000,
       "policy": "Portfolio A (T1+MNQCont ONLY), real P2 band-step ladder. MES1R/MGC1R excluded (rejected 2026-10-29, see memory mes1r_mgc1r_addition_rejected_2026_10_29.md). MGC10 excluded (disabled 2026-10-29, same day it was promoted to 1.30x sizing -- user's own call: its real return was only 1.21x simple buy-and-hold over its own window, and its edge is defined-risk convexity on gold's trending regime rather than a predictive signal -- see memory mgc10_disabled_2026_10_29.md). MES2R excluded (closed 2026-11-08: net -$1,799/9yr and positively correlated with T1+MNQCont's bad days over the full 16yr real history, see memory mes2r_net_negative_closed_2026_11_08.md).",
-      "start_equity_usd": 50000.0
+      "start_equity_usd": 25000.0
     },
     "mnqcont_leg": {
       "backfilled_trades": 0,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-10T16:15:01.312831+00:00",
+      "generated_at": "2026-11-10T16:22:02.303187+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.6,
+          "bar_age_sec": 1.3,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.3,
-          "heartbeat_age_sec": 1.3,
+          "bar_age_sec": 2.2,
+          "heartbeat_age_sec": 2.1,
           "last_alert": "2026-11-10T09:04:01Z watchdog[mnqcont] killed pid 1230419: no bar received for 601s",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.3,
-          "heartbeat_age_sec": 0.9,
+          "bar_age_sec": 2.2,
+          "heartbeat_age_sec": 1.5,
           "last_alert": "2026-11-10T09:04:01Z watchdog[t1] killed pid 1230421: no bar received for 601s",
           "managed": true,
           "position_state": "SHORT 5",
@@ -502,7 +502,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 27802.75,
+        "current_price": 27759.25,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "MNQ",
@@ -511,7 +511,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-10T16:00:47.375755Z",
+  "data_as_of_utc": "2026-11-10T16:07:42.646240Z",
   "equity_curve": [],
   "execution_health": {
     "current_cost_multiplier": null,
@@ -534,7 +534,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-10T16:15:47.375755Z",
+  "generated_at_utc": "2026-11-10T16:22:42.646240Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -636,7 +636,7 @@
     "market_data_state": "LIVE",
     "message": "In a T1 position (5 MNQ); holding to the RTH close, no stop by design.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": -1429.5
+    "unrealized_pnl_usd": -994.5
   },
   "warmup_replay": {
     "bars_replayed": 0,
