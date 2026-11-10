@@ -659,7 +659,8 @@
           "side": {
             "enum": [
               "LONG",
-              "SHORT"
+              "SHORT",
+              ""
             ]
           },
           "pnl_usd": {
@@ -845,7 +846,8 @@
               "side": {
                 "enum": [
                   "LONG",
-                  "SHORT"
+                  "SHORT",
+                  ""
                 ]
               },
               "exit_reason": {

@@ -340,12 +340,16 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
             {
                 "closed_at_utc": r["closed_at_utc"],
                 "session_date": r["closed_at_utc"][:10],
-                "side": r["side"].upper(),
+                # 2026-11-10: a real-money LIVE trade hides side/qty same as the live unrealized
+                # panel's direction/contract-size gate (not a new policy, same one extended here) --
+                # "" / None render blank in the table rather than a literal "None"/"0". DEMO/SHADOW
+                # rows are untouched (every other leg still shows its real side/qty as before).
+                "side": "" if r["mode"] == "LIVE" else r["side"].upper(),
                 "pnl_usd": round(r["pnl_usd"], 2),
                 "exit_reason": r["exit_reason"],
                 "duration_seconds": r["duration_seconds"],
                 "mode": r["mode"],
-                "sized_qty": r.get("sized_qty"),
+                "sized_qty": None if r["mode"] == "LIVE" else r.get("sized_qty"),
                 "c_same_at_entry": r.get("c_same_at_entry"),
                 "expected_net_pnl_model_usd": _round(r.get("expected_net_pnl_model")),
                 "mfe_atr": _round(r.get("mfe_atr"), 3),
@@ -414,7 +418,8 @@ def _visible_waterfall(private: dict[str, Any], mode: str, cutoff: datetime) -> 
             {
                 "trade_id": t["trade_id"],
                 "closed_at_utc": t["exit_time"],
-                "side": t["side"].upper(),
+                # same LIVE side-hiding convention as latest_trades above.
+                "side": "" if mode == "LIVE" else t["side"].upper(),
                 "exit_reason": t.get("exit_reason") or "UNKNOWN",
                 "model_pnl_usd": round(t["model_pnl_dollars"], 2),
                 "a_usd": round(t["a_semantic_reference_gap_dollars"], 2),

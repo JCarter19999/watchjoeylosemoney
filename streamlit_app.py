@@ -137,9 +137,18 @@ def status_badge(snapshot: dict[str, Any]) -> None:
 def render_unrealized(snapshot: dict[str, Any]) -> None:
     """Live, throughout-the-day mark-to-market P/L on any currently open position(s) -- MNQ from
     status.unrealized_pnl_usd, every other live leg from dashboard_extras.{leg}_leg.unrealized_pnl_usd.
-    All are None (shown as nothing) when flat, and always None for a real-money LIVE deployment
-    regardless of position -- unlike DEMO/SHADOW, LIVE never discloses position-level detail in real
-    time (see the schema's own note on status.unrealized_pnl_usd).
+    All are None (shown as nothing) when flat.
+
+    2026-11-10: shown for LIVE too, as of T1's first real live fill -- explicit user decision
+    ("show it but hide the ticker and direction") after the earlier default (always None for
+    LIVE regardless of position) was surfaced as a deliberate choice, not a bug, and reconsidered.
+    Direction and entry price stay hidden for LIVE (overlay_entry_fill/overlay_direction in
+    dashboard_extras, read by render_ops_health's candlestick view, unchanged by this decision) --
+    only the raw $ P&L number is shown here. One residual, inherent limitation worth knowing: this
+    page also shows real OHLC price bars elsewhere (public market data), so a viewer who compares
+    the shown price move to the sign of this P&L number could still infer direction by arithmetic --
+    hiding the explicit direction field doesn't make that impossible, it just removes the one-line
+    answer. Not fixable by hiding one more field without also hiding real price action.
 
     6J/LE/PA were disabled 2026-10-15 (see market_structure_ml-live/CLAUDE.md) and are deliberately not
     shown here anymore -- removed, not hidden, since those legs are no longer trading at all. EIA and
@@ -152,14 +161,13 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     treatment as every other dead/paused leg; T1+MNQCont are the primary portfolio now.
 
     2026-11-09: MES2R (demo) stopped -- user: "stop all demo trades so i dont get confused" --
-    tile dropped, same treatment. T1+MNQCont are both live (real capital) now; the schema's own
-    unrealized_pnl_usd note (see this function's own earlier docstring) already keeps that None
-    for LIVE regardless of position, so no separate gating needed here beyond what mode already
-    provides upstream."""
+    tile dropped, same treatment. T1+MNQCont are both live (real capital) now; labels below say
+    "T1"/"MNQ Continuation" only, not an instrument/contract code, per the 2026-11-10 "hide the
+    ticker" decision above."""
     rows = []
     mnq_u = snapshot["status"].get("unrealized_pnl_usd")
     if mnq_u is not None:
-        rows.append(("T1 / MNQ", mnq_u))
+        rows.append(("T1", mnq_u))
     for key, label in (("mnqcont", "MNQ Continuation"),):
         g_leg = (snapshot.get("dashboard_extras") or {}).get(f"{key}_leg")
         if g_leg and g_leg.get("unrealized_pnl_usd") is not None:
