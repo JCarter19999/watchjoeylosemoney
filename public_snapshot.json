@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-10T23:45:49.451887Z",
+      "as_of_utc": "2026-11-11T00:00:48.454188Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-10T23:45:01.760950+00:00",
+      "generated_at": "2026-11-11T00:00:02.096284+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.2,
+          "bar_age_sec": 1.4,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 9781.7,
-          "heartbeat_age_sec": 9783.7,
+          "bar_age_sec": 10682.0,
+          "heartbeat_age_sec": 10684.0,
           "last_alert": "2026-11-10T21:10:01Z watchdog[mnqcont]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
@@ -214,8 +214,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 9781.7,
-          "heartbeat_age_sec": 9781.2,
+          "bar_age_sec": 10682.0,
+          "heartbeat_age_sec": 10681.5,
           "last_alert": "2026-11-10T21:10:01Z watchdog[t1]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
@@ -527,7 +527,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-10T23:30:49.581738Z",
+  "data_as_of_utc": "2026-11-10T23:45:48.622444Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -557,7 +557,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-10T23:45:49.581738Z",
+  "generated_at_utc": "2026-11-11T00:00:48.622444Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -657,7 +657,7 @@
   "stats": {
     "breakeven": 0,
     "closed_trades_all_time": 1,
-    "closed_trades_today": 1,
+    "closed_trades_today": 0,
     "current_drawdown_usd": 1968.6,
     "display_equity_usd": -1968.6,
     "display_starting_equity_usd": 0.0,
@@ -667,7 +667,7 @@
     "max_drawdown_usd": 1968.6,
     "profit_factor": 0.0,
     "realized_pnl_all_time_usd": -1968.6,
-    "realized_pnl_today_usd": -1968.6,
+    "realized_pnl_today_usd": 0,
     "win_rate": 0.0,
     "wins": 0
   },
