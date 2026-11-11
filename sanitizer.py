@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import tempfile
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
@@ -26,6 +27,38 @@ from typing import Any
 from jsonschema import Draft202012Validator, FormatChecker
 
 SCHEMA_VERSION = "1.0"
+
+# 2026-11-11 (user: "scrub the entire streamlit for any mention of NQ/MNQ or short/long... want
+# it to be as difficult to derive information as possible"): this repo's GitHub remote is public
+# (confirmed via the GitHub API), so the real attack surface isn't the rendered page -- it's
+# public_snapshot.json itself, readable raw by anyone regardless of what Streamlit displays.
+# Patching only streamlit_app.py's labels would be security theater. This redaction runs on
+# `status.message` and the entire `dashboard_extras` blob (the two places that pass private,
+# free-form/loosely-typed text and fields through close to verbatim -- see `dashboard_extras`'s
+# own comment below) before either reaches `public`. Scope is deliberately narrow: only NQ/MNQ
+# (the instrument this was asked about) and long/short (direction) -- MGC/MES and other
+# instruments on OTHER legs are left alone, so enough real tickers remain visible elsewhere that
+# redacting MNQ specifically doesn't trivially out itself by elimination.
+#
+# \bM?NQ\w* matches MNQ, NQ, contract-coded forms (MNQZ6, NQZ6), and strategy names that embed
+# the ticker (MNQCont, MNQContinuation) as one token; it stops at the first non-word character,
+# so "MNQ Continuation" redacts to "[contract] Continuation" -- the ticker's gone, the English
+# words around it aren't mangled. \b(long|short)\b only matches those as whole words (not
+# "longer"/"shortfall"), with one accepted tradeoff: a hyphenated "long-term" would redact to
+# "[side]-term", since a hyphen is itself a word boundary -- checked, no such phrase is in the
+# current data, but a future addition should watch for it rather than assume this is free.
+_INSTRUMENT_RE = re.compile(r"\bM?NQ\w*", re.IGNORECASE)
+_DIRECTION_RE = re.compile(r"\b(long|short)\b", re.IGNORECASE)
+
+
+def _redact(value: Any) -> Any:
+    if isinstance(value, str):
+        return _DIRECTION_RE.sub("[side]", _INSTRUMENT_RE.sub("[contract]", value))
+    if isinstance(value, dict):
+        return {k: _redact(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_redact(v) for v in value]
+    return value
 MIN_LIVE_DELAY_MINUTES = 10
 MAX_LATEST_TRADES = 25
 STATS_EXCLUDED_COHORTS = {"ON001_ES_OVERNIGHT"}
@@ -251,7 +284,7 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
             "market_data_state": private["market_data_state"],
             "execution_enabled": bool(private["execution_enabled"]),
             "data_delayed": delay > 0,
-            "message": private["message"],
+            "message": _redact(private["message"]),
             "in_position": private.get("in_position"),
             "unrealized_pnl_usd": _round(private.get("unrealized_pnl_usd")),
         },
@@ -367,8 +400,11 @@ def build_public_snapshot(private: dict[str, Any], now: datetime, live_delay_min
         # (e.g. RT1) whose exporter doesn't produce it. Already aggregate-only
         # (daily/rolling stats, no per-order timestamps), so no LIVE-delay
         # embargo logic applies here the way it does for trades/waterfall/
-        # guardian_transitions above.
-        "dashboard_extras": private.get("dashboard_extras", {}),
+        # guardian_transitions above. Redacted (see _redact above) since this
+        # blob passes private, loosely-typed text through close to verbatim --
+        # instrument/direction mentions (e.g. ops_health's "LONG 4" position_state)
+        # land here unless scrubbed explicitly.
+        "dashboard_extras": _redact(private.get("dashboard_extras", {})),
     }
     return public
 

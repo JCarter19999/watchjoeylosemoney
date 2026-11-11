@@ -168,7 +168,7 @@ def render_unrealized(snapshot: dict[str, Any]) -> None:
     mnq_u = snapshot["status"].get("unrealized_pnl_usd")
     if mnq_u is not None:
         rows.append(("T1", mnq_u))
-    for key, label in (("mnqcont", "MNQ Continuation"),):
+    for key, label in (("mnqcont", "Continuation"),):
         g_leg = (snapshot.get("dashboard_extras") or {}).get(f"{key}_leg")
         if g_leg and g_leg.get("unrealized_pnl_usd") is not None:
             rows.append((label, g_leg["unrealized_pnl_usd"]))
@@ -191,14 +191,14 @@ def render_portfolio_a_plus_equity_ladder(snapshot: dict[str, Any]) -> None:
     el = (snapshot.get("dashboard_extras") or {}).get("portfolio_a_plus_equity_ladder")
     if not el:
         return
-    st.subheader("Equity ladder: primary portfolio (T1+MNQCont)")
+    st.subheader("Equity ladder: primary portfolio (T1+Continuation)")
     excluded = ", ".join(el.get("excluded_legs") or []) or "none"
     st.caption(f"Excluded from the adopted portfolio: {excluded}.")
     rows = el.get("rows", [])
     table = pd.DataFrame([{
         "Equity >=": r["equity_floor_usd"],
         "P2 level": r["p2_level"],
-        "T1 qty": r["t1_qty"], "MNQCont qty": r["mnqcont_qty"],
+        "T1 qty": r["t1_qty"], "Continuation qty": r["mnqcont_qty"],
     } for r in rows])
     column_config = {
         "Equity >=": st.column_config.NumberColumn(format="$%,.0f"),
@@ -210,7 +210,7 @@ def render_portfolio_a_plus_equity_ladder(snapshot: dict[str, Any]) -> None:
 # MES2R (demo) stopped 2026-11-09 (user: "stop all demo trades so i dont get confused") --
 # dropped here, same treatment as every other dead leg. t1_leg/mnqcont_leg both reflect the
 # live (real-capital) instances now, repointed 2026-11-08.
-_CANDLESTICK_LEGS = [("t1_leg", "T1 / MNQ"), ("mnqcont_leg", "MNQ Cont")]
+_CANDLESTICK_LEGS = [("t1_leg", "T1"), ("mnqcont_leg", "Continuation")]
 # MGC10 disabled 2026-10-29 (user's own call -- see mgc10_disabled_2026_10_29.md in project
 # memory): its real return was only 1.21x simple buy-and-hold over its own window, and its edge
 # is defined-risk convexity on gold's trending regime rather than a predictive signal.
@@ -458,7 +458,7 @@ def render_trade_table(snapshot: dict[str, Any]) -> None:
             lambda v: f"Adjusted -- real result was ${v:,.2f}" if pd.notna(v) else "Adjusted"
         )
     st.caption(
-        "Most recent 25 closed trades. \"Qty\" is the MNQ-equivalent size that trade was sized at. "
+        "Most recent 25 closed trades. \"Qty\" is the contract-equivalent size that trade was sized at. "
         "MFE/MAE (in ATR units) are blank for trades closed before 2026-09-08's telemetry was added. "
         "A trade marked ⚠️ Adjusted shows a documented, human-authorized correction to its displayed "
         "P&L (e.g. refunding a since-fixed tooling bug's dollar impact) -- hover the note for the real result; "
@@ -522,8 +522,8 @@ def render_contract_distribution(snapshot: dict[str, Any]) -> None:
     if not dist or not dist.get("legs"):
         return
     st.subheader("Current contract distribution")
-    labels = {"t1": "T1 / MNQ", "mnqcont": "MNQ Continuation",
-              "wheel_v1_mnq": "Wheel v1.0 MNQ", "wheel_v1_mgc": "Wheel v1.0 MGC"}
+    labels = {"t1": "T1", "mnqcont": "Continuation",
+              "wheel_v1_mnq": "Wheel v1.0 — Leg A", "wheel_v1_mgc": "Wheel v1.0 MGC"}
     legs = {k: v for k, v in dist["legs"].items() if k not in ("6j", "le", "pa", "on001", "eia_ho", "eia_rb", "mgc10", "m6e", "mes", "mgc")}
     if not legs:
         return
@@ -556,7 +556,7 @@ def render_ops_health(snapshot: dict[str, Any]) -> None:
              "HALTED": "\U0001F534", "UNKNOWN": "⚫"}
     overall = ops.get("overall_state", "UNKNOWN")
     st.markdown(f"**Fleet: {icons.get(overall, '')} {overall}**")
-    labels = {"t1_live": "T1 \U0001F534 REAL CAPITAL", "mnqcont_live": "MNQ Continuation \U0001F534 REAL CAPITAL"}
+    labels = {"t1_live": "T1 \U0001F534 REAL CAPITAL", "mnqcont_live": "Continuation \U0001F534 REAL CAPITAL"}
     # 2026-11-09: t1/mnqcont/mes2r (demo) removed from ops_health_check.py's own LEGS dict
     # entirely (user: "stop all demo trades so i dont get confused" / "remove all irrelevant
     # fleet besides live") -- they no longer appear in ops["legs"] at all, so no filter is
@@ -592,7 +592,7 @@ def render_projection(snapshot: dict[str, Any]) -> None:
     horizons = hr.get("horizons", [])
     if not horizons:
         return
-    st.subheader("Drawdown risk vs. account growth, by horizon (primary portfolio: T1+MNQCont)")
+    st.subheader("Drawdown risk vs. account growth, by horizon (primary portfolio: T1+Continuation)")
     st.caption(f"Block-bootstrap simulation ({hr.get('n_paths', '—')} paths) of the real adopted "
                f"portfolio, starting from ${hr.get('start_equity_usd', 0):,.0f}. Not a live "
                f"realized track record.")
