@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-11T04:15:46.713171Z",
+      "as_of_utc": "2026-11-11T04:30:47.357255Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-11T04:15:01.720221+00:00",
+      "generated_at": "2026-11-11T04:30:02.244574+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.1,
+          "bar_age_sec": 0.7,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 25981.7,
-          "heartbeat_age_sec": 25983.6,
+          "bar_age_sec": 26882.2,
+          "heartbeat_age_sec": 26884.2,
           "last_alert": "2026-11-10T21:10:01Z watchdog[mnqcont]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
@@ -214,8 +214,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 25981.7,
-          "heartbeat_age_sec": 25981.1,
+          "bar_age_sec": 26882.2,
+          "heartbeat_age_sec": 26881.7,
           "last_alert": "2026-11-10T21:10:01Z watchdog[t1]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
@@ -527,7 +527,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-11T04:00:46.817679Z",
+  "data_as_of_utc": "2026-11-11T04:15:47.458633Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -557,7 +557,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-11T04:15:46.817679Z",
+  "generated_at_utc": "2026-11-11T04:30:47.458633Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
