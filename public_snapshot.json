@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-11T23:30:28.022383Z",
+      "as_of_utc": "2026-11-11T23:45:27.369990Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-11T23:30:01.935694+00:00",
+      "generated_at": "2026-11-11T23:45:01.312579+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.9,
-          "heartbeat_age_sec": 1.6,
+          "bar_age_sec": 1.2,
+          "heartbeat_age_sec": 0.6,
           "last_alert": "2026-11-10T21:10:01Z watchdog[[contract]]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.9,
-          "heartbeat_age_sec": 0.9,
+          "bar_age_sec": 1.3,
+          "heartbeat_age_sec": 4.2,
           "last_alert": "2026-11-10T21:10:01Z watchdog[t1]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
@@ -511,7 +511,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 28280.75,
+        "current_price": 28204.0,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -520,7 +520,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-11T23:15:28.178087Z",
+  "data_as_of_utc": "2026-11-11T23:30:27.477868Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -556,7 +556,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-11T23:30:28.178087Z",
+  "generated_at_utc": "2026-11-11T23:45:27.477868Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
