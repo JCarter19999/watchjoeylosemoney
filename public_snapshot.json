@@ -1,17 +1,17 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-11T19:45:28.252160Z",
+      "as_of_utc": "2026-11-11T20:00:28.122377Z",
       "legs": {
         "mnqcont": {
           "controller": null,
-          "instrument": "MNQ",
+          "instrument": "[contract]",
           "live": true,
           "order_qty": 4
         },
         "t1": {
           "controller": null,
-          "instrument": "MNQ",
+          "instrument": "[contract]",
           "live": true,
           "order_qty": 4
         },
@@ -23,7 +23,7 @@
         },
         "wheel_v1_mnq": {
           "controller": null,
-          "instrument": "MNQ",
+          "instrument": "[contract]",
           "live": true,
           "order_qty": 0
         }
@@ -145,7 +145,7 @@
         }
       ],
       "n_paths": 2000,
-      "policy": "Portfolio A (T1+MNQCont ONLY), real P2 band-step ladder. MES1R/MGC1R excluded (rejected 2026-10-29, see memory mes1r_mgc1r_addition_rejected_2026_10_29.md). MGC10 excluded (disabled 2026-10-29, same day it was promoted to 1.30x sizing -- user's own call: its real return was only 1.21x simple buy-and-hold over its own window, and its edge is defined-risk convexity on gold's trending regime rather than a predictive signal -- see memory mgc10_disabled_2026_10_29.md). MES2R excluded (closed 2026-11-08: net -$1,799/9yr and positively correlated with T1+MNQCont's bad days over the full 16yr real history, see memory mes2r_net_negative_closed_2026_11_08.md).",
+      "policy": "Portfolio A (T1+[contract] ONLY), real P2 band-step ladder. MES1R/MGC1R excluded (rejected 2026-10-29, see memory mes1r_mgc1r_addition_rejected_2026_10_29.md). MGC10 excluded (disabled 2026-10-29, same day it was promoted to 1.30x sizing -- user's own call: its real return was only 1.21x simple buy-and-hold over its own window, and its edge is defined-risk convexity on gold's trending regime rather than a predictive signal -- see memory mgc10_disabled_2026_10_29.md). MES2R excluded (closed 2026-11-08: net -$1,799/9yr and positively correlated with T1+[contract]'s bad days over the full 16yr real history, see memory mes2r_net_negative_closed_2026_11_08.md).",
       "start_equity_usd": 25000.0
     },
     "mnqcont_leg": {
@@ -153,7 +153,7 @@
       "closed_trades": 0,
       "direction": null,
       "entry_fill": null,
-      "instrument": "MNQ",
+      "instrument": "[contract]",
       "mode": "EXECUTE",
       "n_alerts": 0,
       "ohlc_bars": [],
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-11T19:45:02.081702+00:00",
+      "generated_at": "2026-11-11T20:00:02.103037+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -194,8 +194,8 @@
             "state": "VALID"
           },
           "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 3.3,
-          "last_alert": "2026-11-10T21:10:01Z watchdog[mnqcont]: restart budget exhausted (5) -- DOWN, manual intervention required",
+          "heartbeat_age_sec": 2.9,
+          "last_alert": "2026-11-10T21:10:01Z watchdog[[contract]]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
@@ -210,10 +210,10 @@
             "state": "VALID"
           },
           "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 2.3,
+          "heartbeat_age_sec": 1.3,
           "last_alert": "2026-11-10T21:10:01Z watchdog[t1]: restart budget exhausted (5) -- DOWN, manual intervention required",
           "managed": true,
-          "position_state": "LONG 4",
+          "position_state": "[side] 4",
           "process": "RUNNING",
           "reasons": [],
           "state": "HEALTHY",
@@ -223,7 +223,7 @@
       "overall_state": "HEALTHY"
     },
     "portfolio_a_plus_equity_ladder": {
-      "caveat": "T1/MNQCont share one P2 ladder level (intraday-margin-eligible, uncapped except the MAX_LEVEL sanity ceiling). MES1R/MGC1R are excluded (rejected 2026-10-29, see memory mes1r_mgc1r_addition_rejected_2026_10_29.md). MGC10 is excluded (disabled 2026-10-29, see memory mgc10_disabled_2026_10_29.md). MES2R is excluded (closed 2026-11-08: net -$1,799/9yr and positively correlated with T1+MNQCont's bad days over the full 16yr real history, see memory mes2r_net_negative_closed_2026_11_08.md) -- all four excluded entirely, not just zero-weighted.",
+      "caveat": "T1/[contract] share one P2 ladder level (intraday-margin-eligible, uncapped except the MAX_LEVEL sanity ceiling). MES1R/MGC1R are excluded (rejected 2026-10-29, see memory mes1r_mgc1r_addition_rejected_2026_10_29.md). MGC10 is excluded (disabled 2026-10-29, see memory mgc10_disabled_2026_10_29.md). MES2R is excluded (closed 2026-11-08: net -$1,799/9yr and positively correlated with T1+[contract]'s bad days over the full 16yr real history, see memory mes2r_net_negative_closed_2026_11_08.md) -- all four excluded entirely, not just zero-weighted.",
       "excluded_legs": [
         "mes1r",
         "mgc1r",
@@ -356,7 +356,7 @@
       "active_t1_weight": 0.7,
       "active_w_mgc": 0.22500000000000003,
       "active_w_mnq": 0.5625000000000001,
-      "caveat": "MNQ/MGC contract counts are NOT fixed by equity alone -- they also depend on the snapshot day's MNQ/MGC price and 21-day realized-vol ratio, both of which move daily (re-derived fresh each publish cycle, not a static table). T1's own scalar has no contract-count rounding and scales exactly linearly with equity and weight. ACTIVE and LEGACY now show DIFFERENT leverage at $500k+ (not just different weights) -- Policy B (active, live since 2026-10-27) removed the permanent $500k->C30-B derisk switch entirely, so the ladder keeps climbing (reaching its own defined maximum, 6x, at $800k-of-start and holding there indefinitely beyond). LEGACY (T1=30%, original permanent-derisk policy) is retained exactly as the user's required comparison benchmark, not deleted -- it still switches to C30-B (4x here) at $500k and never reverts.",
+      "caveat": "[contract]/MGC contract counts are NOT fixed by equity alone -- they also depend on the snapshot day's [contract]/MGC price and 21-day realized-vol ratio, both of which move daily (re-derived fresh each publish cycle, not a static table). T1's own scalar has no contract-count rounding and scales exactly linearly with equity and weight. ACTIVE and LEGACY now show DIFFERENT leverage at $500k+ (not just different weights) -- Policy B (active, live since 2026-10-27) removed the permanent $500k->C30-B derisk switch entirely, so the ladder keeps climbing (reaching its own defined maximum, 6x, at $800k-of-start and holding there indefinitely beyond). LEGACY (T1=30%, original permanent-derisk policy) is retained exactly as the user's required comparison benchmark, not deleted -- it still switches to C30-B (4x here) at $500k and never reverts.",
       "current_derisked": false,
       "current_equity_usd": 64026.0,
       "current_level_idx": 0,
@@ -508,16 +508,16 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 28565.75,
+        "current_price": 28552.25,
         "held_contract": null,
         "held_qty": 0,
-        "instrument": "MNQ",
+        "instrument": "[contract]",
         "live": true,
         "unrealized_pnl_usd": null
       }
     }
   },
-  "data_as_of_utc": "2026-11-11T19:30:28.399044Z",
+  "data_as_of_utc": "2026-11-11T19:45:28.236055Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -547,7 +547,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-11T19:45:28.399044Z",
+  "generated_at_utc": "2026-11-11T20:00:28.236055Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -667,9 +667,9 @@
     "guardian_state": "ARMED",
     "in_position": true,
     "market_data_state": "LIVE",
-    "message": "In a T1 position (4 MNQ); holding to the RTH close, no stop by design.",
+    "message": "In a T1 position (4 [contract]); holding to the RTH close, no stop by design.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": 1351.0
+    "unrealized_pnl_usd": 1243.0
   },
   "warmup_replay": {
     "bars_replayed": 0,
