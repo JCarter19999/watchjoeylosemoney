@@ -120,6 +120,10 @@ import json
 # DEMO_EXEC means 'submitting real orders', not 'against which account' -- it reads the same
 # whether the broker env is demo or live, so the authorization file's own 'scope' field (the
 # actual source of truth the execution gates use) decides DEMO vs LIVE, not this field alone.
+# 2026-11-11: t1_live_service.py renamed DEMO_EXEC -> EXECUTE on 2026-11-10; this check still
+# only matched the old literal, so RUNTIME_MODE silently fell through to SHADOW the whole time
+# T1/MNQCont were genuinely trading live (caught live, mid-position, via a user dashboard report).
+# Accept both literals going forward in case any other leg's status file still writes the old one.
 mode = 'SHADOW'
 try:
     mode = json.load(open('$T1_RUNTIME/live_status.json')).get('mode', 'OBSERVE')
@@ -130,10 +134,10 @@ try:
     scope = json.load(open('$T1_RUNTIME/T1_LIVE_AUTHORIZATION.json')).get('scope')
 except (FileNotFoundError, json.JSONDecodeError):
     pass
-if mode == 'DEMO_EXEC' and scope == 'live':
+if mode in ('DEMO_EXEC', 'EXECUTE') and scope == 'live':
     print('LIVE')
 else:
-    print({'DEMO_EXEC': 'DEMO', 'OBSERVE': 'SHADOW'}.get(mode, 'SHADOW'))
+    print({'DEMO_EXEC': 'DEMO', 'EXECUTE': 'DEMO', 'OBSERVE': 'SHADOW'}.get(mode, 'SHADOW'))
 ")
 
 # 2026-09-21: refresh the offline SHADOW-controller tracker (C2/C3 vs HOLD; research telemetry only, read-only on the live
