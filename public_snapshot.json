@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-12T20:30:27.890745Z",
+      "as_of_utc": "2026-11-12T20:45:27.810018Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-12T20:30:01.481159+00:00",
+      "generated_at": "2026-11-12T20:45:01.140188+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.1,
+          "bar_age_sec": 0.8,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.4,
-          "heartbeat_age_sec": 3.2,
+          "bar_age_sec": 1.1,
+          "heartbeat_age_sec": 2.4,
           "last_alert": "2026-11-12T19:51:31.311793+00:00 restart reconciliation: broker shows exposure on a root this leg shares with sibling services (positions=[('[contract]', 4.0)], working_orders=[]) while local state is flat -- NOT touching it (could be a sibling's legitimate position); verify by hand before assuming anything is wrong.",
           "managed": true,
           "position_state": "FLAT",
@@ -209,11 +209,11 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.4,
-          "heartbeat_age_sec": 4.4,
-          "last_alert": "2026-11-12T20:21:46.200386+00:00 EMERGENCY_FLATTEN_SCRIPT: armed: watching for price <= 28304.625 ($1500 unrealized profit at entry=28117.125, qty=4). Polling /home/joey/market_structure_ml-live/live/runtime_t1_live/raw_bar_log.jsonl every 3s.",
+          "bar_age_sec": 1.1,
+          "heartbeat_age_sec": 4.6,
+          "last_alert": "2026-11-12T20:33:12.899000+00:00 EMERGENCY_FLATTEN_SCRIPT: T1 restarted OK, new pid=1464855 -- it will reconcile against the real (flat) broker position on startup.",
           "managed": true,
-          "position_state": "[side] 4",
+          "position_state": "FLAT",
           "process": "RUNNING",
           "reasons": [],
           "state": "HEALTHY",
@@ -519,7 +519,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 28353.25,
+        "current_price": 28345.5,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -528,7 +528,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-12T20:15:28.044799Z",
+  "data_as_of_utc": "2026-11-12T20:30:27.956232Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -564,7 +564,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-12T20:30:28.044799Z",
+  "generated_at_utc": "2026-11-12T20:45:27.956232Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -701,11 +701,11 @@
     "data_delayed": true,
     "execution_enabled": true,
     "guardian_state": "ARMED",
-    "in_position": true,
+    "in_position": false,
     "market_data_state": "LIVE",
-    "message": "In a T1 position (4 [contract]); holding to the RTH close, no stop by design.",
+    "message": "T1 traded and exited today; done until the next session.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": 1889.0
+    "unrealized_pnl_usd": null
   },
   "warmup_replay": {
     "bars_replayed": 0,
