@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-12T20:00:28.264850Z",
+      "as_of_utc": "2026-11-12T20:15:28.675085Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-12T20:00:01.904215+00:00",
+      "generated_at": "2026-11-12T20:15:01.993509+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.2,
+          "bar_age_sec": 0.7,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.8,
-          "heartbeat_age_sec": 4.5,
+          "bar_age_sec": 1.9,
+          "heartbeat_age_sec": 4.2,
           "last_alert": "2026-11-12T19:51:31.311793+00:00 restart reconciliation: broker shows exposure on a root this leg shares with sibling services (positions=[('[contract]', 4.0)], working_orders=[]) while local state is flat -- NOT touching it (could be a sibling's legitimate position); verify by hand before assuming anything is wrong.",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.8,
-          "heartbeat_age_sec": 1.8,
+          "bar_age_sec": 1.9,
+          "heartbeat_age_sec": 0.9,
           "last_alert": "2026-11-12T05:54:01Z watchdog[t1] resizing pid 1415715: qty 1 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "[side] 4",
@@ -519,7 +519,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 28381.25,
+        "current_price": 28350.5,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -528,7 +528,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-12T19:45:28.370570Z",
+  "data_as_of_utc": "2026-11-12T20:00:28.797675Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -564,7 +564,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-12T20:00:28.370570Z",
+  "generated_at_utc": "2026-11-12T20:15:28.797675Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -705,7 +705,7 @@
     "market_data_state": "LIVE",
     "message": "In a T1 position (4 [contract]); holding to the RTH close, no stop by design.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": 2113.0
+    "unrealized_pnl_usd": 1867.0
   },
   "warmup_replay": {
     "bars_replayed": 0,
