@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-12T08:00:27.490515Z",
+      "as_of_utc": "2026-11-12T08:15:27.406177Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-12T08:00:01.556735+00:00",
+      "generated_at": "2026-11-12T08:15:01.342488+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.7,
+          "bar_age_sec": 0.4,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,14 +193,14 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
-          "heartbeat_age_sec": 0.6,
+          "bar_age_sec": 1.3,
+          "heartbeat_age_sec": 4.9,
           "last_alert": "2026-11-12T05:54:01Z watchdog[[contract]] resizing pid 1415714: qty 1 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
           "reasons": [],
-          "state": "HALTED",
+          "state": "HEALTHY",
           "stream_health": "HEALTHY"
         },
         "t1_live": {
@@ -209,18 +209,18 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
-          "heartbeat_age_sec": 0.4,
+          "bar_age_sec": 1.3,
+          "heartbeat_age_sec": 4.2,
           "last_alert": "2026-11-12T05:54:01Z watchdog[t1] resizing pid 1415715: qty 1 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
           "reasons": [],
-          "state": "HALTED",
+          "state": "HEALTHY",
           "stream_health": "HEALTHY"
         }
       },
-      "overall_state": "HALTED"
+      "overall_state": "HEALTHY"
     },
     "portfolio_a_plus_equity_ladder": {
       "caveat": "T1/[contract] share one accelerating-offset ladder level: level_band(equity)+3 below $50,000, +5 at/above it (non-sticky -- reverts to +3 if equity falls back below $50,000). organic_level_band_qty_for_comparison shows what plain, un-accelerated P2 sizing would give at the same equity, for reference. MES1R/MGC1R are excluded (rejected 2026-10-29, see memory mes1r_mgc1r_addition_rejected_2026_10_29.md). MGC10 is excluded (disabled 2026-10-29, see memory mgc10_disabled_2026_10_29.md). MES2R is excluded (closed 2026-11-08: net -$1,799/9yr and positively correlated with T1+[contract]'s bad days over the full 16yr real history, see memory mes2r_net_negative_closed_2026_11_08.md) -- all four excluded entirely, not just zero-weighted.",
@@ -519,7 +519,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 28215.25,
+        "current_price": 28227.25,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -528,7 +528,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-12T07:45:27.593509Z",
+  "data_as_of_utc": "2026-11-12T08:00:27.513131Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -564,7 +564,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-12T08:00:27.593509Z",
+  "generated_at_utc": "2026-11-12T08:15:27.513131Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
