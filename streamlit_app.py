@@ -199,6 +199,7 @@ def render_portfolio_a_plus_equity_ladder(snapshot: dict[str, Any]) -> None:
         "Equity >=": r["equity_floor_usd"],
         "P2 level": r["p2_level"],
         "T1 qty": r["t1_qty"], "T1 Cont qty": r["mnqcont_qty"],
+        "Plain P2 (no accel.)": r.get("organic_level_band_qty_for_comparison"),
     } for r in rows])
     column_config = {
         "Equity >=": st.column_config.NumberColumn(format="$%,.0f"),
