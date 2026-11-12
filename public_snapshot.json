@@ -1,19 +1,19 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-12T04:00:27.698828Z",
+      "as_of_utc": "2026-11-12T04:15:30.377243Z",
       "legs": {
         "mnqcont": {
           "controller": null,
           "instrument": "[contract]",
           "live": true,
-          "order_qty": 4
+          "order_qty": 2
         },
         "t1": {
           "controller": null,
           "instrument": "[contract]",
           "live": true,
-          "order_qty": 4
+          "order_qty": 2
         },
         "wheel_v1_mgc": {
           "controller": null,
@@ -157,7 +157,7 @@
       "mode": "EXECUTE",
       "n_alerts": 0,
       "ohlc_bars": [],
-      "order_qty": 4,
+      "order_qty": 2,
       "overlay_direction": null,
       "overlay_entry_fill": null,
       "overlay_stop_price": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-12T04:00:01.531763+00:00",
+      "generated_at": "2026-11-12T04:15:01.991137+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
+          "bar_age_sec": 1.7,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,9 +193,9 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
-          "heartbeat_age_sec": 3.3,
-          "last_alert": "2026-11-10T21:10:01Z watchdog[[contract]]: restart budget exhausted (5) -- DOWN, manual intervention required",
+          "bar_age_sec": 1.9,
+          "heartbeat_age_sec": 2.6,
+          "last_alert": "2026-11-12T04:10:01Z watchdog[[contract]] resizing pid 1351845: qty 4 -> 2 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
@@ -209,9 +209,9 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
-          "heartbeat_age_sec": 1.9,
-          "last_alert": "2026-11-10T21:10:01Z watchdog[t1]: restart budget exhausted (5) -- DOWN, manual intervention required",
+          "bar_age_sec": 1.9,
+          "heartbeat_age_sec": 2.0,
+          "last_alert": "2026-11-12T04:10:01Z watchdog[t1] resizing pid 1351847: qty 4 -> 2 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
@@ -511,7 +511,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 28235.75,
+        "current_price": 28258.0,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -520,7 +520,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-12T03:45:27.868102Z",
+  "data_as_of_utc": "2026-11-12T04:00:30.560694Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -556,7 +556,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-12T04:00:27.868102Z",
+  "generated_at_utc": "2026-11-12T04:15:30.560694Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
