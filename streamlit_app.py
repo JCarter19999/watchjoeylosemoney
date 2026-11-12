@@ -395,6 +395,14 @@ def render_daily_pnl_heatmap(snapshot: dict[str, Any]) -> None:
     df["weekday"] = df["date"].dt.weekday.map(dict(enumerate(_WEEKDAY_ORDER)))
 
     max_abs = max(abs(df["pnl"].min()), abs(df["pnl"].max()), 1.0)
+    # FIXED 2026-11-12: a bare temporal band scale (`week_start:T` + width="stretch") has no
+    # natural per-column width of its own, so Streamlit's container-stretch forces whatever few
+    # weeks exist to fill the FULL page width -- with only one real calendar week of live history
+    # so far (trading started 2026-11-08), that collapsed to one giant stretched column per
+    # weekday row, plus duplicate axis-tick labels from generating ticks across an almost-empty
+    # temporal domain. alt.Step() gives each week column a FIXED pixel width instead, so the
+    # chart is simply narrow with little data and grows naturally as more weeks accumulate --
+    # the standard fix for sparse calendar/heatmap-style Vega-Lite charts.
     chart = (
         alt.Chart(df)
         .mark_rect(cornerRadius=3, stroke="#00000014", strokeWidth=1)
@@ -411,9 +419,9 @@ def render_daily_pnl_heatmap(snapshot: dict[str, Any]) -> None:
                 alt.Tooltip("pnl:Q", title="P&L", format="$,.2f"),
             ],
         )
-        .properties(height=180)
+        .properties(height=180, width=alt.Step(28))
     )
-    st.altair_chart(chart, width="stretch")
+    st.altair_chart(chart, width="content")
     st.caption(
         "Each cell is one calendar day (UTC), colored by that day's net P&L -- blue for gains, red for "
         "losses, pale gray near $0. A day with no trades shows as $0 (flat), same color as a day that "
