@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-13T22:00:28.130800Z",
+      "as_of_utc": "2026-11-13T22:15:28.372528Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -164,12 +164,12 @@
       "overlay_target_price": null,
       "phase": "SKIPPED",
       "session": "2026-11-13",
-      "stream_health": "HEALTHY",
+      "stream_health": "STALE",
       "total_pnl_usd": 0,
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-13T22:00:01.806999+00:00",
+      "generated_at": "2026-11-13T22:15:01.726484+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -193,15 +193,15 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.7,
-          "heartbeat_age_sec": 1.3,
+          "bar_age_sec": 901.7,
+          "heartbeat_age_sec": 0.8,
           "last_alert": "2026-11-13T18:38:01Z watchdog[[contract]] resizing pid 1465747: qty 5 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
           "reasons": [],
           "state": "HEALTHY",
-          "stream_health": "HEALTHY"
+          "stream_health": "STALE"
         },
         "t1_live": {
           "auth": {
@@ -209,15 +209,15 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.8,
-          "heartbeat_age_sec": -0.0,
+          "bar_age_sec": 901.7,
+          "heartbeat_age_sec": 3.8,
           "last_alert": "2026-11-13T18:38:01Z watchdog[t1] resizing pid 1465749: qty 5 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
           "reasons": [],
           "state": "HEALTHY",
-          "stream_health": "HEALTHY"
+          "stream_health": "STALE"
         }
       },
       "overall_state": "HEALTHY"
@@ -531,7 +531,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-13T21:45:28.257483Z",
+  "data_as_of_utc": "2026-11-13T22:00:28.520352Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -573,7 +573,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-13T22:00:28.257483Z",
+  "generated_at_utc": "2026-11-13T22:15:28.520352Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -730,7 +730,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "in_position": false,
-    "market_data_state": "LIVE",
+    "market_data_state": "STALE",
     "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
