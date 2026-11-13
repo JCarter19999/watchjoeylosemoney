@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-13T05:45:28.447328Z",
+      "as_of_utc": "2026-11-13T06:00:28.561850Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-13T05:45:01.988598+00:00",
+      "generated_at": "2026-11-13T06:00:02.243247+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 2.2,
+          "bar_age_sec": 0.0,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.9,
-          "heartbeat_age_sec": 1.1,
+          "bar_age_sec": 2.2,
+          "heartbeat_age_sec": 0.9,
           "last_alert": "2026-11-12T20:46:01Z watchdog[[contract]] resizing pid 1461854: qty 4 -> 5 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.9,
-          "heartbeat_age_sec": 2.3,
+          "bar_age_sec": 2.2,
+          "heartbeat_age_sec": 1.6,
           "last_alert": "2026-11-12T20:46:01Z watchdog[t1] resizing pid 1464855: qty 4 -> 5 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -522,7 +522,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 28331.75,
+        "current_price": 28289.5,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -531,7 +531,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-13T05:30:28.551696Z",
+  "data_as_of_utc": "2026-11-13T05:45:28.664499Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -573,7 +573,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-13T05:45:28.551696Z",
+  "generated_at_utc": "2026-11-13T06:00:28.664499Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
