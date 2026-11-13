@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-13T10:15:28.149823Z",
+      "as_of_utc": "2026-11-13T10:30:28.167149Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-13T10:15:01.660608+00:00",
+      "generated_at": "2026-11-13T10:30:01.718854+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.6,
-          "heartbeat_age_sec": 2.9,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 2.5,
           "last_alert": "2026-11-12T20:46:01Z watchdog[[contract]] resizing pid 1461854: qty 4 -> 5 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.6,
-          "heartbeat_age_sec": 3.8,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 2.9,
           "last_alert": "2026-11-12T20:46:01Z watchdog[t1] resizing pid 1464855: qty 4 -> 5 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -522,7 +522,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 28363.75,
+        "current_price": 28359.25,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -531,7 +531,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-13T10:00:28.255947Z",
+  "data_as_of_utc": "2026-11-13T10:15:28.274617Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -573,7 +573,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-13T10:15:28.255947Z",
+  "generated_at_utc": "2026-11-13T10:30:28.274617Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
