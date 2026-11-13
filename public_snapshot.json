@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-13T19:30:29.598313Z",
+      "as_of_utc": "2026-11-13T19:45:30.362218Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-13T19:30:01.625222+00:00",
+      "generated_at": "2026-11-13T19:45:02.192353+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.6,
-          "heartbeat_age_sec": 3.9,
+          "bar_age_sec": 2.1,
+          "heartbeat_age_sec": 4.0,
           "last_alert": "2026-11-13T18:38:01Z watchdog[[contract]] resizing pid 1465747: qty 5 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.6,
-          "heartbeat_age_sec": 4.9,
+          "bar_age_sec": 2.1,
+          "heartbeat_age_sec": 4.8,
           "last_alert": "2026-11-13T18:38:01Z watchdog[t1] resizing pid 1465749: qty 5 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -522,7 +522,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 28038.75,
+        "current_price": 27998.0,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -531,7 +531,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-13T19:15:29.895766Z",
+  "data_as_of_utc": "2026-11-13T19:30:30.592145Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -573,7 +573,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-13T19:30:29.895766Z",
+  "generated_at_utc": "2026-11-13T19:45:30.592145Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
