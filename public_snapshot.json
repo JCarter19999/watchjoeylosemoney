@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-14T14:45:28.108976Z",
+      "as_of_utc": "2026-11-14T15:00:27.954103Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-14T14:45:01.534979+00:00",
+      "generated_at": "2026-11-14T15:00:01.504024+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.0,
+          "bar_age_sec": 1.6,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 57284.9,
-          "heartbeat_age_sec": 35104.5,
+          "bar_age_sec": 58184.9,
+          "heartbeat_age_sec": 36004.4,
           "last_alert": "2026-11-13T22:50:01Z watchdog[[contract]] resizing pid 1535695: qty 4 -> 1 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -213,8 +213,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 60301.5,
-          "heartbeat_age_sec": 35105.9,
+          "bar_age_sec": 61201.5,
+          "heartbeat_age_sec": 36005.9,
           "last_alert": "2026-11-13T18:38:01Z watchdog[t1] resizing pid 1465749: qty 5 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -539,7 +539,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-14T14:30:28.265764Z",
+  "data_as_of_utc": "2026-11-14T14:45:28.058775Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -581,7 +581,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-14T14:45:28.265764Z",
+  "generated_at_utc": "2026-11-14T15:00:28.058775Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
