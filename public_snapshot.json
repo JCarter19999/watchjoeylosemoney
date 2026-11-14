@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-14T08:15:28.498015Z",
+      "as_of_utc": "2026-11-14T08:30:28.390151Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-14T08:15:01.947074+00:00",
+      "generated_at": "2026-11-14T08:30:02.092814+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 33885.3,
-          "heartbeat_age_sec": 11704.9,
+          "bar_age_sec": 34785.5,
+          "heartbeat_age_sec": 12605.0,
           "last_alert": "2026-11-13T22:50:01Z watchdog[[contract]] resizing pid 1535695: qty 4 -> 1 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -213,8 +213,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 36901.9,
-          "heartbeat_age_sec": 11706.4,
+          "bar_age_sec": 37802.0,
+          "heartbeat_age_sec": 12606.5,
           "last_alert": "2026-11-13T18:38:01Z watchdog[t1] resizing pid 1465749: qty 5 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -539,7 +539,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-14T08:00:28.601387Z",
+  "data_as_of_utc": "2026-11-14T08:15:28.509356Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -581,7 +581,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-14T08:15:28.601387Z",
+  "generated_at_utc": "2026-11-14T08:30:28.509356Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
