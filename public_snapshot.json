@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-14T04:45:28.543278Z",
+      "as_of_utc": "2026-11-14T05:00:28.487897Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-14T04:45:02.107643+00:00",
+      "generated_at": "2026-11-14T05:00:02.114845+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.3,
+          "bar_age_sec": 2.4,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -189,38 +189,44 @@
         },
         "mnqcont_live": {
           "auth": {
-            "days_remaining": 48,
+            "days_remaining": 47,
             "expires": "2026-12-31",
-            "state": "VALID"
+            "state": "EXPIRED"
           },
-          "bar_age_sec": 21285.5,
-          "heartbeat_age_sec": 0.5,
+          "bar_age_sec": 22185.5,
+          "heartbeat_age_sec": 5.0,
           "last_alert": "2026-11-13T22:50:01Z watchdog[[contract]] resizing pid 1535695: qty 4 -> 1 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
-          "process": "RUNNING",
-          "reasons": [],
-          "state": "HEALTHY",
+          "process": "DEAD",
+          "reasons": [
+            "AUTH_EXPIRED",
+            "PROCESS_DEAD"
+          ],
+          "state": "HALTED",
           "stream_health": "STALE"
         },
         "t1_live": {
           "auth": {
-            "days_remaining": 48,
+            "days_remaining": 47,
             "expires": "2026-12-31",
-            "state": "VALID"
+            "state": "EXPIRED"
           },
-          "bar_age_sec": 24302.1,
-          "heartbeat_age_sec": 2.6,
+          "bar_age_sec": 25202.1,
+          "heartbeat_age_sec": 6.5,
           "last_alert": "2026-11-13T18:38:01Z watchdog[t1] resizing pid 1465749: qty 5 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
-          "process": "RUNNING",
-          "reasons": [],
-          "state": "HEALTHY",
+          "process": "DEAD",
+          "reasons": [
+            "AUTH_EXPIRED",
+            "PROCESS_DEAD"
+          ],
+          "state": "HALTED",
           "stream_health": "STALE"
         }
       },
-      "overall_state": "HEALTHY"
+      "overall_state": "HALTED"
     },
     "portfolio_a_plus_equity_ladder": {
       "caveat": "T1/[contract] share one accelerating-offset ladder level: level_band(equity)+3 below $50,000, +5 at/above it (non-sticky -- reverts to +3 if equity falls back below $50,000). organic_level_band_qty_for_comparison shows what plain, un-accelerated P2 sizing would give at the same equity, for reference. MES1R/MGC1R are excluded (rejected 2026-10-29, see memory mes1r_mgc1r_addition_rejected_2026_10_29.md). MGC10 is excluded (disabled 2026-10-29, see memory mgc10_disabled_2026_10_29.md). MES2R is excluded (closed 2026-11-08: net -$1,799/9yr and positively correlated with T1+[contract]'s bad days over the full 16yr real history, see memory mes2r_net_negative_closed_2026_11_08.md) -- all four excluded entirely, not just zero-weighted.",
@@ -531,7 +537,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-14T04:30:28.648050Z",
+  "data_as_of_utc": "2026-11-14T04:45:28.606204Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -573,7 +579,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-14T04:45:28.648050Z",
+  "generated_at_utc": "2026-11-14T05:00:28.606204Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
