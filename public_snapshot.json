@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-14T01:30:28.251162Z",
+      "as_of_utc": "2026-11-14T01:45:28.236405Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-14T01:30:01.925506+00:00",
+      "generated_at": "2026-11-14T01:45:01.823993+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.2,
+          "bar_age_sec": 0.5,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 9585.3,
-          "heartbeat_age_sec": 0.9,
+          "bar_age_sec": 10485.2,
+          "heartbeat_age_sec": 0.4,
           "last_alert": "2026-11-13T22:50:01Z watchdog[[contract]] resizing pid 1535695: qty 4 -> 1 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 12601.9,
-          "heartbeat_age_sec": 1.1,
+          "bar_age_sec": 13501.8,
+          "heartbeat_age_sec": 4.9,
           "last_alert": "2026-11-13T18:38:01Z watchdog[t1] resizing pid 1465749: qty 5 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -531,7 +531,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-14T01:15:28.352598Z",
+  "data_as_of_utc": "2026-11-14T01:30:28.362631Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -573,7 +573,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-14T01:30:28.352598Z",
+  "generated_at_utc": "2026-11-14T01:45:28.362631Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
