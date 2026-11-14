@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-14T05:00:28.487897Z",
+      "as_of_utc": "2026-11-14T05:15:28.473022Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-14T05:00:02.114845+00:00",
+      "generated_at": "2026-11-14T05:15:02.015379+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -193,14 +193,15 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 22185.5,
-          "heartbeat_age_sec": 5.0,
+          "bar_age_sec": 23085.4,
+          "heartbeat_age_sec": 904.9,
           "last_alert": "2026-11-13T22:50:01Z watchdog[[contract]] resizing pid 1535695: qty 4 -> 1 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
           "process": "DEAD",
           "reasons": [
             "AUTH_EXPIRED",
+            "HEARTBEAT_STALE",
             "PROCESS_DEAD"
           ],
           "state": "HALTED",
@@ -212,14 +213,15 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 25202.1,
-          "heartbeat_age_sec": 6.5,
+          "bar_age_sec": 26102.0,
+          "heartbeat_age_sec": 906.4,
           "last_alert": "2026-11-13T18:38:01Z watchdog[t1] resizing pid 1465749: qty 5 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
           "process": "DEAD",
           "reasons": [
             "AUTH_EXPIRED",
+            "HEARTBEAT_STALE",
             "PROCESS_DEAD"
           ],
           "state": "HALTED",
@@ -537,7 +539,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-14T04:45:28.606204Z",
+  "data_as_of_utc": "2026-11-14T05:00:28.574295Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -579,7 +581,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-14T05:00:28.606204Z",
+  "generated_at_utc": "2026-11-14T05:15:28.574295Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -733,12 +735,12 @@
   },
   "status": {
     "data_delayed": true,
-    "execution_enabled": true,
-    "guardian_state": "ARMED",
-    "in_position": false,
+    "execution_enabled": false,
+    "guardian_state": "NA",
+    "in_position": null,
     "market_data_state": "STALE",
-    "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
-    "service_state": "ARMED",
+    "message": "No update from the T1 process recently -- market-closed hours or a stopped process.",
+    "service_state": "OFFLINE",
     "unrealized_pnl_usd": null
   },
   "warmup_replay": {
