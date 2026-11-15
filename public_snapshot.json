@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-15T23:00:27.687371Z",
+      "as_of_utc": "2026-11-15T23:15:28.377076Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-15T23:00:01.353623+00:00",
+      "generated_at": "2026-11-15T23:15:01.952047+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.1,
+          "bar_age_sec": 2.0,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 173384.7,
-          "heartbeat_age_sec": 151204.3,
+          "bar_age_sec": 174285.3,
+          "heartbeat_age_sec": 152104.9,
           "last_alert": "2026-11-13T22:50:01Z watchdog[[contract]] resizing pid 1535695: qty 4 -> 1 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -202,7 +202,8 @@
           "reasons": [
             "AUTH_EXPIRED",
             "HEARTBEAT_STALE",
-            "PROCESS_DEAD"
+            "PROCESS_DEAD",
+            "RAW_BAR_STALE"
           ],
           "state": "HALTED",
           "stream_health": "STALE"
@@ -213,8 +214,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 176401.3,
-          "heartbeat_age_sec": 151205.8,
+          "bar_age_sec": 177301.9,
+          "heartbeat_age_sec": 152106.4,
           "last_alert": "2026-11-13T18:38:01Z watchdog[t1] resizing pid 1465749: qty 5 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -222,7 +223,8 @@
           "reasons": [
             "AUTH_EXPIRED",
             "HEARTBEAT_STALE",
-            "PROCESS_DEAD"
+            "PROCESS_DEAD",
+            "RAW_BAR_STALE"
           ],
           "state": "HALTED",
           "stream_health": "STALE"
@@ -539,7 +541,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-15T22:45:27.789021Z",
+  "data_as_of_utc": "2026-11-15T23:00:28.480435Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -581,7 +583,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-15T23:00:27.789021Z",
+  "generated_at_utc": "2026-11-15T23:15:28.480435Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
