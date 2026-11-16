@@ -25,7 +25,30 @@ LOGGER = logging.getLogger("watchjoeylosemoney")
 # removes that dependency entirely -- every refresh gets whatever is actually on `main` right now,
 # regardless of whether this deployment's own checkout has been redeployed. Local file is the
 # fallback only (offline dev, or GitHub transiently unreachable), not the primary source anymore.
-_SNAPSHOT_RAW_URL = "https://raw.githubusercontent.com/JCarter19999/watchjoeylosemoney/main/public_snapshot.json"
+#
+# 2026-11-16: the "_"-timestamp cache-busting query param above never actually worked --
+# raw.githubusercontent.com's CDN keys its cache by path only and ignores query strings, so
+# the branch-ref URL (".../main/...") could still serve up to 5 minutes stale regardless (its
+# own Cache-Control: max-age=300). Fix: resolve `main`'s current commit SHA first, then fetch
+# the SHA-pinned raw URL -- a commit SHA's content is immutable, so that path is never a stale
+# cache hit. The SHA lookup itself goes through api.github.com, which has a much stricter
+# unauthenticated rate limit (60/hr/IP) than the raw-content CDN -- cached for 90s via
+# st.cache_data (shared across all viewers of this deployment, not per-session) so the 30s
+# fragment poll below doesn't multiply into a rate-limit problem with more than one viewer.
+_REPO = "JCarter19999/watchjoeylosemoney"
+_SNAPSHOT_RAW_URL = f"https://raw.githubusercontent.com/{_REPO}/main/public_snapshot.json"
+_COMMIT_SHA_API_URL = f"https://api.github.com/repos/{_REPO}/commits/main"
+
+
+@st.cache_data(ttl=90)
+def _latest_main_sha() -> str | None:
+    try:
+        resp = requests.get(_COMMIT_SHA_API_URL, headers={"Accept": "application/vnd.github+json"}, timeout=5)
+        resp.raise_for_status()
+        return resp.json()["sha"]
+    except Exception:
+        LOGGER.warning("Latest-commit-SHA lookup failed, falling back to the branch-ref URL", exc_info=True)
+        return None
 
 st.set_page_config(
     page_title="Watch Joey Lose Money",
@@ -67,11 +90,14 @@ st.markdown(
 
 
 def _fetch_live_snapshot_text() -> str:
-    """Always-fresh source of truth: GitHub's raw content, cache-busted per call so neither
-    GitHub's own CDN nor anything in between serves a stale cached copy. Falls back to the local
-    on-disk file (this deployment's last-redeployed copy) only if the live fetch itself fails."""
+    """Always-fresh source of truth. Primary: the SHA-pinned raw URL (immutable, never a stale
+    CDN hit). Falls back to the branch-ref URL (can be up to 5min stale, but still far fresher
+    than the local copy) if the SHA lookup failed, then to the local on-disk file only if the
+    live fetch itself fails outright."""
+    sha = _latest_main_sha()
+    url = f"https://raw.githubusercontent.com/{_REPO}/{sha}/public_snapshot.json" if sha else _SNAPSHOT_RAW_URL
     try:
-        resp = requests.get(_SNAPSHOT_RAW_URL, params={"_": str(datetime.now(timezone.utc).timestamp())}, timeout=5)
+        resp = requests.get(url, params={"_": str(datetime.now(timezone.utc).timestamp())}, timeout=5)
         resp.raise_for_status()
         return resp.text
     except Exception:
@@ -91,7 +117,7 @@ def load_and_validate_snapshot() -> dict[str, Any]:
 
 
 def format_pst(iso_utc: str) -> str:
-    """publish.sh's cron runs every 15 min -- this reflects that cadence,
+    """publish.sh's cron runs every 10 min -- this reflects that cadence,
     not true real-time, so it's labeled "Last updated" (data freshness),
     not "Last refreshed" (page load time)."""
     dt = datetime.fromisoformat(iso_utc.replace("Z", "+00:00"))
