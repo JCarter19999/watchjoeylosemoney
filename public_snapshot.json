@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-17T22:20:28.210733Z",
+      "as_of_utc": "2026-11-17T22:30:28.327122Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-17T22:20:01.917640+00:00",
+      "generated_at": "2026-11-17T22:30:02.006008+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.7,
+          "bar_age_sec": 0.6,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1201.9,
-          "heartbeat_age_sec": 4.5,
+          "bar_age_sec": 1802.0,
+          "heartbeat_age_sec": 4.3,
           "last_alert": "2026-11-17T08:10:02Z watchdog[[contract]] AUTO_ELEVATE switching pid 1753927: mode EXECUTE -> EXECUTE",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1201.9,
-          "heartbeat_age_sec": 4.4,
+          "bar_age_sec": 1802.0,
+          "heartbeat_age_sec": 3.8,
           "last_alert": "2026-11-17T08:10:02Z watchdog[t1] AUTO_ELEVATE switching pid 1753929: mode EXECUTE -> EXECUTE",
           "managed": true,
           "position_state": "FLAT",
@@ -534,7 +534,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-17T22:05:28.312778Z",
+  "data_as_of_utc": "2026-11-17T22:15:28.476024Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -582,7 +582,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-17T22:20:28.312778Z",
+  "generated_at_utc": "2026-11-17T22:30:28.476024Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
