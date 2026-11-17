@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-17T10:10:28.027822Z",
+      "as_of_utc": "2026-11-17T10:20:28.327932Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-17T10:10:01.689870+00:00",
+      "generated_at": "2026-11-17T10:20:02.017760+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.6,
+          "bar_age_sec": 2.0,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 7201.6,
-          "heartbeat_age_sec": 7202.5,
+          "bar_age_sec": 7802.0,
+          "heartbeat_age_sec": 7802.8,
           "last_alert": "2026-11-17T08:10:02Z watchdog[[contract]] AUTO_ELEVATE switching pid 1753927: mode EXECUTE -> EXECUTE",
           "managed": true,
           "position_state": "FLAT",
@@ -214,8 +214,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 7201.6,
-          "heartbeat_age_sec": 7203.8,
+          "bar_age_sec": 7802.0,
+          "heartbeat_age_sec": 7804.1,
           "last_alert": "2026-11-17T08:10:02Z watchdog[t1] AUTO_ELEVATE switching pid 1753929: mode EXECUTE -> EXECUTE",
           "managed": true,
           "position_state": "FLAT",
@@ -544,7 +544,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-17T09:55:28.130778Z",
+  "data_as_of_utc": "2026-11-17T10:05:28.428336Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -592,7 +592,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-17T10:10:28.130778Z",
+  "generated_at_utc": "2026-11-17T10:20:28.428336Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
