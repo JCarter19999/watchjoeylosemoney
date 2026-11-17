@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-17T12:30:27.935822Z",
+      "as_of_utc": "2026-11-17T12:40:28.239595Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-17T12:30:01.636730+00:00",
+      "generated_at": "2026-11-17T12:40:01.806999+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.2,
+          "bar_age_sec": 0.7,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 15601.6,
-          "heartbeat_age_sec": 15602.4,
+          "bar_age_sec": 16201.8,
+          "heartbeat_age_sec": 16202.6,
           "last_alert": "2026-11-17T08:10:02Z watchdog[[contract]] AUTO_ELEVATE switching pid 1753927: mode EXECUTE -> EXECUTE",
           "managed": true,
           "position_state": "FLAT",
@@ -214,8 +214,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 15601.6,
-          "heartbeat_age_sec": 15603.7,
+          "bar_age_sec": 16201.7,
+          "heartbeat_age_sec": 16203.9,
           "last_alert": "2026-11-17T08:10:02Z watchdog[t1] AUTO_ELEVATE switching pid 1753929: mode EXECUTE -> EXECUTE",
           "managed": true,
           "position_state": "FLAT",
@@ -544,7 +544,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-17T12:15:28.040833Z",
+  "data_as_of_utc": "2026-11-17T12:25:28.356350Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -592,7 +592,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-17T12:30:28.040833Z",
+  "generated_at_utc": "2026-11-17T12:40:28.356350Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
