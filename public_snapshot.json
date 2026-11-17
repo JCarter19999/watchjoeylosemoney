@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-17T07:50:27.766046Z",
+      "as_of_utc": "2026-11-17T08:00:28.263886Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -162,14 +162,14 @@
       "overlay_entry_fill": null,
       "overlay_stop_price": null,
       "overlay_target_price": null,
-      "phase": "SKIPPED",
-      "session": "2026-11-16",
+      "phase": "IDLE",
+      "session": "2026-11-17",
       "stream_health": "HEALTHY",
       "total_pnl_usd": 0,
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-17T07:50:01.443559+00:00",
+      "generated_at": "2026-11-17T08:00:01.875504+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.7,
+          "bar_age_sec": 1.6,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 10441.4,
-          "heartbeat_age_sec": 10442.4,
+          "bar_age_sec": 11041.8,
+          "heartbeat_age_sec": 11042.9,
           "last_alert": "2026-11-17T04:56:01Z watchdog[[contract]] AUTO_ELEVATE switching pid 1741385: mode EXECUTE -> EXECUTE",
           "managed": true,
           "position_state": "FLAT",
@@ -202,8 +202,7 @@
           "reasons": [
             "HEARTBEAT_STALE",
             "PROCESS_DEAD",
-            "RAW_BAR_STALE",
-            "RESTART_BUDGET_EXHAUSTED"
+            "RAW_BAR_STALE"
           ],
           "state": "HALTED",
           "stream_health": "HEALTHY"
@@ -214,8 +213,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 10441.4,
-          "heartbeat_age_sec": 10443.3,
+          "bar_age_sec": 11041.8,
+          "heartbeat_age_sec": 11043.8,
           "last_alert": "2026-11-17T04:56:01Z watchdog[t1] AUTO_ELEVATE switching pid 1741387: mode EXECUTE -> EXECUTE",
           "managed": true,
           "position_state": "FLAT",
@@ -223,8 +222,7 @@
           "reasons": [
             "HEARTBEAT_STALE",
             "PROCESS_DEAD",
-            "RAW_BAR_STALE",
-            "RESTART_BUDGET_EXHAUSTED"
+            "RAW_BAR_STALE"
           ],
           "state": "HALTED",
           "stream_health": "HEALTHY"
@@ -535,7 +533,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 27396.25,
+        "current_price": 27362.0,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -544,7 +542,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-17T07:35:27.868621Z",
+  "data_as_of_utc": "2026-11-17T07:45:28.381759Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -592,7 +590,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-17T07:50:27.868621Z",
+  "generated_at_utc": "2026-11-17T08:00:28.381759Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -765,12 +763,12 @@
   },
   "status": {
     "data_delayed": true,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "in_position": null,
-    "market_data_state": "STALE",
-    "message": "No update from the T1 process recently -- market-closed hours or a stopped process.",
-    "service_state": "OFFLINE",
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "in_position": false,
+    "market_data_state": "LIVE",
+    "message": "Watching for the T1 setup at 09:33 ET (4 [contract]; entry needs a persistent move >= 1.5x its usual size).",
+    "service_state": "ARMED",
     "unrealized_pnl_usd": null
   },
   "warmup_replay": {
