@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-18T10:20:27.811309Z",
+      "as_of_utc": "2026-11-18T10:30:27.744848Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-18T10:20:01.532328+00:00",
+      "generated_at": "2026-11-18T10:30:01.504483+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.3,
+          "bar_age_sec": 2.3,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -194,7 +194,7 @@
             "state": "VALID"
           },
           "bar_age_sec": 1.5,
-          "heartbeat_age_sec": 1.4,
+          "heartbeat_age_sec": 1.1,
           "last_alert": "2026-11-18T03:22:01Z watchdog[[contract]] killed hung pid 1848743 (heartbeat 241s)",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
-          "heartbeat_age_sec": 1.7,
+          "bar_age_sec": 1.4,
+          "heartbeat_age_sec": 1.0,
           "last_alert": "2026-11-17T08:10:02Z watchdog[t1] AUTO_ELEVATE switching pid 1753929: mode EXECUTE -> EXECUTE",
           "managed": true,
           "position_state": "FLAT",
@@ -525,7 +525,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 27365.25,
+        "current_price": 27365.0,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -534,7 +534,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-18T10:05:28.028765Z",
+  "data_as_of_utc": "2026-11-18T10:15:27.920649Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -582,7 +582,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-18T10:20:28.028765Z",
+  "generated_at_utc": "2026-11-18T10:30:27.920649Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
