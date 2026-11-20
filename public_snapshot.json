@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-20T04:50:28.396158Z",
+      "as_of_utc": "2026-11-20T05:00:27.881872Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-20T04:50:02.227015+00:00",
+      "generated_at": "2026-11-20T05:00:01.743769+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.9,
+          "bar_age_sec": 0.3,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -189,12 +189,12 @@
         },
         "mnqcont_live": {
           "auth": {
-            "days_remaining": 42,
+            "days_remaining": 41,
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 2.2,
-          "heartbeat_age_sec": 3.7,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 2.9,
           "last_alert": "2026-11-18T03:22:01Z watchdog[[contract]] killed hung pid 1848743 (heartbeat 241s)",
           "managed": true,
           "position_state": "FLAT",
@@ -205,12 +205,12 @@
         },
         "t1_live": {
           "auth": {
-            "days_remaining": 42,
+            "days_remaining": 41,
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 2.2,
-          "heartbeat_age_sec": 2.2,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 0.9,
           "last_alert": "2026-11-19T21:02:01Z watchdog[t1] resizing pid 1921598: qty 4 -> 3 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -528,7 +528,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 26378.25,
+        "current_price": 26353.75,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -537,7 +537,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-20T04:35:28.569824Z",
+  "data_as_of_utc": "2026-11-20T04:45:28.061206Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -591,7 +591,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-20T04:50:28.569824Z",
+  "generated_at_utc": "2026-11-20T05:00:28.061206Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
