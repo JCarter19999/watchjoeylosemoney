@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-21T11:00:27.650185Z",
+      "as_of_utc": "2026-11-21T11:10:27.949976Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-21T11:00:01.528294+00:00",
+      "generated_at": "2026-11-21T11:10:01.768685+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.2,
+          "bar_age_sec": 0.2,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 46801.5,
-          "heartbeat_age_sec": 21603.1,
+          "bar_age_sec": 47401.7,
+          "heartbeat_age_sec": 22203.3,
           "last_alert": "2026-11-18T03:22:01Z watchdog[[contract]] killed hung pid 1848743 (heartbeat 241s)",
           "managed": true,
           "position_state": "FLAT",
@@ -213,8 +213,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 46801.5,
-          "heartbeat_age_sec": 21603.6,
+          "bar_age_sec": 47401.7,
+          "heartbeat_age_sec": 22203.8,
           "last_alert": "2026-11-20T21:02:02Z watchdog[t1] resizing pid 2005546: qty 3 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -548,7 +548,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-21T10:45:27.824646Z",
+  "data_as_of_utc": "2026-11-21T10:55:28.125685Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -608,7 +608,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-21T11:00:27.824646Z",
+  "generated_at_utc": "2026-11-21T11:10:28.125685Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
