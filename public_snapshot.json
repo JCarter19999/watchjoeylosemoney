@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-22T19:10:27.533631Z",
+      "as_of_utc": "2026-11-22T19:20:27.726294Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-22T19:10:01.333954+00:00",
+      "generated_at": "2026-11-22T19:20:01.557850+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.9,
+          "bar_age_sec": 1.2,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 162601.3,
-          "heartbeat_age_sec": 137402.9,
+          "bar_age_sec": 163201.5,
+          "heartbeat_age_sec": 138003.1,
           "last_alert": "2026-11-18T03:22:01Z watchdog[[contract]] killed hung pid 1848743 (heartbeat 241s)",
           "managed": true,
           "position_state": "FLAT",
@@ -213,8 +213,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 162601.3,
-          "heartbeat_age_sec": 137403.4,
+          "bar_age_sec": 163201.5,
+          "heartbeat_age_sec": 138003.6,
           "last_alert": "2026-11-20T21:02:02Z watchdog[t1] resizing pid 2005546: qty 3 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -548,7 +548,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-22T18:55:27.719443Z",
+  "data_as_of_utc": "2026-11-22T19:05:27.904384Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -608,7 +608,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-22T19:10:27.719443Z",
+  "generated_at_utc": "2026-11-22T19:20:27.904384Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
