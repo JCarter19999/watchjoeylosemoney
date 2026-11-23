@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-23T23:00:27.586551Z",
+      "as_of_utc": "2026-11-23T23:10:27.949877Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -164,12 +164,12 @@
       "overlay_target_price": null,
       "phase": "EXITED",
       "session": "2026-11-23",
-      "stream_health": "STALE",
+      "stream_health": "HEALTHY",
       "total_pnl_usd": -302.0,
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-23T23:00:01.501460+00:00",
+      "generated_at": "2026-11-23T23:10:01.733150+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.8,
+          "bar_age_sec": 0.1,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,7 +193,7 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 3601.5,
+          "bar_age_sec": 1.7,
           "heartbeat_age_sec": 3.3,
           "last_alert": "2026-11-18T03:22:01Z watchdog[[contract]] killed hung pid 1848743 (heartbeat 241s)",
           "managed": true,
@@ -201,7 +201,7 @@
           "process": "RUNNING",
           "reasons": [],
           "state": "HEALTHY",
-          "stream_health": "STALE"
+          "stream_health": "HEALTHY"
         },
         "t1_live": {
           "auth": {
@@ -209,15 +209,15 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 3601.4,
-          "heartbeat_age_sec": 1.0,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 0.5,
           "last_alert": "2026-11-23T21:04:01Z watchdog[t1] resizing pid 2310187: qty 4 -> 3 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
           "reasons": [],
           "state": "HEALTHY",
-          "stream_health": "STALE"
+          "stream_health": "HEALTHY"
         }
       },
       "overall_state": "HEALTHY"
@@ -531,7 +531,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 26845.0,
+        "current_price": 26816.75,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -540,7 +540,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-23T22:45:27.762382Z",
+  "data_as_of_utc": "2026-11-23T22:55:28.131228Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -606,7 +606,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-23T23:00:27.762382Z",
+  "generated_at_utc": "2026-11-23T23:10:28.131228Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -839,7 +839,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "in_position": false,
-    "market_data_state": "STALE",
+    "market_data_state": "LIVE",
     "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
