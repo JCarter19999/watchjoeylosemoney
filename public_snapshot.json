@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-23T15:10:27.776988Z",
+      "as_of_utc": "2026-11-23T15:20:28.238374Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-23T15:10:01.574246+00:00",
+      "generated_at": "2026-11-23T15:20:02.050302+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.2,
+          "bar_age_sec": 0.9,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
-          "heartbeat_age_sec": 1.4,
+          "bar_age_sec": 2.0,
+          "heartbeat_age_sec": 1.6,
           "last_alert": "2026-11-18T03:22:01Z watchdog[[contract]] killed hung pid 1848743 (heartbeat 241s)",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
-          "heartbeat_age_sec": 5.0,
+          "bar_age_sec": 2.0,
+          "heartbeat_age_sec": 4.8,
           "last_alert": "2026-11-20T21:02:02Z watchdog[t1] resizing pid 2005546: qty 3 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -531,7 +531,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 26723.5,
+        "current_price": 26930.0,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -540,7 +540,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-23T14:55:27.956268Z",
+  "data_as_of_utc": "2026-11-23T15:05:28.419715Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -577,6 +577,12 @@
       "drawdown_usd": 2191.04,
       "equity_usd": 54.72,
       "ts_utc": "2026-11-20T20:54:59.895255Z"
+    },
+    {
+      "cum_pnl_usd": -247.28,
+      "drawdown_usd": 2493.04,
+      "equity_usd": -247.28,
+      "ts_utc": "2026-11-23T14:57:34.535986Z"
     }
   ],
   "execution_health": {
@@ -600,7 +606,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-23T15:10:27.956268Z",
+  "generated_at_utc": "2026-11-23T15:20:28.419715Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -655,6 +661,25 @@
     "verdict": "INSUFFICIENT_DATA"
   },
   "latest_trades": [
+    {
+      "c_same_at_entry": null,
+      "closed_at_utc": "2026-11-23T14:57:34.535986Z",
+      "duration_seconds": 931.632171,
+      "exit_reason": "STOP",
+      "expected_net_pnl_model_usd": null,
+      "information_available_ts": "2026-11-23T14:42:02.903815+00:00",
+      "intended_exit_ts": "2026-11-23T14:57:34.535986+00:00",
+      "mae_atr": null,
+      "mfe_atr": null,
+      "mode": "LIVE",
+      "pnl_adjusted": false,
+      "pnl_usd": -302.0,
+      "raw_pnl_usd": null,
+      "session_date": "2026-11-23",
+      "side": "",
+      "sized_qty": null,
+      "v_cohort_label": "MNQ_LATE_CONTINUATION"
+    },
     {
       "c_same_at_entry": null,
       "closed_at_utc": "2026-11-20T20:54:59.895255Z",
@@ -794,19 +819,19 @@
   "schema_version": "1.0",
   "stats": {
     "breakeven": 0,
-    "closed_trades_all_time": 6,
-    "closed_trades_today": 0,
-    "current_drawdown_usd": 2191.04,
-    "display_equity_usd": 54.72,
+    "closed_trades_all_time": 7,
+    "closed_trades_today": 1,
+    "current_drawdown_usd": 2493.04,
+    "display_equity_usd": -247.28,
     "display_starting_equity_usd": 0.0,
-    "expectancy_usd": 9.12,
+    "expectancy_usd": -35.3257,
     "ledger_adjustment_usd": 0.0,
-    "losses": 2,
+    "losses": 3,
     "max_drawdown_usd": 8902.38,
-    "profit_factor": 1.005,
-    "realized_pnl_all_time_usd": 54.72,
-    "realized_pnl_today_usd": 0,
-    "win_rate": 0.6667,
+    "profit_factor": 0.9779,
+    "realized_pnl_all_time_usd": -247.28,
+    "realized_pnl_today_usd": -302.0,
+    "win_rate": 0.5714,
     "wins": 4
   },
   "status": {
