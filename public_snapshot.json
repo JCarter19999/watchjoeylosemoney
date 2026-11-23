@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-23T14:40:28.393432Z",
+      "as_of_utc": "2026-11-23T14:50:30.082959Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -151,8 +151,8 @@
     "mnqcont_leg": {
       "backfilled_trades": 0,
       "closed_trades": 0,
-      "direction": null,
-      "entry_fill": null,
+      "direction": -1,
+      "entry_fill": 26608.25,
       "instrument": "[contract]",
       "mode": "EXECUTE",
       "n_alerts": 0,
@@ -162,14 +162,14 @@
       "overlay_entry_fill": null,
       "overlay_stop_price": null,
       "overlay_target_price": null,
-      "phase": "WATCHING",
+      "phase": "IN_POSITION",
       "session": "2026-11-23",
       "stream_health": "HEALTHY",
       "total_pnl_usd": 0,
-      "unrealized_pnl_usd": null
+      "unrealized_pnl_usd": -92.5
     },
     "ops_health": {
-      "generated_at": "2026-11-23T14:40:02.165271+00:00",
+      "generated_at": "2026-11-23T14:50:01.897321+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.1,
+          "bar_age_sec": 0.1,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,11 +193,11 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 2.1,
-          "heartbeat_age_sec": 3.0,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 3.1,
           "last_alert": "2026-11-18T03:22:01Z watchdog[[contract]] killed hung pid 1848743 (heartbeat 241s)",
           "managed": true,
-          "position_state": "FLAT",
+          "position_state": "[side] 1",
           "process": "RUNNING",
           "reasons": [],
           "state": "HEALTHY",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 2.1,
-          "heartbeat_age_sec": 2.5,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 1.5,
           "last_alert": "2026-11-20T21:02:02Z watchdog[t1] resizing pid 2005546: qty 3 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -531,7 +531,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 26569.0,
+        "current_price": 26654.5,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -540,7 +540,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-23T14:25:28.576824Z",
+  "data_as_of_utc": "2026-11-23T14:35:30.536875Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -600,7 +600,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-23T14:40:28.576824Z",
+  "generated_at_utc": "2026-11-23T14:50:30.536875Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
