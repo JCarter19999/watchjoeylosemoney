@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-23T04:50:29.720285Z",
+      "as_of_utc": "2026-11-23T05:00:28.308131Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -162,14 +162,14 @@
       "overlay_entry_fill": null,
       "overlay_stop_price": null,
       "overlay_target_price": null,
-      "phase": "SKIPPED",
-      "session": "2026-11-20",
-      "stream_health": "STALE",
+      "phase": "IDLE",
+      "session": "2026-11-22",
+      "stream_health": "HEALTHY",
       "total_pnl_usd": 0,
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-23T04:50:01.901165+00:00",
+      "generated_at": "2026-11-23T05:00:02.159628+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 2.1,
+          "bar_age_sec": 0.9,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -189,18 +189,17 @@
         },
         "mnqcont_live": {
           "auth": {
-            "days_remaining": 39,
+            "days_remaining": 38,
             "expires": "2026-12-31",
-            "state": "EXPIRED"
+            "state": "VALID"
           },
-          "bar_age_sec": 197401.8,
-          "heartbeat_age_sec": 172203.5,
+          "bar_age_sec": 198002.1,
+          "heartbeat_age_sec": 172803.7,
           "last_alert": "2026-11-18T03:22:01Z watchdog[[contract]] killed hung pid 1848743 (heartbeat 241s)",
           "managed": true,
           "position_state": "FLAT",
           "process": "DEAD",
           "reasons": [
-            "AUTH_EXPIRED",
             "HEARTBEAT_STALE",
             "PROCESS_DEAD",
             "RAW_BAR_STALE"
@@ -210,18 +209,17 @@
         },
         "t1_live": {
           "auth": {
-            "days_remaining": 39,
+            "days_remaining": 38,
             "expires": "2026-12-31",
-            "state": "EXPIRED"
+            "state": "VALID"
           },
-          "bar_age_sec": 197401.8,
-          "heartbeat_age_sec": 172203.9,
+          "bar_age_sec": 198002.1,
+          "heartbeat_age_sec": 172804.2,
           "last_alert": "2026-11-20T21:02:02Z watchdog[t1] resizing pid 2005546: qty 3 -> 4 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
           "process": "DEAD",
           "reasons": [
-            "AUTH_EXPIRED",
             "HEARTBEAT_STALE",
             "PROCESS_DEAD",
             "RAW_BAR_STALE"
@@ -541,7 +539,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 25291.0,
+        "current_price": 25843.5,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -550,7 +548,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-23T04:35:30.155291Z",
+  "data_as_of_utc": "2026-11-23T04:45:28.514328Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -610,7 +608,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-23T04:50:30.155291Z",
+  "generated_at_utc": "2026-11-23T05:00:28.514328Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -821,12 +819,12 @@
   },
   "status": {
     "data_delayed": true,
-    "execution_enabled": false,
-    "guardian_state": "NA",
-    "in_position": null,
-    "market_data_state": "STALE",
-    "message": "No update from the T1 process recently -- market-closed hours or a stopped process.",
-    "service_state": "OFFLINE",
+    "execution_enabled": true,
+    "guardian_state": "ARMED",
+    "in_position": false,
+    "market_data_state": "LIVE",
+    "message": "Watching for the T1 setup at 09:33 ET (4 [contract]; entry needs a persistent move >= 1.5x its usual size).",
+    "service_state": "ARMED",
     "unrealized_pnl_usd": null
   },
   "warmup_replay": {
