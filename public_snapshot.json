@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-25T14:50:27.570020Z",
+      "as_of_utc": "2026-11-25T15:00:28.070295Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-25T14:50:01.364121+00:00",
+      "generated_at": "2026-11-25T15:00:01.884289+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.1,
+          "bar_age_sec": 1.3,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.3,
-          "heartbeat_age_sec": 2.3,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 2.5,
           "last_alert": "2026-11-18T03:22:01Z watchdog[[contract]] killed hung pid 1848743 (heartbeat 241s)",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.3,
-          "heartbeat_age_sec": 4.9,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 4.7,
           "last_alert": "2026-11-23T21:04:01Z watchdog[t1] resizing pid 2310187: qty 4 -> 3 (P2 sizing update)",
           "managed": true,
           "position_state": "[side] 3",
@@ -531,7 +531,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 25138.25,
+        "current_price": 25459.5,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -540,7 +540,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-25T14:35:27.747064Z",
+  "data_as_of_utc": "2026-11-25T14:45:28.243334Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -606,7 +606,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-25T14:50:27.747064Z",
+  "generated_at_utc": "2026-11-25T15:00:28.243334Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -842,7 +842,7 @@
     "market_data_state": "LIVE",
     "message": "In a T1 position (3 [contract]); holding to the RTH close, no stop by design.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": 522.5
+    "unrealized_pnl_usd": -1405.0
   },
   "warmup_replay": {
     "bars_replayed": 0,
