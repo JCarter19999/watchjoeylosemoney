@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-26T19:00:28.474194Z",
+      "as_of_utc": "2026-11-26T19:10:27.726827Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -164,12 +164,12 @@
       "overlay_target_price": null,
       "phase": "SKIPPED",
       "session": "2026-11-26",
-      "stream_health": "HEALTHY",
+      "stream_health": "STALE",
       "total_pnl_usd": -302.0,
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-26T19:00:02.264866+00:00",
+      "generated_at": "2026-11-26T19:10:01.508586+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 2.3,
+          "bar_age_sec": 0.8,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,17 +193,18 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 104.1,
-          "heartbeat_age_sec": 4.1,
+          "bar_age_sec": 703.3,
+          "heartbeat_age_sec": 3.1,
           "last_alert": "2026-11-26T18:58:01Z watchdog[[contract]] killed pid 2643731: no bar received for 698s",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
           "reasons": [
+            "RAW_BAR_STALE",
             "RESTART_BUDGET_EXHAUSTED"
           ],
           "state": "HALTED",
-          "stream_health": "HEALTHY"
+          "stream_health": "STALE"
         },
         "t1_live": {
           "auth": {
@@ -211,17 +212,18 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 108.6,
-          "heartbeat_age_sec": 3.6,
+          "bar_age_sec": 707.8,
+          "heartbeat_age_sec": 2.2,
           "last_alert": "2026-11-26T18:58:01Z watchdog[t1] killed pid 2643733: no bar received for 707s",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
           "reasons": [
+            "RAW_BAR_STALE",
             "RESTART_BUDGET_EXHAUSTED"
           ],
           "state": "HALTED",
-          "stream_health": "HEALTHY"
+          "stream_health": "STALE"
         }
       },
       "overall_state": "HALTED"
@@ -547,7 +549,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-26T18:45:28.666839Z",
+  "data_as_of_utc": "2026-11-26T18:55:27.919244Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -619,7 +621,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-26T19:00:28.666839Z",
+  "generated_at_utc": "2026-11-26T19:10:27.919244Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -871,7 +873,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "in_position": false,
-    "market_data_state": "LIVE",
+    "market_data_state": "STALE",
     "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
