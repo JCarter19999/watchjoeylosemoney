@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-26T18:40:28.048402Z",
+      "as_of_utc": "2026-11-26T18:50:28.334154Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-26T18:40:01.771606+00:00",
+      "generated_at": "2026-11-26T18:50:02.088349+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 2.3,
+          "bar_age_sec": 0.3,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,9 +193,9 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 341.1,
-          "heartbeat_age_sec": 1.2,
-          "last_alert": "2026-11-26T18:34:01Z watchdog[[contract]] killed pid 2642411: no bar received for 695s",
+          "bar_age_sec": 218.9,
+          "heartbeat_age_sec": 3.9,
+          "last_alert": "2026-11-26T18:46:02Z watchdog[[contract]] killed pid 2643062: no bar received for 702s",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
@@ -209,9 +209,9 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 348.2,
-          "heartbeat_age_sec": 3.1,
-          "last_alert": "2026-11-26T18:34:01Z watchdog[t1] killed pid 2642413: no bar received for 708s",
+          "bar_age_sec": 227.2,
+          "heartbeat_age_sec": 2.1,
+          "last_alert": "2026-11-26T18:46:02Z watchdog[t1] killed pid 2643065: no bar received for 709s",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
@@ -543,7 +543,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-26T18:25:28.237902Z",
+  "data_as_of_utc": "2026-11-26T18:35:28.528053Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -615,7 +615,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-26T18:40:28.237902Z",
+  "generated_at_utc": "2026-11-26T18:50:28.528053Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
