@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-26T01:00:27.656033Z",
+      "as_of_utc": "2026-11-26T01:10:27.966848Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-26T01:00:01.546375+00:00",
+      "generated_at": "2026-11-26T01:10:01.749791+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.3,
+          "bar_age_sec": 1.8,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,7 +193,7 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
+          "bar_age_sec": 1.7,
           "heartbeat_age_sec": 4.9,
           "last_alert": "2026-11-18T03:22:01Z watchdog[[contract]] killed hung pid 1848743 (heartbeat 241s)",
           "managed": true,
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
-          "heartbeat_age_sec": 2.3,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 1.7,
           "last_alert": "2026-11-25T21:02:01Z watchdog[t1] resizing pid 2384576: qty 3 -> 2 (P2 sizing update)",
           "managed": true,
           "position_state": "FLAT",
@@ -534,7 +534,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 26211.0,
+        "current_price": 26253.75,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -543,7 +543,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-26T00:45:27.838320Z",
+  "data_as_of_utc": "2026-11-26T00:55:28.145209Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -615,7 +615,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-26T01:00:27.838320Z",
+  "generated_at_utc": "2026-11-26T01:10:28.145209Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
