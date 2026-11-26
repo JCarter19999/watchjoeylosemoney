@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-26T18:50:28.334154Z",
+      "as_of_utc": "2026-11-26T19:00:28.474194Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -164,12 +164,12 @@
       "overlay_target_price": null,
       "phase": "SKIPPED",
       "session": "2026-11-26",
-      "stream_health": "STALE",
+      "stream_health": "HEALTHY",
       "total_pnl_usd": -302.0,
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-26T18:50:02.088349+00:00",
+      "generated_at": "2026-11-26T19:00:02.264866+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.3,
+          "bar_age_sec": 2.3,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,15 +193,17 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 218.9,
-          "heartbeat_age_sec": 3.9,
-          "last_alert": "2026-11-26T18:46:02Z watchdog[[contract]] killed pid 2643062: no bar received for 702s",
+          "bar_age_sec": 104.1,
+          "heartbeat_age_sec": 4.1,
+          "last_alert": "2026-11-26T18:58:01Z watchdog[[contract]] killed pid 2643731: no bar received for 698s",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
-          "reasons": [],
-          "state": "HEALTHY",
-          "stream_health": "STALE"
+          "reasons": [
+            "RESTART_BUDGET_EXHAUSTED"
+          ],
+          "state": "HALTED",
+          "stream_health": "HEALTHY"
         },
         "t1_live": {
           "auth": {
@@ -209,18 +211,20 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 227.2,
-          "heartbeat_age_sec": 2.1,
-          "last_alert": "2026-11-26T18:46:02Z watchdog[t1] killed pid 2643065: no bar received for 709s",
+          "bar_age_sec": 108.6,
+          "heartbeat_age_sec": 3.6,
+          "last_alert": "2026-11-26T18:58:01Z watchdog[t1] killed pid 2643733: no bar received for 707s",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
-          "reasons": [],
-          "state": "HEALTHY",
-          "stream_health": "STALE"
+          "reasons": [
+            "RESTART_BUDGET_EXHAUSTED"
+          ],
+          "state": "HALTED",
+          "stream_health": "HEALTHY"
         }
       },
-      "overall_state": "HEALTHY"
+      "overall_state": "HALTED"
     },
     "portfolio_a_plus_equity_ladder": {
       "caveat": "T1/[contract] share one accelerating-offset ladder level: level_band(equity)+3 below $50,000, +5 at/above it (non-sticky -- reverts to +3 if equity falls back below $50,000). organic_level_band_qty_for_comparison shows what plain, un-accelerated P2 sizing would give at the same equity, for reference. MES1R/MGC1R are excluded (rejected 2026-10-29, see memory mes1r_mgc1r_addition_rejected_2026_10_29.md). MGC10 is excluded (disabled 2026-10-29, see memory mgc10_disabled_2026_10_29.md). MES2R is excluded (closed 2026-11-08: net -$1,799/9yr and positively correlated with T1+[contract]'s bad days over the full 16yr real history, see memory mes2r_net_negative_closed_2026_11_08.md) -- all four excluded entirely, not just zero-weighted.",
@@ -543,7 +547,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-26T18:35:28.528053Z",
+  "data_as_of_utc": "2026-11-26T18:45:28.666839Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -615,7 +619,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-26T18:50:28.528053Z",
+  "generated_at_utc": "2026-11-26T19:00:28.666839Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -867,7 +871,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "in_position": false,
-    "market_data_state": "STALE",
+    "market_data_state": "LIVE",
     "message": "T1 evaluated today's 09:30-09:32 setup: no trade (persistence/magnitude not met).",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
