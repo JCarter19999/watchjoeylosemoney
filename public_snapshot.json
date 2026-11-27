@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-27T11:00:28.307485Z",
+      "as_of_utc": "2026-11-27T11:10:28.328120Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-27T11:00:02.059922+00:00",
+      "generated_at": "2026-11-27T11:10:02.029128+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.9,
+          "bar_age_sec": 1.9,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -194,7 +194,7 @@
             "state": "VALID"
           },
           "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 4.7,
+          "heartbeat_age_sec": 4.4,
           "last_alert": "2026-11-26T19:10:01Z watchdog[[contract]] killed pid 2644369: no bar received for 703s",
           "managed": true,
           "position_state": "FLAT",
@@ -210,7 +210,7 @@
             "state": "VALID"
           },
           "bar_age_sec": 2.0,
-          "heartbeat_age_sec": 4.0,
+          "heartbeat_age_sec": 3.4,
           "last_alert": "2026-11-26T19:10:01Z watchdog[t1] killed pid 2644371: no bar received for 708s",
           "managed": true,
           "position_state": "FLAT",
@@ -534,7 +534,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 26787.0,
+        "current_price": 26733.75,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -543,7 +543,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-27T10:45:28.487967Z",
+  "data_as_of_utc": "2026-11-27T10:55:28.521494Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -615,7 +615,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-27T11:00:28.487967Z",
+  "generated_at_utc": "2026-11-27T11:10:28.521494Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
