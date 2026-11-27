@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-27T08:10:27.801940Z",
+      "as_of_utc": "2026-11-27T08:20:28.074686Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-27T08:10:01.784617+00:00",
+      "generated_at": "2026-11-27T08:20:01.834464+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.7,
-          "heartbeat_age_sec": 4.3,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 4.1,
           "last_alert": "2026-11-26T19:10:01Z watchdog[[contract]] killed pid 2644369: no bar received for 703s",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.7,
-          "heartbeat_age_sec": 0.0,
+          "bar_age_sec": 1.8,
+          "heartbeat_age_sec": 4.4,
           "last_alert": "2026-11-26T19:10:01Z watchdog[t1] killed pid 2644371: no bar received for 708s",
           "managed": true,
           "position_state": "FLAT",
@@ -534,7 +534,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 26747.0,
+        "current_price": 26774.25,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -543,7 +543,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-27T07:55:27.975170Z",
+  "data_as_of_utc": "2026-11-27T08:05:28.275734Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -615,7 +615,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-27T08:10:27.975170Z",
+  "generated_at_utc": "2026-11-27T08:20:28.275734Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
