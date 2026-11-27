@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-27T15:10:27.874707Z",
+      "as_of_utc": "2026-11-27T15:20:28.061944Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-27T15:10:01.334783+00:00",
+      "generated_at": "2026-11-27T15:20:01.797224+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.6,
+          "bar_age_sec": 1.1,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.3,
-          "heartbeat_age_sec": 1.5,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 1.7,
           "last_alert": "2026-11-26T19:10:01Z watchdog[[contract]] killed pid 2644369: no bar received for 703s",
           "managed": true,
           "position_state": "FLAT",
@@ -209,8 +209,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 1.3,
-          "heartbeat_age_sec": 0.8,
+          "bar_age_sec": 1.7,
+          "heartbeat_age_sec": 0.6,
           "last_alert": "2026-11-26T19:10:01Z watchdog[t1] killed pid 2644371: no bar received for 708s",
           "managed": true,
           "position_state": "[side] 2",
@@ -534,7 +534,7 @@
       },
       "mnq": {
         "avg_fill_price": null,
-        "current_price": 26286.5,
+        "current_price": 26395.75,
         "held_contract": null,
         "held_qty": 0,
         "instrument": "[contract]",
@@ -543,7 +543,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-27T14:55:28.110999Z",
+  "data_as_of_utc": "2026-11-27T15:05:28.250013Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -615,7 +615,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-27T15:10:28.110999Z",
+  "generated_at_utc": "2026-11-27T15:20:28.250013Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -870,7 +870,7 @@
     "market_data_state": "LIVE",
     "message": "In a T1 position (2 [contract]); holding to the RTH close, no stop by design.",
     "service_state": "ARMED",
-    "unrealized_pnl_usd": 325.0
+    "unrealized_pnl_usd": -112.0
   },
   "warmup_replay": {
     "bars_replayed": 0,
