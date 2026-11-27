@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-27T18:40:28.188034Z",
+      "as_of_utc": "2026-11-27T18:50:28.520389Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -164,12 +164,12 @@
       "overlay_target_price": null,
       "phase": "SKIPPED",
       "session": "2026-11-27",
-      "stream_health": "HEALTHY",
+      "stream_health": "STALE",
       "total_pnl_usd": -302.0,
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-27T18:40:01.973082+00:00",
+      "generated_at": "2026-11-27T18:50:02.231982+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.5,
+          "bar_age_sec": 1.9,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,17 +193,14 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 822.9,
-          "heartbeat_age_sec": 122.8,
+          "bar_age_sec": 590.8,
+          "heartbeat_age_sec": 0.7,
           "last_alert": "2026-11-27T18:38:01Z watchdog[[contract]] killed pid 2722514: no bar received for 702s",
           "managed": true,
           "position_state": "FLAT",
-          "process": "DEAD",
-          "reasons": [
-            "PROCESS_DEAD",
-            "RAW_BAR_STALE"
-          ],
-          "state": "HALTED",
+          "process": "RUNNING",
+          "reasons": [],
+          "state": "HEALTHY",
           "stream_health": "STALE"
         },
         "t1_live": {
@@ -212,16 +209,16 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 709.5,
-          "heartbeat_age_sec": 4.0,
-          "last_alert": "2026-11-27T18:28:01Z watchdog[t1] killed pid 2721872: no bar received for 709s",
+          "bar_age_sec": 589.0,
+          "heartbeat_age_sec": 3.6,
+          "last_alert": "2026-11-27T18:40:02Z watchdog[t1] killed pid 2722658: no bar received for 709s",
           "managed": true,
           "position_state": "FLAT",
           "process": "RUNNING",
           "reasons": [
-            "RAW_BAR_STALE"
+            "RESTART_BUDGET_EXHAUSTED"
           ],
-          "state": "DEGRADED",
+          "state": "HALTED",
           "stream_health": "STALE"
         }
       },
@@ -551,7 +548,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-27T18:25:28.416255Z",
+  "data_as_of_utc": "2026-11-27T18:35:28.759229Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -629,7 +626,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-27T18:40:28.416255Z",
+  "generated_at_utc": "2026-11-27T18:50:28.759229Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
@@ -900,7 +897,7 @@
     "execution_enabled": true,
     "guardian_state": "ARMED",
     "in_position": false,
-    "market_data_state": "LIVE",
+    "market_data_state": "STALE",
     "message": "T1 traded and exited today; done until the next session.",
     "service_state": "ARMED",
     "unrealized_pnl_usd": null
