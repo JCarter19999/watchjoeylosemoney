@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-28T14:30:28.215589Z",
+      "as_of_utc": "2026-11-28T14:40:28.474337Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-28T14:30:02.002935+00:00",
+      "generated_at": "2026-11-28T14:40:01.954152+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 70659.1,
-          "heartbeat_age_sec": 69964.0,
+          "bar_age_sec": 71259.0,
+          "heartbeat_age_sec": 70563.9,
           "last_alert": "2026-11-27T19:04:01Z watchdog[[contract]] killed pid 2724819: no bar received for 699s",
           "managed": true,
           "position_state": "FLAT",
@@ -213,8 +213,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 71388.8,
-          "heartbeat_age_sec": 70683.3,
+          "bar_age_sec": 71988.8,
+          "heartbeat_age_sec": 71283.2,
           "last_alert": "2026-11-27T18:52:01Z watchdog[t1] killed pid 2723814: no bar received for 708s",
           "managed": true,
           "position_state": "FLAT",
@@ -554,7 +554,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-28T14:15:28.409766Z",
+  "data_as_of_utc": "2026-11-28T14:25:28.699998Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -632,7 +632,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-28T14:30:28.409766Z",
+  "generated_at_utc": "2026-11-28T14:40:28.699998Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
