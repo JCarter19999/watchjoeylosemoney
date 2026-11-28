@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-28T00:10:28.227658Z",
+      "as_of_utc": "2026-11-28T00:20:27.498597Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-28T00:10:02.080068+00:00",
+      "generated_at": "2026-11-28T00:20:01.350044+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 0.2,
+          "bar_age_sec": 0.7,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 19059.1,
-          "heartbeat_age_sec": 18364.0,
+          "bar_age_sec": 19658.4,
+          "heartbeat_age_sec": 18963.3,
           "last_alert": "2026-11-27T19:04:01Z watchdog[[contract]] killed pid 2724819: no bar received for 699s",
           "managed": true,
           "position_state": "FLAT",
@@ -213,8 +213,8 @@
             "expires": "2026-12-31",
             "state": "VALID"
           },
-          "bar_age_sec": 19788.9,
-          "heartbeat_age_sec": 19083.4,
+          "bar_age_sec": 20388.2,
+          "heartbeat_age_sec": 19682.6,
           "last_alert": "2026-11-27T18:52:01Z watchdog[t1] killed pid 2723814: no bar received for 708s",
           "managed": true,
           "position_state": "FLAT",
@@ -554,7 +554,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-27T23:55:28.409791Z",
+  "data_as_of_utc": "2026-11-28T00:05:27.670548Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -632,7 +632,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-28T00:10:28.409791Z",
+  "generated_at_utc": "2026-11-28T00:20:27.670548Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
