@@ -1,7 +1,7 @@
 {
   "dashboard_extras": {
     "contract_distribution": {
-      "as_of_utc": "2026-11-28T07:50:27.559176Z",
+      "as_of_utc": "2026-11-28T08:00:27.761021Z",
       "legs": {
         "mnqcont": {
           "controller": null,
@@ -169,7 +169,7 @@
       "unrealized_pnl_usd": null
     },
     "ops_health": {
-      "generated_at": "2026-11-28T07:50:01.240279+00:00",
+      "generated_at": "2026-11-28T08:00:01.594250+00:00",
       "legs": {
         "gateway": {
           "auth": {
@@ -177,7 +177,7 @@
             "expires": null,
             "state": "VALID"
           },
-          "bar_age_sec": 1.9,
+          "bar_age_sec": 0.3,
           "heartbeat_age_sec": null,
           "last_alert": null,
           "managed": true,
@@ -193,8 +193,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 46658.3,
-          "heartbeat_age_sec": 45963.2,
+          "bar_age_sec": 47258.7,
+          "heartbeat_age_sec": 46563.6,
           "last_alert": "2026-11-27T19:04:01Z watchdog[[contract]] killed pid 2724819: no bar received for 699s",
           "managed": true,
           "position_state": "FLAT",
@@ -202,8 +202,7 @@
           "reasons": [
             "AUTH_EXPIRED",
             "HEARTBEAT_STALE",
-            "PROCESS_DEAD",
-            "RESTART_BUDGET_EXHAUSTED"
+            "PROCESS_DEAD"
           ],
           "state": "HALTED",
           "stream_health": "STALE"
@@ -214,8 +213,8 @@
             "expires": "2026-12-31",
             "state": "EXPIRED"
           },
-          "bar_age_sec": 47388.1,
-          "heartbeat_age_sec": 46682.5,
+          "bar_age_sec": 47988.4,
+          "heartbeat_age_sec": 47282.9,
           "last_alert": "2026-11-27T18:52:01Z watchdog[t1] killed pid 2723814: no bar received for 708s",
           "managed": true,
           "position_state": "FLAT",
@@ -223,8 +222,7 @@
           "reasons": [
             "AUTH_EXPIRED",
             "HEARTBEAT_STALE",
-            "PROCESS_DEAD",
-            "RESTART_BUDGET_EXHAUSTED"
+            "PROCESS_DEAD"
           ],
           "state": "HALTED",
           "stream_health": "STALE"
@@ -556,7 +554,7 @@
       }
     }
   },
-  "data_as_of_utc": "2026-11-28T07:35:27.751225Z",
+  "data_as_of_utc": "2026-11-28T07:45:27.952401Z",
   "equity_curve": [
     {
       "cum_pnl_usd": -1968.6,
@@ -634,7 +632,7 @@
     "submit_to_fill_ms_median": null,
     "submit_to_fill_ms_p95": null
   },
-  "generated_at_utc": "2026-11-28T07:50:27.751225Z",
+  "generated_at_utc": "2026-11-28T08:00:27.952401Z",
   "guardian_transitions": [],
   "latency_health": {
     "bars_sampled": 0,
